@@ -1334,7 +1334,7 @@ const g=$("gallery"), st=$("upStatus"), bar=$("upBar");
 const dayName={"2026-11-21":"Sa 21.11. · Ankommen","2026-11-22":"So 22.11.","2026-11-23":"Mo 23.11.","2026-11-24":"Di 24.11.","2026-11-25":"Mi 25.11. · Fukuoka","2026-11-26":"Do 26.11.","2026-11-27":"Fr 27.11.","2026-11-28":"Sa 28.11.","2026-11-29":"So 29.11. · Abreise"};
 if(API){ $("memUp").hidden=false; }
 if(!API){ $("pick").disabled=true; document.querySelector('label[for="pick"]').classList.add("off");
-st.textContent="Hochladen und die gemeinsame Galerie gibt es auf seoul.staycurious.art."; return; }
+st.innerHTML='Diese Vorschau hier kann keine Fotos speichern. Hochladen, löschen und die gemeinsame Galerie gibt es auf <a href="https://seoul.staycurious.art" target="_blank" rel="noopener">seoul.staycurious.art</a>.'; return; }
 try{ const w=localStorage.getItem("who"); if(w==="Michi") $("whoM").checked=true; }catch(e){}
 document.querySelectorAll('input[name="who"]').forEach(r=>r.addEventListener("change",()=>{try{localStorage.setItem("who",r.value);}catch(e){}}));
 async function shrink(file){
