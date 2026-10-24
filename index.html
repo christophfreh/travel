@@ -368,6 +368,75 @@ background-size:14px 2px,2px 14px,14px 2px,2px 14px;background-position:right 6p
 .est-tot div{background:var(--night);border:1px solid var(--line);border-radius:12px;padding:12px}
 .est-tot b{display:block;font:700 clamp(26px,7vw,36px)/1.1 var(--f-mono);color:var(--sign);text-shadow:0 0 14px rgba(255,210,63,.45)}
 .est-tot div:last-child b{color:var(--cyan);text-shadow:0 0 14px rgba(59,230,214,.5)}
+:root{--cp:#FCEE0A}
+h2{text-shadow:-2px 0 rgba(59,230,214,.55),2px 0 rgba(255,62,138,.55)}
+.sh{position:relative;padding-bottom:10px}
+.sh::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--cp) 0 56px,transparent 56px 62px,var(--neon) 62px 74px,transparent 74px 80px,var(--line) 80px)}
+.sh .n{color:var(--cp);text-shadow:0 0 16px rgba(252,238,10,.45)}
+.sh .ko{border-radius:0;clip-path:polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%)}
+.btn{border-radius:0;clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%)}
+.btn:hover{background:var(--cp);box-shadow:none}
+.box{border-radius:4px 4px 16px 4px}
+.box::after{content:"";position:absolute;left:-1px;top:-1px;width:22px;height:3px;background:var(--cp);pointer-events:none}
+.box.h .meta{margin-top:auto}
+.box.h .meta+.btn{margin-top:8px}
+.q{position:relative;margin:0;padding:14px 16px 14px 18px;border-left:3px solid var(--cp);background:linear-gradient(90deg,rgba(252,238,10,.08),transparent 70%)}
+.q p{font:400 clamp(18px,4.6vw,24px)/1.25 var(--f-display);font-style:italic;color:var(--ink);margin:0}
+.q span{display:block;margin-top:6px;font:400 10.5px/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cp)}
+.q::before{content:"// TRANSMISSION";position:absolute;right:10px;top:8px;font:400 9px var(--f-mono);letter-spacing:.2em;color:var(--muted);opacity:.7}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.duo .ph{aspect-ratio:4/3}
+@media (max-width:520px){.duo{grid-template-columns:minmax(0,1fr)}.duo .ph{aspect-ratio:16/9}}
+.map.lf .lf-map{height:380px;background:#0d0b1f}
+@media (min-width:700px){.map.lf .lf-map{height:460px}}
+.map.lf.full{position:fixed;inset:0;z-index:1000;border-radius:0;display:flex;flex-direction:column}
+.map.lf.full .lf-map{flex:1;height:auto}
+.leaflet-container{font:13px/1.4 var(--f-body);background:#0d0b1f}
+.lf-pin span{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--c);color:#110F27;font:700 11px/1 var(--f-mono);border:2px solid #110F27;box-shadow:0 0 12px var(--c)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:6px}
+.leaflet-popup-content b{font-size:14px}
+.leaflet-popup-content small{color:var(--muted)}
+.leaflet-container a.leaflet-popup-close-button{color:var(--muted)}
+.leaflet-control-zoom a{background:var(--panel)!important;color:var(--ink)!important;border-color:var(--line)!important}
+.leaflet-control-attribution{background:rgba(17,15,39,.7)!important;color:var(--muted)!important}
+.leaflet-control-attribution a{color:var(--cyan)!important}
+.pack{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.pack li label{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14px;cursor:pointer}
+.pack li:last-child label{border-bottom:0}
+.pack input{accent-color:var(--cp);width:18px;height:18px;flex:none;margin-top:1px}
+.pack input:checked+span{color:var(--muted);text-decoration:line-through}
+.pack small{display:block;color:var(--muted);font-size:12px}
+.pk-bar{height:6px;background:var(--night);border:1px solid var(--line);overflow:hidden}
+.pk-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cp),var(--neon));transition:width .3s}
+.fx-top{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline}
+.fx-top b{font:700 15px var(--f-mono);color:var(--cyan)}
+.fx-top b+b{color:var(--sign)}
+.fx-row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:center;margin-top:10px}
+.fx-cur{display:inline-flex;border:1px solid var(--line);background:var(--night);padding:3px}
+.fx-cur button{border:0;background:transparent;color:var(--muted);font:700 15px var(--f-mono);padding:9px 14px;cursor:pointer}
+.fx-cur button[aria-pressed="true"]{background:var(--cp);color:#110F27}
+.fx-row input{width:100%;box-sizing:border-box;font:700 22px var(--f-mono);padding:10px 12px;background:var(--night);color:var(--ink);border:1px solid var(--line);border-radius:0}
+.fx-out{font:700 clamp(30px,9vw,44px)/1.1 var(--f-mono);color:var(--sign);text-shadow:0 0 16px rgba(255,210,63,.45);margin-top:8px}
+.fx-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.fx-chips button{border:1px solid var(--line);background:transparent;color:var(--ink);font:400 12px var(--f-mono);padding:6px 10px;cursor:pointer}
+.fx-chips button:hover{border-color:var(--cp);color:var(--cp)}
+.fx-own summary{cursor:pointer;color:var(--muted);font-size:13px;margin-top:10px}
+.fx-own .conv{margin-top:8px}
+.pola{background:var(--panel);padding:0;border:1px solid var(--line);border-radius:4px 4px 16px 4px;transform:none;position:relative;overflow:hidden;box-shadow:0 10px 28px rgba(0,0,0,.45)}
+.pola:hover{transform:translateY(-3px)}
+.pola::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+background:linear-gradient(180deg,rgba(17,15,39,0) 50%,rgba(17,15,39,.9)),repeating-linear-gradient(0deg,rgba(17,15,39,.22) 0 1px,transparent 1px 3px),
+linear-gradient(var(--cyan),var(--cyan)) left 8px top 8px/16px 2px no-repeat,linear-gradient(var(--cyan),var(--cyan)) left 8px top 8px/2px 16px no-repeat,
+linear-gradient(var(--neon),var(--neon)) right 8px bottom 8px/16px 2px no-repeat,linear-gradient(var(--neon),var(--neon)) right 8px bottom 8px/2px 16px no-repeat}
+.pola img{border-radius:0;filter:saturate(1.15) contrast(1.05)}
+.pola figcaption{position:absolute;left:12px;right:28px;bottom:12px;z-index:2;text-align:left;margin:0;font:400 18px/1.1 var(--f-sign);color:var(--ink);text-shadow:0 0 14px rgba(255,62,138,.7);pointer-events:none}
+.pola figcaption small{color:var(--cp);font:400 10px var(--f-mono);letter-spacing:.14em;text-shadow:none;margin-top:5px}
+.pola .del{position:absolute;right:8px;top:8px;z-index:3;border:1px solid var(--line);background:rgba(17,15,39,.8);color:var(--ink);font:700 10px var(--f-mono);padding:5px 8px;cursor:pointer}
+.pola .del.sure,.lb .del.sure{background:var(--neon);color:#110F27;border-color:var(--neon)}
+.g-it{border-radius:4px 4px 12px 4px}
+.g-it::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(var(--cyan),var(--cyan)) left 6px top 6px/12px 2px no-repeat,linear-gradient(var(--cyan),var(--cyan)) left 6px top 6px/2px 12px no-repeat,linear-gradient(var(--neon),var(--neon)) right 6px bottom 6px/12px 2px no-repeat,linear-gradient(var(--neon),var(--neon)) right 6px bottom 6px/2px 12px no-repeat}
+.g-it span{z-index:2}
+.lb .del{border:1px solid var(--line);background:var(--panel);color:var(--ink);font:700 12px var(--f-mono);padding:9px 14px;cursor:pointer}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -376,15 +445,16 @@ background-size:14px 2px,2px 14px,14px 2px,2px 14px;background-position:right 6p
 <div class="hangul" aria-hidden="true">서울</div>
 <div class="kata" aria-hidden="true">フクオカ<small>+ FUK</small></div>
 <h1>seoul, <em>november.</em></h1>
-<p class="sub">Christoph und Michi in Seoul, mit zwei Tagen Fukuoka dazwischen. Gut essen, in kleinen Bars sitzen, Museen und Technik anschauen, ins Kino gehen und sich Zeit lassen. 21. bis 29. November 2026, unser Viertel: Jongno und Euljiro.</p>
+<p class="sub">Neun Jahre nach Japan sind Michi und Christoph wieder unterwegs. Diesmal Seoul, mit einem Abstecher nach Fukuoka. Grillen am Tisch, Bars hinter Bücherregalen, Roboter, Neon und kein Pflichtprogramm. <b>21. bis 29. November</b>, Basis in Jongno.</p>
 <div class="stats">
 <div class="stat"><span class="label">Abflug in</span><b id="countdown">–</b><small id="countdownSub">Tagen</small></div>
 <div class="stat"><span class="label">Jetzt in Seoul</span><b id="heroTemp">–</b><small id="heroPhrase">Wetter lädt</small></div>
 <div class="stat"><span class="label">Zeit</span><b>+8 h</b><small>vor Wien</small></div>
 </div>
 <div class="cd" id="cd"><span class="label"><span>Boarding-Countdown · KE938 · VIE → ICN</span><span>Fr 20.11. · 19:30</span></span><div class="cd-grid"><div class="cd-u"><b id="cdD">--</b><small>Tage</small></div><div class="cd-u"><b id="cdH">--</b><small>Std</small></div><div class="cd-u"><b id="cdM">--</b><small>Min</small></div><div class="cd-u"><b id="cdS">--</b><small>Sek</small></div></div><div class="cd-msg" id="cdMsg">&gt; Abflug Wien-Schwechat, Terminal 3</div></div>
-<div class="marquee" aria-hidden="true"><div><span>ICN ✦ 21.11.</span><span>종로 JONGNO</span><span>을지로 EULJIRO</span><span>福岡 FUKUOKA</span><span>DMZ</span><span>삼성 SAMSUNG</span><span>소주 SOJU</span><span>라면 RAMEN</span><span>LoL PARK</span><span>ICN ✦ 21.11.</span><span>종로 JONGNO</span><span>을지로 EULJIRO</span><span>福岡 FUKUOKA</span><span>DMZ</span><span>삼성 SAMSUNG</span><span>소주 SOJU</span><span>라면 RAMEN</span><span>LoL PARK</span></div></div>
+<div class="marquee" aria-hidden="true"><div><span>ICN ✦ 21.11.</span><span>종로 JONGNO</span><span>을지로 EULJIRO</span><span>福岡 FUKUOKA</span><span>DMZ</span><span>NIGHT CITY? NEIN, SEOUL</span><span>BLADE RUNNER WEATHER</span><span>삼성 SAMSUNG</span><span>소주 SOJU</span><span>라면 RAMEN</span><span>LoL PARK</span><span>ICN ✦ 21.11.</span><span>종로 JONGNO</span><span>을지로 EULJIRO</span><span>福岡 FUKUOKA</span><span>DMZ</span><span>삼성 SAMSUNG</span><span>소주 SOJU</span><span>라면 RAMEN</span><span>LoL PARK</span></div></div>
 </header>
+<aside class="q" aria-label="Zitat"><p>Wake up, Samurai. We have a city to explore.</p><span>frei nach Johnny Silverhand · Cyberpunk 2077</span></aside>
 <section id="highlights" aria-label="Highlights">
 <div class="sh"><span class="n">★</span><h2>Die besten Ideen</h2><span class="ko">최고</span></div>
 <div class="hl-strip">
@@ -452,6 +522,7 @@ background-size:14px 2px,2px 14px,14px 2px,2px 14px;background-position:right 6p
 <div class="box"><span class="label">So reisen wir</span><p>Ein Highlight pro Tag, dazu gutes Essen und eine Bar. Nachmittags zurück ins Hotel, Füße hoch. Alles über 20 Minuten mit dem Taxi, das ist hier billig. Was spontan nicht passt, fliegt raus. Urlaub, kein Pflichtprogramm.</p></div>
 <div class="plan" id="planList"></div>
 </section>
+<aside class="q" aria-label="Zitat"><p>„I've seen things you people wouldn't believe.“</p><span>Roy Batty · Blade Runner, 1982</span></aside>
 <section id="logbuch">
 <div class="sh"><span class="n">04</span><h2>Logbuch</h2><span class="ko">기록</span></div>
 <p class="sub">Kurze Reiseberichte im Voraus: so fühlen sich die wichtigsten Stationen an.</p>
@@ -474,8 +545,9 @@ background-size:14px 2px,2px 14px,14px 2px,2px 14px;background-position:right 6p
 </div>
 <div id="gallery" class="gallery"><p class="status">Noch keine Fotos. Das erste kommt am 21.11.</p></div>
 <div class="zm" id="zm" hidden><div class="zm-bar"><b id="zmT"></b><span><button type="button" id="zmOut" aria-label="Verkleinern">−</button><button type="button" id="zmIn" aria-label="Vergrößern">+</button><button type="button" id="zmX" aria-label="Schließen">✕</button></span></div><div class="zm-scroll" id="zmS"><div id="zmC"></div></div></div>
-<div class="lb" id="lb" hidden><button type="button" class="lb-x" id="lbX" aria-label="Schließen">✕</button><img id="lbImg" alt=""><p id="lbCap"></p></div>
+<div class="lb" id="lb" hidden><button type="button" class="lb-x" id="lbX" aria-label="Schließen">✕</button><img id="lbImg" alt=""><p id="lbCap"></p><button type="button" class="del" id="lbDel" hidden>Foto löschen</button></div>
 </section>
+<aside class="q" aria-label="Zitat"><p>„Enhance 224 to 176. Enhance, stop.“</p><span>Rick Deckard · Blade Runner, 1982</span></aside>
 <section id="los">
 <div class="sh"><span class="n">06</span><h2>Was los ist</h2><span class="ko">행사</span></div>
 <ul class="list">
@@ -509,6 +581,7 @@ background-size:14px 2px,2px 14px,14px 2px,2px 14px;background-position:right 6p
 </ul>
 </div>
 </section>
+<aside class="q" aria-label="Zitat"><p>Heute Nacht ist Euljiro unser Afterlife. Ein Drink für jede Legende.</p><span>Night City Mood · Cyberpunk 2077</span></aside>
 <section id="abends">
 <div class="sh"><span class="n">08</span><h2>Kino & Bars</h2><span class="ko">밤</span></div>
 <div class="grid2">
@@ -533,10 +606,10 @@ background-size:14px 2px,2px 14px,14px 2px,2px 14px;background-position:right 6p
 </div>
 <div class="label" style="display:block;margin-top:8px">Besondere Bars · versteckte Türen, ausgefallene Drinks</div>
 <div class="hotels">
-<div class="box h"><span class="pin p">S1</span><h3>Le Chamber</h3><p>Eingang hinter einem Bücherregal: das richtige Buch ziehen, dann öffnet sich die Bar. Live-Piano, Publikum in den 30ern und 40ern.</p><span class="meta mono">Cheongdam · bis 3 Uhr</span><a class="btn sm" href="https://map.naver.com/p/search/Le%20Chamber%20Cheongdam" target="_blank" rel="noopener">Karte ↗</a></div>
-<div class="box h"><span class="pin p">S2</span><h3>Alice Cheongdam</h3><p>Durch einen Blumenladen ins Wunderland. Platz 13 der Asia's 50 Best Bars 2026. Kleine Cover-Gebühr mit Snacks und Willkommensdrink.</p><span class="meta mono">Cheongdam · reservieren</span><a class="btn sm" href="https://map.naver.com/p/search/Alice%20Cheongdam" target="_blank" rel="noopener">Karte ↗</a></div>
-<div class="box h"><span class="pin p">S3</span><h3>Bar Cham</h3><p>Cocktails aus den Zutaten von sechs Regionen Koreas, sogar einer, der nach Gimbap riecht. Wartenummer ziehen, dann nebenan essen.</p><span class="meta mono">Seochon · dienstags zu</span><a class="btn sm" href="https://map.naver.com/p/search/Bar%20Cham%20Seochon" target="_blank" rel="noopener">Karte ↗</a></div>
-<div class="box h"><span class="pin p">S4</span><h3>Charles H.</h3><p>Speakeasy im Four Seasons hinter einer Wand-Tür, bekannt aus K-Dramen. Mindestverzehr einplanen.</p><span class="meta mono">Gwanghwamun</span><a class="btn sm" href="https://map.naver.com/p/search/Charles%20H%20Four%20Seasons%20Seoul" target="_blank" rel="noopener">Karte ↗</a></div>
+<div class="box h"><span class="pin p">S1</span><h3>Le Chamber</h3><p>Eingang hinter einem Bücherregal: das richtige Buch ziehen, dann öffnet sich die Bar. Live-Piano, Publikum in den 30ern und 40ern.</p><span class="meta mono">Cheongdam · bis 3 Uhr</span><a class="btn sm" href="https://www.google.com/maps/search/?api=1&query=Le%20Chamber%20Cheongdam" target="_blank" rel="noopener">Karte ↗</a></div>
+<div class="box h"><span class="pin p">S2</span><h3>Alice Cheongdam</h3><p>Durch einen Blumenladen ins Wunderland. Platz 13 der Asia's 50 Best Bars 2026. Kleine Cover-Gebühr mit Snacks und Willkommensdrink.</p><span class="meta mono">Cheongdam · reservieren</span><a class="btn sm" href="https://www.google.com/maps/search/?api=1&query=Alice%20Cheongdam" target="_blank" rel="noopener">Karte ↗</a></div>
+<div class="box h"><span class="pin p">S3</span><h3>Bar Cham</h3><p>Cocktails aus den Zutaten von sechs Regionen Koreas, sogar einer, der nach Gimbap riecht. Wartenummer ziehen, dann nebenan essen.</p><span class="meta mono">Seochon · dienstags zu</span><a class="btn sm" href="https://www.google.com/maps/search/?api=1&query=Bar%20Cham%20Seochon" target="_blank" rel="noopener">Karte ↗</a></div>
+<div class="box h"><span class="pin p">S4</span><h3>Charles H.</h3><p>Speakeasy im Four Seasons hinter einer Wand-Tür, bekannt aus K-Dramen. Mindestverzehr einplanen.</p><span class="meta mono">Gwanghwamun</span><a class="btn sm" href="https://www.google.com/maps/search/?api=1&query=Charles%20H%20Four%20Seasons%20Seoul" target="_blank" rel="noopener">Karte ↗</a></div>
 <div class="box h"><span class="pin p">S5</span><h3>Sebek</h3><p>Versteckt in einer schmalen Gasse mit kleinem Neonschild. Wenige Plätze, eine Barkeeperin, die ihr Handwerk liebt.</p><span class="meta mono">Fukuoka · Nakasu · So zu</span><a class="btn sm" href="https://www.google.com/maps/search/?api=1&query=Bar+Sebek+Nakasu+Fukuoka" target="_blank" rel="noopener">Karte ↗</a></div>
 <div class="box h"><span class="pin p">S6</span><h3>Contrast</h3><p>Speakeasy versteckt in einem Yakiniku-Lokal. Tee-Cocktails wie Matcha Old Fashioned, dazu japanische Süßigkeiten.</p><span class="meta mono">Fukuoka · Haruyoshi · Mo zu</span><a class="btn sm" href="https://www.google.com/maps/search/?api=1&query=Contrast+bar+Haruyoshi+Fukuoka" target="_blank" rel="noopener">Karte ↗</a></div>
 </div>
@@ -708,6 +781,7 @@ background-size:14px 2px,2px 14px,14px 2px,2px 14px;background-position:right 6p
 <div class="sh"><span class="n">16</span><h2>Games</h2><span class="ko">게임</span></div>
 <figure class="ph"><img src="https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=1200&h=520" alt="Arcade-Automaten im Neonlicht" loading="lazy" onerror="this.closest('figure').remove()"><span class="ph-l">게임 · Level up</span><figcaption>Foto: <a href="https://unsplash.com/@carltraw?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Carl Raw</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure>
 <p class="sub">Seoul ist die Hauptstadt des E-Sports, Fukuoka hat Nintendo direkt am Bahnhof.</p>
+<div class="duo"><figure class="ph"><img src="https://images.unsplash.com/photo-1633545495735-25df17fb9f31?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=800&h=600" alt="Gaming-Halle mit vielen PC-Plätzen im blauen Licht" loading="lazy" onerror="this.closest('figure').remove()"><span class="ph-l">서울 · PC-Bang & E-Sports</span><figcaption>Foto: <a href="https://unsplash.com/@elladon?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">ELLA DON</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure><figure class="ph"><img src="https://images.unsplash.com/photo-1767839581596-4c3ce952b577?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=800&h=600" alt="Nintendo-Store mit Figuren und Merchandise" loading="lazy" onerror="this.closest('figure').remove()"><span class="ph-l">福岡 · Nintendo</span><figcaption>Foto: <a href="https://unsplash.com/@prince_perry?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Perry Merrity II</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure></div>
 <div class="grid2">
 <div class="box"><span class="label">Seoul</span>
 <ul class="list">
@@ -734,10 +808,12 @@ background-size:14px 2px,2px 14px,14px 2px,2px 14px;background-position:right 6p
 <li><span>Beim Hotel nach einem Zimmer mit <b>freiem HDMI-Anschluss</b> am TV fragen. Sonst im Handheld-Modus spielen</span><span>Hotel</span></li>
 <li><span>Korea: Stecker passt (Typ F). Japan: Adapter Typ A nötig</span><span>Strom</span></li>
 <li><span>Chimaek zum Mitnehmen im Chicken-Laden ums Eck, Bier aus dem Convenience Store</span><span>Snacks</span></li>
+<li><span><b>Cyberpunk 2077</b> läuft auch auf der Switch 2. Für den Langstreckenflug: zwölf Stunden reichen für ein paar Gigs in Night City</span><span>Flug</span></li>
 </ul>
 </div>
 <p class="status">Ende November finden meist keine LCK-Spiele statt. Ob im LoL Park etwas läuft, vorher auf der LCK-Seite schauen.</p>
 </section>
+<aside class="q" aria-label="Zitat"><p>„More human than human is our motto.“</p><span>Eldon Tyrell · Blade Runner, 1982 · passt zum Robot & AI Museum</span></aside>
 <section id="viertel">
 <div class="sh"><span class="n">17</span><h2>Viertel & Tipps</h2><span class="ko">동네</span></div>
 <p class="sub">Die Gegenden, in denen ihr unterwegs seid, mit den wichtigsten Tipps vor Ort.</p>
@@ -770,7 +846,7 @@ background-size:14px 2px,2px 14px,14px 2px,2px 14px;background-position:right 6p
 <div class="box"><span class="label">Essen & Trinken</span><table class="pt" id="ptEat"><thead><tr><th>Was</th><th>Preis</th><th>≈ €</th></tr></thead><tbody></tbody></table></div>
 </div>
 <div class="box"><span class="label">Unterwegs</span><table class="pt" id="ptGo"><thead><tr><th>Was</th><th>Preis</th><th>≈ €</th></tr></thead><tbody></tbody></table></div>
-<p class="status">Mit „Schätzung“ markierte Preise sind Erfahrungswerte, nicht geprüft. Euro-Werte rechnen live mit dem Kurs aus dem Umrechner unter „Praktisch“. Stand der Preise: Oktober 2026, vor Ort kann es abweichen.</p>
+<p class="status">Mit „Schätzung“ markierte Preise sind Erfahrungswerte, nicht geprüft. Euro-Werte rechnen mit dem Tageskurs der EZB, live geladen. Stand der Preise: Oktober 2026, vor Ort kann es abweichen.</p>
 </section>
 <section id="beachten">
 <div class="sh"><span class="n">20</span><h2>Beachten</h2><span class="ko">준비</span></div>
@@ -812,8 +888,31 @@ background-size:14px 2px,2px 14px,14px 2px,2px 14px;background-position:right 6p
 </div>
 </div>
 </section>
+<section id="packen">
+<div class="sh"><span class="n">21</span><h2>Packliste</h2><span class="ko">짐</span></div>
+<div class="box"><span class="label">Gepackt <b id="pkN">0</b> von <b id="pkT">0</b></span><div class="pk-bar"><i id="pkBar"></i></div></div>
+<div class="grid2">
+<div class="box"><span class="label">Papiere</span><ul class="pack"><li><label><input type="checkbox" id="pk1"><span>Reisepass<small>mind. 6 Monate gültig</small></span></label></li><li><label><input type="checkbox" id="pk2"><span>K-ETA-Status prüfen<small>Korea, vor Abflug</small></span></label></li><li><label><input type="checkbox" id="pk3"><span>Visit Japan Web QR-Code<small>als Screenshot</small></span></label></li><li><label><input type="checkbox" id="pk4"><span>Bordkarten & Buchungen offline<small>Hotel, Fukuoka-Flüge</small></span></label></li><li><label><input type="checkbox" id="pk5"><span>Kreditkarte + Zweitkarte<small>getrennt aufbewahren</small></span></label></li><li><label><input type="checkbox" id="pk6"><span>Etwas Bargeld<small>Märkte, Streetfood</small></span></label></li><li><label><input type="checkbox" id="pk7"><span>Reiseversicherung<small>Nummer im Handy</small></span></label></li></ul></div>
+<div class="box"><span class="label">Technik</span><ul class="pack"><li><label><input type="checkbox" id="pk8"><span>Handy & Ladekabel</span></label></li><li><label><input type="checkbox" id="pk9"><span>Powerbank<small>nur ins Handgepäck</small></span></label></li><li><label><input type="checkbox" id="pk10"><span>Steckeradapter Japan<small>Typ A, Korea passt ohne</small></span></label></li><li><label><input type="checkbox" id="pk11"><span>eSIM aktivieren<small>Korea & Japan</small></span></label></li><li><label><input type="checkbox" id="pk12"><span>Kopfhörer<small>für den Flug</small></span></label></li><li><label><input type="checkbox" id="pk13"><span>Switch 2, Dock, HDMI-Kabel<small>Game-Abend</small></span></label></li></ul></div>
+<div class="box"><span class="label">Kleidung · Ende November 0–10 °C</span><ul class="pack"><li><label><input type="checkbox" id="pk14"><span>Warme Jacke</span></label></li><li><label><input type="checkbox" id="pk15"><span>Mütze, Schal, Handschuhe<small>abends am Han-Fluss</small></span></label></li><li><label><input type="checkbox" id="pk16"><span>Bequeme Schuhe<small>wir gehen viel</small></span></label></li><li><label><input type="checkbox" id="pk17"><span>Zwiebellook<small>drinnen ist es warm</small></span></label></li><li><label><input type="checkbox" id="pk18"><span>Gute Socken<small>Schuhe aus in Lokalen und im Ryokan</small></span></label></li><li><label><input type="checkbox" id="pk19"><span>Regenschirm klein<small>sonst im Convenience Store</small></span></label></li></ul></div>
+<div class="box"><span class="label">Kulturbeutel & Kleinkram</span><ul class="pack"><li><label><input type="checkbox" id="pk20"><span>Medikamente im Original<small>mit Attest auf Englisch</small></span></label></li><li><label><input type="checkbox" id="pk21"><span>Lippenpflege & Handcreme<small>trockene Winterluft</small></span></label></li><li><label><input type="checkbox" id="pk22"><span>Taschentücher<small>nicht überall Papier</small></span></label></li><li><label><input type="checkbox" id="pk23"><span>Faltbare Tasche<small>für Mitbringsel</small></span></label></li><li><label><input type="checkbox" id="pk24"><span>Kugelschreiber<small>Einreiseformular</small></span></label></li><li><label><input type="checkbox" id="pk25"><span>Kleine Gastgeschenke<small>falls wir eingeladen werden</small></span></label></li></ul></div>
+</div>
+<p class="status">Häkchen bleiben auf dem jeweiligen Handy gespeichert. <button type="button" class="btn sm" id="pkReset">Alles zurücksetzen</button></p>
+</section>
 <section id="praktisch">
-<div class="sh"><span class="n">21</span><h2>Praktisch</h2><span class="ko">정보</span></div>
+<div class="sh"><span class="n">22</span><h2>Praktisch</h2><span class="ko">정보</span></div>
+<div class="box" id="fx">
+<span class="label">Umrechner · Tageskurs</span>
+<div class="fx-top"><b id="fxK">1 € = … ₩</b><b id="fxJ">1 € = … ¥</b></div>
+<p class="status" id="rateStatus">Kurs wird geladen …</p>
+<div class="fx-row"><div class="fx-cur" role="group" aria-label="Währung"><button type="button" data-c="K" aria-pressed="true">₩</button><button type="button" data-c="J" aria-pressed="false">¥</button></div>
+<input id="fxIn" type="number" inputmode="numeric" value="15000" min="0" aria-label="Preis in Landeswährung"></div>
+<div class="fx-out" id="fxOut" aria-live="polite">–</div>
+<div class="fx-chips" id="fxChips"></div>
+<details class="fx-own"><summary>Eigenen Kurs eintragen (z. B. vom Wechselschalter)</summary>
+<div class="conv"><label for="rate">₩ für 1 €<input id="rate" type="number" inputmode="decimal" value="1550" min="1"></label><label for="rateJ">¥ für 1 €<input id="rateJ" type="number" inputmode="decimal" value="170" min="1"></label></div>
+</details>
+</div>
 <div class="facts">
 <div class="box"><span class="label">Vom Flughafen</span><b>AREX</b><p>Express zur Seoul Station, rund 45 Minuten. Dort weiter mit Linie 1 oder 4.</p></div>
 <div class="box"><span class="label">Unterwegs</span><b>T-money-Karte</b><p>Im Convenience Store kaufen und bar aufladen. Gilt für U-Bahn, Bus und viele Taxis.</p></div>
@@ -829,25 +928,12 @@ background-size:14px 2px,2px 14px,14px 2px,2px 14px;background-position:right 6p
 <div class="box"><span class="label">Notruf</span><b class="mono">112 · 119</b><p>Polizei 112, Rettung und Feuerwehr 119, Touristen-Hotline 1330.</p></div>
 <div class="box"><span class="label">Shopping</span><b>Tax Refund</b><p>Ab bestimmten Beträgen gibt es die Mehrwertsteuer zurück. Pass beim Kauf zeigen.</p></div>
 </div>
-<div class="box">
-<span class="label">Umrechner</span>
-<div class="conv">
-<label for="rate">₩ pro 1 €<input id="rate" type="number" inputmode="decimal" value="1550" min="1"></label>
-<label for="krw">Preis in ₩<input id="krw" type="number" inputmode="numeric" value="15000" min="0"></label>
-<output id="eur" for="rate krw">–</output>
-</div>
-<div class="conv">
-<label for="rateJ">¥ pro 1 €<input id="rateJ" type="number" inputmode="decimal" value="170" min="1"></label>
-<label for="jpy">Preis in ¥<input id="jpy" type="number" inputmode="numeric" value="1200" min="0"></label>
-<output id="eurJ" for="rateJ jpy">–</output>
-</div>
-<p class="status" id="rateStatus">Kurse sind Platzhalter. Trag den aktuellen Kurs ein, er bleibt auf deinem Handy gespeichert.</p>
-</div>
 </section>
 <p class="status">Geprüft am 24.10.2026: <a href="https://english.visitseoul.net/events/2026SeoulAutumnFesta/ENPjm3hw1">Visit Seoul</a> · <a href="https://www.cineplay.co.kr/en-us/articles/29470">Cineplay (SIFF)</a> · <a href="https://lacha.co.kr/korea-guide/en/korea-festivals-november-2026/">Lacha Event-Guide</a> · <a href="https://thesoulofseoul.net/the-seoul-robot-ai-museum-where-technology-meets-imagination/">The Soul of Seoul (RAIM)</a> · <a href="https://globaltaxnews.ey.com/news/2026-0101-korea-extends-temporary-electronic-travel-authorization-exemption-until-31-december-2026">EY (K-ETA)</a> · <a href="https://www.trvlogue.com/en/fukuoka-christmas-advent-2026">Fukuoka Advent</a>. Fotos in den Bereichen: Unsplash, Fotografen jeweils am Bild. Termine können sich ändern.</p>
 <footer><span>staycurious · built, not talked about.</span><span class="mono" id="updated"></span></footer>
 </div>
 <script>
+const LIVE=/(^|\.)vercel\.app$|staycurious\.art$|^localhost$/.test(location.hostname);
 const DEPART = "2026-11-20", TRIP_START = "2026-11-21", TRIP_END = "2026-11-29";
 const PLAN = [
 ["2026-11-21","Sa","Ankommen",["14:30 Landung, mit dem Taxi ins Hotel (ca. 1 Std.)","Ausruhen, duschen, nichts müssen","Abends Samgyeopsal ums Eck in Euljiro","★ Game-Abend: Orbitals auf der Switch 2, Chimaek und Bier aufs Zimmer"],"Langer Flug"],
@@ -957,17 +1043,31 @@ mcpRef.watchTool(SRV,"widgets-current-claude",Q,ev => ev.type==="data" ? renderN
 mcpRef.watchTool(SRV,"widgets-daily-claude",Q,ev => { if (ev.type==="data") renderForecast(ev.result.payload); },{refetchInterval:3*60*60*1000,cache:{staleTime:60*60*1000,gcTime:24*60*60*1000}});
 }
 // converter
+let fxC="K";
+const CH={K:[5000,15000,50000,100000],J:[500,1200,3000,10000]};
 function conv(){
-const f=(a,b)=>{const r=parseFloat($(a).value),k=parseFloat($(b).value);return r>0&&k>=0?(k/r).toLocaleString("de-AT",{style:"currency",currency:"EUR"}):"–";};
-$("eur").textContent=f("rate","krw"); $("eurJ").textContent=f("rateJ","jpy");
-try{ localStorage.setItem("krwRate",$("rate").value); localStorage.setItem("jpyRate",$("rateJ").value); }catch(e){}
+const r=parseFloat($(fxC==="K"?"rate":"rateJ").value), v=parseFloat($("fxIn").value);
+$("fxOut").textContent=r>0&&v>=0?"≈ "+(v/r).toLocaleString("de-AT",{style:"currency",currency:"EUR"}):"–";
+$("fxK").textContent="1 € = "+Math.round($("rate").value).toLocaleString("de-AT")+" ₩";
+$("fxJ").textContent="1 € = "+Math.round($("rateJ").value).toLocaleString("de-AT")+" ¥";
+$("fxChips").innerHTML=CH[fxC].map(n=>`<button type="button" data-v="${n}">${n.toLocaleString("de-AT")} ${fxC==="K"?"₩":"¥"}</button>`).join("");
 }
-try{ const s=localStorage.getItem("krwRate"); if(s) $("rate").value=s; const j=localStorage.getItem("jpyRate"); if(j) $("rateJ").value=j; }catch(e){}
-["rate","krw","rateJ","jpy"].forEach(id=>$(id).addEventListener("input",conv));
-fetch("https://api.frankfurter.app/latest?from=EUR&to=KRW,JPY").then(r=>r.json()).then(d=>{
-if(!d||!d.rates) return; $("rate").value=Math.round(d.rates.KRW); $("rateJ").value=Math.round(d.rates.JPY); conv();
-$("rateStatus").textContent="Live-Kurs der EZB vom "+new Date(d.date).toLocaleDateString("de-AT")+". Du kannst ihn überschreiben.";
-}).catch(()=>{});
+document.querySelectorAll(".fx-cur button").forEach(b=>b.addEventListener("click",()=>{fxC=b.dataset.c;document.querySelectorAll(".fx-cur button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));$("fxIn").value=fxC==="K"?15000:1200;conv();}));
+$("fxChips").addEventListener("click",e=>{const b=e.target.closest("button");if(b){$("fxIn").value=b.dataset.v;conv();}});
+$("fxIn").addEventListener("input",conv);
+["rate","rateJ"].forEach(id=>$(id).addEventListener("input",()=>{conv();$("rateStatus").textContent="Eigener Kurs aktiv.";}));
+function setRates(k,j,txt){ $("rate").value=Math.round(k); $("rateJ").value=Math.round(j*10)/10; $("rateStatus").textContent=txt; conv(); ["rate","rateJ"].forEach(id=>$(id).dispatchEvent(new CustomEvent("fx"))); try{localStorage.setItem("fx",JSON.stringify({k,j,t:txt}));}catch(e){} }
+(async()=>{
+const fmt=d=>new Date(d).toLocaleDateString("de-AT");
+const tries=[
+...(LIVE?[async()=>{const d=await (await fetch("/api/rates")).json(); if(!d.KRW) throw 0; return [d.KRW,d.JPY,`Tageskurs ${d.source}, Stand ${fmt(d.date)}.`];}]:[]),
+async()=>{const d=await (await fetch("https://api.frankfurter.dev/v1/latest?base=EUR&symbols=KRW,JPY")).json(); return [d.rates.KRW,d.rates.JPY,`Tageskurs EZB, Stand ${fmt(d.date)}.`];},
+async()=>{const d=await (await fetch("https://open.er-api.com/v6/latest/EUR")).json(); return [d.rates.KRW,d.rates.JPY,`Tageskurs, Stand ${fmt(d.time_last_update_utc)}.`];}
+];
+for(const t of tries){ try{ const [k,j,txt]=await t(); if(k>0&&j>0){ setRates(k,j,txt); return; } }catch(e){} }
+try{ const o=JSON.parse(localStorage.getItem("fx")); if(o&&o.k){ setRates(o.k,o.j,"Offline: zuletzt geladener Kurs. "+o.t); return; } }catch(e){}
+$("rateStatus").textContent="Live-Kurs gerade nicht erreichbar, Richtwerte aktiv. Eigenen Kurs unten eintragen.";
+})();
 tick(); setInterval(tick, 30000); renderPlan(); conv();
 (async () => {
 const use = window.claude && window.claude.use;
@@ -1013,10 +1113,10 @@ document.querySelectorAll("#todo input").forEach(cb=>{try{cb.checked=localStorag
 cb.addEventListener("change",()=>{try{localStorage.setItem("todo_"+cb.id,cb.checked?"1":"0");}catch(e){}});});
 document.querySelectorAll(".gift-ok input").forEach(cb=>{try{cb.checked=localStorage.getItem(cb.id)==="1";}catch(e){} cb.addEventListener("change",()=>{try{localStorage.setItem(cb.id,cb.checked?"1":"0");}catch(e){}});});
 // ---------- Maps ----------
-const NV = n => "https://map.naver.com/p/search/" + encodeURIComponent(n);
+// (LIVE defined at top)
 const GM = n => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(n);
 const MAPS = {
-core:{el:"mapCore",list:"listCore",title:"Jongno · Euljiro",sub:"euer Viertel",box:[37.5585,37.5825,126.966,127.004],link:NV,
+core:{el:"mapCore",list:"listCore",title:"Jongno · Euljiro",sub:"euer Viertel",box:[37.5585,37.5825,126.966,127.004],link:GM,
 areas:[[37.5796,126.9770,"GYEONGBOKGUNG",44,30],[37.5794,126.9910,"CHANGDEOKGUNG",40,26]],
 water:[[[37.5689,126.9775],[37.5692,126.9850],[37.5694,126.9930],[37.5698,127.0040]]],
 roads:[[[37.5703,126.9760],[37.5703,126.9830],[37.5713,126.9917],[37.5710,127.0040]],[[37.5660,126.9770],[37.5660,126.9826],[37.5663,126.9918],[37.5668,127.0040]],[[37.5585,126.9775],[37.5825,126.9775]],[[37.5585,126.9925],[37.5825,126.9925]]],
@@ -1048,7 +1148,7 @@ pins:[
 ["s","Olive Young Myeongdong","Skincare-Flagship",37.56395,126.98516],
 ["s","Ssamziegil","Handwerk & Mitbringsel",37.57430,126.98490]
 ]},
-city:{el:"mapCity",list:"listCity",title:"Ganz Seoul",sub:"weitere Ziele",box:[37.505,37.665,126.945,127.115],link:NV,
+city:{el:"mapCity",list:"listCity",title:"Ganz Seoul",sub:"weitere Ziele",box:[37.505,37.665,126.945,127.115],link:GM,
 areas:[],water:[[[37.548,126.945],[37.528,126.975],[37.517,126.995],[37.527,127.020],[37.533,127.060],[37.520,127.090],[37.512,127.115]]],roads:[],
 labels:[[37.5235,126.950,"HAN-FLUSS 한강"],[37.573,126.947,"ZENTRUM"],[37.660,126.947,"NORDEN"]],
 zone:[37.5585,37.5825,126.966,127.004],
@@ -1104,8 +1204,25 @@ $(m.el).innerHTML=`<div class="ttl">${m.title}<small>${m.sub}</small></div><div 
 $(m.list).innerHTML=m.pins.map((p,i)=>`<li><a href="${m.link(p[1])}" target="_blank" rel="noopener"><span class="num" style="background:${col[p[0]]}">${i+1}</span><span>${p[1]}<small>${p[2]}</small></span></a></li>`).join("");
 }
 Object.values(MAPS).forEach(drawMap);
+const PCOL={c:"#3BE6D6",y:"#FFD23F",p:"#FF3E8A",w:"#F4F1FF",s:"#B48CFF"};
+function leaf(m){
+const el=$(m.el); el.classList.add("lf");
+el.innerHTML=`<div class="ttl">${m.title}<small>${m.sub} · antippen für Infos</small></div><div class="map-tools"><button type="button" class="zoom-btn" aria-label="Karte vergrößern">⤢ Groß</button></div><div class="lf-map"></div>`;
+const map=L.map(el.querySelector(".lf-map"),{scrollWheelZoom:false,tap:true});
+L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",{subdomains:"abcd",maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'}).addTo(map);
+if(m.zone){const z=m.zone;L.rectangle([[z[0],z[2]],[z[1],z[3]]],{color:"#3BE6D6",weight:1.5,dashArray:"4 4",fillOpacity:.06}).addTo(map).bindTooltip("Jongno · Euljiro, unsere Basis");}
+const pts=m.pins.map((p,i)=>{L.marker([p[3],p[4]],{icon:L.divIcon({className:"lf-pin",html:`<span style="--c:${PCOL[p[0]]}">${i+1}</span>`,iconSize:[24,24],iconAnchor:[12,12]}),title:p[1]}).addTo(map)
+.bindPopup(`<b>${i+1} · ${p[1]}</b><br><small>${p[2]}</small><br><a href="${GM(p[1])}" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>`); return [p[3],p[4]];});
+map.fitBounds(pts,{padding:[24,24]}); el._lf=map;
+}
+if(LIVE){
+const css=document.createElement("link"); css.rel="stylesheet"; css.href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"; document.head.appendChild(css);
+const js=document.createElement("script"); js.src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js";
+js.onload=()=>{ try{ Object.values(MAPS).forEach(leaf); }catch(e){ Object.values(MAPS).forEach(drawMap); } };
+document.head.appendChild(js);
+}
 // ---------- Navigation ----------
-const NAV=[["highlights","Top","최고"],["damals","2017","추억"],["reise","Flug","여행"],["wetter","Wetter","날씨"],["plan","Plan","일정"],["logbuch","Logbuch","기록"],["fotos","Fotos","사진"],["los","Events","행사"],["essen","Essen","음식"],["abends","Nacht","밤"],["bier","Bier","술"],["lokal","Lokal","맛"],["shopping","Shop","쇼핑"],["mitbringsel","Geschenke","선물"],["regen","Regen","비"],["fukuoka","Japan","福岡"],["karten","Karte","지도"],["games","Games","게임"],["viertel","Viertel","동네"],["tipps","Tipps","꿀팁"],["preise","Preise","가격"],["beachten","To-do","준비"],["praktisch","Info","정보"]];
+const NAV=[["highlights","Top","최고"],["damals","2017","추억"],["reise","Flug","여행"],["wetter","Wetter","날씨"],["plan","Plan","일정"],["logbuch","Logbuch","기록"],["fotos","Fotos","사진"],["los","Events","행사"],["essen","Essen","음식"],["abends","Nacht","밤"],["bier","Bier","술"],["lokal","Lokal","맛"],["shopping","Shop","쇼핑"],["mitbringsel","Geschenke","선물"],["regen","Regen","비"],["fukuoka","Japan","福岡"],["karten","Karte","지도"],["games","Games","게임"],["viertel","Viertel","동네"],["tipps","Tipps","꿀팁"],["preise","Preise","가격"],["beachten","To-do","준비"],["packen","Packen","짐"],["praktisch","Info","정보"]];
 const nav=document.createElement("nav"); nav.className="dock"; nav.setAttribute("aria-label","Abschnitte");
 nav.innerHTML=`<div class="prog"><i id="prog"></i></div><div class="dock-in">`+NAV.map(([id,de,ko])=>`<a href="#${id}" data-id="${id}"><b>${ko}</b><span>${de}</span></a>`).join("")+`</div>`;
 document.body.appendChild(nav);
@@ -1187,12 +1304,12 @@ $("metroFuk").querySelector('svg[role="img"]').insertAdjacentHTML("beforeend",
 `<text class="mt-hint" x="25" y="114" text-anchor="middle">Park</text><text class="mt-hint" x="130" y="114" text-anchor="middle">Ramen · Daimyo</text><text class="mt-hint" x="185" y="114" text-anchor="middle">Yatai</text><text class="mt-hint" x="285" y="114" text-anchor="middle">Nintendo</text><text class="mt-hint" x="380" y="114" text-anchor="end">Inland-Terminal</text><text class="mt-note" x="200" y="150" text-anchor="middle" fill="#FFD23F">Flughafen → Hakata 5 Min. · → Tenjin 11 Min.</text>`);
 // ---------- Fotos ----------
 (function(){
-const API = location.hostname.endsWith("vercel.app") || location.hostname==="localhost";
+const API = LIVE;
 const g=$("gallery"), st=$("upStatus"), bar=$("upBar");
 const dayName={"2026-11-21":"Sa 21.11. · Ankommen","2026-11-22":"So 22.11.","2026-11-23":"Mo 23.11.","2026-11-24":"Di 24.11.","2026-11-25":"Mi 25.11. · Fukuoka","2026-11-26":"Do 26.11.","2026-11-27":"Fr 27.11.","2026-11-28":"Sa 28.11.","2026-11-29":"So 29.11. · Abreise"};
 if(API){ $("memUp").hidden=false; }
 if(!API){ $("pick").disabled=true; document.querySelector('label[for="pick"]').classList.add("off");
-st.textContent="Hochladen und die gemeinsame Galerie gibt es auf seoul-november.vercel.app."; return; }
+st.textContent="Hochladen und die gemeinsame Galerie gibt es auf seoul.staycurious.art."; return; }
 try{ const w=localStorage.getItem("who"); if(w==="Michi") $("whoM").checked=true; }catch(e){}
 document.querySelectorAll('input[name="who"]').forEach(r=>r.addEventListener("change",()=>{try{localStorage.setItem("who",r.value);}catch(e){}}));
 async function shrink(file){
@@ -1205,13 +1322,13 @@ function memories(list){
 const m=list.filter(p=>p.pathname.startsWith("fotos/2017-"));
 if(!m.length) return;
 const caps=[["Tokyo · Joypolis","16.10.2017"],["Kyoto · Round1","18.10.2017"],["Regen-Wanderung","22.10.2017"],["Tokyo · Izakaya in Akihabara","Oktober 2017"],["Ryokan-Abend","22.10.2017"]];
-$("polas").querySelectorAll(".pola.up").forEach(f=>f.remove()); $("polas").insertAdjacentHTML("beforeend",m.sort((a,b)=>a.uploadedAt.localeCompare(b.uploadedAt)).map((p,i)=>`<figure class="pola up" style="--r:${[2,-2.5,1.5,-1,3][i%5]}deg"><img src="${p.url}" alt="Erinnerungsfoto 2017" loading="lazy"><figcaption>Japan 2017<small>von uns hochgeladen</small></figcaption></figure>`).join(""));
+$("polas").querySelectorAll(".pola.up").forEach(f=>f.remove()); $("polas").insertAdjacentHTML("beforeend",m.sort((a,b)=>a.uploadedAt.localeCompare(b.uploadedAt)).map((p,i)=>`<figure class="pola up" style="--r:${[2,-2.5,1.5,-1,3][i%5]}deg"><img src="${p.url}" alt="Erinnerungsfoto 2017" loading="lazy"><figcaption>Japan 2017<small>von uns hochgeladen</small></figcaption><button type="button" class="del" data-url="${p.url}" aria-label="Foto löschen">✕ Löschen</button></figure>`).join(""));
 }
 function render(list){
 memories(list); list=list.filter(p=>!p.pathname.startsWith("fotos/2017-"));
 if(!list.length){ g.innerHTML='<p class="status">Noch keine Fotos. Das erste kommt am 21.11.</p>'; return; }
 const by={}; list.forEach(p=>{const d=(p.pathname.split("/")[1]||"").slice(0,10); (by[d]=by[d]||[]).push(p);});
-g.innerHTML=Object.keys(by).sort().reverse().map(d=>`<div class="g-day"><span class="label">${dayName[d]||d}</span><div class="g-grid">${by[d].sort((a,b)=>b.uploadedAt.localeCompare(a.uploadedAt)).map(p=>{const who=/Michi/.test(p.pathname)?"Michi":/Christoph/.test(p.pathname)?"Christoph":"";return `<button type="button" class="g-it" data-src="${p.url}" data-cap="${(dayName[d]||d)}${who?" · "+who:""}"><img loading="lazy" src="${p.url}" alt="Reisefoto ${who}"><span>${who}</span></button>`;}).join("")}</div></div>`).join("");
+g.innerHTML=Object.keys(by).sort().reverse().map(d=>`<div class="g-day"><span class="label">${dayName[d]||d}</span><div class="g-grid">${by[d].sort((a,b)=>b.uploadedAt.localeCompare(a.uploadedAt)).map(p=>{const who=/Michi/.test(p.pathname)?"Michi":/Christoph/.test(p.pathname)?"Christoph":"";return `<button type="button" class="g-it" data-del="${p.url}" data-src="${p.url}" data-cap="${(dayName[d]||d)}${who?" · "+who:""}"><img loading="lazy" src="${p.url}" alt="Reisefoto ${who}"><span>${who}</span></button>`;}).join("")}</div></div>`).join("");
 }
 async function load(){ try{ const r=await fetch("/api/photos",{cache:"no-store"}); if(r.ok) render(await r.json()); }catch(e){} }
 $("pick").addEventListener("change",async e=>{
@@ -1233,8 +1350,16 @@ for(let i=0;i<files.length;i++){ $("memStatus").textContent=`Lade ${i+1} von ${f
 try{ const b=await shrink(files[i]); const r=await fetch(`/api/upload?who=Wir&day=2017-10-2${i}`,{method:"POST",headers:{"Content-Type":b.type||"image/jpeg"},body:b}); if(r.ok) ok++; }catch(err){} }
 $("memStatus").textContent=`${ok} Erinnerungsfotos hochgeladen.`; load();
 });
-g.addEventListener("click",e=>{const b=e.target.closest(".g-it"); if(!b) return; $("lbImg").src=b.dataset.src; $("lbCap").textContent=b.dataset.cap; $("lb").hidden=false;});
-$("polas").addEventListener("click",e=>{const im=e.target.closest(".pola img"); if(!im) return; $("lbImg").src=im.src; $("lbCap").textContent=im.closest("figure").querySelector("figcaption").textContent; $("lb").hidden=false;});
+async function delPhoto(url,btn){
+if(!btn.classList.contains("sure")){ btn.classList.add("sure"); const t=btn.textContent; btn.textContent="Wirklich löschen?"; btn._t=setTimeout(()=>{btn.classList.remove("sure");btn.textContent=t;},4000); return false; }
+clearTimeout(btn._t); btn.textContent="Lösche …";
+try{ const r=await fetch("/api/delete",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({url})}); if(!r.ok) throw 0; btn.textContent="Gelöscht"; load(); return true; }
+catch(e){ btn.classList.remove("sure"); btn.textContent="Ging nicht, nochmal"; return false; }
+}
+$("polas").addEventListener("click",e=>{const d=e.target.closest(".del"); if(d){e.stopPropagation(); delPhoto(d.dataset.url,d);}},true);
+$("lbDel").addEventListener("click",async()=>{const ok=await delPhoto($("lbDel").dataset.url,$("lbDel")); if(ok) setTimeout(()=>$("lb").hidden=true,500);});
+g.addEventListener("click",e=>{const b=e.target.closest(".g-it"); if(!b) return; $("lbImg").src=b.dataset.src; $("lbCap").textContent=b.dataset.cap; const d=$("lbDel"); d.hidden=false; d.dataset.url=b.dataset.del; d.classList.remove("sure"); d.textContent="Foto löschen"; $("lb").hidden=false;});
+$("polas").addEventListener("click",e=>{const im=e.target.closest(".pola img"); if(!im) return; $("lbDel").hidden=true; $("lbImg").src=im.src; $("lbCap").textContent=im.closest("figure").querySelector("figcaption").textContent; $("lb").hidden=false;});
 $("lbX").addEventListener("click",()=>$("lb").hidden=true); $("lb").addEventListener("click",e=>{if(e.target.id==="lb")$("lb").hidden=true;});
 load(); setInterval(load,60000);
 })();
@@ -1262,7 +1387,9 @@ svg.onpointerleave=()=>{l.hidden=true;};
 let z=2; const zm=$("zm"), c=$("zmC"), sc=$("zmS");
 const apply=()=>{c.style.width=(z*100)+"%";};
 document.addEventListener("click",e=>{const b=e.target.closest(".zoom-btn"); if(!b) return;
-const map=b.closest(".map"); const svg=map.querySelector('svg[role="img"]'); c.innerHTML=svg.outerHTML;
+const map=b.closest(".map");
+if(map.classList.contains("lf")){const on=!map.classList.contains("full");map.classList.toggle("full",on);document.body.style.overflow=on?"hidden":"";b.textContent=on?"✕ Schließen":"⤢ Groß";const lm=map._lf;if(lm){setTimeout(()=>{lm.invalidateSize();on?lm.scrollWheelZoom.enable():lm.scrollWheelZoom.disable();},60);}return;}
+const svg=map.querySelector('svg[role="img"]'); c.innerHTML=svg.outerHTML;
 $("zmT").textContent=map.querySelector(".ttl").firstChild.textContent; z=2; apply(); zm.hidden=false; document.body.style.overflow="hidden";
 requestAnimationFrame(()=>{sc.scrollLeft=(sc.scrollWidth-sc.clientWidth)/2; sc.scrollTop=(sc.scrollHeight-sc.clientHeight)/2;});});
 $("zmIn").onclick=()=>{z=Math.min(5,z+.75);apply();}; $("zmOut").onclick=()=>{z=Math.max(1,z-.75);apply();};
@@ -1310,7 +1437,12 @@ function est(){$("estTable").querySelector("tbody").innerHTML=EST.map(([a,b,v])=
 const tot=EST.reduce((t,r)=>t+r[2][tier],0); $("estAll").textContent=eur(tot); $("estPP").textContent=eur(Math.round(tot/2));}
 document.querySelectorAll(".tiers button").forEach(b=>b.addEventListener("click",()=>{tier=+b.dataset.t;document.querySelectorAll(".tiers button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));est();}));
 function all(){fill("ptSee",SEE);fill("ptEat",EAT);fill("ptGo",GO);}
-all(); est(); ["rate","rateJ"].forEach(id=>$(id).addEventListener("input",all));
+all(); est(); ["rate","rateJ"].forEach(id=>{$(id).addEventListener("input",all);$(id).addEventListener("fx",all);});
 setTimeout(all,2500);
 })();
+// ---------- Packliste ----------
+(function(){const cbs=[...document.querySelectorAll(".pack input")];
+function upd(){const n=cbs.filter(c=>c.checked).length;$("pkN").textContent=n;$("pkT").textContent=cbs.length;$("pkBar").style.width=(n/cbs.length*100)+"%";}
+cbs.forEach(c=>{try{c.checked=localStorage.getItem(c.id)==="1";}catch(e){} c.addEventListener("change",()=>{try{localStorage.setItem(c.id,c.checked?"1":"0");}catch(e){} upd();});});
+$("pkReset").addEventListener("click",()=>{cbs.forEach(c=>{c.checked=false;try{localStorage.removeItem(c.id);}catch(e){}});upd();}); upd();})();
 </script></body></html>
