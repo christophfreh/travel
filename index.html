@@ -526,6 +526,10 @@ body::before{animation:ambient 24s ease-in-out infinite alternate}
 .sh .ko{animation:kobuzz 9s infinite}
 @keyframes kobuzz{0%,95%,100%{opacity:1}96%{opacity:.4}97%{opacity:1}98%{opacity:.6}}
 }
+.totop{position:fixed;right:max(14px,env(safe-area-inset-right,0px));bottom:calc(86px + env(safe-area-inset-bottom,0px));z-index:30;width:46px;height:46px;display:grid;place-items:center;border:1px solid var(--cp);background:rgba(17,15,39,.85);color:var(--cp);font:700 10px/1.1 var(--f-mono);letter-spacing:.08em;text-align:center;cursor:pointer;clip-path:polygon(0 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%);box-shadow:0 0 18px rgba(252,238,10,.35);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.totop b{display:block;font-size:17px;line-height:1}
+.totop.on{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{background:var(--cp);color:#110F27}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -1577,4 +1581,8 @@ cbs.forEach(c=>{try{c.checked=localStorage.getItem(c.id)==="1";}catch(e){} c.add
 $("pkReset").addEventListener("click",()=>{cbs.forEach(c=>{c.checked=false;try{localStorage.removeItem(c.id);}catch(e){}});upd();}); upd();})();
 // ---------- neon light follows pointer ----------
 if(matchMedia("(hover:hover)").matches){document.addEventListener("pointermove",e=>{const b=e.target.closest&&e.target.closest(".box"); if(!b) return; const r=b.getBoundingClientRect(); b.style.setProperty("--mx",(e.clientX-r.left)+"px"); b.style.setProperty("--my",(e.clientY-r.top)+"px");},{passive:true});}
+// ---------- nach oben ----------
+(function(){const b=document.createElement("button");b.type="button";b.className="totop";b.setAttribute("aria-label","Zum Anfang der Seite");b.innerHTML="<b>↑</b>TOP";document.body.appendChild(b);
+b.addEventListener("click",()=>window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}));
+let t=0;addEventListener("scroll",()=>{if(t)return;t=requestAnimationFrame(()=>{t=0;b.classList.toggle("on",scrollY>innerHeight*1.2);});},{passive:true});})();
 </script></body></html>
