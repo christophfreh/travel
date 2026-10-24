@@ -1181,6 +1181,9 @@ pflichtprogramm: <span class="n">null</span>,
 <footer><a class="brand-l" href="https://www.staycurious.art/en/" target="_blank" rel="noopener">staycurious · built, not talked about.</a><span class="mono" id="updated"></span></footer>
 </div>
 <script>
+try{ if("scrollRestoration" in history) history.scrollRestoration="manual"; }catch(e){}
+if(location.hash) history.replaceState(null,"",location.pathname+location.search);
+window.scrollTo(0,0); addEventListener("load",()=>window.scrollTo(0,0)); addEventListener("pageshow",e=>{ if(e.persisted) window.scrollTo(0,0); });
 const LIVE=/(^|\.)vercel\.app$|staycurious\.art$|^localhost$/.test(location.hostname);
 const DEPART = "2026-11-20", TRIP_START = "2026-11-21", TRIP_END = "2026-11-29";
 const PLAN = [
