@@ -141,6 +141,8 @@ footer span:first-child{font:400 14px var(--f-sign);color:var(--neon)}
 .mp-water{stroke:var(--cyan);stroke-opacity:.35;fill:none;stroke-linecap:round}
 .mp-area{fill:var(--panel2)}
 .mp-lbl{fill:var(--muted);font:400 7.5px var(--f-mono);letter-spacing:.08em}
+#mapCity .mp-road{stroke:#00A84D;stroke-opacity:.45;stroke-width:2.5;stroke-dasharray:1 5}
+#mapCity .mp-lbl{font-size:8px}
 .mp-pin text{font:700 8.5px var(--f-mono);fill:#110F27}
 .mp-pin circle.o{fill:none;stroke-width:1.5;opacity:.5}
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:0 max(10px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px));pointer-events:none}
@@ -437,6 +439,15 @@ linear-gradient(var(--neon),var(--neon)) right 8px bottom 8px/16px 2px no-repeat
 .g-it::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(var(--cyan),var(--cyan)) left 6px top 6px/12px 2px no-repeat,linear-gradient(var(--cyan),var(--cyan)) left 6px top 6px/2px 12px no-repeat,linear-gradient(var(--neon),var(--neon)) right 6px bottom 6px/12px 2px no-repeat,linear-gradient(var(--neon),var(--neon)) right 6px bottom 6px/2px 12px no-repeat}
 .g-it span{z-index:2}
 .lb .del{border:1px solid var(--line);background:var(--panel);color:var(--ink);font:700 12px var(--f-mono);padding:9px 14px;cursor:pointer}
+.map-tools{right:10px;top:10px;gap:5px}
+.map-tools .zoom-btn,.map-tools .loupe-btn{width:32px;height:32px;padding:0;display:grid;place-items:center;border-radius:0;font:700 15px/1 var(--f-body);clip-path:polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%)}
+.map.lf.full .map-tools{top:calc(10px + env(safe-area-inset-top,0px))}
+.fx-cur button{font:600 14px/1 var(--f-body);color:var(--ink);padding:10px 12px;display:inline-flex;gap:6px;align-items:center}
+.fx-cur button span{font:700 18px/1 var(--f-body)}
+.fx-cur button[aria-pressed="false"]{opacity:.75}
+.fx-top b{font-family:var(--f-body);font-weight:700}
+.pola .del{display:none}
+body.api .pola .del{display:block}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -473,18 +484,18 @@ linear-gradient(var(--neon),var(--neon)) right 8px bottom 8px/16px 2px no-repeat
 <div class="sh"><span class="n">00</span><h2>Damals in Japan</h2><span class="ko">2017</span></div>
 <p class="sub">Oktober 2017: Purikura in Tokyo, Izakaya in Akihabara, Bowling-Fotobox in Kyoto, Mario und Luigi am Skytree, Regen-Wanderung und Yukata-Abend im Ryokan. Jetzt kommt die Fortsetzung.</p>
 <div class="polas" id="polas">
-<figure class="pola" style="--r:-3deg"><img src="fotos/1-tokyo.jpg" alt="Purikura-Fotostreifen aus Tokyo, 2017" loading="lazy"><figcaption>Tokyo · Joypolis<small>16.10.2017</small></figcaption></figure>
-<figure class="pola" style="--r:2.5deg"><img src="fotos/2-kyoto.jpg" alt="Fotobox-Bild aus Kyoto, 2017" loading="lazy"><figcaption>Kyoto · Round1<small>18.10.2017</small></figcaption></figure>
-<figure class="pola" style="--r:-1.5deg"><img src="fotos/3-regen.jpg" alt="Selfie im Regen, 2017" loading="lazy"><figcaption>Regen-Wanderung<small>22.10.2017</small></figcaption></figure>
-<figure class="pola" style="--r:-2deg"><img src="fotos/4-izakaya.jpg" alt="Abendessen im Izakaya in Akihabara, 2017" loading="lazy"><figcaption>Tokyo · Izakaya in Akihabara<small>Oktober 2017</small></figcaption></figure>
-<figure class="pola" style="--r:3deg"><img src="fotos/5-ryokan.jpg" alt="Selfie im Yukata im Ryokan, 2017" loading="lazy"><figcaption>Ryokan-Abend<small>22.10.2017</small></figcaption></figure>
-<figure class="pola" style="--r:2deg"><img src="fotos/6-yukata.jpg" alt="Selfie im Yukata, 2017" loading="lazy" style="object-position:50% 30%"><figcaption>Yukata-Abend im Ryokan<small>Japan 2017</small></figcaption></figure>
-<figure class="pola" style="--r:-2deg"><img src="fotos/7-tako.jpg" alt="Mit Tintenfisch am Spieß, 2017" loading="lazy" style="object-position:50% 40%"><figcaption>Tintenfisch am Spieß<small>Japan 2017</small></figcaption></figure>
-<figure class="pola" style="--r:1.5deg"><img src="fotos/8-gasse.jpg" alt="Selfie in einer vollen Einkaufsstraße, 2017" loading="lazy" style="object-position:35% 40%"><figcaption>Mittendrin im Gewusel<small>Japan 2017</small></figcaption></figure>
-<figure class="pola" style="--r:-2.5deg"><img src="fotos/9-skytree.jpg" alt="Mit Mario- und Luigi-Mütze am Skytree, 2017" loading="lazy" style="object-position:50% 40%"><figcaption>Tokyo Skytree · Mario & Luigi<small>Japan 2017</small></figcaption></figure>
-<figure class="pola" style="--r:2.5deg"><img src="fotos/10-onecup.jpg" alt="Mit einem Becher Sake, 2017" loading="lazy" style="object-position:50% 40%"><figcaption>One Cup Ozeki zum Feierabend<small>Japan 2017</small></figcaption></figure>
-<figure class="pola" style="--r:-1deg"><img src="fotos/11-prost.jpg" alt="Prost mit Bier, 2017" loading="lazy" style="object-position:40% 40%"><figcaption>Kanpai!<small>Japan 2017</small></figcaption></figure>
-<figure class="pola" style="--r:1deg"><img src="fotos/12-cisco.jpg" alt="Im Cisco-Büro mit Blick auf Tokyo" loading="lazy" style="object-position:55% 50%"><figcaption>Bei Cisco in Tokyo<small>Japan 2017</small></figcaption></figure>
+<figure class="pola" data-id="tokyo" style="--r:-3deg"><img src="fotos/1-tokyo.jpg" alt="Purikura-Fotostreifen aus Tokyo, 2017" loading="lazy"><figcaption>Tokyo · Joypolis<small>16.10.2017</small></figcaption><button type="button" class="del" data-id="tokyo" aria-label="Foto löschen">✕ Löschen</button></figure>
+<figure class="pola" data-id="kyoto" style="--r:2.5deg"><img src="fotos/2-kyoto.jpg" alt="Fotobox-Bild aus Kyoto, 2017" loading="lazy"><figcaption>Kyoto · Round1<small>18.10.2017</small></figcaption><button type="button" class="del" data-id="kyoto" aria-label="Foto löschen">✕ Löschen</button></figure>
+<figure class="pola" data-id="regen" style="--r:-1.5deg"><img src="fotos/3-regen.jpg" alt="Selfie im Regen, 2017" loading="lazy"><figcaption>Regen-Wanderung<small>22.10.2017</small></figcaption><button type="button" class="del" data-id="regen" aria-label="Foto löschen">✕ Löschen</button></figure>
+<figure class="pola" data-id="izakaya" style="--r:-2deg"><img src="fotos/4-izakaya.jpg" alt="Abendessen im Izakaya in Akihabara, 2017" loading="lazy"><figcaption>Tokyo · Izakaya in Akihabara<small>Oktober 2017</small></figcaption><button type="button" class="del" data-id="izakaya" aria-label="Foto löschen">✕ Löschen</button></figure>
+<figure class="pola" data-id="ryokan" style="--r:3deg"><img src="fotos/5-ryokan.jpg" alt="Selfie im Yukata im Ryokan, 2017" loading="lazy"><figcaption>Ryokan-Abend<small>22.10.2017</small></figcaption><button type="button" class="del" data-id="ryokan" aria-label="Foto löschen">✕ Löschen</button></figure>
+<figure class="pola" data-id="yukata" style="--r:2deg"><img src="fotos/6-yukata.jpg" alt="Selfie im Yukata, 2017" loading="lazy" style="object-position:50% 30%"><figcaption>Yukata-Abend im Ryokan<small>Japan 2017</small></figcaption><button type="button" class="del" data-id="yukata" aria-label="Foto löschen">✕ Löschen</button></figure>
+<figure class="pola" data-id="tako" style="--r:-2deg"><img src="fotos/7-tako.jpg" alt="Mit Tintenfisch am Spieß, 2017" loading="lazy" style="object-position:50% 40%"><figcaption>Tintenfisch am Spieß<small>Japan 2017</small></figcaption><button type="button" class="del" data-id="tako" aria-label="Foto löschen">✕ Löschen</button></figure>
+<figure class="pola" data-id="gasse" style="--r:1.5deg"><img src="fotos/8-gasse.jpg" alt="Selfie in einer vollen Einkaufsstraße, 2017" loading="lazy" style="object-position:35% 40%"><figcaption>Mittendrin im Gewusel<small>Japan 2017</small></figcaption><button type="button" class="del" data-id="gasse" aria-label="Foto löschen">✕ Löschen</button></figure>
+<figure class="pola" data-id="skytree" style="--r:-2.5deg"><img src="fotos/9-skytree.jpg" alt="Mit Mario- und Luigi-Mütze am Skytree, 2017" loading="lazy" style="object-position:50% 40%"><figcaption>Tokyo Skytree · Mario & Luigi<small>Japan 2017</small></figcaption><button type="button" class="del" data-id="skytree" aria-label="Foto löschen">✕ Löschen</button></figure>
+<figure class="pola" data-id="onecup" style="--r:2.5deg"><img src="fotos/10-onecup.jpg" alt="Mit einem Becher Sake, 2017" loading="lazy" style="object-position:50% 40%"><figcaption>One Cup Ozeki zum Feierabend<small>Japan 2017</small></figcaption><button type="button" class="del" data-id="onecup" aria-label="Foto löschen">✕ Löschen</button></figure>
+<figure class="pola" data-id="prost" style="--r:-1deg"><img src="fotos/11-prost.jpg" alt="Prost mit Bier, 2017" loading="lazy" style="object-position:40% 40%"><figcaption>Kanpai!<small>Japan 2017</small></figcaption><button type="button" class="del" data-id="prost" aria-label="Foto löschen">✕ Löschen</button></figure>
+<figure class="pola" data-id="cisco" style="--r:1deg"><img src="fotos/12-cisco.jpg" alt="Im Cisco-Büro mit Blick auf Tokyo" loading="lazy" style="object-position:55% 50%"><figcaption>Bei Cisco in Tokyo<small>Japan 2017</small></figcaption><button type="button" class="del" data-id="cisco" aria-label="Foto löschen">✕ Löschen</button></figure>
 </div>
 <div class="box" id="memUp" hidden><span class="label">Mehr Fotos von damals</span><p>Weitere Bilder von 2017 hochladen, sie erscheinen hier für uns beide.</p><label class="btn big" for="memPick">Fotos von 2017 wählen ↑</label><input id="memPick" type="file" accept="image/*" multiple hidden><p class="status" id="memStatus"></p></div>
 </section>
@@ -912,7 +923,7 @@ linear-gradient(var(--neon),var(--neon)) right 8px bottom 8px/16px 2px no-repeat
 <span class="label">Umrechner · Tageskurs</span>
 <div class="fx-top"><b id="fxK">1 € = … ₩</b><b id="fxJ">1 € = … ¥</b></div>
 <p class="status" id="rateStatus">Kurs wird geladen …</p>
-<div class="fx-row"><div class="fx-cur" role="group" aria-label="Währung"><button type="button" data-c="K" aria-pressed="true">₩</button><button type="button" data-c="J" aria-pressed="false">¥</button></div>
+<div class="fx-row"><div class="fx-cur" role="group" aria-label="Währung"><button type="button" data-c="K" aria-pressed="true"><span>₩</span>Won</button><button type="button" data-c="J" aria-pressed="false"><span>¥</span>Yen</button></div>
 <input id="fxIn" type="number" inputmode="numeric" value="15000" min="0" aria-label="Preis in Landeswährung"></div>
 <div class="fx-out" id="fxOut" aria-live="polite">–</div>
 <div class="fx-chips" id="fxChips"></div>
@@ -1155,16 +1166,20 @@ pins:[
 ["s","Olive Young Myeongdong","Skincare-Flagship",37.56395,126.98516],
 ["s","Ssamziegil","Handwerk & Mitbringsel",37.57430,126.98490]
 ]},
-city:{el:"mapCity",list:"listCity",title:"Ganz Seoul",sub:"weitere Ziele",box:[37.505,37.665,126.945,127.115],link:GM,
-areas:[],water:[[[37.548,126.945],[37.528,126.975],[37.517,126.995],[37.527,127.020],[37.533,127.060],[37.520,127.090],[37.512,127.115]]],roads:[],
-labels:[[37.5235,126.950,"HAN-FLUSS 한강"],[37.573,126.947,"ZENTRUM"],[37.660,126.947,"NORDEN"]],
+city:{el:"mapCity",list:"listCity",title:"Ganz Seoul",sub:"weitere Ziele",box:[37.488,37.600,126.895,127.125],link:GM,
+areas:[[37.5512,126.9882,"NAMSAN",30,18],[37.5796,126.9770,"PALAST",22,14]],
+water:[[[37.5560,126.895],[37.5430,126.9020],[37.5340,126.9300],[37.5300,126.9500],[37.5170,126.9600],[37.5110,126.9800],[37.5150,126.9970],[37.5270,127.0120],[37.5370,127.0280],[37.5380,127.0420],[37.5320,127.0600],[37.5240,127.0750],[37.5230,127.0930],[37.5300,127.1080],[37.5400,127.1250]]],
+island:[[37.5370,126.9100],[37.5330,126.9330],[37.5250,126.9420],[37.5200,126.9350],[37.5260,126.9150]],
+roads:[[[37.5547,126.9707],[37.5636,126.9850],[37.5711,127.0095],[37.5610,127.0360],[37.5445,127.0560],[37.5190,127.0570],[37.5000,127.0360],[37.4850,126.9820],[37.5080,126.9130],[37.5490,126.9140],[37.5563,126.9236],[37.5547,126.9707]]],
+labels:[[37.5585,126.9050,"HONGDAE"],[37.5235,126.9230,"YEOUIDO"],[37.5385,126.9580,"YONGSAN"],[37.5440,126.9900,"ITAEWON"],[37.5620,126.9960,"MYEONGDONG"],[37.5480,127.0520,"SEONGSU"],[37.5200,127.0370,"CHEONGDAM"],[37.4960,127.0180,"GANGNAM"],[37.5090,127.0870,"JAMSIL"],[37.5210,126.9725,"HAN-FLUSS 한강"]],
 zone:[37.5585,37.5825,126.966,127.004],
 pins:[
 ["w","Seoul Robot & AI Museum","Chang-dong, Di–So 9:30–17:30",37.65561,127.04938],
 ["w","Culture Station Seoul 284","Unfold X, ab 26.11.",37.55588,126.97156],
 ["w","Seoul Sky, Lotte World Tower","Aussicht & Superplex-Kino",37.51253,127.10231],
 ["p","Miners Cocktail Bar","Hannam",37.53389,127.00621],
-["p","ZEST Seoul","Cocktails, Top-Bar Asiens",37.52526,127.04078]
+["p","ZEST Seoul","Cocktails, Top-Bar Asiens",37.52526,127.04078],
+["w","N Seoul Tower","Namsan, Aussicht bei Nacht",37.55117,126.98823]
 ]},
 fuk:{el:"mapFuk",list:"listFuk",title:"福岡 Fukuoka",sub:"Tenjin · Nakasu · Hakata",box:[33.580,33.598,130.370,130.425],link:GM,
 areas:[[33.5860,130.3770,"OHORI-PARK",34,24]],
@@ -1200,21 +1215,24 @@ let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${m.title}"><defs><pa
 m.areas.forEach(a=>{s+=`<ellipse class="mp-area" cx="${X(a[1])}" cy="${Y(a[0])}" rx="${a[3]*1.2}" ry="${a[4]*1.2}"/><text class="mp-lbl" x="${X(a[1])}" y="${Y(a[0])+4}" text-anchor="middle">${a[2]}</text>`;});
 if(m.zone){const z=m.zone;s+=`<rect x="${X(z[2])}" y="${Y(z[1])}" width="${X(z[3])-X(z[2])}" height="${Y(z[0])-Y(z[1])}" fill="rgba(59,230,214,.08)" stroke="#3BE6D6" stroke-dasharray="4 4" rx="6"/><text class="mp-lbl" x="${X(z[3])+6}" y="${Y(z[1])+12}">JONGNO/EULJIRO</text>`;}
 m.roads.forEach(r=>s+=`<path class="mp-road" d="${line(r)}"/>`);
-m.water.forEach(w=>s+=`<path class="mp-water" stroke-width="${m.el==="mapCity"?10:5}" d="${line(w)}"/>`);
+m.water.forEach(w=>s+=`<path class="mp-water" stroke-width="${m.el==="mapCity"?9:5}" d="${line(w)}"/>`);
+if(m.island) s+=`<path d="${line(m.island)}Z" fill="#1B1840" stroke="#3BE6D6" stroke-opacity=".35"/>`;
 m.labels.forEach(l=>s+=`<text class="mp-lbl" x="${X(l[1])}" y="${Y(l[0])}" text-anchor="${l[2].startsWith("NAKASU")?"middle":"start"}">${l[2]}</text>`);
 const col={c:"#3BE6D6",y:"#FFD23F",p:"#FF3E8A",w:"#F4F1FF",s:"#B48CFF"};
-const P=m.pins.map(p=>({x:X(p[4]),y:Y(p[3])}));
+const OUT=m.pins.map(p=>p[3]>la1||p[3]<la0||p[4]>lo1||p[4]<lo0);
+const P=m.pins.map((p,i)=>OUT[i]?{x:Math.min(W-16,Math.max(16,X(p[4]))),y:Math.min(H-16,Math.max(30,Y(p[3])))}:{x:X(p[4]),y:Y(p[3])});
+m.pins.forEach((p,i)=>{if(OUT[i]){const up=p[3]>la1;s+=`<text class="mp-lbl" x="${P[i].x+14}" y="${P[i].y+3}" fill="#F4F1FF">${up?"↑ ":"↓ "}${p[2].split(",")[0].toUpperCase()} · CA. ${Math.round(Math.hypot((p[3]-Math.min(la1,Math.max(la0,p[3])))*111,(p[4]-Math.min(lo1,Math.max(lo0,p[4])))*88))+3} KM</text>`;}});
 for(let it=0;it<40;it++)for(let a=0;a<P.length;a++)for(let b=a+1;b<P.length;b++){const dx=P[b].x-P[a].x,dy=P[b].y-P[a].y,d=Math.hypot(dx,dy)||.01;if(d<18){const f=(18-d)/2,ux=dx/d,uy=dy/d;P[a].x-=ux*f;P[a].y-=uy*f;P[b].x+=ux*f;P[b].y+=uy*f;}}
 m.pins.forEach((p,i)=>{const x=P[i].x,y=P[i].y;s+=`<a href="${m.link(p[1])}" target="_blank" rel="noopener"><g class="mp-pin"><title>${p[1]} · ${p[2]}</title><circle cx="${x}" cy="${y}" r="10" fill="${col[p[0]]}" filter="url(#glow${m.el})" opacity=".6"/><circle class="ring" cx="${x}" cy="${y}" r="9" fill="none" stroke="${col[p[0]]}" stroke-width="1.5"/><circle cx="${x}" cy="${y}" r="8.5" fill="${col[p[0]]}" stroke="#110F27" stroke-width="1.2"/><text x="${x}" y="${y+3.2}" text-anchor="middle">${i+1}</text></g></a>`;});
 s+=`</svg>`;
-$(m.el).innerHTML=`<div class="ttl">${m.title}<small>${m.sub}</small></div><div class="map-tools"><button type="button" class="loupe-btn" aria-pressed="false" aria-label="Lupe ein- oder ausschalten"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg> Lupe</button><button type="button" class="zoom-btn" aria-label="Karte vergrößern">⤢ Groß</button></div>`+s;
+$(m.el).innerHTML=`<div class="ttl">${m.title}<small>${m.sub}</small></div><div class="map-tools"><button type="button" class="loupe-btn" aria-pressed="false" aria-label="Lupe ein- oder ausschalten"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button><button type="button" class="zoom-btn" aria-label="Karte vergrößern" title="Vergrößern">⤢</button></div>`+s;
 $(m.list).innerHTML=m.pins.map((p,i)=>`<li><a href="${m.link(p[1])}" target="_blank" rel="noopener"><span class="num" style="background:${col[p[0]]}">${i+1}</span><span>${p[1]}<small>${p[2]}</small></span></a></li>`).join("");
 }
 Object.values(MAPS).forEach(drawMap);
 const PCOL={c:"#3BE6D6",y:"#FFD23F",p:"#FF3E8A",w:"#F4F1FF",s:"#B48CFF"};
 function leaf(m){
 const el=$(m.el); el.classList.add("lf");
-el.innerHTML=`<div class="ttl">${m.title}<small>${m.sub} · antippen für Infos</small></div><div class="map-tools"><button type="button" class="zoom-btn" aria-label="Karte vergrößern">⤢ Groß</button></div><div class="lf-map"></div>`;
+el.innerHTML=`<div class="ttl">${m.title}<small>${m.sub} · antippen für Infos</small></div><div class="map-tools"><button type="button" class="zoom-btn" aria-label="Karte vergrößern" title="Vergrößern">⤢</button></div><div class="lf-map"></div>`;
 const map=L.map(el.querySelector(".lf-map"),{scrollWheelZoom:false,tap:true});
 L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",{subdomains:"abcd",maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'}).addTo(map);
 if(m.zone){const z=m.zone;L.rectangle([[z[0],z[2]],[z[1],z[3]]],{color:"#3BE6D6",weight:1.5,dashArray:"4 4",fillOpacity:.06}).addTo(map).bindTooltip("Jongno · Euljiro, unsere Basis");}
@@ -1283,7 +1301,7 @@ const below=anc==="below", ta=below?"middle":(anc||"start");
 const dx=anc==="end"?-10:(anc==="middle"||below)?0:10, dy=below?20:anc==="middle"?-12:4;
 s+=`<text class="mt-st" x="${x+dx}" y="${y+dy}" text-anchor="${ta}">${lab}</text>`;
 if(hint) s+=`<text class="mt-hint" x="${x+dx}" y="${y+dy+11}" text-anchor="${ta}">${hint}</text>`;});
-s+=`</svg>`; $(el).innerHTML=s.replace('</small></div>','</small></div><div class="map-tools"><button type="button" class="loupe-btn" aria-pressed="false" aria-label="Lupe ein- oder ausschalten"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg> Lupe</button><button type="button" class="zoom-btn" aria-label="Plan vergrößern">⤢ Groß</button></div>');
+s+=`</svg>`; $(el).innerHTML=s.replace('</small></div>','</small></div><div class="map-tools"><button type="button" class="loupe-btn" aria-pressed="false" aria-label="Lupe ein- oder ausschalten"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button><button type="button" class="zoom-btn" aria-label="Plan vergrößern" title="Vergrößern">⤢</button></div>');
 }
 metro("metroSeoul","서울 지하철","Seoul · Linien 1–5 & AREX",400,440,[
 {n:"A",c:"#4AA3DF",dash:true,stops:[[20,415],"seoul"],to:[14,436,"→ Flughafen ICN"],tag:[30,405]},
@@ -1357,13 +1375,21 @@ for(let i=0;i<files.length;i++){ $("memStatus").textContent=`Lade ${i+1} von ${f
 try{ const b=await shrink(files[i]); const r=await fetch(`/api/upload?who=Wir&day=2017-10-2${i}`,{method:"POST",headers:{"Content-Type":b.type||"image/jpeg"},body:b}); if(r.ok) ok++; }catch(err){} }
 $("memStatus").textContent=`${ok} Erinnerungsfotos hochgeladen.`; load();
 });
+async function loadHidden(){ try{ const ids=await (await fetch("/api/hidden",{cache:"no-store"})).json(); ids.forEach(id=>{const f=document.querySelector(`.pola[data-id="${id}"]`); if(f) f.remove();}); }catch(e){} }
+async function hidePhoto(id,btn){
+if(!btn.classList.contains("sure")){ btn.classList.add("sure"); btn.textContent="Wirklich löschen?"; btn._t=setTimeout(()=>{btn.classList.remove("sure");btn.textContent="✕ Löschen";},4000); return; }
+clearTimeout(btn._t); btn.textContent="Lösche …";
+try{ const r=await fetch("/api/hidden",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id})}); if(!r.ok) throw 0; btn.closest("figure").remove(); }
+catch(e){ btn.classList.remove("sure"); btn.textContent="Ging nicht, nochmal"; }
+}
+document.body.classList.add("api"); loadHidden();
 async function delPhoto(url,btn){
 if(!btn.classList.contains("sure")){ btn.classList.add("sure"); const t=btn.textContent; btn.textContent="Wirklich löschen?"; btn._t=setTimeout(()=>{btn.classList.remove("sure");btn.textContent=t;},4000); return false; }
 clearTimeout(btn._t); btn.textContent="Lösche …";
 try{ const r=await fetch("/api/delete",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({url})}); if(!r.ok) throw 0; btn.textContent="Gelöscht"; load(); return true; }
 catch(e){ btn.classList.remove("sure"); btn.textContent="Ging nicht, nochmal"; return false; }
 }
-$("polas").addEventListener("click",e=>{const d=e.target.closest(".del"); if(d){e.stopPropagation(); delPhoto(d.dataset.url,d);}},true);
+$("polas").addEventListener("click",e=>{const d=e.target.closest(".del"); if(d){e.stopPropagation(); d.dataset.id?hidePhoto(d.dataset.id,d):delPhoto(d.dataset.url,d);}},true);
 $("lbDel").addEventListener("click",async()=>{const ok=await delPhoto($("lbDel").dataset.url,$("lbDel")); if(ok) setTimeout(()=>$("lb").hidden=true,500);});
 g.addEventListener("click",e=>{const b=e.target.closest(".g-it"); if(!b) return; $("lbImg").src=b.dataset.src; $("lbCap").textContent=b.dataset.cap; const d=$("lbDel"); d.hidden=false; d.dataset.url=b.dataset.del; d.classList.remove("sure"); d.textContent="Foto löschen"; $("lb").hidden=false;});
 $("polas").addEventListener("click",e=>{const im=e.target.closest(".pola img"); if(!im) return; $("lbDel").hidden=true; $("lbImg").src=im.src; $("lbCap").textContent=im.closest("figure").querySelector("figcaption").textContent; $("lb").hidden=false;});
@@ -1391,13 +1417,13 @@ svg.onpointerleave=()=>{l.hidden=true;};
 })();
 // ---------- Map zoom ----------
 (function(){
-let z=2; const zm=$("zm"), c=$("zmC"), sc=$("zmS");
+let z=1; const zm=$("zm"), c=$("zmC"), sc=$("zmS");
 const apply=()=>{c.style.width=(z*100)+"%";};
 document.addEventListener("click",e=>{const b=e.target.closest(".zoom-btn"); if(!b) return;
 const map=b.closest(".map");
-if(map.classList.contains("lf")){const on=!map.classList.contains("full");map.classList.toggle("full",on);document.body.style.overflow=on?"hidden":"";b.textContent=on?"✕ Schließen":"⤢ Groß";const lm=map._lf;if(lm){setTimeout(()=>{lm.invalidateSize();on?lm.scrollWheelZoom.enable():lm.scrollWheelZoom.disable();},60);}return;}
+if(map.classList.contains("lf")){const on=!map.classList.contains("full");map.classList.toggle("full",on);document.body.style.overflow=on?"hidden":"";b.textContent=on?"✕":"⤢";const lm=map._lf;if(lm){setTimeout(()=>{lm.invalidateSize();on?lm.scrollWheelZoom.enable():lm.scrollWheelZoom.disable();},60);}return;}
 const svg=map.querySelector('svg[role="img"]'); c.innerHTML=svg.outerHTML;
-$("zmT").textContent=map.querySelector(".ttl").firstChild.textContent; z=2; apply(); zm.hidden=false; document.body.style.overflow="hidden";
+$("zmT").textContent=map.querySelector(".ttl").firstChild.textContent; z=1; apply(); zm.hidden=false; document.body.style.overflow="hidden";
 requestAnimationFrame(()=>{sc.scrollLeft=(sc.scrollWidth-sc.clientWidth)/2; sc.scrollTop=(sc.scrollHeight-sc.clientHeight)/2;});});
 $("zmIn").onclick=()=>{z=Math.min(5,z+.75);apply();}; $("zmOut").onclick=()=>{z=Math.max(1,z-.75);apply();};
 $("zmX").onclick=()=>{zm.hidden=true;document.body.style.overflow="";};
