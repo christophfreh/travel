@@ -1785,15 +1785,15 @@ const CH="アイウエオカキクケコサシスセソタチツテトナニヌ�
 const FS=14, rc=()=>CH[(Math.random()*CH.length)|0];
 const st=cs.map(c=>({c,g:c.getContext("2d"),vis:false,cols:[]}));
 function size(o){const d=Math.min(2,devicePixelRatio||1);o.W=o.c.clientWidth;o.H=o.c.clientHeight;o.c.width=o.W*d;o.c.height=o.H*d;o.g.setTransform(d,0,0,d,0,0);
-const n=Math.ceil(o.W/FS); o.cols=Array.from({length:n},()=>({y:Math.random()*(o.H/FS+20)-20,v:.12+Math.random()*.28,len:6+((Math.random()*10)|0),ch:Array.from({length:30},rc),on:Math.random()>.35}));}
+const n=Math.ceil(o.W/FS); o.cols=Array.from({length:n},()=>({y:Math.random()*(o.H/FS+20)-20,v:.04+Math.random()*.08,len:6+((Math.random()*10)|0),ch:Array.from({length:30},rc),on:Math.random()>.35}));}
 st.forEach(size); addEventListener("resize",()=>st.forEach(size));
 function draw(o){const g=o.g; g.clearRect(0,0,o.W,o.H); g.font=`${FS}px 'Space Mono', ui-monospace, monospace`; g.textAlign="center";
 o.cols.forEach((c,i)=>{ if(!c.on) return; const x=i*FS+FS/2;
 for(let t=0;t<c.len;t++){const yy=(Math.floor(c.y)-t)*FS; if(yy<-FS||yy>o.H+FS) continue; const a=1-t/c.len;
 if(t===0){g.fillStyle="#F4F1FF";g.shadowColor="#3BE6D6";g.shadowBlur=10;} else {g.fillStyle=`rgba(59,230,214,${(a*.75).toFixed(3)})`;g.shadowBlur=0;}
 g.fillText(c.ch[(Math.floor(c.y)-t+300)%30],x,yy);}
-c.y+=c.v; if(Math.random()<.04) c.ch[(Math.random()*30)|0]=rc();
-if((c.y-c.len)*FS>o.H){c.y=-Math.random()*8;c.v=.12+Math.random()*.28;c.len=6+((Math.random()*10)|0);c.on=Math.random()>.3;} });
+c.y+=c.v; if(Math.random()<.015) c.ch[(Math.random()*30)|0]=rc();
+if((c.y-c.len)*FS>o.H){c.y=-Math.random()*8;c.v=.04+Math.random()*.08;c.len=6+((Math.random()*10)|0);c.on=Math.random()>.3;} });
 g.shadowBlur=0;}
 if(reduce){st.forEach(o=>{o.cols.forEach(c=>c.y=Math.random()*(o.H/FS+6));draw(o);});return;}
 const io=new IntersectionObserver(es=>es.forEach(e=>{const o=st.find(x=>x.c===e.target); if(o) o.vis=e.isIntersecting;}));
