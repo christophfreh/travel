@@ -671,6 +671,39 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 .cd-u .flap span.fl{animation:flapin .55s cubic-bezier(.3,1.5,.5,1) both}
 @keyframes flapin{0%{transform:rotateX(-90deg);filter:brightness(2)}60%{transform:rotateX(12deg)}100%{transform:none;filter:none}}
 }
+.stat{position:relative;overflow:hidden}
+.st-sleep .moons{display:flex;flex-wrap:wrap;gap:3px;margin:2px 0 2px}
+.st-sleep .moons i{width:7px;height:7px;border-radius:50%;box-shadow:inset -2.5px -1px 0 0 var(--neon);opacity:.75}
+.st-sleep .moons i.last{box-shadow:inset -2.5px -1px 0 0 var(--cp)}
+.st-sleep .moons span{font:700 9px/7px var(--f-mono);color:var(--muted)}
+.st-row{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.wx-ico{width:clamp(28px,8vw,40px);height:clamp(28px,8vw,40px);flex:none;color:var(--cyan);filter:drop-shadow(0 0 6px rgba(59,230,214,.6))}
+.wx-ico svg{width:100%;height:100%;display:block;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.tz{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:2px}
+.tz span{display:flex;flex-direction:column;line-height:1.1}
+.tz i{font:400 8.5px var(--f-mono);letter-spacing:.14em;color:var(--muted);font-style:normal}
+.tz em{font:700 13px var(--f-mono);font-style:normal;color:var(--ink)}
+.tz span:last-child em{color:var(--sign)}
+.tz-ar{color:var(--muted);font-size:12px}
+.stat::after{content:"";position:absolute;right:-30%;top:-60%;width:80%;height:120%;background:radial-gradient(closest-side,rgba(255,62,138,.14),transparent);pointer-events:none}
+.st-wx::after{background:radial-gradient(closest-side,rgba(59,230,214,.14),transparent)}
+.st-tz::after{background:radial-gradient(closest-side,rgba(252,238,10,.10),transparent)}
+@media (prefers-reduced-motion:no-preference){
+.st-sleep .moons i.last{animation:moonb 3.2s ease-in-out infinite}
+@keyframes moonb{50%{opacity:.25}}
+.wx-ico .sun{transform-origin:center;transform-box:fill-box;animation:spin 32s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wx-ico .drop{animation:drop 2.4s ease-in infinite}
+@keyframes drop{0%{transform:translateY(-2px);opacity:0}30%{opacity:1}100%{transform:translateY(5px);opacity:0}}
+.tz-ar{animation:tzar 3s ease-in-out infinite}
+@keyframes tzar{50%{transform:translateX(3px);color:var(--cp)}}
+}
+.st-sleep .moons{display:grid;grid-template-columns:repeat(30,1fr);gap:2px;margin:4px 0 2px}
+.st-sleep .moons i{width:auto;height:8px;border-radius:0;box-shadow:none;background:var(--neon);opacity:.85;transform:skewX(-20deg)}
+.st-sleep .moons i.done{background:rgba(255,255,255,.08)}
+.st-sleep .moons i.nx{background:var(--cp);box-shadow:0 0 8px var(--cp)}
+.st-sleep b .tm{font-size:.5em;color:var(--muted);margin-right:2px;vertical-align:.35em}
+@media (prefers-reduced-motion:no-preference){.st-sleep .moons i.nx{animation:moonb 3.2s ease-in-out infinite}}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -682,9 +715,9 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 <h1 class="gl-h" data-text="seoul, november.">seoul, <em>november.</em></h1>
 <p class="sub">Neun Jahre nach dem letzten Einsatz in Tokyo ist das Team wieder vereint. Ziel: Seoul. Ausrüstung: Hunger, Durst, eine Switch 2. Bonuslevel: Fukuoka. <b>21. bis 29. November</b>, Basis in Jongno.</p>
 <div class="stats">
-<div class="stat"><span class="label">Noch</span><b id="countdown">–</b><small id="countdownSub">Mal schlafen</small></div>
-<div class="stat"><span class="label">Jetzt in Seoul</span><b id="heroTemp">–</b><small id="heroPhrase">Wetter lädt</small></div>
-<div class="stat"><span class="label">Zeit</span><b>+8 h</b><small>vor Wien</small></div>
+<div class="stat st-sleep"><span class="label">Boarding in</span><b id="countdown">–</b><div class="moons" id="moons" aria-hidden="true"></div><small id="countdownSub">Nächte bis zum Abflug</small></div>
+<div class="stat st-wx"><span class="label">Jetzt in Seoul</span><div class="st-row"><b id="heroTemp">–</b><span class="wx-ico" id="heroIco" aria-hidden="true"></span></div><small id="heroPhrase">Wetter lädt</small></div>
+<div class="stat st-tz"><span class="label">Zeitsprung</span><b>+8 h</b><div class="tz" aria-label="Uhrzeit Wien und Seoul"><span><i>VIE</i><em id="tzV">--:--</em></span><span class="tz-ar">→</span><span><i>SEL</i><em id="tzS">--:--</em></span></div></div>
 </div>
 <div class="cd" id="cd"><span class="label"><span>Boarding-Countdown · KE938 · VIE → ICN</span><span>Fr 20.11. · 19:30</span></span><div class="cd-grid"><div class="cd-u"><b class="flap" id="cdD"><span>-</span><span>-</span></b><i class="cd-bar" id="cdDb"></i><small>Tage</small></div><div class="cd-u"><b class="flap" id="cdH"><span>-</span><span>-</span></b><i class="cd-bar" id="cdHb"></i><small>Std</small></div><div class="cd-u"><b class="flap" id="cdM"><span>-</span><span>-</span></b><i class="cd-bar" id="cdMb"></i><small>Min</small></div><div class="cd-u"><b class="flap" id="cdS"><span>-</span><span>-</span></b><i class="cd-bar" id="cdSb"></i><small>Sek</small></div></div><div class="cd-msg" id="cdMsg">&gt; Abflug Wien-Schwechat, Terminal 3</div></div>
 <div class="marquee" aria-hidden="true"><div><span>ICN ✦ 21.11.</span><span>종로 JONGNO</span><span>을지로 EULJIRO</span><span>福岡 FUKUOKA</span><span>DMZ</span><span>NIGHT CITY? NEIN, SEOUL</span><span>BLADE RUNNER WEATHER</span><span>삼성 SAMSUNG</span><span>소주 SOJU</span><span>라면 RAMEN</span><span>LoL PARK</span><span>ICN ✦ 21.11.</span><span>종로 JONGNO</span><span>을지로 EULJIRO</span><span>福岡 FUKUOKA</span><span>DMZ</span><span>NIGHT CITY? NEIN, SEOUL</span><span>BLADE RUNNER WEATHER</span><span>삼성 SAMSUNG</span><span>소주 SOJU</span><span>라면 RAMEN</span><span>LoL PARK</span></div></div>
@@ -1215,10 +1248,12 @@ let fcByDate = {};
 function tick(){
 const t = new Intl.DateTimeFormat("de-AT",{timeZone:"Asia/Seoul",hour:"2-digit",minute:"2-digit"}).format(new Date());
 $("clock").textContent = "Seoul " + t;
+if($("tzS")){ $("tzS").textContent=t; $("tzV").textContent=new Intl.DateTimeFormat("de-AT",{timeZone:"Europe/Vienna",hour:"2-digit",minute:"2-digit"}).format(new Date()); }
 const today = seoulDate();
 const vie = new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Vienna"}).format(new Date());
 const days = Math.ceil((Date.parse(DEPART) - Date.parse(vie)) / 864e5);
-if (days > 0){ $("countdown").textContent = days + "×"; $("countdownSub").textContent = "Mal schlafen bis zum Flug"; }
+if (days > 0){ $("countdown").innerHTML = '<span class="tm">T–</span>'+days; $("countdownSub").textContent = days===1?"Nacht":"Nächte";
+const N=30, n=Math.min(days,N); $("moons").innerHTML=Array.from({length:N},(_,k)=>`<i class="${k<N-n?"done":""}${k===N-n?" nx":""}"></i>`).join(""); }
 else if (today <= TRIP_END){ $("countdown").textContent = "jetzt"; $("countdownSub").textContent = "ihr seid da"; }
 else { $("countdown").textContent = "✓"; $("countdownSub").textContent = "Reise vorbei"; }
 }
@@ -1852,5 +1887,20 @@ g.globalAlpha=p.l; g.fillStyle=p.c; g.shadowBlur=0; if(p.sq) g.fillRect(p.x,p.y,
 for(let i=R.length-1;i>=0;i--){const r=R[i]; r.r+=1.6; r.l-=.04; if(r.l<=0){R.splice(i,1);continue;}
 g.globalAlpha=r.l; g.strokeStyle="#3BE6D6"; g.shadowBlur=0; g.lineWidth=1; g.strokeRect(r.x-r.r,r.y-r.r,r.r*2,r.r*2);}
 g.globalAlpha=1; g.shadowBlur=0; g.globalCompositeOperation="source-over"; })();
+})();
+// ---------- hero weather icon ----------
+(function(){
+const I={sun:'<svg viewBox="0 0 32 32"><g class="sun"><circle cx="16" cy="16" r="6"/><path d="M16 3v4M16 25v4M3 16h4M25 16h4M6.8 6.8l2.8 2.8M22.4 22.4l2.8 2.8M6.8 25.2l2.8-2.8M22.4 9.6l2.8-2.8"/></g></svg>',
+cloud:'<svg viewBox="0 0 32 32"><path d="M9 24h14a5 5 0 0 0 0-10 7 7 0 0 0-13.5 1.5A4.3 4.3 0 0 0 9 24z"/></svg>',
+part:'<svg viewBox="0 0 32 32"><g class="sun"><circle cx="12" cy="11" r="4"/><path d="M12 3v2M4 11h2M6.3 5.3l1.4 1.4M17.7 5.3l-1.4 1.4"/></g><path d="M11 26h13a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.5 1.3A3.9 3.9 0 0 0 11 26z"/></svg>',
+rain:'<svg viewBox="0 0 32 32"><path d="M9 19h14a5 5 0 0 0 0-10 7 7 0 0 0-13.5 1.5A4.3 4.3 0 0 0 9 19z"/><path class="drop" d="M11 23v3M16 23v3M21 23v3"/></svg>',
+snow:'<svg viewBox="0 0 32 32"><path d="M9 19h14a5 5 0 0 0 0-10 7 7 0 0 0-13.5 1.5A4.3 4.3 0 0 0 9 19z"/><path class="drop" d="M11 24h.01M16 26h.01M21 24h.01"/></svg>',
+moon:'<svg viewBox="0 0 32 32"><path d="M21 5a11 11 0 1 0 6 18A9 9 0 0 1 21 5z"/></svg>'};
+const pick=t=>{t=(t||"").toLowerCase(); const h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Seoul",hour:"2-digit",hour12:false}).format(new Date()); const night=h<6||h>=19;
+if(/schnee|snow/.test(t)) return I.snow; if(/regen|schauer|gewitter|niesel|rain/.test(t)) return I.rain;
+if(/teil|heiter|wechsel|partly/.test(t)) return night?I.moon:I.part; if(/wolk|bedeckt|nebel|trüb|cloud|fog/.test(t)) return I.cloud;
+return night?I.moon:I.sun;};
+const ph=document.getElementById("heroPhrase"), ic=document.getElementById("heroIco"); if(!ph||!ic) return;
+const up=()=>{ic.innerHTML=pick(ph.textContent);}; up(); new MutationObserver(up).observe(ph,{childList:true,characterData:true,subtree:true});
 })();
 </script></body></html>
