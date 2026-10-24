@@ -611,6 +611,8 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 .code .c{color:var(--muted)}
 .code .cur{background:var(--cyan)}
 @media (max-width:480px){.mx span{font-size:9px;letter-spacing:.06em;max-width:none}}
+.flash img{cursor:zoom-in}
+.pola img{cursor:zoom-in}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -1736,4 +1738,14 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{const o=st.find(x=>x.c===e.
 st.forEach(o=>io.observe(o.c));
 let last=0; (function f(ts){requestAnimationFrame(f); if(ts-last<110) return; last=ts; st.forEach(o=>{if(o.vis) draw(o);});})(0);
 })();
+// ---------- eigene Fotos überall vergrößerbar ----------
+document.addEventListener("click",e=>{const im=e.target.closest(".flash img, .pola img"); if(!im) return;
+if(im.closest(".pola") && document.body.classList.contains("api")) return; // dort übernimmt die Galerie (mit Löschen)
+const lb=document.getElementById("lb"); if(!lb) return;
+document.getElementById("lbImg").src=im.src; document.getElementById("lbImg").alt=im.alt||"";
+const cap=im.closest("figure").querySelector("figcaption"); document.getElementById("lbCap").textContent=cap?cap.textContent.replace("▶ FLASHBACK · ",""):"";
+const d=document.getElementById("lbDel"); if(d) d.hidden=true; lb.hidden=false;});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){const lb=document.getElementById("lb"); if(lb) lb.hidden=true;}});
+(function(){const lb=document.getElementById("lb"); if(!lb) return; const x=document.getElementById("lbX");
+if(x) x.addEventListener("click",()=>lb.hidden=true); lb.addEventListener("click",e=>{if(e.target===lb) lb.hidden=true;});})();
 </script></body></html>
