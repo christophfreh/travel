@@ -448,6 +448,15 @@ linear-gradient(var(--neon),var(--neon)) right 8px bottom 8px/16px 2px no-repeat
 .fx-top b{font-family:var(--f-body);font-weight:700}
 .pola .del{display:none}
 body.api .pola .del{display:block}
+.polas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;overflow:visible;padding:0;scroll-snap-type:none}
+@media (min-width:640px){.polas{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.polas .pola{flex:none;transform:none!important}
+.polas .pola img{aspect-ratio:1}
+.polas .pola figcaption{font-size:14px;left:10px;bottom:8px}
+.polas .pola figcaption small{font-size:9px;margin-top:3px}
+.polas .pola .del{display:none!important}
+.polas:not(.all) .pola:nth-child(n+9){display:none}
+#polMore{margin-top:4px}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -1390,9 +1399,13 @@ try{ const r=await fetch("/api/delete",{method:"POST",headers:{"Content-Type":"a
 catch(e){ btn.classList.remove("sure"); btn.textContent="Ging nicht, nochmal"; return false; }
 }
 $("polas").addEventListener("click",e=>{const d=e.target.closest(".del"); if(d){e.stopPropagation(); d.dataset.id?hidePhoto(d.dataset.id,d):delPhoto(d.dataset.url,d);}},true);
-$("lbDel").addEventListener("click",async()=>{const ok=await delPhoto($("lbDel").dataset.url,$("lbDel")); if(ok) setTimeout(()=>$("lb").hidden=true,500);});
+$("lbDel").addEventListener("click",async()=>{const d=$("lbDel"); let ok;
+if(d.dataset.id){ if(!d.classList.contains("sure")){d.classList.add("sure");d.textContent="Wirklich löschen?";return;}
+d.textContent="Lösche …"; try{const r=await fetch("/api/hidden",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:d.dataset.id})}); if(!r.ok) throw 0; const f=document.querySelector(`.pola[data-id="${d.dataset.id}"]`); if(f) f.remove(); d.textContent="Gelöscht"; ok=true; galMore();}catch(e){d.classList.remove("sure");d.textContent="Ging nicht, nochmal";} }
+else ok=await delPhoto(d.dataset.url,d);
+if(ok) setTimeout(()=>$("lb").hidden=true,500);});
 g.addEventListener("click",e=>{const b=e.target.closest(".g-it"); if(!b) return; $("lbImg").src=b.dataset.src; $("lbCap").textContent=b.dataset.cap; const d=$("lbDel"); d.hidden=false; d.dataset.url=b.dataset.del; d.classList.remove("sure"); d.textContent="Foto löschen"; $("lb").hidden=false;});
-$("polas").addEventListener("click",e=>{const im=e.target.closest(".pola img"); if(!im) return; $("lbDel").hidden=true; $("lbImg").src=im.src; $("lbCap").textContent=im.closest("figure").querySelector("figcaption").textContent; $("lb").hidden=false;});
+$("polas").addEventListener("click",e=>{const im=e.target.closest(".pola img"); if(!im) return; const fg=im.closest("figure"), d=$("lbDel"), ub=fg.querySelector(".del[data-url]"); d.hidden=false; d.classList.remove("sure"); d.textContent="Foto löschen"; d.dataset.id=fg.dataset.id||""; d.dataset.url=ub?ub.dataset.url:""; if(!d.dataset.id) delete d.dataset.id; $("lbImg").src=im.src; $("lbCap").textContent=im.closest("figure").querySelector("figcaption").textContent; $("lb").hidden=false;});
 $("lbX").addEventListener("click",()=>$("lb").hidden=true); $("lb").addEventListener("click",e=>{if(e.target.id==="lb")$("lb").hidden=true;});
 load(); setInterval(load,60000);
 })();
@@ -1473,6 +1486,11 @@ function all(){fill("ptSee",SEE);fill("ptEat",EAT);fill("ptGo",GO);}
 all(); est(); ["rate","rateJ"].forEach(id=>{$(id).addEventListener("input",all);$(id).addEventListener("fx",all);});
 setTimeout(all,2500);
 })();
+// ---------- Galerie 2017: kompakt ----------
+function galMore(){const P=$("polas"); if(!P) return; const n=P.querySelectorAll(".pola").length; let b=$("polMore");
+if(!b){b=document.createElement("button");b.type="button";b.id="polMore";b.className="btn sm";P.after(b);b.addEventListener("click",()=>{P.classList.toggle("all");galMore();});}
+b.hidden=n<=8; b.textContent=P.classList.contains("all")?"Weniger zeigen":`Alle ${n} Fotos zeigen`;}
+galMore(); new MutationObserver(galMore).observe($("polas"),{childList:true});
 // ---------- Packliste ----------
 (function(){const cbs=[...document.querySelectorAll(".pack input")];
 function upd(){const n=cbs.filter(c=>c.checked).length;$("pkN").textContent=n;$("pkT").textContent=cbs.length;$("pkBar").style.width=(n/cbs.length*100)+"%";}
