@@ -314,7 +314,7 @@ background-size:14px 2px,2px 14px,14px 2px,2px 14px;background-position:right 6p
 .sh .ko{box-shadow:0 0 10px rgba(59,230,214,.35),inset 0 0 8px rgba(59,230,214,.15)}
 @media (prefers-reduced-motion:no-preference){
 .hud .cur{animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
-.sh h2.gl{animation:glitch .55s steps(2) 1}
+.sh h2.gl{animation:glitch 1.4s steps(4) 1}
 @keyframes glitch{0%{text-shadow:3px 0 var(--neon),-3px 0 var(--cyan);transform:translateX(2px)}
 25%{text-shadow:-4px 0 var(--neon),4px 0 var(--cyan);clip-path:inset(10% 0 45% 0);transform:translateX(-3px)}
 50%{text-shadow:2px 0 var(--neon),-2px 0 var(--cyan);clip-path:inset(55% 0 5% 0);transform:translateX(1px)}
@@ -470,9 +470,9 @@ body.api .pola .del{display:block}
 .fl-k b{color:var(--cp);font-weight:400}
 @media (max-width:420px){.flash{grid-template-columns:42% minmax(0,1fr)}.flash figcaption{font-size:15px;padding:12px}}
 @media (prefers-reduced-motion:no-preference){
-.sh::after{background-size:200% 100%;animation:dataflow 6s linear infinite}
+.sh::after{background-size:200% 100%;animation:dataflow 16s linear infinite}
 @keyframes dataflow{from{background-position:0 0}to{background-position:-160px 0}}
-.sh .n{animation:nflick 7s infinite}
+.sh .n{animation:nflick 16s infinite}
 @keyframes nflick{0%,89%,100%{opacity:1}90%{opacity:.35}91%{opacity:1}93%{opacity:.6}94%{opacity:1}}
 .hero::after{content:"";position:absolute;left:-16px;right:-16px;height:2px;top:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 14px var(--cyan);opacity:.55;animation:scan 5.5s cubic-bezier(.6,0,.4,1) infinite}
 @keyframes scan{0%{top:0;opacity:0}8%{opacity:.6}92%{opacity:.6}100%{top:100%;opacity:0}}
@@ -1676,10 +1676,10 @@ $("zmX").onclick=()=>{zm.hidden=true;document.body.style.overflow="";};
 if(matchMedia("(prefers-reduced-motion: reduce)").matches||!("IntersectionObserver" in window)) return;
 const G="アイウエオカキクケコサシスセソタチツテト0123456789#$%&*<>/=+サ울서종로福岡";
 function decode(el){const fin=el.textContent; if(!fin||el.dataset.dec) return; el.dataset.dec="1"; el.setAttribute("aria-label",fin);
-let f=0; const total=14; const t=setInterval(()=>{f++; const k=Math.floor(fin.length*f/total);
+let f=0; const total=22; const t=setInterval(()=>{f++; const k=Math.floor(fin.length*f/total);
 el.textContent=fin.split("").map((c,i)=>i<k||c===" "?c:G[(Math.random()*G.length)|0]).join("");
-if(f>=total){clearInterval(t); el.textContent=fin;}},38);}
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const h=e.target; io.unobserve(h); decode(h); h.classList.add("gl"); setTimeout(()=>h.classList.remove("gl"),700);}}),{rootMargin:"0px 0px -15% 0px"});
+if(f>=total){clearInterval(t); el.textContent=fin;}},70);}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const h=e.target; io.unobserve(h); decode(h); h.classList.add("gl"); setTimeout(()=>h.classList.remove("gl"),1500);}}),{rootMargin:"0px 0px -15% 0px"});
 document.querySelectorAll(".sh h2").forEach(h=>{ if(h.getBoundingClientRect().top>innerHeight) io.observe(h); });
 })();
 // ---------- boarding countdown ----------
