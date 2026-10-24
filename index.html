@@ -613,6 +613,12 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 @media (max-width:480px){.mx span{font-size:9px;letter-spacing:.06em;max-width:none}}
 .flash img{cursor:zoom-in}
 .pola img{cursor:zoom-in}
+.q{border:0;background:none;padding:0;margin:-28px 0;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+.q::before{content:none}
+.q p{font:400 clamp(14px,3.6vw,17px)/1.4 var(--f-display);font-style:italic;color:var(--muted);max-width:40ch}
+.q span{font:400 9.5px/1.4 var(--f-mono);letter-spacing:.16em;color:rgba(171,165,207,.6);margin:0}
+.q span::before{content:"— "}
+.q::after{content:"";width:60px;height:1px;margin-top:6px;background:linear-gradient(90deg,transparent,var(--neon),transparent);opacity:.6}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
