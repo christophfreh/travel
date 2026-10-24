@@ -1514,12 +1514,12 @@ function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;g.
 size(); addEventListener("resize",size);
 let last=0,vis=true; new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(c);
 function frame(ts){
-requestAnimationFrame(frame); if(!vis||ts-last<110) return; last=ts;
+requestAnimationFrame(frame); if(!vis||ts-last<170) return; last=ts;
 g.fillStyle="rgba(17,15,39,.18)"; g.fillRect(0,0,W,H);
 g.font="15px 'Black Han Sans', sans-serif";
 for(let i=0;i<cols;i++){const y=drops[i]*22; const ch=chars[(Math.random()*chars.length)|0];
 g.fillStyle=i%5===0?"rgba(59,230,214,.55)":i%3===0?"rgba(255,210,63,.35)":"rgba(255,62,138,.45)";
-g.fillText(ch,i*22,y); if(y>H&&Math.random()>.96) drops[i]=Math.random()*-10; drops[i]+=.6+(i%4)*.15;}
+g.fillText(ch,i*22,y); if(y>H&&Math.random()>.96) drops[i]=Math.random()*-10; drops[i]+=.32+(i%4)*.08;}
 }
 requestAnimationFrame(frame);
 })();
