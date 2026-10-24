@@ -597,11 +597,18 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 .hero>.kata{top:calc(clamp(140px,34vw,210px) + 70px)}
 .brand-l{color:var(--muted);text-decoration:none;border-bottom:1px dashed rgba(252,238,10,.4)}
 .brand-l:hover{color:var(--cp);text-shadow:0 0 10px rgba(252,238,10,.6)}
+.mx{position:relative;height:64px;margin:-28px calc(-1 * max(16px,env(safe-area-inset-left,0px)));overflow:hidden;border-block:1px solid rgba(0,255,106,.18);background:#050a07}
+.mx canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.85}
+.mx span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;font:700 clamp(10px,2.8vw,13px) var(--f-mono);letter-spacing:.12em;color:#7CFFB2;background:rgba(5,10,7,.75);padding:5px 10px;text-shadow:0 0 8px #00ff6a;max-width:92%;overflow:hidden;text-overflow:ellipsis}
+.code{margin:0;padding:16px;background:#050a07;border:1px solid rgba(0,255,106,.25);border-radius:4px 4px 16px 4px;color:#B9FFD6;font:400 clamp(11px,3vw,13.5px)/1.65 var(--f-mono);overflow-x:auto;box-shadow:0 0 24px -8px rgba(0,255,106,.35),inset 0 0 40px rgba(0,255,106,.05);text-shadow:0 0 6px rgba(0,255,106,.35)}
+.code .c{color:#4E8F69}.code .k{color:var(--neon)}.code .s{color:var(--cp)}.code .n{color:var(--cyan)}
+.code .cur{display:inline-block;width:8px;height:14px;background:#00ff6a;vertical-align:-2px;margin-left:4px}
+@media (prefers-reduced-motion:no-preference){.code .cur{animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
 <div class="sky" id="sky" aria-hidden="true"><div class="holo" id="holo">서울 · 2026</div><svg id="skySvg" viewBox="0 0 800 220" preserveAspectRatio="xMidYMax slice"></svg><div class="floor"></div></div>
-<div class="brand"><a class="label brand-l" href="https://www.staycurious.art/en/" target="_blank" rel="noopener">staycurious · reisebuch</a><span class="label mono" id="clock">Seoul --:--</span></div>
+<div class="brand"><span></span><span class="label mono" id="clock">Seoul --:--</span></div>
 <div class="hud" aria-hidden="true"><span>&gt; SYS://SEOUL.NOV <b>ONLINE</b></span><span>37.57N 126.98E</span><span>KST UTC+9</span><span>FUK 33.59N<i class="cur"></i></span></div>
 <div class="hangul" aria-hidden="true">서울</div>
 <div class="kata" aria-hidden="true">フクオカ<small>+ FUK</small></div>
@@ -685,8 +692,20 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 </div>
 <div class="pack"><span>Winterjacke</span><span>Schal & Mütze</span><span>gute Laufschuhe</span><span>Zwiebellook</span><span>Lippenpflege</span><span>Powerbank</span><span>Reisepass für DMZ</span><span>Switch 2 + HDMI</span></div>
 </section>
+<div class="mx" aria-hidden="true"><canvas></canvas><span>// FOLLOW THE WHITE RABBIT → GWANGJANG MARKET</span></div>
 <section id="plan">
 <div class="sh"><span class="n">03</span><h2>Die Woche</h2><span class="ko">일정</span></div>
+<pre class="code" aria-label="Reise als Code"><span class="c">// mission.config.js</span>
+<span class="k">const</span> mission = {
+team:     [<span class="s">"Michi"</span>, <span class="s">"Christoph"</span>],
+ziel:     <span class="s">"SEOUL"</span>,      <span class="c">// 서울</span>
+bonus:    <span class="s">"FUKUOKA"</span>,    <span class="c">// 福岡</span>
+zeitraum: <span class="s">"21.–29.11.2026"</span>,
+basis:    <span class="s">"Jongno"</span>,
+hunger:   <span class="n">Infinity</span>,
+pflichtprogramm: <span class="n">null</span>,
+};
+<span class="k">await</span> boarding(mission); <span class="c">// KE938 · VIE → ICN</span><i class="cur"></i></pre>
 <div class="box"><span class="label">So reisen wir</span><p>Ein Highlight pro Tag, dazu gutes Essen und eine Bar. Nachmittags zurück ins Hotel, Füße hoch. Alles über 20 Minuten mit dem Taxi, das ist hier billig. Was nicht passt, lassen wir weg.</p></div>
 <div class="plan" id="planList"></div>
 </section>
@@ -951,6 +970,7 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 <div class="map metro" id="metroFuk"></div>
 <p class="status">Schematische Karten in der Vorschau, echte Karten auf der Website. Ein Tipp auf einen Eintrag öffnet ihn in Google Maps.</p>
 </section>
+<div class="mx" aria-hidden="true"><canvas></canvas><span>// THERE IS NO SPOON. ES GIBT STÄBCHEN.</span></div>
 <section id="games">
 <div class="sh"><span class="n">16</span><h2>Games</h2><span class="ko">게임</span></div>
 <figure class="ph"><img src="https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=1200&h=520" alt="Arcade-Automaten im Neonlicht" loading="lazy" onerror="this.closest('figure').remove()"><span class="ph-l">게임 · Level up</span><figcaption>Foto: <a href="https://unsplash.com/@carltraw?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Carl Raw</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure>
@@ -1074,6 +1094,7 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 </div>
 <p class="status">Häkchen bleiben auf dem jeweiligen Handy gespeichert. <button type="button" class="btn sm" id="pkReset">Alles zurücksetzen</button></p>
 </section>
+<div class="mx" aria-hidden="true"><canvas></canvas><span>// ERROR 404: JETLAG NOT FOUND</span></div>
 <section id="praktisch">
 <div class="sh"><span class="n">22</span><h2>Praktisch</h2><span class="ko">정보</span></div>
 <div class="box" id="fx">
@@ -1694,5 +1715,20 @@ for(let i=0;i<5;i++) o+=`<rect class="car${i%2?" r":""}" x="0" y="${30+rnd()*70}
 sv.innerHTML=o;
 const H=["서울 · 2026","WAKE UP, SAMURAI","소주 4.500₩","MICHI × CHRISTOPH","福岡 BONUSLEVEL","GLÜCKWUNSCH, CHOOM"],C=["","c","y"]; let i=0; const hb=document.getElementById("holo");
 if(!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(()=>{i=(i+1)%H.length; hb.textContent=H[i]; hb.className="holo sw "+C[i%3]; setTimeout(()=>hb.classList.remove("sw"),400);},3200);
+})();
+// ---------- matrix strips ----------
+(function(){
+const cs=[...document.querySelectorAll(".mx canvas")]; if(!cs.length) return;
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const ch="アイウエオカキクケコサシスセソ서울종로을지로01011010福岡ﾊﾟﾗﾘﾙﾚﾛ$#".split("");
+const st=cs.map(c=>({c,g:c.getContext("2d"),vis:false,drops:[]}));
+function size(o){const d=Math.min(2,devicePixelRatio||1);o.W=o.c.clientWidth;o.H=o.c.clientHeight;o.c.width=o.W*d;o.c.height=o.H*d;o.g.setTransform(d,0,0,d,0,0);o.drops=Array.from({length:Math.ceil(o.W/12)},()=>Math.random()*-20);o.g.fillStyle="#050a07";o.g.fillRect(0,0,o.W,o.H);}
+st.forEach(size); addEventListener("resize",()=>st.forEach(size));
+function draw(o){o.g.fillStyle="rgba(5,10,7,.16)";o.g.fillRect(0,0,o.W,o.H);o.g.font="12px 'Space Mono', monospace";
+o.drops.forEach((y,i)=>{const t=ch[(Math.random()*ch.length)|0];o.g.fillStyle=Math.random()>.94?"#E6FFF0":"#00ff6a";o.g.fillText(t,i*12,y*12);o.drops[i]=y*12>o.H&&Math.random()>.9?0:y+1;});}
+if(reduce){st.forEach(o=>{for(let k=0;k<12;k++)draw(o);});return;}
+const io=new IntersectionObserver(es=>es.forEach(e=>{const o=st.find(x=>x.c===e.target); if(o) o.vis=e.isIntersecting;}));
+st.forEach(o=>io.observe(o.c));
+let last=0; (function f(ts){requestAnimationFrame(f); if(ts-last<70) return; last=ts; st.forEach(o=>{if(o.vis) draw(o);});})(0);
 })();
 </script></body></html>
