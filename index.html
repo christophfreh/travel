@@ -659,6 +659,18 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 .mx{height:84px;margin:-26px 0;opacity:.8}
 .mx canvas{opacity:1;mix-blend-mode:normal}
 .mx span{padding:4px 10px;background:rgba(17,15,39,.72);color:var(--cyan);letter-spacing:.14em;box-shadow:0 0 0 1px rgba(59,230,214,.25)}
+.cd-u{position:relative;padding:10px 4px 12px}
+.cd-u .flap{display:flex;justify-content:center;gap:3px;font-size:clamp(24px,7vw,40px);perspective:300px}
+.cd-u .flap span{display:inline-block;min-width:.72em;padding:.08em .06em;border-radius:5px;background:linear-gradient(180deg,#221d4a 0 49%,#0b0920 49% 51%,#17133a 51%);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 4px 10px rgba(0,0,0,.45);position:relative;transform-origin:50% 50%}
+.cd-u .flap span::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(0,0,0,.6)}
+.cd-bar{position:absolute;left:8px;right:8px;bottom:5px;height:3px;border-radius:2px;background:rgba(255,255,255,.06);overflow:hidden}
+.cd-bar::before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--f,0%);background:currentColor;box-shadow:0 0 8px currentColor;transition:width .6s ease}
+.cd-u:nth-child(1) .cd-bar{color:var(--neon)}.cd-u:nth-child(2) .cd-bar{color:var(--cyan)}.cd-u:nth-child(3) .cd-bar{color:var(--sign)}.cd-u:nth-child(4) .cd-bar{color:var(--ink)}
+.cd-u small{display:block;margin-top:6px}
+@media (prefers-reduced-motion:no-preference){
+.cd-u .flap span.fl{animation:flapin .55s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes flapin{0%{transform:rotateX(-90deg);filter:brightness(2)}60%{transform:rotateX(12deg)}100%{transform:none;filter:none}}
+}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -670,11 +682,11 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 <h1 class="gl-h" data-text="seoul, november.">seoul, <em>november.</em></h1>
 <p class="sub">Neun Jahre nach dem letzten Einsatz in Tokyo ist das Team wieder vereint. Ziel: Seoul. Ausrüstung: Hunger, Durst, eine Switch 2. Bonuslevel: Fukuoka. <b>21. bis 29. November</b>, Basis in Jongno.</p>
 <div class="stats">
-<div class="stat"><span class="label">Abflug in</span><b id="countdown">–</b><small id="countdownSub">Tagen</small></div>
+<div class="stat"><span class="label">Noch</span><b id="countdown">–</b><small id="countdownSub">Mal schlafen</small></div>
 <div class="stat"><span class="label">Jetzt in Seoul</span><b id="heroTemp">–</b><small id="heroPhrase">Wetter lädt</small></div>
 <div class="stat"><span class="label">Zeit</span><b>+8 h</b><small>vor Wien</small></div>
 </div>
-<div class="cd" id="cd"><span class="label"><span>Boarding-Countdown · KE938 · VIE → ICN</span><span>Fr 20.11. · 19:30</span></span><div class="cd-grid"><div class="cd-u"><b id="cdD">--</b><small>Tage</small></div><div class="cd-u"><b id="cdH">--</b><small>Std</small></div><div class="cd-u"><b id="cdM">--</b><small>Min</small></div><div class="cd-u"><b id="cdS">--</b><small>Sek</small></div></div><div class="cd-msg" id="cdMsg">&gt; Abflug Wien-Schwechat, Terminal 3</div></div>
+<div class="cd" id="cd"><span class="label"><span>Boarding-Countdown · KE938 · VIE → ICN</span><span>Fr 20.11. · 19:30</span></span><div class="cd-grid"><div class="cd-u"><b class="flap" id="cdD"><span>-</span><span>-</span></b><i class="cd-bar" id="cdDb"></i><small>Tage</small></div><div class="cd-u"><b class="flap" id="cdH"><span>-</span><span>-</span></b><i class="cd-bar" id="cdHb"></i><small>Std</small></div><div class="cd-u"><b class="flap" id="cdM"><span>-</span><span>-</span></b><i class="cd-bar" id="cdMb"></i><small>Min</small></div><div class="cd-u"><b class="flap" id="cdS"><span>-</span><span>-</span></b><i class="cd-bar" id="cdSb"></i><small>Sek</small></div></div><div class="cd-msg" id="cdMsg">&gt; Abflug Wien-Schwechat, Terminal 3</div></div>
 <div class="marquee" aria-hidden="true"><div><span>ICN ✦ 21.11.</span><span>종로 JONGNO</span><span>을지로 EULJIRO</span><span>福岡 FUKUOKA</span><span>DMZ</span><span>NIGHT CITY? NEIN, SEOUL</span><span>BLADE RUNNER WEATHER</span><span>삼성 SAMSUNG</span><span>소주 SOJU</span><span>라면 RAMEN</span><span>LoL PARK</span><span>ICN ✦ 21.11.</span><span>종로 JONGNO</span><span>을지로 EULJIRO</span><span>福岡 FUKUOKA</span><span>DMZ</span><span>NIGHT CITY? NEIN, SEOUL</span><span>BLADE RUNNER WEATHER</span><span>삼성 SAMSUNG</span><span>소주 SOJU</span><span>라면 RAMEN</span><span>LoL PARK</span></div></div>
 </header>
 <aside class="q" aria-label="Zitat"><p>Wake up, Samurai. We have a city to explore.</p><span>frei nach Johnny Silverhand · Cyberpunk 2077</span></aside>
@@ -1206,7 +1218,7 @@ $("clock").textContent = "Seoul " + t;
 const today = seoulDate();
 const vie = new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Vienna"}).format(new Date());
 const days = Math.ceil((Date.parse(DEPART) - Date.parse(vie)) / 864e5);
-if (days > 0){ $("countdown").textContent = days; $("countdownSub").textContent = days === 1 ? "Tag" : "Tagen"; }
+if (days > 0){ $("countdown").textContent = days + "×"; $("countdownSub").textContent = "Mal schlafen bis zum Flug"; }
 else if (today <= TRIP_END){ $("countdown").textContent = "jetzt"; $("countdownSub").textContent = "ihr seid da"; }
 else { $("countdown").textContent = "✓"; $("countdownSub").textContent = "Reise vorbei"; }
 }
@@ -1686,9 +1698,14 @@ document.querySelectorAll(".sh h2").forEach(h=>{ if(h.getBoundingClientRect().to
 (function(){
 const T=Date.parse("2026-11-20T19:30:00+01:00"), R=Date.parse("2026-11-29T17:10:00+01:00");
 const p=n=>String(n).padStart(2,"0");
+function flap(id,v){const el=$(id); const sp=el.querySelectorAll("span"); if(sp.length!==v.length){el.innerHTML=[...v].map(c=>`<span>${c}</span>`).join("");return;}
+[...v].forEach((c,k)=>{ if(sp[k].textContent!==c){ const n=document.createElement("span"); n.textContent=c; n.className="fl"; sp[k].replaceWith(n); } });}
+function bar(id,f){const b=$(id+"b"); if(b) b.style.setProperty("--f",(f*100).toFixed(1)+"%");}
 function run(){const now=Date.now(), d=T-now;
-if(d>0){const s=Math.floor(d/1000); $("cdD").textContent=Math.floor(s/86400); $("cdH").textContent=p(Math.floor(s%86400/3600)); $("cdM").textContent=p(Math.floor(s%3600/60)); $("cdS").textContent=p(s%60);}
-else{["cdD","cdH","cdM","cdS"].forEach(id=>$(id).textContent="00"); $("cdMsg").textContent=now<R?"> Unterwegs. Gute Reise, ihr zwei.":"> Wieder daheim. Danke für die Woche.";}}
+if(d>0){const s=Math.floor(d/1000), D=Math.floor(s/86400), H=Math.floor(s%86400/3600), M=Math.floor(s%3600/60), S=s%60;
+flap("cdD",p(D)); flap("cdH",p(H)); flap("cdM",p(M)); flap("cdS",p(S));
+bar("cdD",1-Math.min(1,D/60)); bar("cdH",1-H/24); bar("cdM",1-M/60); bar("cdS",1-S/60);}
+else{["cdD","cdH","cdM","cdS"].forEach(id=>{flap(id,"00");bar(id,1);}); $("cdMsg").textContent=now<R?"> Unterwegs. Gute Reise, ihr zwei.":"> Wieder daheim. Danke für die Woche.";}}
 run(); setInterval(run,1000);
 })();
 // ---------- prices ----------
