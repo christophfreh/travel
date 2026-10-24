@@ -530,6 +530,38 @@ body::before{animation:ambient 24s ease-in-out infinite alternate}
 .totop b{display:block;font-size:17px;line-height:1}
 .totop.on{opacity:1;transform:none;pointer-events:auto}
 .totop:hover{background:var(--cp);color:#110F27}
+.boot{position:fixed;inset:0;z-index:2000;background:#0a0818;display:flex;flex-direction:column;justify-content:center;padding:24px max(24px,env(safe-area-inset-left,0px));font:400 13px/1.7 var(--f-mono);color:var(--cyan);cursor:pointer}
+.boot p{margin:0;opacity:0;white-space:nowrap;overflow:hidden}
+.boot p.on{opacity:1}
+.boot p b{color:var(--cp);font-weight:400}
+.boot p.ok::after{content:" [ OK ]";color:var(--neon)}
+.boot small{position:absolute;bottom:calc(24px + env(safe-area-inset-bottom,0px));left:24px;color:var(--muted);font-size:10px;letter-spacing:.14em}
+.boot.out{animation:bootout .45s steps(5) forwards}
+@keyframes bootout{0%{clip-path:inset(0)}40%{clip-path:inset(30% 0 40% 0);filter:hue-rotate(90deg)}100%{clip-path:inset(50% 0 50% 0);opacity:0}}
+.gl-h{position:relative}
+.gbar{position:fixed;left:0;right:0;height:14px;z-index:1500;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(59,230,214,.35),rgba(255,62,138,.4),transparent);mix-blend-mode:screen;opacity:0}
+@media (prefers-reduced-motion:no-preference){
+.gl-h::before,.gl-h::after{content:attr(data-text);position:absolute;inset:0;pointer-events:none;opacity:0}
+.gl-h::before{color:var(--cyan);animation:hslice 7s infinite steps(1)}
+.gl-h::after{color:var(--neon);animation:hslice 7s .08s infinite steps(1)}
+@keyframes hslice{0%,93%,100%{opacity:0;transform:none;clip-path:inset(0)}94%{opacity:.85;transform:translate(-4px,0);clip-path:inset(10% 0 55% 0)}95%{opacity:.85;transform:translate(5px,0);clip-path:inset(60% 0 8% 0)}96%{opacity:.7;transform:translate(-2px,0);clip-path:inset(35% 0 35% 0)}97%{opacity:0}}
+.gbar.go{animation:gsweep .55s linear 1}
+@keyframes gsweep{0%{top:-20px;opacity:.9}100%{top:100vh;opacity:.6}}
+.hl-card{position:relative;overflow:hidden}
+.hl-card::after{content:"";position:absolute;inset:-50%;background:linear-gradient(115deg,transparent 40%,rgba(252,238,10,.16) 48%,rgba(59,230,214,.18) 52%,transparent 60%);transform:translateX(-60%);transition:transform .7s ease;pointer-events:none}
+.hl-card:hover::after{transform:translateX(60%)}
+.stat b{animation:digflick 5s infinite}
+@keyframes digflick{0%,96%,100%{opacity:1}97%{opacity:.3}98%{opacity:1}}
+}
+.map.metro{background:#0d0b1f;background-image:repeating-linear-gradient(0deg,rgba(17,15,39,.3) 0 1px,transparent 1px 3px)}
+.map.metro::after{content:"";position:absolute;inset:8px;pointer-events:none;z-index:2;background:linear-gradient(var(--cp),var(--cp)) left top/16px 2px no-repeat,linear-gradient(var(--cp),var(--cp)) left top/2px 16px no-repeat,linear-gradient(var(--neon),var(--neon)) right bottom/16px 2px no-repeat,linear-gradient(var(--neon),var(--neon)) right bottom/2px 16px no-repeat}
+.metro .mt-st{text-shadow:0 0 6px rgba(244,241,255,.5)}
+@media (prefers-reduced-motion:no-preference){
+.mt-flow{animation:mflow 2.2s linear infinite}
+@keyframes mflow{to{stroke-dashoffset:-38}}
+.mt-ping{transform-box:fill-box;transform-origin:center;animation:mping 2.4s ease-out infinite}
+@keyframes mping{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(2.4)}}
+}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -537,7 +569,7 @@ body::before{animation:ambient 24s ease-in-out infinite alternate}
 <div class="hud" aria-hidden="true"><span>&gt; SYS://SEOUL.NOV <b>ONLINE</b></span><span>37.57N 126.98E</span><span>KST UTC+9</span><span>FUK 33.59N<i class="cur"></i></span></div>
 <div class="hangul" aria-hidden="true">서울</div>
 <div class="kata" aria-hidden="true">フクオカ<small>+ FUK</small></div>
-<h1>seoul, <em>november.</em></h1>
+<h1 class="gl-h" data-text="seoul, november.">seoul, <em>november.</em></h1>
 <p class="sub">Neun Jahre nach dem letzten Einsatz in Tokyo ist das Team wieder vereint. Ziel: Seoul. Ausrüstung: Hunger, Durst, eine Switch 2. Bonuslevel: Fukuoka. <b>21. bis 29. November</b>, Basis in Jongno.</p>
 <div class="stats">
 <div class="stat"><span class="label">Abflug in</span><b id="countdown">–</b><small id="countdownSub">Tagen</small></div>
@@ -1381,14 +1413,16 @@ requestAnimationFrame(frame);
 // ---------- Metro diagrams ----------
 function metro(el,title,sub,W,H,lines,st,notes){
 const P=Object.fromEntries(st.map(s=>[s[0],s]));
-let s=`<div class="ttl">${title}<small>${sub}</small></div><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${title}">`;
+let s=`<div class="ttl">${title}<small>${sub}</small></div><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${title}"><defs><filter id="mg${el}" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4"/></filter><pattern id="mgrid${el}" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#332E66" stroke-width=".5" opacity=".7"/></pattern></defs><rect width="${W}" height="${H}" fill="url(#mgrid${el})"/>`;
 notes.forEach(n=>{ if(n.box) s+=`<rect x="${n.box[0]}" y="${n.box[1]}" width="${n.box[2]}" height="${n.box[3]}" rx="10" fill="rgba(255,62,138,.07)" stroke="#FF3E8A" stroke-dasharray="4 4"/><text class="mt-note" x="${n.box[0]+6}" y="${n.box[1]+n.box[3]-6}" fill="#FF3E8A">${n.label}</text>`;});
 lines.forEach(l=>{const d=l.stops.map((k,i)=>{const q=Array.isArray(k)?k:[P[k][1],P[k][2]];return (i?"L":"M")+q[0]+" "+q[1];}).join(" ");
+s+=`<path d="${d}" fill="none" stroke="${l.c}" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" opacity=".55" filter="url(#mg${el})"/>`;
 s+=`<path d="${d}" fill="none" stroke="${l.c}" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" ${l.dash?'stroke-dasharray="2 8"':''} opacity=".95"/>`;
+if(!l.dash) s+=`<path class="mt-flow" d="${d}" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 18" opacity=".8"/>`;
 if(l.tag){s+=`<g><rect x="${l.tag[0]-14}" y="${l.tag[1]-10}" width="28" height="20" rx="10" fill="${l.c}"/><text class="mt-tag" x="${l.tag[0]}" y="${l.tag[1]+4}" text-anchor="middle">${l.n}</text></g>`;}
 if(l.to){s+=`<text class="mt-to" x="${l.to[0]}" y="${l.to[1]}" text-anchor="${l.to[3]||"start"}" fill="${l.c}">${l.to[2]}</text>`;}
 });
-st.forEach(([k,x,y,lab,anc,big,hint])=>{s+=`<circle cx="${x}" cy="${y}" r="${big?7:5}" fill="#110F27" stroke="#F4F1FF" stroke-width="${big?3:2.5}"/>`;
+st.forEach(([k,x,y,lab,anc,big,hint])=>{if(big) s+=`<circle class="mt-ping" cx="${x}" cy="${y}" r="7" fill="none" stroke="#FCEE0A" stroke-width="1.5"/>`; s+=`<circle cx="${x}" cy="${y}" r="${big?7:5}" fill="#110F27" stroke="${big?"#FCEE0A":"#F4F1FF"}" stroke-width="${big?3:2.5}"/>`;
 const below=anc==="below", ta=below?"middle":(anc||"start");
 const dx=anc==="end"?-10:(anc==="middle"||below)?0:10, dy=below?20:anc==="middle"?-12:4;
 s+=`<text class="mt-st" x="${x+dx}" y="${y+dy}" text-anchor="${ta}">${lab}</text>`;
@@ -1585,4 +1619,22 @@ if(matchMedia("(hover:hover)").matches){document.addEventListener("pointermove",
 (function(){const b=document.createElement("button");b.type="button";b.className="totop";b.setAttribute("aria-label","Zum Anfang der Seite");b.innerHTML="<b>↑</b>TOP";document.body.appendChild(b);
 b.addEventListener("click",()=>window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}));
 let t=0;addEventListener("scroll",()=>{if(t)return;t=requestAnimationFrame(()=>{t=0;b.classList.toggle("on",scrollY>innerHeight*1.2);});},{passive:true});})();
+// ---------- boot sequence (once per session) + glitch sweep ----------
+(function(){
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let seen=false; try{seen=sessionStorage.getItem("boot")==="1";}catch(e){}
+if(!reduce && !seen){
+try{sessionStorage.setItem("boot","1");}catch(e){}
+const L=["&gt; VERBINDE MIT <b>SEOUL.NET</b> …","&gt; LADE TEAM: <b>MICHI</b> + <b>CHRISTOPH</b>","&gt; ZIEL ICN · 21.11.2026 · 14:30 KST","&gt; HUNGER: <b>KRITISCH</b> · DURST: <b>HOCH</b>","&gt; BONUSLEVEL FUKUOKA FREIGESCHALTET","&gt; WAKE UP, SAMURAI."];
+const o=document.createElement("div"); o.className="boot"; o.setAttribute("aria-hidden","true");
+o.innerHTML=L.map(t=>`<p>${t}</p>`).join("")+"<small>TIPPEN ZUM ÜBERSPRINGEN</small>"; document.body.appendChild(o);
+const ps=[...o.querySelectorAll("p")]; let i=0, done=false;
+const end=()=>{if(done)return;done=true;o.classList.add("out");setTimeout(()=>o.remove(),480);};
+const t=setInterval(()=>{ if(i>0&&i<ps.length) ps[i-1].classList.add("ok"); if(i<ps.length){ps[i].classList.add("on");i++;} else {clearInterval(t);setTimeout(end,350);} },230);
+o.addEventListener("click",()=>{clearInterval(t);end();});
+}
+if(reduce) return;
+const g=document.createElement("div"); g.className="gbar"; g.setAttribute("aria-hidden","true"); document.body.appendChild(g);
+setInterval(()=>{ if(document.hidden) return; g.classList.remove("go"); void g.offsetWidth; g.classList.add("go"); }, 18000);
+})();
 </script></body></html>
