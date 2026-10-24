@@ -42,8 +42,8 @@ h1 em{color:var(--sign);font-style:italic}
 .marquee{overflow:hidden;border-block:1px solid var(--line);padding-block:8px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
 .marquee div{display:flex;gap:28px;width:max-content;font:400 13px/1 var(--f-mono);letter-spacing:.1em;color:var(--muted);white-space:nowrap}
 .marquee span:nth-child(3n+1){color:var(--neon)} .marquee span:nth-child(3n+2){color:var(--cyan)}
-@media (prefers-reduced-motion:no-preference){.marquee div{animation:roll 40s linear infinite}@keyframes roll{to{transform:translateX(-50%)}}
-.hangul{animation:flick 6s infinite}@keyframes flick{0%,92%,100%{opacity:1}93%{opacity:.55}94%{opacity:1}96%{opacity:.7}97%{opacity:1}}}
+@media (prefers-reduced-motion:no-preference){.marquee div{animation:roll 64s linear infinite}@keyframes roll{to{transform:translateX(-50%)}}
+.hangul{animation:flick 9.6s infinite}@keyframes flick{0%,92%,100%{opacity:1}93%{opacity:.55}94%{opacity:1}96%{opacity:.7}97%{opacity:1}}}
 section{display:flex;flex-direction:column;gap:16px}
 .sh{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap}
 .sh .n{font:400 44px/.8 var(--f-sign);color:var(--neon);text-shadow:0 0 16px rgba(255,62,138,.5)}
@@ -169,15 +169,15 @@ section{scroll-margin-top:16px}
 .hero>*:not(#rain){position:relative;z-index:1}
 .hero>.kata{position:absolute!important}
 @media (prefers-reduced-motion:no-preference){
-.mp-pin .ring{transform-box:fill-box;transform-origin:center;animation:ping 2.4s ease-out infinite}
+.mp-pin .ring{transform-box:fill-box;transform-origin:center;animation:ping 3.84s ease-out infinite}
 @keyframes ping{0%{transform:scale(1);opacity:.9}70%,100%{transform:scale(2.4);opacity:0}}
-.pass .route i::after{animation:fly 12s ease-in-out infinite}
+.pass .route i::after{animation:fly 19.2s ease-in-out infinite}
 @keyframes fly{0%{left:6%;opacity:0}8%{opacity:1}88%{opacity:1}100%{left:94%;opacity:0}}
-.rv{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.rv{animation:rise 1.12s cubic-bezier(.2,.7,.2,1) both}
 @keyframes rise{from{transform:translateY(22px) scale(.985);filter:brightness(1.6) saturate(1.4)}to{transform:none;filter:none}}
-.sh .n{animation:neon 5s infinite}
+.sh .n{animation:neon 8s infinite}
 @keyframes neon{0%,88%,100%{text-shadow:0 0 16px rgba(255,62,138,.5)}90%{text-shadow:none;opacity:.6}92%{text-shadow:0 0 22px rgba(255,62,138,.9)}}
-.dock a.on{animation:pop .35s ease}
+.dock a.on{animation:pop 0.56s ease}
 @keyframes pop{0%{transform:scale(.9)}60%{transform:scale(1.06)}100%{transform:none}}
 }
 .metro svg{background:radial-gradient(circle at 60% 40%,rgba(59,230,214,.06),transparent 60%)}
@@ -313,14 +313,14 @@ background-size:14px 2px,2px 14px,14px 2px,2px 14px;background-position:right 6p
 .sh h2{position:relative}
 .sh .ko{box-shadow:0 0 10px rgba(59,230,214,.35),inset 0 0 8px rgba(59,230,214,.15)}
 @media (prefers-reduced-motion:no-preference){
-.hud .cur{animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
-.sh h2.gl{animation:glitch 1.4s steps(4) 1}
+.hud .cur{animation:blink 1.6s steps(1) infinite}@keyframes blink{50%{opacity:0}}
+.sh h2.gl{animation:glitch 2.24s steps(4) 1}
 @keyframes glitch{0%{text-shadow:3px 0 var(--neon),-3px 0 var(--cyan);transform:translateX(2px)}
 25%{text-shadow:-4px 0 var(--neon),4px 0 var(--cyan);clip-path:inset(10% 0 45% 0);transform:translateX(-3px)}
 50%{text-shadow:2px 0 var(--neon),-2px 0 var(--cyan);clip-path:inset(55% 0 5% 0);transform:translateX(1px)}
 75%{text-shadow:-1px 0 var(--neon),1px 0 var(--cyan);clip-path:none}
 100%{text-shadow:none;transform:none}}
-.ph:hover::before{animation:scan 1.2s linear infinite}
+.ph:hover::before{animation:scan 1.92s linear infinite}
 @keyframes scan{to{background-position:0 6px,left 8px top 8px,left 8px top 8px,right 8px bottom 8px,right 8px bottom 8px}}
 }
 .cd{position:relative;border:1px solid var(--line);border-radius:16px;padding:14px 14px 12px;background:linear-gradient(135deg,rgba(255,62,138,.12),rgba(59,230,214,.08));overflow:hidden}
@@ -470,21 +470,21 @@ body.api .pola .del{display:block}
 .fl-k b{color:var(--cp);font-weight:400}
 @media (max-width:420px){.flash{grid-template-columns:42% minmax(0,1fr)}.flash figcaption{font-size:15px;padding:12px}}
 @media (prefers-reduced-motion:no-preference){
-.sh::after{background-size:200% 100%;animation:dataflow 16s linear infinite}
+.sh::after{background-size:200% 100%;animation:dataflow 25.6s linear infinite}
 @keyframes dataflow{from{background-position:0 0}to{background-position:-160px 0}}
-.sh .n{animation:nflick 16s infinite}
+.sh .n{animation:nflick 25.6s infinite}
 @keyframes nflick{0%,89%,100%{opacity:1}90%{opacity:.35}91%{opacity:1}93%{opacity:.6}94%{opacity:1}}
-.hero::after{content:"";position:absolute;left:-16px;right:-16px;height:2px;top:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 14px var(--cyan);opacity:.55;animation:scan 5.5s cubic-bezier(.6,0,.4,1) infinite}
+.hero::after{content:"";position:absolute;left:-16px;right:-16px;height:2px;top:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 14px var(--cyan);opacity:.55;animation:scan 8.8s cubic-bezier(.6,0,.4,1) infinite}
 @keyframes scan{0%{top:0;opacity:0}8%{opacity:.6}92%{opacity:.6}100%{top:100%;opacity:0}}
-.ph:hover img,.flash:hover img,.pola:hover img{animation:rgbglitch .5s steps(2) 1}
+.ph:hover img,.flash:hover img,.pola:hover img{animation:rgbglitch 0.8s steps(2) 1}
 @keyframes rgbglitch{0%{transform:translate(0);filter:saturate(1.2) hue-rotate(0)}25%{transform:translate(-3px,1px);filter:saturate(2) hue-rotate(40deg)}50%{transform:translate(3px,-1px);filter:saturate(1.6) hue-rotate(-40deg)}75%{transform:translate(-1px,0)}100%{transform:translate(0)}}
 .btn:hover{animation:btnglitch .35s steps(3) 1}
 @keyframes btnglitch{0%{clip-path:polygon(0 0,100% 0,100% 40%,0 40%,0 60%,100% 60%,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%);transform:translateX(2px)}50%{transform:translateX(-2px)}100%{transform:none}}
-.flash::before{animation:rec 1.6s steps(1) infinite}
+.flash::before{animation:rec 2.56s steps(1) infinite}
 @keyframes rec{50%{opacity:.25}}
-.q{animation:qin .9s ease-out both;animation-timeline:view();animation-range:entry 0% cover 30%}
+.q{animation:qin 1.44s ease-out both;animation-timeline:view();animation-range:entry 0% cover 30%}
 @keyframes qin{from{opacity:0;transform:translateX(-14px);filter:blur(2px)}to{opacity:1;transform:none;filter:none}}
-.box.hot{animation:hotpulse 4s ease-in-out infinite}
+.box.hot{animation:hotpulse 6.4s ease-in-out infinite}
 @keyframes hotpulse{50%{box-shadow:0 0 0 1px rgba(255,62,138,.35),0 0 44px rgba(255,62,138,.22)}}
 }
 .map.lf .leaflet-tile-pane{filter:invert(1) hue-rotate(200deg) saturate(1.6) brightness(.8) contrast(1.15)}
@@ -503,11 +503,11 @@ background:linear-gradient(var(--cp),var(--cp)) left top/18px 2px no-repeat,line
 .pp-k{font:400 9.5px var(--f-mono);letter-spacing:.14em;color:var(--cp)}
 .leaflet-popup-content a{font:700 11px var(--f-mono);color:var(--cyan);margin-top:4px}
 @media (prefers-reduced-motion:no-preference){
-.lf-pin span::after{content:"";position:absolute;inset:-4px;border:1px solid var(--c);transform:rotate(45deg);opacity:0;animation:pping 2.6s ease-out infinite}
+.lf-pin span::after{content:"";position:absolute;inset:-4px;border:1px solid var(--c);transform:rotate(45deg);opacity:0;animation:pping 4.16s ease-out infinite}
 @keyframes pping{0%{opacity:.8;transform:rotate(45deg) scale(.7)}100%{opacity:0;transform:rotate(45deg) scale(1.6)}}
-.lf-cross{animation:crossspin 8s linear infinite}
+.lf-cross{animation:crossspin 12.8s linear infinite}
 @keyframes crossspin{to{transform:rotate(360deg)}}
-.map.lf .lf-map{animation:mapboot .8s steps(4) 1}
+.map.lf .lf-map{animation:mapboot 1.28s steps(4) 1}
 @keyframes mapboot{0%{filter:brightness(2) hue-rotate(90deg);clip-path:inset(0 0 100% 0)}50%{clip-path:inset(0 0 40% 0)}100%{filter:none;clip-path:inset(0)}}
 }
 .map:not(.lf){background-image:repeating-linear-gradient(0deg,rgba(17,15,39,.25) 0 1px,transparent 1px 3px)}
@@ -521,9 +521,9 @@ h2{text-shadow:-2px 0 rgba(59,230,214,.55),2px 0 rgba(255,62,138,.55),0 0 18px r
 .ph,.flash{position:relative}
 .ph::after{box-shadow:inset 0 -40px 60px -30px rgba(255,62,138,.35)}
 @media (prefers-reduced-motion:no-preference){
-body::before{animation:ambient 24s ease-in-out infinite alternate}
+body::before{animation:ambient 38.4s ease-in-out infinite alternate}
 @keyframes ambient{0%{transform:translate(0,0)}50%{transform:translate(4vmax,-3vmax)}100%{transform:translate(-3vmax,4vmax)}}
-.sh .ko{animation:kobuzz 9s infinite}
+.sh .ko{animation:kobuzz 14.4s infinite}
 @keyframes kobuzz{0%,95%,100%{opacity:1}96%{opacity:.4}97%{opacity:1}98%{opacity:.6}}
 }
 .totop{position:fixed;right:max(14px,env(safe-area-inset-right,0px));bottom:calc(86px + env(safe-area-inset-bottom,0px));z-index:30;width:46px;height:46px;display:grid;place-items:center;border:1px solid var(--cp);background:rgba(17,15,39,.85);color:var(--cp);font:700 10px/1.1 var(--f-mono);letter-spacing:.08em;text-align:center;cursor:pointer;clip-path:polygon(0 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%);box-shadow:0 0 18px rgba(252,238,10,.35);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
@@ -542,24 +542,24 @@ body::before{animation:ambient 24s ease-in-out infinite alternate}
 .gbar{position:fixed;left:0;right:0;height:14px;z-index:1500;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(59,230,214,.35),rgba(255,62,138,.4),transparent);mix-blend-mode:screen;opacity:0}
 @media (prefers-reduced-motion:no-preference){
 .gl-h::before,.gl-h::after{content:attr(data-text);position:absolute;inset:0;pointer-events:none;opacity:0}
-.gl-h::before{color:var(--cyan);animation:hslice 7s infinite steps(1)}
-.gl-h::after{color:var(--neon);animation:hslice 7s .08s infinite steps(1)}
+.gl-h::before{color:var(--cyan);animation:hslice 11.2s infinite steps(1)}
+.gl-h::after{color:var(--neon);animation:hslice 11.2s 0.13s infinite steps(1)}
 @keyframes hslice{0%,93%,100%{opacity:0;transform:none;clip-path:inset(0)}94%{opacity:.85;transform:translate(-4px,0);clip-path:inset(10% 0 55% 0)}95%{opacity:.85;transform:translate(5px,0);clip-path:inset(60% 0 8% 0)}96%{opacity:.7;transform:translate(-2px,0);clip-path:inset(35% 0 35% 0)}97%{opacity:0}}
-.gbar.go{animation:gsweep .55s linear 1}
+.gbar.go{animation:gsweep 0.88s linear 1}
 @keyframes gsweep{0%{top:-20px;opacity:.9}100%{top:100vh;opacity:.6}}
 .hl-card{position:relative;overflow:hidden}
 .hl-card::after{content:"";position:absolute;inset:-50%;background:linear-gradient(115deg,transparent 40%,rgba(252,238,10,.16) 48%,rgba(59,230,214,.18) 52%,transparent 60%);transform:translateX(-60%);transition:transform .7s ease;pointer-events:none}
 .hl-card:hover::after{transform:translateX(60%)}
-.stat b{animation:digflick 5s infinite}
+.stat b{animation:digflick 8s infinite}
 @keyframes digflick{0%,96%,100%{opacity:1}97%{opacity:.3}98%{opacity:1}}
 }
 .map.metro{background:#0d0b1f;background-image:repeating-linear-gradient(0deg,rgba(17,15,39,.3) 0 1px,transparent 1px 3px)}
 .map.metro::after{content:"";position:absolute;inset:8px;pointer-events:none;z-index:2;background:linear-gradient(var(--cp),var(--cp)) left top/16px 2px no-repeat,linear-gradient(var(--cp),var(--cp)) left top/2px 16px no-repeat,linear-gradient(var(--neon),var(--neon)) right bottom/16px 2px no-repeat,linear-gradient(var(--neon),var(--neon)) right bottom/2px 16px no-repeat}
 .metro .mt-st{text-shadow:0 0 6px rgba(244,241,255,.5)}
 @media (prefers-reduced-motion:no-preference){
-.mt-flow{animation:mflow 2.2s linear infinite}
+.mt-flow{animation:mflow 3.52s linear infinite}
 @keyframes mflow{to{stroke-dashoffset:-38}}
-.mt-ping{transform-box:fill-box;transform-origin:center;animation:mping 2.4s ease-out infinite}
+.mt-ping{transform-box:fill-box;transform-origin:center;animation:mping 3.84s ease-out infinite}
 @keyframes mping{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(2.4)}}
 }
 .sky{position:relative;height:clamp(105px,22vw,150px);margin:-6px calc(-1 * max(16px,env(safe-area-inset-left,0px))) 0;overflow:hidden;border-bottom:1px solid rgba(252,238,10,.35);
@@ -580,18 +580,18 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 .sky .car{fill:#FCEE0A;filter:drop-shadow(0 0 3px #FCEE0A)}
 .sky .car.r{fill:#FF3E8A;filter:drop-shadow(0 0 3px #FF3E8A)}
 @media (prefers-reduced-motion:no-preference){
-.sky .floor{animation:floor 1.4s linear infinite}
+.sky .floor{animation:floor 2.24s linear infinite}
 @keyframes floor{to{background-position:0 18px,0 0}}
-.sky .win{animation:winf var(--d,6s) var(--o,0s) infinite steps(1)}
+.sky .win{animation:winf var(--d,9.6s) var(--o,0s) infinite steps(1)}
 @keyframes winf{0%,100%{opacity:.75}50%{opacity:.08}}
-.sky .beacon{animation:beac 1.6s infinite}
+.sky .beacon{animation:beac 2.56s infinite}
 @keyframes beac{50%{opacity:.15}}
-.sky .car{animation:drive var(--t,9s) var(--o,0s) linear infinite}
+.sky .car{animation:drive var(--t,14.4s) var(--o,0s) linear infinite}
 .sky .car.r{animation-direction:reverse}
 @keyframes drive{from{transform:translateX(-60px)}to{transform:translateX(860px)}}
-.sky .holo{animation:holo 5s infinite}
+.sky .holo{animation:holo 8s infinite}
 @keyframes holo{0%,90%,100%{opacity:1}91%{opacity:.3}92%{opacity:1}94%{opacity:.5}95%{opacity:1}}
-.sky .holo.sw{animation:holosw .35s steps(3) 1}
+.sky .holo.sw{animation:holosw 0.56s steps(3) 1}
 @keyframes holosw{0%{clip-path:inset(0 0 60% 0);transform:skewY(-4deg) translateX(6px)}50%{clip-path:inset(40% 0 0 0);transform:skewY(-4deg) translateX(-6px)}100%{clip-path:inset(0)}}
 }
 .hero>.kata{top:calc(clamp(105px,22vw,150px) + 70px)}
@@ -603,7 +603,7 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 .code{margin:0;padding:16px;background:#050a07;border:1px solid rgba(0,255,106,.25);border-radius:4px 4px 16px 4px;color:#B9FFD6;font:400 clamp(11px,3vw,13.5px)/1.65 var(--f-mono);overflow-x:auto;box-shadow:0 0 24px -8px rgba(0,255,106,.35),inset 0 0 40px rgba(0,255,106,.05);text-shadow:0 0 6px rgba(0,255,106,.35)}
 .code .c{color:#4E8F69}.code .k{color:var(--neon)}.code .s{color:var(--cp)}.code .n{color:var(--cyan)}
 .code .cur{display:inline-block;width:8px;height:14px;background:#00ff6a;vertical-align:-2px;margin-left:4px}
-@media (prefers-reduced-motion:no-preference){.code .cur{animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}}
+@media (prefers-reduced-motion:no-preference){.code .cur{animation:blink 1.6s steps(1) infinite}@keyframes blink{50%{opacity:0}}}
 .mx{height:46px;margin:-30px 0;background:transparent;border:0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent),linear-gradient(transparent,#000 30%,#000 70%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent);opacity:.55}
 .mx canvas{opacity:.6;mix-blend-mode:screen}
 .mx span{background:none;color:var(--muted);text-shadow:none;font:400 10px var(--f-mono);letter-spacing:.16em;padding:0}
@@ -621,10 +621,10 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 .q::after{content:"";width:60px;height:1px;margin-top:6px;background:linear-gradient(90deg,transparent,var(--neon),transparent);opacity:.6}
 #fxc{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1900}
 @media (prefers-reduced-motion:no-preference){
-.ph.holo-in img,.flash.holo-in img{animation:holoin 2.2s ease-out both}
+.ph.holo-in img,.flash.holo-in img{animation:holoin 3.52s ease-out both}
 @keyframes holoin{0%{clip-path:inset(0 0 100% 0);filter:brightness(2.2) hue-rotate(160deg) saturate(2)}55%{clip-path:inset(0 0 0 0);filter:brightness(1.5) hue-rotate(60deg)}70%{opacity:.6}75%{opacity:1}100%{clip-path:inset(0);filter:saturate(1.15) contrast(1.05)}}
 .ph.holo-in::before,.flash.holo-in::after{animation:none}
-.ph.holo-in .scan,.flash.holo-in .scan{position:absolute;left:0;right:0;height:3px;z-index:3;background:var(--cyan);box-shadow:0 0 16px 4px rgba(59,230,214,.7);animation:holoscan 1.8s ease-out forwards;pointer-events:none}
+.ph.holo-in .scan,.flash.holo-in .scan{position:absolute;left:0;right:0;height:3px;z-index:3;background:var(--cyan);box-shadow:0 0 16px 4px rgba(59,230,214,.7);animation:holoscan 2.88s ease-out forwards;pointer-events:none}
 @keyframes holoscan{0%{top:0;opacity:1}100%{top:100%;opacity:0}}
 }
 .bt{display:flex;flex-direction:column;align-items:center;gap:18px;width:100%}
@@ -1514,7 +1514,7 @@ function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;g.
 size(); addEventListener("resize",size);
 let last=0,vis=true; new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(c);
 function frame(ts){
-requestAnimationFrame(frame); if(!vis||ts-last<70) return; last=ts;
+requestAnimationFrame(frame); if(!vis||ts-last<110) return; last=ts;
 g.fillStyle="rgba(17,15,39,.18)"; g.fillRect(0,0,W,H);
 g.font="15px 'Black Han Sans', sans-serif";
 for(let i=0;i<cols;i++){const y=drops[i]*22; const ch=chars[(Math.random()*chars.length)|0];
@@ -1753,7 +1753,7 @@ o.addEventListener("click",()=>{clearInterval(t);end();});
 }
 if(reduce) return;
 const g=document.createElement("div"); g.className="gbar"; g.setAttribute("aria-hidden","true"); document.body.appendChild(g);
-setInterval(()=>{ if(document.hidden) return; g.classList.remove("go"); void g.offsetWidth; g.classList.add("go"); }, 18000);
+setInterval(()=>{ if(document.hidden) return; g.classList.remove("go"); void g.offsetWidth; g.classList.add("go"); }, 28000);
 })();
 // ---------- hero skyline ----------
 (function(){
@@ -1769,13 +1769,13 @@ o+=`<path class="tw" d="M640 220 L652 70 Q658 18 664 70 L676 220Z"/><circle clas
 const cols=["","c","p"];
 for(let x=-4;x<800;){const w=30+rnd()*46,h=40+rnd()*70; if(x>620&&x<700){x+=8;continue;}
 o+=`<rect class="bld" x="${x}" y="${220-h}" width="${w}" height="${h}"/>`;
-for(let wy=220-h+8;wy<214;wy+=10)for(let wx=x+5;wx<x+w-6;wx+=9){ if(rnd()>.62) o+=`<rect class="win ${cols[(rnd()*3)|0]}" x="${wx.toFixed(1)}" y="${wy.toFixed(1)}" width="4" height="5" style="--d:${(3+rnd()*9).toFixed(1)}s;--o:-${(rnd()*9).toFixed(1)}s"/>`; }
+for(let wy=220-h+8;wy<214;wy+=10)for(let wx=x+5;wx<x+w-6;wx+=9){ if(rnd()>.62) o+=`<rect class="win ${cols[(rnd()*3)|0]}" x="${wx.toFixed(1)}" y="${wy.toFixed(1)}" width="4" height="5" style="--d:${(5+rnd()*14).toFixed(1)}s;--o:-${(rnd()*9).toFixed(1)}s"/>`; }
 x+=w+3;}
 // flying cars
-for(let i=0;i<5;i++) o+=`<rect class="car${i%2?" r":""}" x="0" y="${30+rnd()*70}" width="10" height="2" rx="1" style="--t:${(7+rnd()*8).toFixed(1)}s;--o:-${(rnd()*10).toFixed(1)}s"/>`;
+for(let i=0;i<5;i++) o+=`<rect class="car${i%2?" r":""}" x="0" y="${30+rnd()*70}" width="10" height="2" rx="1" style="--t:${(12+rnd()*12).toFixed(1)}s;--o:-${(rnd()*10).toFixed(1)}s"/>`;
 sv.innerHTML=`<g transform="scale(1,.68)">${o}</g>`;
 const H=["서울 · 2026","WAKE UP, SAMURAI","소주 4.500₩","MICHI × CHRISTOPH","福岡 BONUSLEVEL","GLÜCKWUNSCH, CHOOM"],C=["","c","y"]; let i=0; const hb=document.getElementById("holo");
-if(!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(()=>{i=(i+1)%H.length; hb.textContent=H[i]; hb.className="holo sw "+C[i%3]; setTimeout(()=>hb.classList.remove("sw"),400);},3200);
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(()=>{i=(i+1)%H.length; hb.textContent=H[i]; hb.className="holo sw "+C[i%3]; setTimeout(()=>hb.classList.remove("sw"),550);},4800);
 })();
 // ---------- matrix strips ----------
 (function(){
@@ -1816,7 +1816,7 @@ if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 // holo reveal for photos
 if("IntersectionObserver" in window){
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting) return; const f=e.target; io.unobserve(f);
-const sc=document.createElement("i"); sc.className="scan"; f.appendChild(sc); f.classList.add("holo-in"); setTimeout(()=>sc.remove(),2000);}),{rootMargin:"0px 0px -15% 0px"});
+const sc=document.createElement("i"); sc.className="scan"; f.appendChild(sc); f.classList.add("holo-in"); setTimeout(()=>sc.remove(),3000);}),{rootMargin:"0px 0px -15% 0px"});
 document.querySelectorAll(".ph,.flash").forEach(f=>{ if(f.getBoundingClientRect().top>innerHeight) io.observe(f); });
 }
 // canvas
