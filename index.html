@@ -461,6 +461,71 @@ body.api .pola .del{display:block}
 .map.lf .leaflet-overlay-pane svg{display:block}
 .map.lf .leaflet-tile-pane{filter:invert(1) hue-rotate(195deg) brightness(.9) contrast(.95) saturate(.55)}
 .map.lf .lf-map::after{content:"";position:absolute;inset:0;z-index:250;pointer-events:none;background:linear-gradient(135deg,rgba(255,62,138,.10),rgba(59,230,214,.08))}
+.flash{margin:0;display:grid;grid-template-columns:38% minmax(0,1fr);background:var(--panel);border:1px solid var(--line);border-radius:4px 4px 16px 4px;overflow:hidden;position:relative}
+.flash img{width:100%;height:100%;min-height:130px;max-height:200px;object-fit:cover;display:block;filter:saturate(1.2) contrast(1.05) sepia(.15)}
+.flash::before{content:"REC ●";position:absolute;left:8px;top:8px;z-index:1;font:700 9px var(--f-mono);letter-spacing:.12em;color:#fff;background:rgba(255,62,138,.85);padding:3px 6px}
+.flash::after{content:"";position:absolute;left:0;top:0;width:38%;height:100%;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(17,15,39,.25) 0 1px,transparent 1px 3px)}
+.flash figcaption{padding:14px 16px;display:flex;flex-direction:column;justify-content:center;gap:6px;color:var(--ink);font:400 17px/1.3 var(--f-display);font-style:italic}
+.fl-k{font:400 10px var(--f-mono);font-style:normal;letter-spacing:.14em;color:var(--muted)}
+.fl-k b{color:var(--cp);font-weight:400}
+@media (max-width:420px){.flash{grid-template-columns:42% minmax(0,1fr)}.flash figcaption{font-size:15px;padding:12px}}
+@media (prefers-reduced-motion:no-preference){
+.sh::after{background-size:200% 100%;animation:dataflow 6s linear infinite}
+@keyframes dataflow{from{background-position:0 0}to{background-position:-160px 0}}
+.sh .n{animation:nflick 7s infinite}
+@keyframes nflick{0%,89%,100%{opacity:1}90%{opacity:.35}91%{opacity:1}93%{opacity:.6}94%{opacity:1}}
+.hero::after{content:"";position:absolute;left:-16px;right:-16px;height:2px;top:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 14px var(--cyan);opacity:.55;animation:scan 5.5s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes scan{0%{top:0;opacity:0}8%{opacity:.6}92%{opacity:.6}100%{top:100%;opacity:0}}
+.ph:hover img,.flash:hover img,.pola:hover img{animation:rgbglitch .5s steps(2) 1}
+@keyframes rgbglitch{0%{transform:translate(0);filter:saturate(1.2) hue-rotate(0)}25%{transform:translate(-3px,1px);filter:saturate(2) hue-rotate(40deg)}50%{transform:translate(3px,-1px);filter:saturate(1.6) hue-rotate(-40deg)}75%{transform:translate(-1px,0)}100%{transform:translate(0)}}
+.btn:hover{animation:btnglitch .35s steps(3) 1}
+@keyframes btnglitch{0%{clip-path:polygon(0 0,100% 0,100% 40%,0 40%,0 60%,100% 60%,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%);transform:translateX(2px)}50%{transform:translateX(-2px)}100%{transform:none}}
+.flash::before{animation:rec 1.6s steps(1) infinite}
+@keyframes rec{50%{opacity:.25}}
+.q{animation:qin .9s ease-out both;animation-timeline:view();animation-range:entry 0% cover 30%}
+@keyframes qin{from{opacity:0;transform:translateX(-14px);filter:blur(2px)}to{opacity:1;transform:none;filter:none}}
+.box.hot{animation:hotpulse 4s ease-in-out infinite}
+@keyframes hotpulse{50%{box-shadow:0 0 0 1px rgba(255,62,138,.35),0 0 44px rgba(255,62,138,.22)}}
+}
+.map.lf .leaflet-tile-pane{filter:invert(1) hue-rotate(200deg) saturate(1.6) brightness(.8) contrast(1.15)}
+.map.lf .lf-map::after{background:repeating-linear-gradient(0deg,rgba(17,15,39,.18) 0 1px,transparent 1px 3px),radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(10,8,24,.75)),linear-gradient(135deg,rgba(255,62,138,.14),rgba(59,230,214,.10))}
+.map.lf .lf-map::before{content:"";position:absolute;inset:10px;z-index:251;pointer-events:none;
+background:linear-gradient(var(--cp),var(--cp)) left top/18px 2px no-repeat,linear-gradient(var(--cp),var(--cp)) left top/2px 18px no-repeat,linear-gradient(var(--cyan),var(--cyan)) right top/18px 2px no-repeat,linear-gradient(var(--cyan),var(--cyan)) right top/2px 18px no-repeat,linear-gradient(var(--cyan),var(--cyan)) left bottom/18px 2px no-repeat,linear-gradient(var(--cyan),var(--cyan)) left bottom/2px 18px no-repeat,linear-gradient(var(--neon),var(--neon)) right bottom/18px 2px no-repeat,linear-gradient(var(--neon),var(--neon)) right bottom/2px 18px no-repeat}
+.lf-hud{position:absolute;left:14px;right:14px;bottom:24px;z-index:400;display:flex;justify-content:space-between;gap:8px;pointer-events:none;font:400 9.5px var(--f-mono);letter-spacing:.12em;color:var(--cyan);text-shadow:0 0 8px rgba(59,230,214,.8)}
+.lf-hud span{background:rgba(17,15,39,.6);padding:3px 6px}
+.lf-cross{position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;z-index:399;pointer-events:none;opacity:.45;background:linear-gradient(var(--cp),var(--cp)) center/1px 100% no-repeat,linear-gradient(var(--cp),var(--cp)) center/100% 1px no-repeat;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(252,238,10,.5)}
+.lf-pin span{width:26px;height:26px;background:transparent;border:0;box-shadow:none;position:relative;display:grid;place-items:center}
+.lf-pin span::before{content:"";position:absolute;inset:3px;background:var(--c);transform:rotate(45deg);box-shadow:0 0 14px var(--c),0 0 0 2px #110F27}
+.lf-pin span i{position:relative;font:700 10px/1 var(--f-mono);font-style:normal;color:#110F27}
+.lf-zone{filter:drop-shadow(0 0 6px rgba(252,238,10,.7))}
+.leaflet-popup-content-wrapper{border-radius:0!important;border:1px solid var(--cyan)!important;box-shadow:0 0 18px rgba(59,230,214,.35)!important;clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%)}
+.leaflet-popup-content{display:flex;flex-direction:column;gap:3px;margin:12px 14px}
+.pp-k{font:400 9.5px var(--f-mono);letter-spacing:.14em;color:var(--cp)}
+.leaflet-popup-content a{font:700 11px var(--f-mono);color:var(--cyan);margin-top:4px}
+@media (prefers-reduced-motion:no-preference){
+.lf-pin span::after{content:"";position:absolute;inset:-4px;border:1px solid var(--c);transform:rotate(45deg);opacity:0;animation:pping 2.6s ease-out infinite}
+@keyframes pping{0%{opacity:.8;transform:rotate(45deg) scale(.7)}100%{opacity:0;transform:rotate(45deg) scale(1.6)}}
+.lf-cross{animation:crossspin 8s linear infinite}
+@keyframes crossspin{to{transform:rotate(360deg)}}
+.map.lf .lf-map{animation:mapboot .8s steps(4) 1}
+@keyframes mapboot{0%{filter:brightness(2) hue-rotate(90deg);clip-path:inset(0 0 100% 0)}50%{clip-path:inset(0 0 40% 0)}100%{filter:none;clip-path:inset(0)}}
+}
+.map:not(.lf){background-image:repeating-linear-gradient(0deg,rgba(17,15,39,.25) 0 1px,transparent 1px 3px)}
+body::before{content:"";position:fixed;inset:-20vmax;z-index:-1;pointer-events:none;
+background:radial-gradient(28vmax 22vmax at 20% 25%,rgba(255,62,138,.16),transparent 70%),radial-gradient(30vmax 24vmax at 80% 70%,rgba(59,230,214,.12),transparent 70%),radial-gradient(18vmax 14vmax at 70% 15%,rgba(252,238,10,.06),transparent 70%)}
+.box,.flash,.ph,.map,.pass{box-shadow:0 18px 40px -18px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.02)}
+.box{background-image:radial-gradient(260px 160px at var(--mx,50%) var(--my,-40%),rgba(59,230,214,.10),transparent 70%)}
+.box:hover{border-color:rgba(59,230,214,.45);box-shadow:0 18px 40px -18px rgba(0,0,0,.75),0 0 24px -6px rgba(59,230,214,.35)}
+h2{text-shadow:-2px 0 rgba(59,230,214,.55),2px 0 rgba(255,62,138,.55),0 0 18px rgba(255,62,138,.35),0 0 42px rgba(255,62,138,.18)}
+.sh .ko{box-shadow:0 0 10px rgba(59,230,214,.45),inset 0 0 8px rgba(59,230,214,.25);text-shadow:0 0 8px rgba(59,230,214,.8)}
+.ph,.flash{position:relative}
+.ph::after{box-shadow:inset 0 -40px 60px -30px rgba(255,62,138,.35)}
+@media (prefers-reduced-motion:no-preference){
+body::before{animation:ambient 24s ease-in-out infinite alternate}
+@keyframes ambient{0%{transform:translate(0,0)}50%{transform:translate(4vmax,-3vmax)}100%{transform:translate(-3vmax,4vmax)}}
+.sh .ko{animation:kobuzz 9s infinite}
+@keyframes kobuzz{0%,95%,100%{opacity:1}96%{opacity:.4}97%{opacity:1}98%{opacity:.6}}
+}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -556,6 +621,7 @@ body.api .pola .del{display:block}
 <aside class="q" aria-label="Zitat"><p>„I've seen things you people wouldn't believe.“</p><span>Roy Batty · Blade Runner, 1982</span></aside>
 <section id="logbuch">
 <div class="sh"><span class="n">04</span><h2>Logbuch</h2><span class="ko">기록</span></div>
+<figure class="flash"><img src="fotos/8-gasse.jpg" alt="Erinnerungsfoto aus Japan 2017" loading="lazy"><figcaption><span class="fl-k">▶ FLASHBACK · <b>JAPAN 2017</b></span>Mittendrin im Gewusel. Seoul wird nicht leerer, wir auch nicht ruhiger.</figcaption></figure>
 <p class="sub">Kurze Reiseberichte im Voraus: so fühlen sich die wichtigsten Stationen an.</p>
 <div class="log"><article class="log-e"><span class="log-h">LOG 01 · <b>Euljiro</b> · Sa 21.11.</span><h3>Ankommen im Neon</h3><p>Elf Stunden Flug, eine Stunde Taxi, dann die erste Gasse in Euljiro: Metallhocker auf dem Gehsteig, der Grill zischt, jemand schenkt Soju ein, ohne zu fragen. Zurück im Hotel läuft Orbitals, der Jetlag hat keine Chance.</p><span class="log-t">ca. 19:00</span></article><article class="log-e"><span class="log-h">LOG 02 · <b>Gyeongbokgung</b> · Mo 23.11.</span><h3>Palast im kalten Licht</h3><p>Klare Novemberluft, die Dächer gegen den Bugaksan, um 10 Uhr ziehen die Wachen in Rot und Blau auf. Danach Gwangjang Market: Bindaetteok frisch aus dem Öl, Yukhoe mit Birne, Plastikschürzen und Dampf überall.</p><span class="log-t">Vormittag</span></article><article class="log-e"><span class="log-h">LOG 03 · <b>Nogari-Gasse</b> · Mo 23.11.</span><h3>Bier aus Plastikbechern</h3><p>In der Nogari-Gasse sitzt halb Seoul nach Feierabend draußen, Heizstrahler an, getrockneter Pollack mit Mayo und Chili. Zwei Treppen höher eine Plattenbar, in der der Barkeeper die Musik nach eurem Gesicht auswählt.</p><span class="log-t">Abend</span></article><article class="log-e jp"><span class="log-h">LOG 04 · <b>Fukuoka</b> · Di–Mi</span><h3>Ramen um Mitternacht</h3><p>Landung mitten in der Stadt, zehn Minuten später steht die erste Schüssel Tonkotsu auf dem Tresen. Am nächsten Abend Yatai am Fluss: acht Plätze, ein Koch, Oden aus dem Topf, der Nachbar erklärt euch die Karte auf Englisch und Japanisch gleichzeitig.</p><span class="log-t">24.–25.11.</span></article><article class="log-e jp"><span class="log-h">LOG 05 · <b>Hakata</b> · Mi 25.11.</span><h3>Nintendo zum Anfassen</h3><p>Achter Stock über dem Bahnhof: Mario in Lebensgröße, Anspiel-Stationen, Fukuoka-Editionen, die es sonst nirgends gibt. Ein Stock tiefer das Pokémon Center, der Einkaufszettel für Martin wird schnell abgehakt.</p><span class="log-t">Mittag</span></article><article class="log-e"><span class="log-h">LOG 06 · <b>Seoul Station</b> · Do 26.11.</span><h3>Kunst im alten Bahnhof</h3><p>Unfold X am Eröffnungstag: Medienkunst in der Kuppelhalle des alten Bahnhofs von 1925, Licht und Sound, wo früher Züge abgefertigt wurden. Danach Füße hoch, abends Cocktails in Hannam.</p><span class="log-t">Nachmittag</span></article><article class="log-e"><span class="log-h">LOG 07 · <b>Jamsil</b> · Fr 27.11.</span><h3>123 Stockwerke über der Stadt</h3><p>Bus von der DMZ zurück, durchatmen, dann rauf auf den Lotte World Tower, wenn die Sonne untergeht und Seoul Stück für Stück anknipst. Hanwoo im Turm, danach Kino im Superplex. Ein Abend, kein Weg nötig.</p><span class="log-t">Abend</span></article><article class="log-e"><span class="log-h">LOG 08 · <b>Suwon</b> · Sa 28.11.</span><h3>Technik von Edison bis heute</h3><p>Im Samsung Innovation Museum stehen Röhrenradios neben faltbaren Displays, ein Rundgang durch hundert Jahre Elektronik. Mittags Suwon-Galbi, groß wie ein Teller, und ein kurzer Blick auf die Festungsmauer.</p><span class="log-t">Tag</span></article></div>
 </section>
@@ -594,6 +660,7 @@ body.api .pola .del{display:block}
 <section id="essen">
 <div class="sh"><span class="n">07</span><h2>Essen</h2><span class="ko">음식</span></div>
 <figure class="ph"><img src="https://images.unsplash.com/photo-1780082755456-3a72460270ea?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=1200&h=520" alt="Koreanisches BBQ mit vielen Beilagen" loading="lazy" onerror="this.closest('figure').remove()"><span class="ph-l">고기 · Grillen am Tisch</span><figcaption>Foto: <a href="https://unsplash.com/@edw_lawr?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Edward Lawrence</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure>
+<figure class="flash"><img src="fotos/7-tako.jpg" alt="Erinnerungsfoto aus Japan 2017" loading="lazy"><figcaption><span class="fl-k">▶ FLASHBACK · <b>JAPAN 2017</b></span>Tintenfisch am Spieß, mit Wachtelei im Kopf. Diesmal wird am Tisch gegrillt.</figcaption></figure>
 <div class="grid2">
 <ul class="list">
 <li><span>Samgyeopsal in Euljiro</span><span>BBQ</span></li>
@@ -615,6 +682,7 @@ body.api .pola .del{display:block}
 <aside class="q" aria-label="Zitat"><p>Heute Nacht ist Euljiro unser Afterlife. Ein Drink für jede Legende.</p><span>Night City Mood · Cyberpunk 2077</span></aside>
 <section id="abends">
 <div class="sh"><span class="n">08</span><h2>Kino & Bars</h2><span class="ko">밤</span></div>
+<figure class="flash"><img src="fotos/10-onecup.jpg" alt="Erinnerungsfoto aus Japan 2017" loading="lazy"><figcaption><span class="fl-k">▶ FLASHBACK · <b>JAPAN 2017</b></span>One Cup Ozeki aus dem Konbini, getrunken auf dem Hotelsofa. Diesmal eine Stufe höher.</figcaption></figure>
 <div class="grid2">
 <ul class="list">
 <li><span>CGV Yongsan I'Park Mall</span><span>riesige IMAX</span></li>
@@ -648,6 +716,7 @@ body.api .pola .del{display:block}
 <section id="bier">
 <div class="sh"><span class="n">09</span><h2>Bier, Sake & Makgeolli</h2><span class="ko">술</span></div>
 <figure class="ph"><img src="https://images.unsplash.com/photo-1683132507258-dafa8312bf03?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=1200&h=520" alt="Neonschild einer Bar in Seoul" loading="lazy" onerror="this.closest('figure').remove()"><span class="ph-l">술집 · ein Glas noch</span><figcaption>Foto: <a href="https://unsplash.com/@travelershigh?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">INHYEOK PARK</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure>
+<figure class="flash"><img src="fotos/11-prost.jpg" alt="Erinnerungsfoto aus Japan 2017" loading="lazy"><figcaption><span class="fl-k">▶ FLASHBACK · <b>JAPAN 2017</b></span>Kanpai, Teil eins. Teil zwei läuft in Euljiro, bei Nogari und frisch gezapftem Bier.</figcaption></figure>
 <div class="grid2">
 <div class="box"><span class="label">Seoul</span>
 <ul class="list">
@@ -735,6 +804,7 @@ body.api .pola .del{display:block}
 <section id="regen">
 <div class="sh"><span class="n">13</span><h2>Wenn's regnet</h2><span class="ko">비</span></div>
 <figure class="ph"><img src="https://images.unsplash.com/photo-1687777595424-ca2844414b49?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=1200&h=520" alt="Seouler Straße bei Nacht" loading="lazy" onerror="this.closest('figure').remove()"><span class="ph-l">비 오는 밤 · Plan B</span><figcaption>Foto: <a href="https://unsplash.com/@mirrors_are_more_fun?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Red Shuheart</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure>
+<figure class="flash"><img src="fotos/12-cisco.jpg" alt="Erinnerungsfoto aus Japan 2017" loading="lazy"><figcaption><span class="fl-k">▶ FLASHBACK · <b>JAPAN 2017</b></span>Damals Cisco Tokyo mit Blick über die Stadt. Diesmal Technik bei Samsung und im Robot & AI Museum.</figcaption></figure>
 <p class="sub">Plan B für kalte oder nasse Tage. Alles drinnen, vieles über unterirdische Gänge erreichbar.</p>
 <div class="grid2">
 <div class="box"><span class="label">Seoul</span>
@@ -761,6 +831,7 @@ body.api .pola .del{display:block}
 <section id="fukuoka">
 <div class="sh"><span class="n">14</span><h2>Fukuoka</h2><span class="ko">福岡</span></div>
 <figure class="ph"><img src="https://images.unsplash.com/photo-1685845283904-f67cfc9a85d5?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=1200&h=520" alt="Yatai-Straßenstand in Fukuoka bei Nacht" loading="lazy" onerror="this.closest('figure').remove()"><span class="ph-l">屋台 · Yatai am Fluss</span><figcaption>Foto: <a href="https://unsplash.com/@little_sweet_potato_chips?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Tracy Xu</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure>
+<figure class="flash"><img src="fotos/6-yukata.jpg" alt="Erinnerungsfoto aus Japan 2017" loading="lazy"><figcaption><span class="fl-k">▶ FLASHBACK · <b>JAPAN 2017</b></span>Yukata, Tatami, Grimassen. Zwei Nächte Japan reichen für eine Wiederholung.</figcaption></figure>
 <p class="sub">Zwei Nächte Japan, 24. bis 26. November. Kompakt, flach, entspannt. Der Flughafen liegt mitten in der Stadt.</p>
 <div class="now jp">
 <div class="t mono" id="fNowTemp">–</div>
@@ -811,6 +882,7 @@ body.api .pola .del{display:block}
 <section id="games">
 <div class="sh"><span class="n">16</span><h2>Games</h2><span class="ko">게임</span></div>
 <figure class="ph"><img src="https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=1200&h=520" alt="Arcade-Automaten im Neonlicht" loading="lazy" onerror="this.closest('figure').remove()"><span class="ph-l">게임 · Level up</span><figcaption>Foto: <a href="https://unsplash.com/@carltraw?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Carl Raw</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure>
+<figure class="flash"><img src="fotos/9-skytree.jpg" alt="Erinnerungsfoto aus Japan 2017" loading="lazy"><figcaption><span class="fl-k">▶ FLASHBACK · <b>JAPAN 2017</b></span>Mario und Luigi am Tokyo Skytree. Fortsetzung im Nintendo-Store am Bahnhof Hakata.</figcaption></figure>
 <p class="sub">Seoul ist die Hauptstadt des E-Sports, Fukuoka hat Nintendo direkt am Bahnhof.</p>
 <div class="duo"><figure class="ph"><img src="https://images.unsplash.com/photo-1633545495735-25df17fb9f31?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=800&h=600" alt="Gaming-Halle mit vielen PC-Plätzen im blauen Licht" loading="lazy" onerror="this.closest('figure').remove()"><span class="ph-l">서울 · PC-Bang & E-Sports</span><figcaption>Foto: <a href="https://unsplash.com/@elladon?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">ELLA DON</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure><figure class="ph"><img src="https://images.unsplash.com/photo-1767839581596-4c3ce952b577?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=800&h=600" alt="Nintendo-Store mit Figuren und Merchandise" loading="lazy" onerror="this.closest('figure').remove()"><span class="ph-l">福岡 · Nintendo</span><figcaption>Foto: <a href="https://unsplash.com/@prince_perry?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Perry Merrity II</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure></div>
 <div class="grid2">
@@ -1249,10 +1321,13 @@ el.innerHTML=`<div class="ttl">${m.title}<small>${m.sub} · antippen für Infos<
 const map=L.map(el.querySelector(".lf-map"),{scrollWheelZoom:false,tap:true});
 map.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'}).addTo(map);
-if(m.zone){const z=m.zone;L.rectangle([[z[0],z[2]],[z[1],z[3]]],{color:"#3BE6D6",weight:1.5,dashArray:"4 4",fillOpacity:.06}).addTo(map).bindTooltip("Jongno · Euljiro, unsere Basis");}
-const pts=m.pins.map((p,i)=>{L.marker([p[3],p[4]],{icon:L.divIcon({className:"lf-pin",html:`<span style="--c:${PCOL[p[0]]}">${i+1}</span>`,iconSize:[24,24],iconAnchor:[12,12]}),title:p[1]}).addTo(map)
-.bindPopup(`<b>${i+1} · ${p[1]}</b><br><small>${p[2]}</small><br><a href="${GM(p[1])}" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>`); return [p[3],p[4]];});
-map.fitBounds(pts,{padding:[24,24]}); el._lf=map;
+if(m.zone){const z=m.zone;L.rectangle([[z[0],z[2]],[z[1],z[3]]],{color:"#FCEE0A",weight:1.5,dashArray:"6 4",fillColor:"#FCEE0A",fillOpacity:.05,className:"lf-zone"}).addTo(map).bindTooltip("Jongno · Euljiro, unsere Basis");}
+const pts=m.pins.map((p,i)=>{L.marker([p[3],p[4]],{icon:L.divIcon({className:"lf-pin",html:`<span style="--c:${PCOL[p[0]]}"><i>${i+1}</i></span>`,iconSize:[26,26],iconAnchor:[13,13]}),title:p[1]}).addTo(map)
+.bindPopup(`<span class="pp-k">&gt; ZIEL ${String(i+1).padStart(2,"0")}</span><b>${p[1]}</b><small>${p[2]}</small><a href="${GM(p[1])}" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>`); return [p[3],p[4]];});
+map.fitBounds(pts,{padding:[28,28]}); el._lf=map;
+const hud=document.createElement("div"); hud.className="lf-hud"; hud.setAttribute("aria-hidden","true"); el.querySelector(".lf-map").appendChild(hud);
+const upd=()=>{const c=map.getCenter(); hud.innerHTML=`<span>N ${c.lat.toFixed(4)} · E ${c.lng.toFixed(4)}</span><span>ZOOM ${map.getZoom()} · ${m.pins.length} ZIELE</span>`;}; map.on("move zoomend",upd); upd();
+const ch=document.createElement("div"); ch.className="lf-cross"; ch.setAttribute("aria-hidden","true"); el.querySelector(".lf-map").appendChild(ch);
 }
 if(LIVE){
 const css=document.createElement("link"); css.rel="stylesheet"; css.href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"; document.head.appendChild(css);
@@ -1501,4 +1576,6 @@ galMore(); new MutationObserver(galMore).observe($("polas"),{childList:true});
 function upd(){const n=cbs.filter(c=>c.checked).length;$("pkN").textContent=n;$("pkT").textContent=cbs.length;$("pkBar").style.width=(n/cbs.length*100)+"%";}
 cbs.forEach(c=>{try{c.checked=localStorage.getItem(c.id)==="1";}catch(e){} c.addEventListener("change",()=>{try{localStorage.setItem(c.id,c.checked?"1":"0");}catch(e){} upd();});});
 $("pkReset").addEventListener("click",()=>{cbs.forEach(c=>{c.checked=false;try{localStorage.removeItem(c.id);}catch(e){}});upd();}); upd();})();
+// ---------- neon light follows pointer ----------
+if(matchMedia("(hover:hover)").matches){document.addEventListener("pointermove",e=>{const b=e.target.closest&&e.target.closest(".box"); if(!b) return; const r=b.getBoundingClientRect(); b.style.setProperty("--mx",(e.clientX-r.left)+"px"); b.style.setProperty("--my",(e.clientY-r.top)+"px");},{passive:true});}
 </script></body></html>
