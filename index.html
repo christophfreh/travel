@@ -595,11 +595,13 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 @keyframes holosw{0%{clip-path:inset(0 0 60% 0);transform:skewY(-4deg) translateX(6px)}50%{clip-path:inset(40% 0 0 0);transform:skewY(-4deg) translateX(-6px)}100%{clip-path:inset(0)}}
 }
 .hero>.kata{top:calc(clamp(170px,42vw,260px) + 70px)}
+.brand-l{color:var(--muted);text-decoration:none;border-bottom:1px dashed rgba(252,238,10,.4)}
+.brand-l:hover{color:var(--cp);text-shadow:0 0 10px rgba(252,238,10,.6)}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
 <div class="sky" id="sky" aria-hidden="true"><div class="holo" id="holo">서울 · 2026</div><svg id="skySvg" viewBox="0 0 800 220" preserveAspectRatio="xMidYMax slice"></svg><div class="floor"></div></div>
-<div class="brand"><span class="label">staycurious · reisebuch</span><span class="label mono" id="clock">Seoul --:--</span></div>
+<div class="brand"><a class="label brand-l" href="https://www.staycurious.art/en/" target="_blank" rel="noopener">staycurious · reisebuch</a><span class="label mono" id="clock">Seoul --:--</span></div>
 <div class="hud" aria-hidden="true"><span>&gt; SYS://SEOUL.NOV <b>ONLINE</b></span><span>37.57N 126.98E</span><span>KST UTC+9</span><span>FUK 33.59N<i class="cur"></i></span></div>
 <div class="hangul" aria-hidden="true">서울</div>
 <div class="kata" aria-hidden="true">フクオカ<small>+ FUK</small></div>
@@ -1102,7 +1104,7 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 </div>
 </section>
 <p class="status">Geprüft am 24.10.2026: <a href="https://english.visitseoul.net/events/2026SeoulAutumnFesta/ENPjm3hw1">Visit Seoul</a> · <a href="https://www.cineplay.co.kr/en-us/articles/29470">Cineplay (SIFF)</a> · <a href="https://lacha.co.kr/korea-guide/en/korea-festivals-november-2026/">Lacha Event-Guide</a> · <a href="https://thesoulofseoul.net/the-seoul-robot-ai-museum-where-technology-meets-imagination/">The Soul of Seoul (RAIM)</a> · <a href="https://globaltaxnews.ey.com/news/2026-0101-korea-extends-temporary-electronic-travel-authorization-exemption-until-31-december-2026">EY (K-ETA)</a> · <a href="https://www.trvlogue.com/en/fukuoka-christmas-advent-2026">Fukuoka Advent</a>. Fotos in den Bereichen: Unsplash, Fotografen jeweils am Bild. Termine können sich ändern.</p>
-<footer><span>staycurious · built, not talked about.</span><span class="mono" id="updated"></span></footer>
+<footer><a class="brand-l" href="https://www.staycurious.art/en/" target="_blank" rel="noopener">staycurious · built, not talked about.</a><span class="mono" id="updated"></span></footer>
 </div>
 <script>
 const LIVE=/(^|\.)vercel\.app$|staycurious\.art$|^localhost$/.test(location.hostname);
