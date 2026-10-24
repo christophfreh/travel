@@ -604,6 +604,13 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 .code .c{color:#4E8F69}.code .k{color:var(--neon)}.code .s{color:var(--cp)}.code .n{color:var(--cyan)}
 .code .cur{display:inline-block;width:8px;height:14px;background:#00ff6a;vertical-align:-2px;margin-left:4px}
 @media (prefers-reduced-motion:no-preference){.code .cur{animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}}
+.mx{height:46px;margin:-30px 0;background:transparent;border:0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent),linear-gradient(transparent,#000 30%,#000 70%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent);opacity:.55}
+.mx canvas{opacity:.6;mix-blend-mode:screen}
+.mx span{background:none;color:var(--muted);text-shadow:none;font:400 10px var(--f-mono);letter-spacing:.16em;padding:0}
+.code{background:var(--panel);border:1px solid var(--line);color:var(--ink);text-shadow:none;box-shadow:0 18px 40px -18px rgba(0,0,0,.75)}
+.code .c{color:var(--muted)}
+.code .cur{background:var(--cyan)}
+@media (max-width:480px){.mx span{font-size:9px;letter-spacing:.06em;max-width:none}}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -1722,13 +1729,13 @@ const cs=[...document.querySelectorAll(".mx canvas")]; if(!cs.length) return;
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const ch="アイウエオカキクケコサシスセソ서울종로을지로01011010福岡ﾊﾟﾗﾘﾙﾚﾛ$#".split("");
 const st=cs.map(c=>({c,g:c.getContext("2d"),vis:false,drops:[]}));
-function size(o){const d=Math.min(2,devicePixelRatio||1);o.W=o.c.clientWidth;o.H=o.c.clientHeight;o.c.width=o.W*d;o.c.height=o.H*d;o.g.setTransform(d,0,0,d,0,0);o.drops=Array.from({length:Math.ceil(o.W/12)},()=>Math.random()*-20);o.g.fillStyle="#050a07";o.g.fillRect(0,0,o.W,o.H);}
+function size(o){const d=Math.min(2,devicePixelRatio||1);o.W=o.c.clientWidth;o.H=o.c.clientHeight;o.c.width=o.W*d;o.c.height=o.H*d;o.g.setTransform(d,0,0,d,0,0);o.drops=Array.from({length:Math.ceil(o.W/12)},()=>Math.random()*-20);o.g.clearRect(0,0,o.W,o.H);}
 st.forEach(size); addEventListener("resize",()=>st.forEach(size));
-function draw(o){o.g.fillStyle="rgba(5,10,7,.16)";o.g.fillRect(0,0,o.W,o.H);o.g.font="12px 'Space Mono', monospace";
-o.drops.forEach((y,i)=>{const t=ch[(Math.random()*ch.length)|0];o.g.fillStyle=Math.random()>.94?"#E6FFF0":"#00ff6a";o.g.fillText(t,i*12,y*12);o.drops[i]=y*12>o.H&&Math.random()>.9?0:y+1;});}
+function draw(o){o.g.globalCompositeOperation="destination-out";o.g.fillStyle="rgba(0,0,0,.18)";o.g.fillRect(0,0,o.W,o.H);o.g.globalCompositeOperation="source-over";o.g.font="12px 'Space Mono', monospace";
+o.drops.forEach((y,i)=>{const t=ch[(Math.random()*ch.length)|0];o.g.fillStyle=Math.random()>.94?"#F4F1FF":"#3BE6D6";o.g.fillText(t,i*12,y*12);o.drops[i]=y*12>o.H&&Math.random()>.9?0:y+1;});}
 if(reduce){st.forEach(o=>{for(let k=0;k<12;k++)draw(o);});return;}
 const io=new IntersectionObserver(es=>es.forEach(e=>{const o=st.find(x=>x.c===e.target); if(o) o.vis=e.isIntersecting;}));
 st.forEach(o=>io.observe(o.c));
-let last=0; (function f(ts){requestAnimationFrame(f); if(ts-last<70) return; last=ts; st.forEach(o=>{if(o.vis) draw(o);});})(0);
+let last=0; (function f(ts){requestAnimationFrame(f); if(ts-last<110) return; last=ts; st.forEach(o=>{if(o.vis) draw(o);});})(0);
 })();
 </script></body></html>
