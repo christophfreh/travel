@@ -1683,12 +1683,10 @@ if(matchMedia("(hover:hover)").matches){document.addEventListener("pointermove",
 (function(){const b=document.createElement("button");b.type="button";b.className="totop";b.setAttribute("aria-label","Zum Anfang der Seite");b.innerHTML="<b>↑</b>TOP";document.body.appendChild(b);
 b.addEventListener("click",()=>window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}));
 let t=0;addEventListener("scroll",()=>{if(t)return;t=requestAnimationFrame(()=>{t=0;b.classList.toggle("on",scrollY>innerHeight*1.2);});},{passive:true});})();
-// ---------- boot sequence (once per session) + glitch sweep ----------
+// ---------- boot sequence (every page load) + glitch sweep ----------
 (function(){
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-let seen=false; try{seen=sessionStorage.getItem("boot")==="1";}catch(e){}
-if(!reduce && !seen){
-try{sessionStorage.setItem("boot","1");}catch(e){}
+if(!reduce){
 const L=["&gt; VERBINDE MIT <b>SEOUL.NET</b> …","&gt; LADE TEAM: <b>MICHI</b> + <b>CHRISTOPH</b>","&gt; ZIEL ICN · 21.11.2026 · 14:30 KST","&gt; HUNGER: <b>KRITISCH</b> · DURST: <b>HOCH</b>","&gt; BONUSLEVEL FUKUOKA FREIGESCHALTET","&gt; WAKE UP, SAMURAI."];
 const o=document.createElement("div"); o.className="boot"; o.setAttribute("aria-hidden","true");
 o.innerHTML=L.map(t=>`<p>${t}</p>`).join("")+"<small>TIPPEN ZUM ÜBERSPRINGEN</small>"; document.body.appendChild(o);
