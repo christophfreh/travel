@@ -171,8 +171,8 @@ section{scroll-margin-top:16px}
 @media (prefers-reduced-motion:no-preference){
 .mp-pin .ring{transform-box:fill-box;transform-origin:center;animation:ping 2.4s ease-out infinite}
 @keyframes ping{0%{transform:scale(1);opacity:.9}70%,100%{transform:scale(2.4);opacity:0}}
-.pass .route i::after{animation:fly 3.2s ease-in-out infinite}
-@keyframes fly{0%{left:8%}50%{left:92%}100%{left:8%}}
+.pass .route i::after{animation:fly 12s ease-in-out infinite}
+@keyframes fly{0%{left:6%;opacity:0}8%{opacity:1}88%{opacity:1}100%{left:94%;opacity:0}}
 .rv{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
 @keyframes rise{from{transform:translateY(22px) scale(.985);filter:brightness(1.6) saturate(1.4)}to{transform:none;filter:none}}
 .sh .n{animation:neon 5s infinite}
