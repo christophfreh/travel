@@ -959,6 +959,26 @@ background:repeating-conic-gradient(from 0deg at 30% 55%,rgba(255,255,255,.10) 0
 @media (prefers-reduced-motion:no-preference){.gdrip{animation:gdrip 6s ease-in infinite}@keyframes gdrip{0%{height:0}60%{height:var(--h)}100%{height:var(--h);opacity:0}}}
 .list li{grid-template-columns:minmax(0,1fr) minmax(0,max-content)}
 .list li>span:last-child{max-width:38vw;overflow-wrap:anywhere}
+.dmz2049{position:relative;overflow:hidden;border:1px solid rgba(255,140,40,.45);border-radius:4px 4px 16px 4px;min-height:300px;display:flex;align-items:flex-start;
+background:radial-gradient(70% 60% at 50% 30%,#ffcf7a,#f39a3a 35%,#c2571c 70%,#5a230b);box-shadow:0 0 40px rgba(255,140,40,.25),0 18px 40px -18px rgba(0,0,0,.75)}
+.dmz2049::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(120,40,5,.35),transparent 45%);z-index:1}
+.dmz2049::after{content:"";position:absolute;inset:-20%;pointer-events:none;z-index:1;opacity:.35;background:radial-gradient(40% 20% at 30% 60%,rgba(255,220,160,.6),transparent),radial-gradient(40% 20% at 70% 50%,rgba(255,200,130,.5),transparent);filter:blur(10px)}
+.dz-sky{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.dz-txt{position:relative;z-index:2;padding:16px;display:flex;flex-direction:column;gap:4px;max-width:58%;text-shadow:0 1px 8px rgba(90,30,4,.7)}
+@media(max-width:600px){.dz-txt{max-width:none}.dmz2049{min-height:380px}}
+.dz-txt .label{color:#5a1a06;text-shadow:none}
+.dz-txt b{font:400 clamp(22px,6vw,30px)/1.1 var(--f-display);color:#fff4e3}
+.dz-txt p{color:#ffe6c9;font-size:14px;max-width:46ch}
+.dz-q{font:italic 400 14px var(--f-display);color:#fff1d6}
+.dz-q i{font:400 9.5px var(--f-mono);font-style:normal;letter-spacing:.14em;color:rgba(90,26,6,.8);margin-left:4px}
+.row.bz{border-color:rgba(255,140,40,.6);background:linear-gradient(135deg,rgba(255,140,40,.16),var(--panel) 60%)}
+.row.bz .dt b{color:#FF8C28;border-color:#FF8C28}
+@media (prefers-reduced-motion:no-preference){
+.dz-sky .walker{animation:walk 30s ease-in-out infinite alternate}
+@keyframes walk{from{transform:translate(236px,178px) scale(.92)}to{transform:translate(256px,184px) scale(1.04)}}
+.dmz2049::after{animation:haze 24s ease-in-out infinite alternate}
+@keyframes haze{to{transform:translateX(8%)}}
+}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -1072,6 +1092,24 @@ pflichtprogramm: <span class="n">null</span>,
 <span class="k">await</span> boarding(mission); <span class="c">// KE938 · VIE → ICN</span><i class="cur"></i></pre>
 <div class="box"><span class="label">So reisen wir</span><p>Ein Highlight pro Tag, dazu gutes Essen und eine Bar. Nachmittags zurück ins Hotel, Füße hoch. Alles über 20 Minuten mit dem Taxi, das ist hier billig. Was nicht passt, lassen wir weg.</p></div>
 <div class="plan" id="planList"></div>
+<div class="dmz2049" aria-label="DMZ-Ausflug">
+<svg class="dz-sky" viewBox="0 0 400 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+<defs><linearGradient id="dzg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f9b419"/><stop offset=".55" stop-color="#f08a12"/><stop offset=".72" stop-color="#e2650f"/><stop offset="1" stop-color="#7c2408"/></linearGradient>
+<radialGradient id="dzf" cx=".5" cy=".7" r=".5"><stop offset="0" stop-color="#ffcc66" stop-opacity=".55"/><stop offset="1" stop-color="#ffcc66" stop-opacity="0"/></radialGradient></defs>
+<rect width="400" height="220" fill="url(#dzg)"/>
+<g fill="#d9560e" opacity=".18"><rect x="30" y="120" width="16" height="44"/><path d="M300 164 V112 l8 -16 l8 16 V164z"/><rect x="340" y="128" width="24" height="36"/></g>
+<path d="M0 166 Q120 158 220 164 T400 160 V220 H0z" fill="#c0430c"/>
+<path d="M0 184 Q90 176 170 186 T400 180 V220 H0z" fill="#9a320a" opacity=".8"/>
+<g fill="#6e2208" opacity=".7"><ellipse cx="300" cy="174" rx="22" ry="4"/><ellipse cx="62" cy="196" rx="10" ry="2.5"/><ellipse cx="340" cy="204" rx="14" ry="3"/></g>
+<rect width="400" height="220" fill="url(#dzf)"/>
+<g class="walker"><g fill="#1a0602">
+<circle cx="0" cy="-58" r="4.6"/>
+<path d="M-9 -52 Q0 -55 9 -52 L11 -26 L13 -6 L4 -6 L3 -20 L1 -6 L-1 -6 L-3 -20 L-4 -6 L-13 -6 L-11 -26z"/>
+<path d="M-3 -7 h2.6 v7 h-3.4z M1 -7 h2.6 l.6 7 h-3.2z"/>
+</g><ellipse cx="0" cy="1" rx="10" ry="1.6" fill="#5a1a06" opacity=".5"/></g>
+</svg>
+<div class="dz-txt"><span class="label">Fr 27.11. · Halbtagestour</span><b>DMZ · Grenze zu Nordkorea</b><p>Orange Dunst, Stille, Beton und Stacheldraht. So nah kommt man der anderen Seite sonst nirgends. Bus ab Seoul, mittags zurück, Pass mitnehmen.</p><span class="dz-q">„You've never seen a miracle.“ <i>— Blade Runner 2049</i></span></div>
+</div>
 </section>
 <aside class="q" aria-label="Zitat"><p>„I've seen things you people wouldn't believe.“</p><span>Roy Batty · Blade Runner, 1982</span></aside>
 <section id="logbuch">
@@ -1546,7 +1584,7 @@ $("planList").innerHTML = PLAN.map(([d,wd,title,items,note,book]) => {
 const f = fcByDate[d];
 const wx = f && d!=="2026-11-25" ? `<div class="wx">${Math.round(f.hi)}° / ${Math.round(f.lo)}° · ${f.phrase}${f.rain>=30?` · ${f.rain}% Regen`:""}</div>` : "";
 const jp = d==="2026-11-25";
-return `<div class="row${d===today?" today":""}${jp?" jp":""}"><div class="dt"><b>${+d.slice(8)}</b><span>${wd}</span></div>
+return `<div class="row${d===today?" today":""}${jp?" jp":""}${d==="2026-11-27"?" bz":""}"><div class="dt"><b>${+d.slice(8)}</b><span>${wd}</span></div>
 <div class="body"><h3>${title}${note?`<span class="tag">${note}</span>`:""}</h3><ul>${items.map(i=>i.startsWith("★ ")?`<li class="hl">${i.slice(2)}</li>`:`<li>${i}</li>`).join("")}</ul>${book?`<div class="btns">${book.map(([l,u])=>`<a class="btn sm" href="${u}" target="_blank" rel="noopener">${l} ↗</a>`).join("")}</div>`:""}${wx}</div></div>`;
 }).join("");
 }
