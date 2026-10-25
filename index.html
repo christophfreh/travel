@@ -1401,6 +1401,16 @@ background:radial-gradient(70% 60% at 50% 30%,#ffcf7a,#f39a3a 35%,#c2571c 70%,#5
 @keyframes oflash{0%{opacity:0}10%{opacity:.95}100%{opacity:0}}
 @media (max-height:520px){.p5c .c-sub,.p5c .c-sig{display:none}.p5c .c-stamp{bottom:12px}}
 .boot .p5prog{animation-duration:10.8s}
+/* ===== Persona-Look 2.5: Damage Numbers, Tipp-Leiste, Kurzfassung ===== */
+.p5o .o-tip{position:absolute;left:0;right:0;bottom:7%;z-index:6;display:flex;justify-content:center;padding:0 5vw;opacity:0;animation:otip .28s 1.65s steps(3) forwards}
+@keyframes otip{from{opacity:0;translate:-40px 0}to{opacity:1;translate:0 0}}
+.p5o .o-tip span{background:#000;color:#fff;border:2px solid #fff;box-shadow:5px 5px 0 #E60012;padding:8px 16px;font:italic 700 12px/1.4 var(--f-mono);letter-spacing:.12em;transform:skewX(-10deg);max-width:92vw;text-align:center}
+.p5o .o-tip b{color:#E60012;margin-right:8px;letter-spacing:.2em}
+.p5o.short .o-disc,.p5o.short .p5cw,.p5o.short .o-flash,.p5o.short .o-tip{display:none}
+.p5o.short{animation:none}
+.boot .p5dmg{position:absolute;z-index:8;pointer-events:none;opacity:0;font:italic 400 clamp(26px,8vw,50px)/1 var(--f-sign);color:#fff;letter-spacing:.02em;text-shadow:-3px -3px 0 #000,3px -3px 0 #000,-3px 3px 0 #000,3px 3px 0 #000,5px 6px 0 #E60012;animation:p5dmg .85s var(--dl) cubic-bezier(.2,.9,.3,1) both}
+.boot .p5dmg.c{color:#ffe600;font-size:clamp(36px,11vw,72px);text-shadow:-3px -3px 0 #E60012,3px -3px 0 #E60012,-3px 3px 0 #E60012,3px 3px 0 #E60012,6px 7px 0 #000}
+@keyframes p5dmg{0%{opacity:0;transform:translateY(14px) scale(2.6) rotate(var(--r))}14%{opacity:1;transform:scale(1) rotate(var(--r))}65%{opacity:1;transform:translateY(-34px) scale(1) rotate(var(--r))}100%{opacity:0;transform:translateY(-64px) scale(.9) rotate(var(--r))}}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -2577,14 +2587,30 @@ o.innerHTML=L.map(t=>`<p>${t}</p>`).join("")+"<small>TIPPEN ZUM ÜBERSPRINGEN</s
 const ps=[...o.querySelectorAll("p")]; let i=0, done=false, off=null;
 const end=()=>{if(done)return;done=true; if(off) off();
  const w=document.createElement("div"); w.className="p5x"; w.setAttribute("aria-hidden","true"); w.innerHTML="<i class=\"b\"></i><i class=\"r\"></i>"; document.body.appendChild(w);
+ try{sessionStorage.setItem("p5seen","1");}catch(e){}
  o.style.pointerEvents="none"; setTimeout(()=>o.remove(),430); setTimeout(()=>w.remove(),1050);};
+const AC=window.AudioContext||window.webkitAudioContext; let ac=null, nb=null;
+try{ if(AC){ ac=new AC(); if(ac.state==="suspended") ac.resume().catch(()=>{}); const un=()=>{ try{ac.resume();}catch(e){} }; addEventListener("pointerdown",un,{once:true}); addEventListener("keydown",un,{once:true}); } }catch(e){ ac=null; }
+const sfx=k=>{ try{ if(!ac||ac.state!=="running") return; const t=ac.currentTime;
+ if(!nb){ nb=ac.createBuffer(1,ac.sampleRate*.6,ac.sampleRate); const d=nb.getChannelData(0); for(let q=0;q<d.length;q++) d[q]=Math.random()*2-1; }
+ const noise=(f0,f1,len,vol,type)=>{ const s=ac.createBufferSource(); s.buffer=nb; const f=ac.createBiquadFilter(); f.type=type||"bandpass"; f.Q.value=1.2; f.frequency.setValueAtTime(f0,t); f.frequency.exponentialRampToValueAtTime(f1,t+len); const g=ac.createGain(); g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(vol,t+len*.35); g.gain.exponentialRampToValueAtTime(.0001,t+len); s.connect(f); f.connect(g); g.connect(ac.destination); s.start(t); s.stop(t+len+.05); };
+ const tone=(f0,f1,len,vol,type)=>{ const o2=ac.createOscillator(); o2.type=type||"sine"; o2.frequency.setValueAtTime(f0,t); o2.frequency.exponentialRampToValueAtTime(f1,t+len); const g=ac.createGain(); g.gain.setValueAtTime(vol,t); g.gain.exponentialRampToValueAtTime(.0001,t+len); o2.connect(g); g.connect(ac.destination); o2.start(t); o2.stop(t+len+.02); };
+ if(k==="whoosh") noise(400,3800,.34,.22);
+ else if(k==="hit"){ tone(170,38,.22,.5); noise(3000,500,.12,.3,"highpass"); }
+ else if(k==="tick"){ tone(900,300,.07,.18,"square"); noise(2500,900,.05,.12,"highpass"); }
+ else if(k==="fight"){ tone(196,196,.28,.14,"sawtooth"); tone(294,294,.28,.12,"sawtooth"); noise(300,2400,.3,.2); }
+ }catch(e){} };
+const at=(ms,k)=>setTimeout(()=>{ if(!done) sfx(k); },ms);
+let seen=false; try{ seen=sessionStorage.getItem("p5seen")==="1"; }catch(e){}
 const rn=t=>[...t].map((c,k)=>c===" "?'<i class="sp"></i>':`<em class="rn${(k*7+c.charCodeAt(0))%4}" style="--r:${((k*37)%13)-6}deg">${c}</em>`).join("");
 const rnk=(t,off)=>[...t].map((c,k)=>c===" "?'<i class="sp"></i>':`<em class="rn${(k*7+c.charCodeAt(0))%4}" style="--r:${((k*37)%13)-6}deg;--i:${k+off}">${c}</em>`).join("");
 const jag=()=>{ const a=[0,1.5,.4,1.9,.2,1.2,.8,1.7], b=[1.6,.3,1.3,.1,1.8,.5,1.1,.2], q=[]; for(let x=0,k=0;x<=100;x+=4,k++) q.push(x+"% "+a[k%8]+"%"); for(let x=100,k=0;x>=0;x-=4,k++) q.push(x+"% "+(100-b[k%8])+"%"); return "polygon("+q.join(",")+")"; };
-const opening=()=>{ if(done) return;
+const TIPS=["Ohne Frühstück kein Gwangjang.","Die U-Bahn kommt immer. Der Hunger auch.","Nie hungrig in einen Convenience Store gehen.","Essen zuerst, dann Sehenswürdigkeit.","T-money laden, bevor der Hunger lädt.","Kimchi ist ein Gemüse. Sagt Christoph.","Fukuoka ist ein Bonuslevel. Kein Skip.","Zwei Mägen sind besser als einer.","Michi fotografiert, Christoph navigiert. Fast immer."];
+const opening=(short)=>{ if(done) return;
  const W=[["SEOUL ✦ SEOUL ✦ SEOUL ✦ SEOUL ✦ SEOUL","r"],["NOVEMBER ✦ 2026 ✦ NOVEMBER ✦ 2026","w"],["MICHI × CHRISTOPH × MICHI × CHRISTOPH","k"],["21.–29.11. ✦ 21.–29.11. ✦ 21.–29.11.","r"],["FUKUOKA ✦ BONUSLEVEL ✦ FUKUOKA","w"],["SEOUL ✦ SEOUL ✦ SEOUL ✦ SEOUL ✦ SEOUL","k"]];
- o.innerHTML=`<div class="p5o" aria-hidden="true"><div class="o-bg"></div><div class="o-disc"></div><div class="o-stack">${W.map(([t,c],k)=>`<div class="o-b ${c}" style="--i:${k};--d:${k%2?1:-1}"><span>${t}</span></div>`).join("")}</div><div class="p5cw"><div class="p5c" style="clip-path:${jag()}"><i class="tape a"></i><i class="tape b"></i><div class="c-top">AN: SEOUL, SÜDKOREA</div><div class="c-big"><span class="nm">${rnk("WIR KOMMEN",0)}</span><span class="nm">${rnk("NACH SEOUL.",10)}</span></div><div class="c-sub">21.–29.11.2026 · 2 PERSONEN · HUNGER UNGEBREMST</div><div class="c-stamp">ANKUNFT<b>21.11. · 14:30</b></div><div class="c-sig">— Michi &amp; Christoph</div></div></div><div class="o-flash"></div></div><small class="p5skip">TIPPEN <b>▶▶</b> ÜBERSPRINGEN</small>`;
- setTimeout(team,2600); };
+ o.innerHTML=`<div class="p5o${short?" short":""}" aria-hidden="true"><div class="o-bg"></div><div class="o-disc"></div><div class="o-stack">${W.map(([t,c],k)=>`<div class="o-b ${c}" style="--i:${k};--d:${k%2?1:-1}"><span>${t}</span></div>`).join("")}</div><div class="p5cw"><div class="p5c" style="clip-path:${jag()}"><i class="tape a"></i><i class="tape b"></i><div class="c-top">AN: SEOUL, SÜDKOREA</div><div class="c-big"><span class="nm">${rnk("WIR KOMMEN",0)}</span><span class="nm">${rnk("NACH SEOUL.",10)}</span></div><div class="c-sub">21.–29.11.2026 · 2 PERSONEN · HUNGER UNGEBREMST</div><div class="c-stamp">ANKUNFT<b>21.11. · 14:30</b></div><div class="c-sig">— Michi &amp; Christoph</div></div></div><div class="o-flash"></div><div class="o-tip"><span><b>TIPP</b>${TIPS[Math.floor(Math.random()*TIPS.length)]}</span></div></div><small class="p5skip">TIPPEN <b>▶▶</b> ÜBERSPRINGEN</small>`;
+ if(short){ at(60,"whoosh"); setTimeout(end,1350); return; }
+ at(60,"whoosh"); at(1200,"hit"); at(1950,"tick"); setTimeout(team,3400); };
 const team=()=>{ if(done) return;
 const pick=a=>a[Math.floor(Math.random()*a.length)];
 const spC=pick([["NAVER-RADAR","FINDET JEDE U-BAHN · TREFFER 100%"],["ZEITPLAN-BLITZ","JEDER TAG BIS ZUR MINUTE GEPLANT"],["PUFFER-SCHILD","NIE ZU SPÄT · IMMER ZEIT FÜR SNACKS"]]);
@@ -2611,9 +2637,12 @@ const onTilt=e=>{ if(e.gamma==null||e.beta==null) return; par(clampv(e.gamma/22)
 if(matchMedia("(pointer:fine)").matches) addEventListener("pointermove",onMove,{passive:true});
 addEventListener("deviceorientation",onTilt,{passive:true});
 off=()=>{removeEventListener("pointermove",onMove);removeEventListener("deviceorientation",onTilt);};
+{ const mk=(side,n,t0)=>{ const out=[]; for(let k=0;k<n;k++){ const last=k===n-1, v=last?"1.337":String(100+Math.floor(Math.random()*880)); const x=side==="l"?14+Math.random()*24:58+Math.random()*24, y=22+Math.random()*16; const e=document.createElement("b"); e.className="p5dmg noshift"+(last?" c":""); e.textContent=v; e.style.cssText=`left:${x.toFixed(1)}%;top:${y.toFixed(1)}%;--r:${(Math.random()*16-8).toFixed(1)}deg;--dl:${(t0+k*.11).toFixed(2)}s`; o.appendChild(e); at((t0+k*.11)*1000,last?"hit":"tick"); } };
+ mk("l",3,5.0); mk("r",5,5.6); at(80,"whoosh"); at(3800,"fight"); at(5900,"whoosh"); at(6500,"whoosh"); at(7500,"hit"); }
 const ht=document.getElementById("hpT"); let hv=99; const hi=setInterval(()=>{ if(done||!ht){clearInterval(hi);return;} hv=Math.max(0,hv-1); ht.textContent=String(hv).padStart(2,"0"); },700);
 setTimeout(end,10800); };
 const t=setInterval(()=>{ if(i>0&&i<ps.length) ps[i-1].classList.add("ok"); if(i<ps.length){ps[i].classList.add("on");i++;} else {clearInterval(t);setTimeout(opening,120);} },110);
+if(seen){ clearInterval(t); opening(true); }
 o.addEventListener("click",()=>{clearInterval(t);end();});
 }
 if(reduce) return;
