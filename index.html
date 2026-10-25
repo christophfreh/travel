@@ -1299,6 +1299,57 @@ background:radial-gradient(70% 60% at 50% 30%,#ffcf7a,#f39a3a 35%,#c2571c 70%,#5
 @media (max-height:700px){.boot .bt-c{width:min(56%,270px,calc((100vh - 290px) * .8))}.p5bg .tick{height:26px}.p5bg .tick span{font-size:15px}.p5bg .tick.t1{top:.5%}}
 @media (min-width:900px) and (min-height:760px){.boot .bt-c{width:min(56%,340px)}.boot .bt-row{max-width:700px}.boot .bt-c.r{margin-top:40px}.p5bg .tick{height:38px}.p5bg .tick span{font-size:23px}.p5bg .tick.t1{top:2%}}
 @media (max-height:520px){.p5bg .tick.t1{display:none}.boot .bt-c ul,.boot .bt-h{display:none}.boot .bt-c{width:min(40%,calc((100vh - 150px) * .8))}.boot .bt-c.r{margin-top:14px}.boot .bt-vs svg{height:100px}}
+/* ===== Persona-Look 2.1: mehr Effekte, längerer Ablauf ===== */
+.p5bg .gword{position:absolute;left:50%;top:49%;white-space:nowrap;font:400 min(52vw,56vh)/1 var(--f-sign);color:transparent;-webkit-text-stroke:3px rgba(255,255,255,.42);translate:-50% -50%;rotate:-8deg;opacity:0;animation:p5gw 1s .5s ease-out forwards,p5gdrift 10s 1.5s ease-in-out infinite alternate}
+@keyframes p5gw{from{opacity:0;scale:1.5}to{opacity:1;scale:1}}
+@keyframes p5gdrift{from{translate:-52% -50%}to{translate:-48% -52%}}
+.p5bg .sh{position:absolute;left:var(--x);bottom:-6%;width:var(--s);height:var(--s);background:var(--c);clip-path:polygon(50% 0,100% 100%,0 100%);opacity:0;animation:p5rise var(--t) linear infinite;animation-delay:var(--d)}
+@keyframes p5rise{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.95}85%{opacity:.95}100%{transform:translateY(-118vh) rotate(540deg);opacity:0}}
+.p5bg .st{background:var(--c,#fff)}
+.boot .bt-row>.p5star{position:absolute;left:var(--cx);top:0;width:88%;aspect-ratio:1;translate:-50% 0;margin-top:var(--my,0);z-index:0;pointer-events:none;background:var(--acc);opacity:0;animation:p5starin .6s 1.0s cubic-bezier(.2,1.5,.4,1) forwards,p5spin 26s 1.6s linear infinite}
+.boot .bt-row>.p5star.k{width:94%;background:#000;animation-direction:normal,reverse}
+.boot .bt-row>.p5star.sl{--cx:29%;--acc:#3BE6D6}
+.boot .bt-row>.p5star.sr{--cx:71%;--my:30px;--acc:#FF3E8A;animation-delay:1.2s,1.8s}
+@keyframes p5starin{0%{opacity:0;scale:.1}100%{opacity:.92;scale:1}}
+.boot .bt{animation:shake .5s 2.85s steps(6) forwards,p5punch .4s 3.8s ease-out forwards,p5punch .4s 4.4s ease-out forwards}
+@keyframes p5punch{0%{transform:scale(1.04)}100%{transform:none}}
+.boot .hp i{animation:hpin .8s .3s ease-out both,hpdrop 2.4s 3.7s ease-out forwards,p5hpf .5s 3.7s steps(4) forwards}
+.boot .hp.r i{animation:hpin .8s .3s ease-out both,hpdropr 2.4s 4.3s ease-out forwards,p5hpf .5s 4.3s steps(4) forwards}
+@keyframes p5hpf{0%{filter:brightness(5) saturate(0)}50%{filter:brightness(2)}100%{filter:none}}
+.boot .p5pop{position:absolute;left:0;right:0;top:44%;z-index:7;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;font-size:clamp(30px,min(9.5vw,9vh),64px);line-height:1;filter:drop-shadow(5px 5px 0 #000)}
+.boot .p5pop.a{rotate:-4deg;animation:p5pop .95s 5.9s cubic-bezier(.2,.9,.3,1.2) both}
+.boot .p5pop.b{top:53%;rotate:3deg;animation:p5pop .95s 6.5s cubic-bezier(.2,.9,.3,1.2) both}
+.boot .p5pop small{position:static;font:italic 700 11px var(--f-mono);letter-spacing:.22em;color:#fff;background:#E60012;padding:3px 10px;transform:skewX(-14deg);box-shadow:3px 3px 0 #000}
+.boot .p5pop.b small{background:#fff;color:#000}
+@keyframes p5pop{0%{opacity:0;transform:translateX(-70%) skewX(-22deg)}18%{opacity:1;transform:none}80%{opacity:1;transform:none}100%{opacity:0;transform:translateX(45%) skewX(20deg)}}
+.p5fin .cut{position:absolute;width:min(46vw,280px);aspect-ratio:4/5;object-fit:cover;border:4px solid #fff;box-shadow:8px 8px 0 #000;opacity:0}
+.p5fin .cut.l{left:-3%;top:8%;rotate:-9deg;animation:p5cutl 1.5s 5.5s cubic-bezier(.2,.9,.3,1) both}
+.p5fin .cut.r{right:-3%;bottom:8%;rotate:8deg;animation:p5cutr 1.5s 5.6s cubic-bezier(.2,.9,.3,1) both}
+@keyframes p5cutl{0%{opacity:0;translate:-120% 0}24%{opacity:1;translate:0 0}85%{opacity:1;translate:0 0}100%{opacity:1;translate:-10% 0}}
+@keyframes p5cutr{0%{opacity:0;translate:120% 0}24%{opacity:1;translate:0 0}85%{opacity:1;translate:0 0}100%{opacity:1;translate:10% 0}}
+@media (max-height:520px){.boot .p5pop{top:40%}.boot .p5pop.b{top:52%}.p5bg .gword{font-size:min(40vw,70vh)}}
+/* ===== Persona-Look 2.2: Spezialkräfte & Superkombos ===== */
+.boot .bt-c small{display:block;order:6;position:static;margin-top:9px;font:italic 700 9.5px/1.15 var(--f-mono);letter-spacing:.12em;color:#fff;background:#000;padding:4px 10px 3px;transform:skewX(-14deg);box-shadow:3px 3px 0 var(--acc);animation:p5tag .3s 2.0s steps(3) both}
+.boot .bt-c small i{display:block;font-style:normal;font-size:7.5px;letter-spacing:.22em;color:var(--acc);margin-bottom:2px}
+.boot .bt-c.r small{transform:skewX(14deg);box-shadow:-3px 3px 0 var(--acc);align-self:flex-end;text-align:right;animation-name:p5tagr;animation-delay:2.15s}
+.boot .bt-c ul{order:5}
+.boot .p5pop{font-size:clamp(22px,min(7.4vw,7vh),56px)}
+.boot .p5pop .nm{white-space:nowrap}
+.boot .p5pop.a{--acc:#3BE6D6}.boot .p5pop.b{--acc:#FF3E8A;animation-name:p5popr}
+.boot .p5pop small,.boot .p5pop.b small{background:#000;color:#fff;box-shadow:3px 3px 0 var(--acc);font-size:10px;letter-spacing:.2em}
+.boot .p5pop small.who{background:var(--acc);color:#000;box-shadow:3px 3px 0 #000;font-size:11px}
+@keyframes p5popr{0%{opacity:0;transform:translateX(70%) skewX(22deg)}18%{opacity:1;transform:none}80%{opacity:1;transform:none}100%{opacity:0;transform:translateX(-45%) skewX(-20deg)}}
+.boot .bt-row>.p5radar{position:absolute;left:29%;top:0;width:80%;aspect-ratio:1;translate:-50% 0;border-radius:50%;border:3px solid #3BE6D6;background:conic-gradient(from 0deg,rgba(59,230,214,0) 0 250deg,rgba(59,230,214,.7) 360deg);box-shadow:0 0 0 2px #000,0 0 26px #3BE6D6;z-index:3;pointer-events:none;opacity:0;animation:p5radar 1.1s 5.9s linear both}
+@keyframes p5radar{0%{opacity:0;scale:.35;rotate:0deg}12%{opacity:1}80%{opacity:1;scale:1;rotate:600deg}100%{opacity:0;scale:1.2;rotate:720deg}}
+.boot .bt-row>.p5nova{position:absolute;left:71%;top:0;margin-top:30px;width:72%;aspect-ratio:1;translate:-50% 0;border-radius:50%;border:5px solid #FF3E8A;box-shadow:0 0 0 3px #000,inset 0 0 30px #FF3E8A;z-index:3;pointer-events:none;opacity:0;animation:p5nova .9s 6.5s ease-out both}
+.boot .bt-row>.p5nova.n2{animation-delay:6.68s}.boot .bt-row>.p5nova.n3{animation-delay:6.86s}
+@keyframes p5nova{0%{opacity:1;scale:.2}100%{opacity:0;scale:1.55}}
+.p5fin small{letter-spacing:.16em;font-size:10px;white-space:normal;text-align:center;max-width:88vw}
+@media (max-height:700px){.boot .bt-c{width:min(56%,270px,calc((100vh - 335px) * .8))}}
+@media (max-height:520px){.boot .bt-c small{display:none}}
+.boot .p5pop .nm{font-size:min(1em,calc(90vw / (var(--n) * .98)))}
+.boot .bt-row>.p5nova{border-width:6px}
+.boot .bt-row>.p5radar{background:conic-gradient(from 0deg,rgba(59,230,214,0) 0 235deg,rgba(59,230,214,.85) 360deg)}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -2476,16 +2527,27 @@ const ps=[...o.querySelectorAll("p")]; let i=0, done=false;
 const end=()=>{if(done)return;done=true;o.classList.add("out");setTimeout(()=>o.remove(),480);};
 const rn=t=>[...t].map((c,k)=>c===" "?'<i class="sp"></i>':`<em class="rn${(k*7+c.charCodeAt(0))%4}" style="--r:${((k*37)%13)-6}deg">${c}</em>`).join("");
 const team=()=>{ if(done) return;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const spC=pick([["NAVER-RADAR","FINDET JEDE U-BAHN · TREFFER 100%"],["ZEITPLAN-BLITZ","JEDER TAG BIS ZUR MINUTE GEPLANT"],["PUFFER-SCHILD","NIE ZU SPÄT · IMMER ZEIT FÜR SNACKS"]]);
+const spM=pick([["HUNGER-NOVA","TRIFFT ALLE STREETFOOD-STÄNDE"],["GRIMASSEN-BLITZ","JEDES FOTO WIRD ZUR LEGENDE"],["GWANGJANG-RAUSCH","MARKT-BONUS · ALLES PROBIEREN ×2"]]);
+const supK=pick(["YATAI-ALLIANZ","PURIKURA-BLITZ","SOJU-RAMEN-SCHLAG","K-BBQ-ALLIANZ"]);
 const bandA=("SEOUL <b>✦</b> NOVEMBER <b>✦</b> 21.–29.11.2026 <b>✦</b> ").repeat(5), bandB=("WAKE UP, SAMURAI <b>✦</b> BUILT, NOT TALKED ABOUT <b>✦</b> ").repeat(5);
-const stars=[[7,19,22,0],[91,13,16,.4],[15,56,14,.8],[86,46,26,.2],[52,9,12,1.1],[93,72,18,.6],[5,79,16,.9],[70,30,12,1.3]].map(([x,y,s,d])=>`<i class="st" style="left:${x}%;top:${y}%;--s:${s}px;animation-delay:${d}s"></i>`).join("");
-const bg=`<div class="p5bg" aria-hidden="true"><div class="burst"></div><i class="slab a"></i><i class="slab b"></i><i class="ht"></i><div class="tick t1"><span>${bandA}${bandA}</span></div><div class="tick t2"><span>${bandB}${bandB}</span></div>${stars}</div><i class="p5w b"></i><i class="p5w r"></i><i class="p5flash"></i>`;
-o.innerHTML=`${bg}<div class="bt"><svg class="brushx" viewBox="0 0 200 240" aria-hidden="true"><defs><filter id="brush" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035 .9" numOctaves="3" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="14"/></filter></defs><g filter="url(#brush)" stroke="#FF3E8A" stroke-linecap="round" fill="none"><path d="M30 18 L172 226" stroke-width="30"/><path d="M168 14 L34 224" stroke-width="26"/><path d="M44 30 L160 210" stroke-width="6" stroke="#ff7ab0" opacity=".6"/></g><g fill="#FF3E8A"><circle cx="24" cy="40" r="3"/><circle cx="180" cy="200" r="4"/><circle cx="186" cy="30" r="2"/><circle cx="16" cy="210" r="2.5"/><circle cx="150" cy="236" r="2"/></g></svg><i class="p5s a"></i><i class="p5s b"></i><div class="bt-hp"><div class="hp l"><span>CHRISTOPH</span><i></i></div><b class="hp-t" id="hpT">99</b><div class="hp r"><span>MICHI</span><i></i></div></div><p class="bt-h">SPIELER AUSGEWÄHLT</p><div class="bt-call"><span class="r1">${rn("ROUND 1")}</span><span class="fi">${rn("FIGHT!")}</span></div><i class="spk s1"></i><i class="spk s2"></i><i class="spk s3"></i><div class="bt-combo l"><b>${rn("3 HITS")}</b><small>NEUGIER-COMBO</small></div><div class="bt-combo r"><b>${rn("5 HITS")}</b><small>SNACK-COMBO</small></div><div class="bt-row">
-<div class="bt-c l"><div class="bt-av"><img src="kaempfer/kaempfer-christoph.jpg" alt="Christoph als Kämpfer" width="480" height="600"></div><b>CHRISTOPH</b><small>KLASSE: NETRUNNER</small><ul><li><span>PLANUNG</span><i style="--v:96%"></i></li><li><span>NEUGIER</span><i style="--v:100%"></i></li><li><span>NAVIGATION</span><i style="--v:82%"></i></li></ul></div>
+const stars=[[7,19,22,0],[91,13,16,.4],[15,56,14,.8],[86,46,26,.2],[52,9,12,1.1],[93,72,18,.6],[5,79,16,.9],[70,30,12,1.3]].map(([x,y,s,d],k)=>`<i class="st" style="left:${x}%;top:${y}%;--s:${s}px;animation-delay:${d}s;--c:${k%3===1?"#FCEE0A":"#fff"}"></i>`).join("");
+const shards=[[6,18,"#fff",9],[19,12,"#000",13],[33,22,"#FCEE0A",8],[47,16,"#fff",11],[61,26,"#000",14],[74,20,"#fff",9],[88,14,"#000",12],[94,24,"#FCEE0A",8]].map(([x,s,c,t],k)=>`<i class="sh" style="--x:${x}%;--s:${s}px;--c:${c};--t:${t}s;--d:${-(k*1.7)}s"></i>`).join("");
+const sp=(n,r1,r2)=>Array.from({length:n*2},(_,i)=>{const an=Math.PI*i/n-Math.PI/2,r=i%2?r2:r1;return (50+r*Math.cos(an)).toFixed(1)+"% "+(50+r*Math.sin(an)).toFixed(1)+"%";}).join(",");
+const starClip="polygon("+sp(12,50,37)+")";
+const bg=`<div class="p5bg" aria-hidden="true"><div class="burst"></div><i class="slab a"></i><i class="slab b"></i><div class="gword">서울</div><i class="ht"></i>${shards}<div class="tick t1"><span>${bandA}${bandA}</span></div><div class="tick t2"><span>${bandB}${bandB}</span></div>${stars}</div><i class="p5w b"></i><i class="p5w r"></i><i class="p5flash"></i>`;
+o.innerHTML=`${bg}<div class="bt"><svg class="brushx" viewBox="0 0 200 240" aria-hidden="true"><defs><filter id="brush" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035 .9" numOctaves="3" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="14"/></filter></defs><g filter="url(#brush)" stroke="#FF3E8A" stroke-linecap="round" fill="none"><path d="M30 18 L172 226" stroke-width="30"/><path d="M168 14 L34 224" stroke-width="26"/><path d="M44 30 L160 210" stroke-width="6" stroke="#ff7ab0" opacity=".6"/></g><g fill="#FF3E8A"><circle cx="24" cy="40" r="3"/><circle cx="180" cy="200" r="4"/><circle cx="186" cy="30" r="2"/><circle cx="16" cy="210" r="2.5"/><circle cx="150" cy="236" r="2"/></g></svg><i class="p5s a"></i><i class="p5s b"></i><div class="bt-hp"><div class="hp l"><span>CHRISTOPH</span><i></i></div><b class="hp-t" id="hpT">99</b><div class="hp r"><span>MICHI</span><i></i></div></div><p class="bt-h">SPIELER AUSGEWÄHLT</p><div class="bt-call"><span class="r1">${rn("ROUND 1")}</span><span class="fi">${rn("FIGHT!")}</span></div><i class="spk s1"></i><i class="spk s2"></i><i class="spk s3"></i><div class="bt-combo l"><b>${rn("3 HITS")}</b><small>U-BAHN-COMBO</small></div><div class="bt-combo r"><b>${rn("5 HITS")}</b><small>STREETFOOD-COMBO</small></div><div class="bt-row"><i class="p5radar noshift"></i><i class="p5nova noshift"></i><i class="p5nova n2 noshift"></i><i class="p5nova n3 noshift"></i><i class="p5star k sl" style="clip-path:${starClip}"></i><i class="p5star sl" style="clip-path:${starClip}"></i><i class="p5star k sr" style="clip-path:${starClip}"></i><i class="p5star sr" style="clip-path:${starClip}"></i>
+<div class="bt-c l"><div class="bt-av"><img src="kaempfer/kaempfer-christoph.jpg" alt="Christoph als Kämpfer" width="480" height="600"></div><b>CHRISTOPH</b><small><i>SPEZIALKRAFT</i>${spC[0]}</small><ul><li><span>PLANUNG</span><i style="--v:96%"></i></li><li><span>NEUGIER</span><i style="--v:100%"></i></li><li><span>NAVIGATION</span><i style="--v:82%"></i></li></ul></div>
 <div class="bt-vs"><svg viewBox="0 0 30 80" aria-hidden="true"><path d="M18 0 L10 26 L20 30 L8 56 L16 58 L10 80" fill="none" stroke="#C9B8FF" stroke-width="2.4"/><path d="M18 0 L10 26 L20 30 L8 56 L16 58 L10 80" fill="none" stroke="#fff" stroke-width=".9"/></svg><b>VS</b></div>
-<div class="bt-c r"><div class="bt-av"><img src="kaempfer/kaempfer-michi.jpg" alt="Michi als Kämpfer" width="480" height="600"></div><b>MICHI</b><small>KLASSE: GOURMET</small><ul><li><span>HUNGER</span><i style="--v:99%"></i></li><li><span>HUMOR</span><i style="--v:97%"></i></li><li><span>GRIMASSEN</span><i style="--v:100%"></i></li></ul></div>
-</div><p class="bt-go">UNENTSCHIEDEN · TEAM WIN · SEOUL WARTET</p></div><div class="p5fin"><i class="ht"></i><span>${rn("TEAM")}</span><span class="b2">${rn("ATTACK!")}</span><small>CHRISTOPH × MICHI</small></div><small>TIPPEN ZUM ÜBERSPRINGEN</small>`;
+<div class="bt-c r"><div class="bt-av"><img src="kaempfer/kaempfer-michi.jpg" alt="Michi als Kämpfer" width="480" height="600"></div><b>MICHI</b><small><i>SPEZIALKRAFT</i>${spM[0]}</small><ul><li><span>HUNGER</span><i style="--v:99%"></i></li><li><span>HUMOR</span><i style="--v:97%"></i></li><li><span>GRIMASSEN</span><i style="--v:100%"></i></li></ul></div>
+</div><p class="bt-go">UNENTSCHIEDEN · TEAM WIN · SEOUL WARTET</p></div><div class="p5pop a noshift"><small class="who">CHRISTOPH · SPEZIALKRAFT</small><span class="nm" style="--n:${spC[0].length}">${rn(spC[0])}</span><small>${spC[1]}</small></div><div class="p5pop b noshift"><small class="who">MICHI · SPEZIALKRAFT</small><span class="nm" style="--n:${spM[0].length}">${rn(spM[0])}</span><small>${spM[1]}</small></div><div class="p5fin"><i class="ht"></i><img class="cut l" src="kaempfer/kaempfer-christoph.jpg" alt=""><img class="cut r" src="kaempfer/kaempfer-michi.jpg" alt=""><span>${rn("TEAM")}</span><span class="b2">${rn("ATTACK!")}</span><small>SUPERKOMBO · ${supK}</small></div><small>TIPPEN ZUM ÜBERSPRINGEN</small>`;
+/* Ablauf strecken: ROUND 1 +0,7 s, FIGHT/Treffer/Combos +1,2 s, Finale/Abschlusszeile +2,2 s */
+o.getAnimations({subtree:true}).forEach(an=>{ try{ const tg=an.effect.target; if(tg&&tg.closest&&tg.closest(".noshift")) return; const d=an.effect.getTiming().delay; let s=0;
+ if(d>=5000) s=2200; else if(d>=2500) s=1200; else if(an.animationName==="call1") s=700;
+ if(s) an.effect.updateTiming({delay:d+s}); }catch(e){} });
 const ht=document.getElementById("hpT"); let hv=99; const hi=setInterval(()=>{ if(done||!ht){clearInterval(hi);return;} hv=Math.max(0,hv-1); ht.textContent=String(hv).padStart(2,"0"); },700);
-setTimeout(end,8400); };
+setTimeout(end,11500); };
 const t=setInterval(()=>{ if(i>0&&i<ps.length) ps[i-1].classList.add("ok"); if(i<ps.length){ps[i].classList.add("on");i++;} else {clearInterval(t);setTimeout(team,300);} },200);
 o.addEventListener("click",()=>{clearInterval(t);end();});
 }
