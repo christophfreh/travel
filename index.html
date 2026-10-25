@@ -815,6 +815,12 @@ background:radial-gradient(circle at 20% 30%,rgba(255,62,138,.7) 0 4px,transpare
 @keyframes hcglow{50%{filter:drop-shadow(0 0 18px rgba(159,243,255,.95))}}
 }
 .arcane .hexcore{margin:6px 8px}
+.gems{display:flex;align-items:center;gap:14px;margin-top:10px;flex-wrap:wrap}
+.tray{display:flex;gap:14px;padding:10px 16px 12px;border:1.5px solid #C9A25A;border-radius:4px;background:linear-gradient(180deg,#3a1424,#200a14);box-shadow:inset 0 6px 14px rgba(0,0,0,.6),0 4px 12px rgba(0,0,0,.5)}
+.gem{width:28px;height:28px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.4) 0 6%,transparent 14%),radial-gradient(circle at 50% 55%,#2a3a66,#141a33 70%);box-shadow:inset 0 -4px 8px rgba(0,0,0,.6);transition:all .6s ease}
+.gem.on{background:radial-gradient(circle at 34% 28%,#fff 0 6%,rgba(159,243,255,.8) 9%,transparent 20%),radial-gradient(circle at 50% 55%,#3a9bff,#1438a8 65%,#0a1550);box-shadow:0 0 14px #3BB8FF,0 0 32px rgba(59,184,255,.6),inset 0 -4px 10px rgba(0,0,40,.5)}
+.gems small{color:var(--muted);font-size:12px;flex:1;min-width:160px}
+@media (prefers-reduced-motion:no-preference){.gem.on{animation:gempulse 3.6s ease-in-out infinite}@keyframes gempulse{50%{box-shadow:0 0 22px #9FF3FF,0 0 46px rgba(59,184,255,.75),inset 0 -4px 10px rgba(0,0,40,.5)}}}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -1315,7 +1321,7 @@ pflichtprogramm: <span class="n">null</span>,
 </section>
 <section id="packen">
 <div class="sh"><span class="n">21</span><h2>Packliste</h2><span class="ko">짐</span></div>
-<div class="box pilt"><span class="label">Gepackt <b id="pkN">0</b> von <b id="pkT">0</b></span><div class="pk-bar"><i id="pkBar"></i></div></div>
+<div class="box pilt"><span class="label">Gepackt <b id="pkN">0</b> von <b id="pkT">0</b></span><div class="pk-bar"><i id="pkBar"></i></div><div class="gems" aria-hidden="true"><div class="tray"><span class="gem" id="gem1"></span><span class="gem" id="gem2"></span><span class="gem" id="gem3"></span></div><small id="gemTxt">Jedes Drittel der Liste lädt einen Hextech-Kristall auf.</small></div></div>
 <div class="grid2">
 <div class="box"><span class="label">Papiere</span><ul class="pack"><li><label><input type="checkbox" id="pk1"><span>Reisepass<small>mind. 6 Monate gültig</small></span></label></li><li><label><input type="checkbox" id="pk2"><span>Kein K-ETA nötig<small>Österreich befreit bis 31.12.2026</small></span></label></li><li><label><input type="checkbox" id="pk3"><span>Visit Japan Web QR-Code<small>als Screenshot</small></span></label></li><li><label><input type="checkbox" id="pk4"><span>Bordkarten & Buchungen offline<small>Hotel, Fukuoka-Flüge</small></span></label></li><li><label><input type="checkbox" id="pk5"><span>Kreditkarte + Zweitkarte<small>getrennt aufbewahren</small></span></label></li><li><label><input type="checkbox" id="pk6"><span>Etwas Bargeld<small>Märkte, Streetfood</small></span></label></li><li><label><input type="checkbox" id="pk7"><span>Reiseversicherung<small>Nummer im Handy</small></span></label></li></ul></div>
 <div class="box"><span class="label">Technik</span><ul class="pack"><li><label><input type="checkbox" id="pk8"><span>Handy & Ladekabel</span></label></li><li><label><input type="checkbox" id="pk9"><span>Powerbank<small>nur ins Handgepäck</small></span></label></li><li><label><input type="checkbox" id="pk10"><span>Steckeradapter Japan<small>Typ A, Korea passt ohne</small></span></label></li><li><label><input type="checkbox" id="pk11"><span>eSIM aktivieren<small>Korea & Japan</small></span></label></li><li><label><input type="checkbox" id="pk12"><span>Kopfhörer<small>für den Flug</small></span></label></li><li><label><input type="checkbox" id="pk13"><span>Switch 2, Dock, HDMI-Kabel<small>Game-Abend</small></span></label></li></ul></div>
@@ -1906,7 +1912,7 @@ b.hidden=n<=8; b.textContent=P.classList.contains("all")?"Weniger zeigen":`Alle 
 galMore(); new MutationObserver(galMore).observe($("polas"),{childList:true});
 // ---------- Packliste ----------
 (function(){const cbs=[...document.querySelectorAll(".pack input")];
-function upd(){const n=cbs.filter(c=>c.checked).length;$("pkN").textContent=n;$("pkT").textContent=cbs.length;$("pkBar").style.width=(n/cbs.length*100)+"%";}
+function upd(){const n=cbs.filter(c=>c.checked).length;$("pkN").textContent=n;$("pkT").textContent=cbs.length;$("pkBar").style.width=(n/cbs.length*100)+"%"; const f=n/cbs.length; [1,2,3].forEach(k=>$("gem"+k).classList.toggle("on",f>=k/3-1e-9)); $("gemTxt").textContent=f>=1?"Alle drei Kristalle geladen. Bereit für Seoul.":f>=2/3?"Zwei Kristalle geladen. Fast fertig.":f>=1/3?"Ein Kristall geladen. Weiter so.":"Jedes Drittel der Liste lädt einen Hextech-Kristall auf.";}
 cbs.forEach(c=>{try{c.checked=localStorage.getItem(c.id)==="1";}catch(e){} c.addEventListener("change",()=>{try{localStorage.setItem(c.id,c.checked?"1":"0");}catch(e){} upd();});});
 $("pkReset").addEventListener("click",()=>{cbs.forEach(c=>{c.checked=false;try{localStorage.removeItem(c.id);}catch(e){}});upd();}); upd();})();
 // ---------- neon light follows pointer ----------
