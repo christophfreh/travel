@@ -1617,6 +1617,78 @@ body.scan .list li.mk::after{content:"⌖ MARKIERT";position:absolute;right:0;to
 @keyframes jl{0%{opacity:0;transform:translateX(-30%)}30%{opacity:.9}100%{opacity:0;transform:translateX(30%)}}
 .jump b{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font:700 11px/1 var(--f-mono);letter-spacing:.2em;color:#0a0818;background:var(--y);padding:7px 12px 6px;white-space:nowrap;box-shadow:4px 4px 0 var(--neon);animation:jt .55s steps(5) forwards}
 @keyframes jt{0%{opacity:0;transform:translate(-50%,-50%) skewX(-18deg)}15%{opacity:1;transform:translate(-50%,-50%)}85%{opacity:1}100%{opacity:0}}
+/* ===== Night City 6.0: Gigs, Konto, Netz, Ticker, Meter, Ripperdoc, Kamera-HUD, Nacht ===== */
+/* Gigs */
+.gigs{margin-top:10px;padding-top:8px;border-top:1px dashed rgba(252,238,10,.35);display:flex;flex-direction:column;gap:6px}
+.gigs .k{font:700 9px/1 var(--f-mono);letter-spacing:.2em;color:var(--y)}
+.gig{display:flex;align-items:center;gap:10px;text-align:left;border:0;background:transparent;color:var(--ink);font:500 13px/1.35 var(--f-body);padding:4px 0;cursor:pointer}
+.gig i{flex:none;width:20px;height:20px;display:grid;place-items:center;border:1.5px solid rgba(252,238,10,.6);clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);font-style:normal;font:700 10px/1 var(--f-mono);color:transparent;background:rgba(252,238,10,.05)}
+.gig[aria-pressed="true"] i{background:var(--y);color:#0a0818}
+.gig[aria-pressed="true"] span{color:var(--muted);text-decoration:line-through}
+.gig em{margin-left:auto;font:700 9px/1 var(--f-mono);font-style:normal;color:var(--y);letter-spacing:.1em;white-space:nowrap}
+/* Konto */
+.konto .kt-top{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:end}
+.konto small{display:block;font:700 9px/1 var(--f-mono);letter-spacing:.16em;color:var(--muted);margin-bottom:4px}
+.konto input,.konto select{font:700 14px var(--f-mono);color:var(--ink);background:var(--night);border:1px solid var(--line);padding:8px 9px;border-radius:0;min-width:0;width:100%}
+.konto #ktR{font:400 30px/1 var(--f-sign);color:var(--y);text-shadow:0 0 12px rgba(252,238,10,.35)}
+.konto #ktR.neg{color:var(--neon);text-shadow:0 0 12px rgba(255,62,138,.4)}
+.kt-bar{position:relative;height:9px;background:rgba(252,238,10,.14);margin:12px 0 4px;clip-path:polygon(0 0,100% 0,calc(100% - 6px) 100%,0 100%)}
+.kt-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--y));transition:width .6s}
+.kt-bar u{position:absolute;top:-4px;bottom:-4px;width:2px;background:#fff;text-decoration:none;opacity:.8}
+.konto #ktMsg{font:700 11px/1.4 var(--f-mono);letter-spacing:.06em;color:var(--cyan)}
+.konto form{display:grid;grid-template-columns:minmax(0,1.1fr) 62px minmax(0,1.6fr);gap:6px;margin-top:10px}
+.konto *{box-sizing:border-box}.konto form{max-width:100%}.konto form .btn{grid-column:1/-1;justify-content:center;width:100%;margin:0}.konto .kt-top>div{min-width:0}.konto #ktR{white-space:nowrap}
+.kt-l{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column}
+.kt-l li{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:13px}
+.kt-l li b{font:700 12px var(--f-mono);color:var(--y);white-space:nowrap}
+.kt-l li button{border:0;background:transparent;color:var(--muted);cursor:pointer;font:700 13px var(--f-mono);padding:0 4px}
+/* Netz */
+.net .nr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+.net .nr:last-of-type{border-bottom:0}
+.net .nr b{font:600 14px var(--f-body)}
+.net .nr small{grid-column:1;color:var(--muted);font-size:12px}
+.net .sg{grid-column:2;grid-row:1/3;display:flex;align-items:flex-end;gap:3px;height:22px}
+.net .sg i{width:6px;background:rgba(171,165,207,.25)}
+.net .sg i:nth-child(1){height:30%}.net .sg i:nth-child(2){height:55%}.net .sg i:nth-child(3){height:78%}.net .sg i:nth-child(4){height:100%}
+.net .sg.s4 i{background:var(--cyan);box-shadow:0 0 6px rgba(59,230,214,.5)}
+.net .sg.s3 i:nth-child(-n+3){background:var(--y)}
+.net .sg.s2 i:nth-child(-n+2){background:var(--neon)}
+/* Ticker */
+.tick{position:sticky;top:0;z-index:24;margin:-24px calc(50% - 50vw) 10px;height:26px;overflow:hidden;background:var(--y);color:#0a0818;display:flex;align-items:center;font:700 11px/1 var(--f-mono);letter-spacing:.1em;box-shadow:0 3px 0 var(--neon)}
+.tick div{display:flex;gap:44px;white-space:nowrap;width:max-content;padding-left:16px}
+@media (prefers-reduced-motion:no-preference){.tick div{animation:tkroll var(--tk,30s) linear infinite}@keyframes tkroll{to{transform:translateX(-50%)}}}
+.tick b{background:#0a0818;color:var(--y);padding:3px 7px 2px;letter-spacing:.14em}
+/* Meter */
+.cps{margin-top:14px;border:1px solid rgba(255,62,138,.5);background:linear-gradient(160deg,rgba(255,62,138,.08),rgba(17,15,39,.9));padding:12px 14px;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%)}
+.cps .ch{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.cps .ch small{font:700 10px/1 var(--f-mono);letter-spacing:.2em;color:var(--neon)}
+.cps .ch b{font:400 26px/1 var(--f-sign);color:#fff}
+.cps .ms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0 8px}
+.cps .m small{display:block;font:700 9px/1 var(--f-mono);letter-spacing:.14em;color:var(--muted);margin-bottom:4px}
+.cps .m i{display:block;height:6px;background:rgba(255,255,255,.12)}
+.cps .m i u{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--y),var(--neon));text-decoration:none;transition:width .8s}
+.cps p{font:700 11px/1.45 var(--f-mono);letter-spacing:.05em;color:var(--cyan)}
+.cps.hot p{color:var(--neon)}
+/* Ripperdoc */
+.rip{display:inline-block;font:700 8px/1 var(--f-mono);letter-spacing:.14em;color:#0a0818;background:rgba(171,165,207,.7);padding:2px 5px 1px;margin-right:6px;font-style:normal;vertical-align:1px}
+.pack input:checked+span .rip{background:var(--y)}
+.pack input:checked+span{color:var(--ink);text-decoration:none}
+.pack input:checked+span>b,.pack input:checked+span{text-shadow:0 0 8px rgba(252,238,10,.25)}
+.rip-h{font:700 10px/1.4 var(--f-mono);letter-spacing:.14em;color:var(--y);margin:2px 0 0}
+/* Kamera-HUD */
+body.camhud #gallery .g-it::before{content:"";position:absolute;inset:8px;z-index:2;pointer-events:none;background:
+linear-gradient(var(--y),var(--y)) 0 0/16px 2px no-repeat,linear-gradient(var(--y),var(--y)) 0 0/2px 16px no-repeat,
+linear-gradient(var(--y),var(--y)) 100% 0/16px 2px no-repeat,linear-gradient(var(--y),var(--y)) 100% 0/2px 16px no-repeat,
+linear-gradient(var(--y),var(--y)) 0 100%/16px 2px no-repeat,linear-gradient(var(--y),var(--y)) 0 100%/2px 16px no-repeat,
+linear-gradient(var(--y),var(--y)) 100% 100%/16px 2px no-repeat,linear-gradient(var(--y),var(--y)) 100% 100%/2px 16px no-repeat}
+body.camhud #gallery .g-it::after{content:"● REC  4K · 2.8";position:absolute;right:12px;top:12px;z-index:3;font:700 8px/1 var(--f-mono);letter-spacing:.12em;color:var(--y);text-shadow:0 0 4px #000;pointer-events:none}
+body.camhud #gallery .g-it img{filter:contrast(1.08) saturate(1.2)}
+/* Nacht */
+html.night .box,html.night .pass,html.night .qh-b{box-shadow:0 20px 40px -26px rgba(255,62,138,.45),0 0 22px -16px rgba(59,230,214,.5)}
+html.night .sh .n{box-shadow:0 0 18px rgba(252,238,10,.4)}
+html.night body::before{filter:saturate(1.5) brightness(1.15)}
+html.night .sky .neons b{opacity:1}
+@media (prefers-reduced-motion:no-preference){html.night .sh h2{text-shadow:0 0 12px rgba(59,230,214,.28)}}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -3306,12 +3378,12 @@ const RK=[[0,"Frischling"],[3,"Nachtschwärmer"],[6,"Gassen-Kenner"],[10,"Straß
 const box=document.createElement("div"); box.className="cred"; tro.parentNode.insertBefore(box,tro);
 let sel=null;
 function render(){ const bt={}; tro.querySelectorAll("button").forEach(b=>{ bt[b.dataset.id]={on:b.classList.contains("on"),name:b.querySelector("b")?.textContent||b.dataset.id,ic:b.querySelector("i")?.textContent||""}; });
- const ids=Object.keys(bt); const tot=ids.length||1, n=ids.filter(i=>bt[i].on).length; const lv=Math.round(1+n*49/tot); let rank=RK[0][1]; RK.forEach(r=>{ if(n>=r[0]) rank=r[1]; });
+ const ids=Object.keys(bt); const tot=ids.length||1, n=ids.filter(i=>bt[i].on).length; const gg=(window.__gigs&&window.__gigs())||{n:0,t:0}; const ruf=(n+gg.n*.5)/(tot+gg.t*.5||1); const lv=Math.round(1+ruf*49); let rank=RK[0][1]; const nn=n+Math.floor(gg.n/3); RK.forEach(r=>{ if(nn>=r[0]) rank=r[1]; });
  const info=sel&&bt[sel]?(bt[sel].on?`<b>PERK AKTIV · ${PK[sel]||"?"}</b> · ${bt[sel].name}`:`<b>Gesperrt</b> · Schalte „${bt[sel].name}“ frei für ${PK[sel]||"?"}`):"Tippe auf einen Perk.";
- box.innerHTML=`<div class="c-h"><div><small>STRASSENRUF</small><div class="c-rank">${rank}</div></div><div class="c-lv"><em>LEVEL</em>${lv}</div></div><div class="c-bar"><i style="width:${n/tot*100}%"></i></div><div class="c-n">${n} VON ${tot} PERKS FREI · RUF ${Math.round(n/tot*100)} %</div>
+ box.innerHTML=`<div class="c-h"><div><small>STRASSENRUF</small><div class="c-rank">${rank}</div></div><div class="c-lv"><em>LEVEL</em>${lv}</div></div><div class="c-bar"><i style="width:${ruf*100}%"></i></div><div class="c-n">${n} VON ${tot} PERKS · ${gg.n} VON ${gg.t} GIGS · RUF ${Math.round(ruf*100)} %</div>
  <div class="perks">${BR.map(([t,l])=>`<div class="br"><h4>${t}</h4>${l.filter(i=>bt[i]).map(i=>`<button type="button" class="nd ${bt[i].on?"on":""} ${sel===i?"sel":""}" data-i="${i}" aria-label="${PK[i]||i}">${bt[i].ic}</button>`).join("")}</div>`).join("")}</div><div class="perk-i">${info}</div>`; }
 box.addEventListener("click",e=>{ const b=e.target.closest(".nd"); if(!b) return; sel=b.dataset.i; render(); });
-new MutationObserver(()=>render()).observe(tro,{childList:true}); render();
+box.__r=render; new MutationObserver(()=>render()).observe(tro,{childList:true}); render();
 })();
 </script>
 <script>
@@ -3362,6 +3434,85 @@ document.querySelectorAll(".flash").forEach(f=>{ if(f.querySelector(".bd")) retu
 /* --- Netzsprung beim Antippen der Dock-Leiste --- */
 const dock=document.querySelector(".dock"); if(dock&&!reduce) dock.addEventListener("click",e=>{ const a=e.target.closest("a"); if(!a) return; document.querySelectorAll(".jump").forEach(x=>x.remove()); const j=document.createElement("div"); j.className="jump"; j.setAttribute("aria-hidden","true");
  const lbl=(a.querySelector("span")?.textContent||"").toUpperCase(); j.innerHTML=Array.from({length:7},(_,i)=>`<i style="top:${8+i*13+((i*37)%7)}%;animation-delay:${(i%4)*50}ms"></i>`).join("")+`<b>VERBINDE · ${lbl}</b>`; document.body.appendChild(j); setTimeout(()=>j.remove(),700); },true);
+})();
+</script>
+<script>
+/* Night City 6.0 */
+(function(){
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const lsGet=(k,d)=>{ try{ const v=localStorage.getItem(k); return v==null?d:JSON.parse(v); }catch(e){ return d; } };
+const lsSet=(k,v)=>{ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} };
+const P=(typeof PLAN!=="undefined")?PLAN:[];
+const sp=new URLSearchParams(location.search);
+/* ---- 8) Nachtmodus ---- */
+(function(){ const q=sp.get("wx"), h=new Date().getHours(); const night=q==="night"||sp.get("night")==="1"||(q!=="day"&&(h>=18||h<6)); document.documentElement.classList.toggle("night",night); })();
+/* ---- 1) Gigs ---- */
+const GIGS={"2026-11-21":["Metallhocker in Euljiro besetzen","Soju auf Koreanisch bestellen: 소주 주세요"],"2026-11-22":["Mit einem Roboter ein Foto machen","Den größten Bildschirm des Tages finden"],"2026-11-23":["Bindaetteok in Gwangjang teilen","Foto vor einem Palasttor"],"2026-11-24":["Ramen bis zum letzten Tropfen","Vor dem Abflug die Powerbank prüfen"],"2026-11-25":["Im Nintendo-Store ein Souvenir kaufen, das wir nicht brauchen","Im Yatai mit Fremden anstoßen: Kanpai"],"2026-11-26":["Bei Unfold X die Installation finden, die am meisten blinkt","Cocktail in Hannam bestellen"],"2026-11-27":["Beim DMZ-Guide so lange fragen, bis er lacht","In Seoul Sky bis zum Rand vorwagen"],"2026-11-28":["In Suwon die Stadtmauer ein Stück entlanggehen","Letzter Drink: Toast auf die Reise"],"2026-11-29":["Pass, Handy, Powerbank: alles dabei?","Auf dem Heimflug Fotos sortieren"]};
+let gdone=lsGet("gigs",{});
+const gcount=()=>{ let t=0,n=0; Object.keys(GIGS).forEach(d=>GIGS[d].forEach((_,i)=>{ t++; if(gdone[d+"-"+i]) n++; })); return {n,t}; };
+window.__gigs=gcount;
+const gtoast=t=>{ document.querySelectorAll(".toast").forEach(x=>x.remove()); const o=document.createElement("div"); o.className="toast"; o.setAttribute("role","status"); o.innerHTML=`<i>GIG</i><span><small>GIG ERLEDIGT · STRASSENRUF +</small>${esc(t)}</span>`; document.body.appendChild(o); setTimeout(()=>o.remove(),3600); };
+function injectGigs(){ const rows=document.querySelectorAll("#planList .row"); rows.forEach((r,i)=>{ if(r.querySelector(".gigs")||!P[i]) return; const d=P[i][0], g=GIGS[d]; if(!g) return; const b=r.querySelector(".body"); if(!b) return;
+ const w=document.createElement("div"); w.className="gigs"; w.innerHTML='<span class="k">GIGS · NEBENQUESTS</span>'+g.map((t,k)=>`<button type="button" class="gig" data-id="${d}-${k}" aria-pressed="${!!gdone[d+"-"+k]}"><i>✓</i><span>${esc(t)}</span><em>+RUF</em></button>`).join(""); b.appendChild(w); }); }
+const pl=$("planList"); if(pl){ new MutationObserver(injectGigs).observe(pl,{childList:true}); injectGigs();
+ pl.addEventListener("click",e=>{ const b=e.target.closest(".gig"); if(!b) return; e.stopPropagation(); const id=b.dataset.id, on=!gdone[id]; if(on) gdone[id]=1; else delete gdone[id]; lsSet("gigs",gdone); b.setAttribute("aria-pressed",String(on)); if(on) gtoast(b.querySelector("span").textContent); document.dispatchEvent(new Event("gigs")); }); }
+/* ---- 2) Eddies-Konto ---- */
+(function(){ const host=document.querySelector("#preise .box.hot"); if(!host) return; const TS="2026-11-21", TE="2026-11-29";
+ const box=document.createElement("div"); box.className="box konto"; box.id="konto";
+ box.innerHTML='<span class="label">Eddies-Konto · Ausgaben unterwegs</span><div class="kt-top"><div><small>BUDGET (€$)</small><input id="ktB" type="number" inputmode="numeric" min="0" aria-label="Budget"></div><div><small>KONTOSTAND</small><div id="ktR">–</div></div></div><div class="kt-bar"><i id="ktBar"></i><u id="ktPace"></u></div><div id="ktMsg"></div><form id="ktF" autocomplete="off"><input id="ktA" type="number" inputmode="decimal" min="0" step="any" placeholder="Betrag" aria-label="Betrag"><select id="ktC" aria-label="Währung"><option value="K">₩</option><option value="E">€</option><option value="J">¥</option></select><input id="ktT" type="text" placeholder="Wofür?" maxlength="40" aria-label="Wofür"><button type="submit" class="btn sm">Buchen</button></form><ul class="kt-l" id="ktL"></ul><p class="status">Gilt nur auf diesem Handy. Das Budget startet mit dem Mittel-Wert der Schätzung.</p>';
+ host.after(box);
+ let S=lsGet("konto",{b:3420,items:[]}); const B=$("ktB"); B.value=S.b;
+ const rate=c=>{ if(c==="E") return 1; const el=$(c==="K"?"rate":"rateJ"); return parseFloat(el&&el.value)||(c==="K"?1550:160); };
+ const fm=n=>Math.round(n).toLocaleString("de-AT");
+ const today=()=>typeof seoulDate==="function"?seoulDate():"";
+ function draw(){ const spent=S.items.reduce((t,x)=>t+x.eur,0), rest=S.b-spent; const r=$("ktR"); r.textContent="€$ "+fm(rest); r.classList.toggle("neg",rest<0);
+  $("ktBar").style.width=Math.max(0,Math.min(100,spent/(S.b||1)*100))+"%";
+  const td=today(); const dd=td<TS?0:td>TE?9:Math.round((Date.parse(td)-Date.parse(TS))/864e5)+1; $("ktPace").style.left=(dd/9*100)+"%";
+  let msg; if(td<TS) msg="ZIEL LÄUFT AB 21.11. · "+fm(S.b/9)+" €$ PRO TAG"; else { const allowed=S.b*dd/9; const left=Math.max(1,9-dd+1); msg=spent<=allowed?`IM PLAN · NOCH ${fm(Math.max(0,rest)/left)} €$ PRO TAG`:`DRÜBER · ${fm(spent-allowed)} €$ ÜBER PLAN, EIN TAG BREMSEN`; }
+  $("ktMsg").textContent=msg;
+  $("ktL").innerHTML=S.items.slice(-5).reverse().map(x=>`<li><span>${esc(x.t||"Ausgabe")}<br><small style="color:var(--muted)">${esc(x.o)}</small></span><span style="display:flex;gap:6px;align-items:center"><b>−${fm(x.eur)} €$</b><button type="button" data-d="${x.id}" aria-label="Löschen">×</button></span></li>`).join(""); }
+ B.addEventListener("input",()=>{ S.b=Math.max(0,parseFloat(B.value)||0); lsSet("konto",S); draw(); });
+ $("ktF").addEventListener("submit",e=>{ e.preventDefault(); const a=parseFloat($("ktA").value), c=$("ktC").value; if(!(a>0)) return; const eur=a/rate(c); S.items.push({id:Date.now(),eur,t:$("ktT").value.trim(),o:fm(a)+" "+({K:"₩",E:"€",J:"¥"}[c])}); lsSet("konto",S); $("ktA").value=""; $("ktT").value=""; draw(); });
+ $("ktL").addEventListener("click",e=>{ const b=e.target.closest("[data-d]"); if(!b) return; S.items=S.items.filter(x=>String(x.id)!==b.dataset.d); lsSet("konto",S); draw(); });
+ draw(); })();
+/* ---- 3) Netz-Karte ---- */
+(function(){ const h=document.querySelector("#praktisch .sh"); if(!h) return; const R=[["Flughafen Incheon",4,"Terminal-WLAN ist kostenlos"],["U-Bahn & Bahnhöfe",4,"Mobilfunk auch in den Tunneln"],["Hotel & Cafés",4,"WLAN fast überall, Passwort oft am Beleg"],["Märkte & Gassen",3,"Mobilfunk gut, öffentliches WLAN nur punktuell"],["Naksan & Stadtmauer",3,"Mobilfunk meist ok, WLAN fehlt"],["DMZ-Tour",2,"unterwegs lückenhaft, Bus-WLAN vorher klären"],["Fukuoka",3,"eSIM Korea & Japan ist eingeplant"]];
+ const box=document.createElement("div"); box.className="box net"; box.innerHTML='<span class="label">Netz-Karte · Empfang unterwegs</span>'+R.map(r=>`<div class="nr"><b>${r[0]}</b><div class="sg s${r[1]}" aria-label="Empfang ${r[1]} von 4"><i></i><i></i><i></i><i></i></div><small>${r[2]}</small></div>`).join("")+'<p class="status">Erfahrungswerte, nicht gemessen. Vor Ort mit der eSIM prüfen.</p>'; h.after(box); })();
+/* ---- 4) Dienstplan-Ticker ---- */
+(function(){ const wrap=document.querySelector(".wrap"); if(!wrap) return; const ev=[{t:Date.parse("2026-11-20T19:30:00+01:00"),l:"Boarding KE938 · VIE → ICN"}];
+ P.forEach(p=>p[3].forEach(it=>{ const m=it.replace(/^★\s*/,"").match(/^(?:Ca\.\s*)?(\d{1,2}):(\d{2})\s+(.+)/); if(m) ev.push({t:Date.parse(`${p[0]}T${m[1].padStart(2,"0")}:${m[2]}:00+09:00`),l:m[3].replace(/[,.].*$/,"").slice(0,48)}); }));
+ ev.sort((a,b)=>a.t-b.t);
+ const el=document.createElement("div"); el.className="tick"; el.setAttribute("aria-hidden","true"); wrap.insertBefore(el,wrap.firstChild);
+ const dur=ms=>{ const m=Math.round(ms/6e4); if(m<60) return m+" Min"; const h=Math.floor(m/60); if(h<36) return h+" Std "+(m%60)+" Min"; return Math.round(h/24)+" Tage"; };
+ const now=()=>{ const s=(typeof SIM!=="undefined"&&SIM)?SIM:""; return s?Date.parse(s+"T08:00:00+09:00")+(Date.now()%864e5):Date.now(); };
+ function paint(){ const n=now(), nx=ev.filter(e=>e.t>n); let items;
+  if(!nx.length) items=["<b>MISSION BEENDET</b> GAME CLEAR · ALLE LEVEL GESCHAFFT"]; else { items=nx.slice(0,3).map((e,i)=>`<b>${i?"DANACH":"NÄCHSTER AUFTRAG"}</b> ${esc(e.l)} · IN ${dur(e.t-n).toUpperCase()}`); }
+  const td=(typeof seoulDate==="function")?seoulDate():""; const day=P.find(p=>p[0]===td); if(day) items.unshift(`<b>HEUTE</b> ${esc(day[2].toUpperCase())}`);
+  const html=items.map(x=>`<span>${x}</span>`).join(""); el.innerHTML=`<div style="--tk:${Math.max(22,items.length*12)}s">${html}${html}</div>`; }
+ paint(); setInterval(paint,30000); })();
+/* ---- 5) Cyberpsychose-Meter ---- */
+(function(){ const h=$("hacks"); if(!h) return; const box=document.createElement("div"); box.className="cps"; box.setAttribute("aria-label","Cyberpsychose-Meter"); h.appendChild(box);
+ const cl=v=>Math.max(0,Math.min(1,v));
+ function paint(){ const d=new Date(), t=d.getHours()+d.getMinutes()/60; const last=[7.5,12.5,18.5].filter(x=>x<=t).pop(); const hun=cl(((last==null?t+24-18.5:t-last))/5.5);
+  const sch=t>=7?cl((t-7)/17):1; const rei=cl(.2+.55*Math.sin(Math.PI*cl((t-8)/15)));
+  const tot=Math.round((hun*.4+sch*.35+rei*.25)*100);
+  const msg=tot<35?"STABIL · alles im grünen Bereich":tot<60?"LEICHT REIZBAR · Snack in Reichweite halten":tot<80?"WARNUNG · Wasser trinken, 15 Minuten sitzen":"KRITISCH · setz dich hin, iss was, kein Streit um die Route";
+  box.classList.toggle("hot",tot>=60);
+  box.innerHTML=`<div class="ch"><small>CYBERPSYCHOSE</small><b>${tot} %</b></div><div class="ms"><div class="m"><small>HUNGER</small><i><u style="width:${hun*100}%"></u></i></div><div class="m"><small>SCHLAF</small><i><u style="width:${sch*100}%"></u></i></div><div class="m"><small>REIZ</small><i><u style="width:${rei*100}%"></u></i></div></div><p>${msg}</p>`; }
+ paint(); setInterval(paint,60000); })();
+/* ---- 6) Ripperdoc (Packliste) ---- */
+(function(){ const sec=$("packen"); if(!sec) return; const MAP=[[/pass|ausweis|ticket|karte|versicher|k-eta|papier/i,"ID-CHIP"],[/powerbank|akku|ladekabel|adapter|stecker/i,"BATTERIE-MOD"],[/handy|esim|sim|kopfh/i,"NEURAL-LINK"],[/switch|spiel|kamera/i,"OPTIK-MOD"],[/jacke|mütze|schal|handschuh|schuh|socken|pullover/i,"THERMO-SKIN"],[/medik|pflege|creme|zahn|kulturbeutel|pflaster/i,"MEDI-KIT"]];
+ const SL={"Papiere":"ID-SLOT","Technik":"CYBERWARE","Kleidung":"SKIN-LAYER","Kulturbeutel":"MEDI-KIT"};
+ sec.querySelectorAll(".pack li").forEach(li=>{ const sp=li.querySelector("label>span"); if(!sp||sp.querySelector(".rip")) return; const txt=sp.textContent; const box=li.closest(".box"); const lab=(box&&box.querySelector(".label")||{}).textContent||""; let slot=(MAP.find(m=>m[0].test(txt))||[])[1]; if(!slot) slot=SL[Object.keys(SL).find(k=>lab.startsWith(k))]||"IMPLANTAT";
+  const i=document.createElement("i"); i.className="rip"; i.textContent=slot; sp.insertBefore(i,sp.firstChild); });
+ const top=sec.querySelector(".box.pilt .label"); if(top&&!sec.querySelector(".rip-h")){ const p=document.createElement("div"); p.className="rip-h"; p.textContent="RIPPERDOC · JEDES TEIL IST EIN IMPLANTAT, ABHAKEN = INSTALLIERT"; top.after(p); } })();
+/* ---- 7) Kamera-HUD ---- */
+(function(){ const st=$("upStatus"); if(!st) return; const b=document.createElement("button"); b.type="button"; b.className="btn sm"; b.id="camBtn"; st.after(b);
+ const on=()=>document.body.classList.contains("camhud"); const sync=()=>{ b.textContent=on()?"Kamera-HUD aus":"Kamera-HUD an"; }; if(lsGet("camhud",false)) document.body.classList.add("camhud"); sync();
+ b.addEventListener("click",()=>{ document.body.classList.toggle("camhud"); lsSet("camhud",on()); sync(); }); })();
+/* ---- Ruf: Gigs einbeziehen ---- */
+document.addEventListener("gigs",()=>{ const c=document.querySelector(".cred"); if(c&&c.__r) c.__r(); });
 })();
 </script>
 </body></html>
