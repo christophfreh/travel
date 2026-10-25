@@ -1755,6 +1755,17 @@ html.night .sky .neons b{opacity:1}
 #games .grid2 .box::before,#games .grid2 .box::after{content:"";position:absolute;width:12px;height:12px;pointer-events:none;border:2px solid #E8C77A;opacity:.85}
 #games .grid2 .box::before{left:-1px;top:-1px;border-right:0;border-bottom:0}
 #games .grid2 .box::after{right:-1px;bottom:-1px;border-left:0;border-top:0}
+/* Hextech-Leitung */
+.hxl{position:fixed;left:2px;top:0;bottom:0;width:6px;z-index:22;pointer-events:none}
+.hxl .hx-t{position:absolute;left:2px;top:0;bottom:0;width:2px;background:rgba(232,199,122,.22)}
+.hxl .hx-f{position:absolute;left:1px;top:0;width:4px;height:0;background:linear-gradient(180deg,#3BB8FF,#9FF3FF 70%,#FF3E8A);box-shadow:0 0 8px #3BB8FF,0 0 16px rgba(59,184,255,.6);border-radius:2px}
+.hxl .hx-n{position:absolute;left:0;width:6px;height:6px;margin-top:-3px;background:#1b1238;border:1.5px solid rgba(232,199,122,.7);clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);transition:background .3s}
+.hxl .hx-n.on{background:#E8C77A;box-shadow:0 0 8px #E8C77A}
+@media (prefers-reduced-motion:no-preference){
+.hxl .hx-f::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(255,255,255,.85),transparent);background-size:100% 40px;animation:hxrun 2.4s linear infinite}
+@keyframes hxrun{from{background-position:0 -40px}to{background-position:0 120px}}
+}
+@media (max-height:520px){.hxl{display:none}}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -3610,6 +3621,19 @@ document.addEventListener("click",e=>{ const s=e.target.closest&&e.target.closes
    const secs=[...document.querySelectorAll("main section, .wrap > section, section")]; const cur=s.closest("section"); let nx=null; const i=secs.indexOf(cur); if(i>=0) nx=secs[i+1]; if(!cur||!nx){ nx=document.body; }
    setTimeout(()=>{ if(nx===document.body) window.scrollTo({top:0,behavior:reduce?"auto":"smooth"}); else nx.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"}); },380); }
  else { SFX.bump(); hit(s); } },true);
+})();
+</script>
+<script>
+/* Hextech-Leitung: Scroll-Fortschritt als leuchtende Leitung am linken Rand */
+(function(){
+const el=document.createElement("div"); el.className="hxl"; el.setAttribute("aria-hidden","true");
+el.innerHTML='<i class="hx-t"></i><i class="hx-f"></i>'; document.body.appendChild(el);
+const f=el.querySelector(".hx-f"); let nodes=[], H=1;
+function build(){ el.querySelectorAll(".hx-n").forEach(n=>n.remove()); nodes=[]; const d=document.documentElement; H=Math.max(1,d.scrollHeight-innerHeight);
+ document.querySelectorAll("main section[id], .wrap > section[id], section[id]").forEach(s=>{ if(s.closest("section.fold")&&s.closest("section.fold")!==s) return; const y=s.getBoundingClientRect().top+scrollY; const p=Math.min(1,Math.max(0,y/H)); const n=document.createElement("b"); n.className="hx-n"; n.style.top=(p*100)+"%"; n.dataset.p=p; el.appendChild(n); nodes.push(n); }); upd(); }
+function upd(){ const p=Math.min(1,Math.max(0,scrollY/H)); f.style.height=(p*100)+"%"; nodes.forEach(n=>n.classList.toggle("on",parseFloat(n.dataset.p)<=p+.002)); }
+let t=null; addEventListener("scroll",()=>{ if(t) return; t=requestAnimationFrame(()=>{ t=null; upd(); }); },{passive:true});
+addEventListener("resize",()=>setTimeout(build,200)); setTimeout(build,1500); setTimeout(build,5000); addEventListener("load",()=>setTimeout(build,800));
 })();
 </script>
 </body></html>
