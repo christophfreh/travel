@@ -779,6 +779,15 @@ radial-gradient(circle,#9FF3FF 0 2px,transparent 3px) right 2px bottom 2px/8px 8
 .boot::after{content:"BLA";position:absolute;right:8%;bottom:16%;font:400 clamp(24px,7vw,52px)/1 var(--f-sign);color:rgba(59,230,214,.07);transform:rotate(8deg);pointer-events:none}
 .arcane .graf{background:none}
 .arcane .ar-bla{position:absolute;right:16%;bottom:2px;font:400 22px/1 var(--f-sign);color:rgba(255,62,138,.12);transform:rotate(-8deg);pointer-events:none}
+.bt{position:relative}
+.brushx{position:absolute;left:50%;top:50%;width:min(70vw,420px);height:auto;transform:translate(-50%,-50%) rotate(-4deg);opacity:.5;pointer-events:none;z-index:-1;filter:drop-shadow(0 0 18px rgba(255,62,138,.45))}
+.arcane .brushx.mini{left:60%;width:90px;opacity:.16;z-index:0;filter:none}
+@media (prefers-reduced-motion:no-preference){.bt .brushx{animation:bx .6s .2s cubic-bezier(.2,.9,.3,1.3) both}@keyframes bx{from{transform:translate(-50%,-50%) rotate(-4deg) scale(1.6);opacity:0}to{opacity:.5}}}
+.flash{overflow:visible}
+.flash::after{width:38%}
+.flash figcaption{position:relative}
+.flash figcaption::after{content:"";position:absolute;right:6px;top:6px;width:90px;height:70px;pointer-events:none;opacity:.55;
+background:radial-gradient(circle at 20% 30%,rgba(255,62,138,.7) 0 4px,transparent 5px),radial-gradient(circle at 60% 20%,rgba(59,230,214,.6) 0 2.5px,transparent 3.5px),radial-gradient(circle at 75% 60%,rgba(252,238,10,.55) 0 3px,transparent 4px),radial-gradient(circle at 40% 70%,rgba(255,62,138,.5) 0 1.8px,transparent 2.8px),radial-gradient(circle at 88% 30%,rgba(59,184,255,.6) 0 1.5px,transparent 2.5px),radial-gradient(ellipse 30px 16px at 70% 75%,rgba(255,62,138,.18),transparent 70%),radial-gradient(ellipse 26px 14px at 30% 40%,rgba(59,230,214,.15),transparent 70%);filter:blur(.3px)}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -1168,6 +1177,7 @@ pflichtprogramm: <span class="n">null</span>,
 <text x="96" y="112" class="g-tag">MICHI + CHRISTOPH WAS HERE</text>
 <circle cx="84" cy="64" r="2.5" fill="#FF3E8A"/><circle cx="84" cy="64" r="1" fill="#FF3E8A" class="drip"/></svg>
 <svg class="bolt" viewBox="0 0 60 120" preserveAspectRatio="none"><path d="M34 0 L26 28 L36 34 L22 62 L32 66 L18 96 L28 100 L20 120" fill="none" stroke="#C9B8FF" stroke-width="2.2"/><path d="M34 0 L26 28 L36 34 L22 62 L32 66 L18 96 L28 100 L20 120" fill="none" stroke="#fff" stroke-width=".8"/><path d="M36 34 L46 44 M32 66 L42 74" fill="none" stroke="#C9B8FF" stroke-width="1"/></svg>
+<svg class="brushx mini" viewBox="0 0 200 240" aria-hidden="true"><defs><filter id="brush2" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035 .9" numOctaves="3" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="14"/></filter></defs><g filter="url(#brush2)" stroke="#FF3E8A" stroke-linecap="round" fill="none"><path d="M30 18 L172 226" stroke-width="30"/><path d="M168 14 L34 224" stroke-width="26"/><path d="M44 30 L160 210" stroke-width="6" stroke="#ff7ab0" opacity=".6"/></g><g fill="#FF3E8A"><circle cx="24" cy="40" r="3"/><circle cx="180" cy="200" r="4"/><circle cx="186" cy="30" r="2"/><circle cx="16" cy="210" r="2.5"/><circle cx="150" cy="236" r="2"/></g></svg>
 <span class="ar-bla">BLA BLA</span>
 <span class="ar-k">HEXTECH × ZAUN · ARCANE MODE</span>
 </div>
@@ -1892,7 +1902,7 @@ o.innerHTML=L.map(t=>`<p>${t}</p>`).join("")+"<small>TIPPEN ZUM ÜBERSPRINGEN</s
 const ps=[...o.querySelectorAll("p")]; let i=0, done=false;
 const end=()=>{if(done)return;done=true;o.classList.add("out");setTimeout(()=>o.remove(),480);};
 const team=()=>{ if(done) return;
-o.innerHTML=`<div class="bt"><p class="bt-h">&gt; SPIELER AUSGEWÄHLT</p><div class="bt-row">
+o.innerHTML=`<div class="bt"><svg class="brushx" viewBox="0 0 200 240" aria-hidden="true"><defs><filter id="brush" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035 .9" numOctaves="3" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="14"/></filter></defs><g filter="url(#brush)" stroke="#FF3E8A" stroke-linecap="round" fill="none"><path d="M30 18 L172 226" stroke-width="30"/><path d="M168 14 L34 224" stroke-width="26"/><path d="M44 30 L160 210" stroke-width="6" stroke="#ff7ab0" opacity=".6"/></g><g fill="#FF3E8A"><circle cx="24" cy="40" r="3"/><circle cx="180" cy="200" r="4"/><circle cx="186" cy="30" r="2"/><circle cx="16" cy="210" r="2.5"/><circle cx="150" cy="236" r="2"/></g></svg><p class="bt-h">&gt; SPIELER AUSGEWÄHLT</p><div class="bt-row">
 <div class="bt-c l"><div class="bt-av">C</div><b>CHRISTOPH</b><small>KLASSE: NETRUNNER</small><ul><li><span>PLANUNG</span><i style="--v:96%"></i></li><li><span>NEUGIER</span><i style="--v:100%"></i></li><li><span>NAVIGATION</span><i style="--v:82%"></i></li></ul></div>
 <div class="bt-vs"><svg viewBox="0 0 30 80" aria-hidden="true"><path d="M18 0 L10 26 L20 30 L8 56 L16 58 L10 80" fill="none" stroke="#C9B8FF" stroke-width="2.4"/><path d="M18 0 L10 26 L20 30 L8 56 L16 58 L10 80" fill="none" stroke="#fff" stroke-width=".9"/></svg><b>VS</b></div>
 <div class="bt-c r"><div class="bt-av">M</div><b>MICHI</b><small>KLASSE: GOURMET</small><ul><li><span>HUNGER</span><i style="--v:99%"></i></li><li><span>HUMOR</span><i style="--v:97%"></i></li><li><span>GRIMASSEN</span><i style="--v:100%"></i></li></ul></div>
