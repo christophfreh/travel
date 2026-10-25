@@ -17,6 +17,8 @@ export default async function middleware(request) {
   if (!pw) return new Response("SITE_PASSWORD fehlt", { status: 500 });
   const token = await tokenFor(pw);
   const url = new URL(request.url);
+  // PWA-Dateien ohne Login (enthalten nichts Privates)
+  if (url.pathname === "/manifest.webmanifest" || url.pathname.startsWith("/icons/")) return next();
 
   // login form submit
   if (url.pathname === "/__login" && request.method === "POST") {

@@ -1,4 +1,4 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>seoul, november</title>
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#0a0818"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Seoul"><meta name="robots" content="noindex,nofollow"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>seoul, november</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap">
@@ -778,6 +778,73 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 @keyframes brlr{to{transform:rotate(360deg)}}
 .gd-t{animation:gdt 2.4s steps(2) infinite}@keyframes gdt{50%{opacity:.25}}
 }
+.lvl{margin:14px 0 0;border:1px solid var(--neon);background:linear-gradient(110deg,rgba(255,62,138,.14),rgba(17,15,39,.9) 55%);padding:12px 14px;display:grid;gap:6px;clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%);box-shadow:0 0 18px rgba(255,62,138,.25)}
+.lvl-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.lvl-h b{font:400 clamp(20px,5.5vw,28px)/1 var(--f-sign);color:var(--cp);text-shadow:0 0 10px rgba(252,238,10,.5)}
+.lvl-h span{font:700 10px var(--f-mono);letter-spacing:.2em;color:var(--neon)}
+.lvl-bar{height:5px;background:rgba(255,255,255,.08)}.lvl-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--neon));box-shadow:0 0 8px var(--neon)}
+.lvl ul{list-style:none;margin:2px 0 0;padding:0;display:grid;gap:3px;font-size:13.5px;color:var(--ink)}
+.lvl li::before{content:"▸ ";color:var(--cyan)}
+.lvl .btn{justify-self:start;margin-top:4px}
+.say-l{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
+.say-l li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;padding:8px 10px;border:1px solid var(--line);background:rgba(17,15,39,.55)}
+.say-l .de{font-size:12.5px;color:var(--muted)}
+.say-l .ko{grid-column:1;font:700 17px/1.25 var(--f-body);color:var(--ink);cursor:pointer;background:none;border:0;padding:0;text-align:left}
+.say-l .rm{grid-column:1;font:400 10.5px var(--f-mono);color:var(--cyan);letter-spacing:.06em}
+.say-l .sp{grid-column:2;grid-row:1/4;width:42px;height:42px;border:1px solid var(--cyan);background:rgba(59,230,214,.08);color:var(--cyan);font-size:18px;cursor:pointer;clip-path:polygon(0 0,100% 0,100% 75%,75% 100%,0 100%)}
+.say-l .sp.on{background:var(--cyan);color:#110F27}
+.say-tabs{display:flex;gap:6px;margin-top:6px}
+.say-tabs button{font:700 11px var(--f-mono);letter-spacing:.12em;padding:6px 10px;border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer}
+.say-tabs button[aria-pressed="true"]{border-color:var(--neon);color:var(--ink);background:rgba(255,62,138,.12)}
+.say-big{position:fixed;inset:0;z-index:60;background:#0a0818;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center}
+.say-big b{font:700 clamp(40px,13vw,96px)/1.15 var(--f-body);color:#fff;text-shadow:0 0 24px rgba(255,62,138,.6);word-break:keep-all}
+.say-big small{font:400 13px var(--f-mono);color:var(--cyan);letter-spacing:.1em}
+.say-big span{font-size:14px;color:var(--muted)}
+.off-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.tro-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.tro-p{font:700 11px var(--f-mono);letter-spacing:.16em;color:var(--cp)}
+.tro-bar{height:6px;background:rgba(255,255,255,.08);margin:8px 0 12px}.tro-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cp),var(--neon));box-shadow:0 0 8px rgba(252,238,10,.5);transition:width .8s ease}
+.tro{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.tro button{position:relative;display:grid;grid-template-columns:34px minmax(0,1fr);gap:2px 8px;align-items:center;text-align:left;padding:8px 10px;border:1px solid var(--line);background:rgba(17,15,39,.6);color:var(--muted);cursor:pointer;font:inherit;min-height:56px}
+.tro button i{grid-row:1/3;width:34px;height:34px;display:grid;place-items:center;font:400 11px/1 var(--f-sign);white-space:nowrap;letter-spacing:-.02em;font-style:normal;border:1.5px solid currentColor;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);opacity:.5}
+.tro button b{font:600 12.5px/1.2 var(--f-body);color:var(--muted)}
+.tro button small{font:400 9.5px var(--f-mono);letter-spacing:.08em;color:rgba(255,255,255,.35)}
+.tro button.on{border-color:#C9A25A;background:linear-gradient(160deg,rgba(201,162,90,.16),rgba(17,15,39,.85));color:var(--cp);box-shadow:0 0 14px rgba(252,238,10,.18)}
+.tro button.on i{opacity:1;text-shadow:0 0 8px currentColor;box-shadow:inset 0 0 10px rgba(252,238,10,.4)}
+.tro button.on b{color:var(--ink)}.tro button.on small{color:var(--cyan)}
+.tro button.sure{border-color:var(--neon)}
+.toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:70;transform:translateX(-50%);display:flex;align-items:center;gap:10px;max-width:min(92vw,420px);padding:10px 16px 10px 10px;background:rgba(10,8,24,.95);border:1px solid #C9A25A;border-radius:40px;box-shadow:0 0 24px rgba(252,238,10,.3);pointer-events:none}
+.toast i{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#FCEE0A,#C9A25A);color:#110F27;font:400 15px var(--f-sign);font-style:normal}
+.toast span{display:flex;flex-direction:column;font-size:13px;line-height:1.3;color:var(--ink)}
+.toast span small{font:700 9px var(--f-mono);letter-spacing:.18em;color:var(--cp)}
+@media (prefers-reduced-motion:no-preference){.toast{animation:toast 4.2s ease both}@keyframes toast{0%{opacity:0;transform:translate(-50%,30px)}10%,85%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,10px)}}}
+.sky .wxc{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.sky.day::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(255,150,70,.18),rgba(255,120,60,.06) 55%,transparent);mix-blend-mode:screen}
+.sky .wxtag{position:absolute;right:10px;top:8px;z-index:3;font:700 8.5px var(--f-mono);letter-spacing:.2em;color:var(--cyan);opacity:.7}
+.cheat{position:fixed;inset:0;z-index:65;pointer-events:none;background:rgba(5,4,12,.55)}
+.cheat canvas{width:100%;height:100%;display:block}
+.cheat b{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);font:400 clamp(22px,7vw,44px)/1.2 var(--f-sign);color:var(--cyan);text-align:center;text-shadow:0 0 18px var(--cyan);white-space:nowrap}
+.cheat b small{display:block;font:700 11px var(--f-mono);letter-spacing:.24em;color:var(--cp)}
+.clear{margin:14px 0 0;padding:14px;border:1px solid var(--cp);background:linear-gradient(110deg,rgba(252,238,10,.10),rgba(17,15,39,.9) 60%);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.clear b{font:400 clamp(24px,7vw,34px)/1 var(--f-sign);color:var(--cp);text-shadow:0 0 14px rgba(252,238,10,.55)}
+.clear small{display:block;font:400 11px var(--f-mono);color:var(--muted);letter-spacing:.1em;margin-top:4px}
+.credits{position:fixed;inset:0;z-index:80;background:#05040c;overflow:hidden;color:#E9E6FF}
+.credits .cr-x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:14px;z-index:2;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:rgba(17,15,39,.8);color:var(--ink);cursor:pointer}
+.cr-roll{position:absolute;left:0;right:0;top:100%;display:flex;flex-direction:column;align-items:center;gap:26px;padding:0 20px 60px;text-align:center}
+.cr-roll h2{font:400 clamp(40px,12vw,84px)/1 var(--f-sign);margin:0;color:#fff;text-shadow:0 0 22px rgba(255,62,138,.6)}
+.cr-roll h2 em{color:var(--cp);font-style:italic}
+.cr-sub{font:400 12px var(--f-mono);letter-spacing:.24em;color:var(--cyan)}
+.cr-stats{display:grid;grid-template-columns:repeat(2,minmax(0,140px));gap:10px}
+.cr-stats div{border:1px solid var(--line);padding:10px}.cr-stats b{display:block;font:400 30px/1 var(--f-sign);color:var(--cp)}.cr-stats span{font:400 10px var(--f-mono);letter-spacing:.14em;color:var(--muted)}
+.cr-l{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;max-width:520px;width:100%}
+.cr-l dt{text-align:right;font:400 11px var(--f-mono);letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.cr-l dd{margin:0;text-align:left;font-size:15px}
+.cr-ph{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:560px}
+.cr-ph img{width:120px;height:120px;object-fit:cover;border:5px solid #f4f1ea;border-bottom-width:18px;transform:rotate(var(--r));box-shadow:0 8px 20px rgba(0,0,0,.6)}
+.cr-end{font:400 clamp(26px,8vw,48px)/1.1 var(--f-sign);color:var(--cp)}
+.cr-cont{font:700 13px var(--f-mono);letter-spacing:.24em;color:var(--neon)}
+@media (prefers-reduced-motion:no-preference){.credits.run .cr-roll{animation:roll var(--dur,60s) linear forwards}@keyframes roll{to{transform:translateY(calc(-100% - 100vh))}}}
+@media (prefers-reduced-motion:reduce){.credits{overflow:auto}.cr-roll{position:static;padding-top:80px}}
 .mx{height:84px;margin:-26px 0;opacity:.8}
 .mx canvas{opacity:1;mix-blend-mode:normal}
 .mx span{padding:4px 10px;background:rgba(17,15,39,.72);color:var(--cyan);letter-spacing:.14em;box-shadow:0 0 0 1px rgba(59,230,214,.25)}
@@ -1146,6 +1213,8 @@ background:radial-gradient(70% 60% at 50% 30%,#ffcf7a,#f39a3a 35%,#c2571c 70%,#5
 <div class="stat st-wx"><span class="label">Jetzt in Seoul</span><div class="st-row"><b id="heroTemp">–</b><span class="wx-ico" id="heroIco" aria-hidden="true"></span></div><small id="heroPhrase">Wetter lädt</small></div>
 <div class="stat st-tz"><span class="label">Zeitsprung</span><b>+8 h</b><div class="tz" aria-label="Uhrzeit Wien und Seoul"><span><i>VIE</i><em id="tzV">--:--</em></span><span class="tz-ar">→</span><span><i>SEL</i><em id="tzS">--:--</em></span></div></div>
 </div>
+<div class="lvl" id="lvl" hidden></div>
+<div class="clear" id="clear" hidden><div><b>GAME CLEAR</b><small>9 Tage · Seoul & Fukuoka · alle Level geschafft</small></div><button type="button" class="btn" id="clearGo">Abspann ▶</button></div>
 <div class="cd" id="cd"><span class="label"><span>Boarding-Countdown · KE938 · VIE → ICN</span><span>Fr 20.11. · 19:30</span></span><div class="cd-grid"><div class="cd-u"><b class="flap" id="cdD"><span>-</span><span>-</span></b><i class="cd-bar" id="cdDb"></i><small>Tage</small></div><div class="cd-u"><b class="flap" id="cdH"><span>-</span><span>-</span></b><i class="cd-bar" id="cdHb"></i><small>Std</small></div><div class="cd-u"><b class="flap" id="cdM"><span>-</span><span>-</span></b><i class="cd-bar" id="cdMb"></i><small>Min</small></div><div class="cd-u"><b class="flap" id="cdS"><span>-</span><span>-</span></b><i class="cd-bar" id="cdSb"></i><small>Sek</small></div></div><div class="cd-msg" id="cdMsg">&gt; Abflug Wien-Schwechat, Terminal 3</div></div>
 <div class="bridge" aria-hidden="true">
 <div class="mon c"><svg viewBox="0 0 80 48"><circle cx="40" cy="24" r="18"/><circle cx="40" cy="24" r="9"/><path d="M22 24h36M40 6v36"/><g class="sweep"><path d="M40 24 L40 6 A18 18 0 0 1 55.6 15z" class="fill"/></g><circle cx="49" cy="17" r="2" class="dot"/></svg><span>SEL 37.5N</span></div>
@@ -1278,6 +1347,9 @@ pflichtprogramm: <span class="n">null</span>,
 <figure class="flash"><img src="fotos/8-gasse.jpg" alt="Erinnerungsfoto aus Japan 2017" loading="lazy"><figcaption><span class="fl-k">▶ FLASHBACK · <b>JAPAN 2017</b></span>Mittendrin im Gewusel. Seoul wird nicht leerer, wir auch nicht ruhiger.</figcaption></figure>
 <p class="sub">Kurze Reiseberichte im Voraus: so fühlen sich die wichtigsten Stationen an.</p>
 <div class="log"><article class="log-e"><span class="log-h">LOG 01 · <b>Euljiro</b> · Sa 21.11.</span><h3>Ankommen im Neon</h3><p>Elf Stunden Flug, eine Stunde Taxi, dann die erste Gasse in Euljiro: Metallhocker auf dem Gehsteig, der Grill zischt, jemand schenkt Soju ein, ohne zu fragen. Zurück im Hotel läuft Orbitals, länger als bis zehn hält keiner durch.</p><span class="log-t">ca. 19:00</span></article><article class="log-e"><span class="log-h">LOG 02 · <b>Gyeongbokgung</b> · Mo 23.11.</span><h3>Palast im kalten Licht</h3><p>Klare Novemberluft, die Dächer gegen den Bugaksan, um 10 Uhr ziehen die Wachen in Rot und Blau auf. Danach Gwangjang Market: Bindaetteok frisch aus dem Öl, Yukhoe mit Birne, Plastikschürzen und Dampf überall.</p><span class="log-t">Vormittag</span></article><article class="log-e"><span class="log-h">LOG 03 · <b>Nogari-Gasse</b> · Mo 23.11.</span><h3>Bier aus Plastikbechern</h3><p>In der Nogari-Gasse sitzt halb Seoul nach Feierabend draußen, Heizstrahler an, getrockneter Pollack mit Mayo und Chili. Zwei Treppen höher eine Plattenbar, in der der Barkeeper die Musik nach unseren Gesichtern auswählt.</p><span class="log-t">Abend</span></article><article class="log-e jp"><span class="log-h">LOG 04 · <b>Fukuoka</b> · Di–Mi</span><h3>Ramen um Mitternacht</h3><p>Landung mitten in der Stadt, eine halbe Stunde später steht die erste Schüssel Tonkotsu auf dem Tresen. Am nächsten Abend Yatai am Fluss: acht Plätze, ein Koch, Oden aus dem Topf, der Nachbar erklärt uns die Karte auf Englisch und Japanisch gleichzeitig.</p><span class="log-t">24.–25.11.</span></article><article class="log-e jp"><span class="log-h">LOG 05 · <b>Hakata</b> · Mi 25.11.</span><h3>Nintendo zum Anfassen</h3><p>Achter Stock über dem Bahnhof: Mario in Lebensgröße, Anspiel-Stationen, Fukuoka-Editionen, die es sonst nirgends gibt. Gleich nebenan in der Hakata Marui das Pokémon Center, der Einkaufszettel für Martin wird schnell abgehakt.</p><span class="log-t">Mittag</span></article><article class="log-e"><span class="log-h">LOG 06 · <b>Seoul Station</b> · Do 26.11.</span><h3>Kunst im alten Bahnhof</h3><p>Unfold X, wenn es wie geplant am 26.11. startet: Medienkunst in der Kuppelhalle des alten Bahnhofs von 1925, Licht und Sound, wo früher Züge abgefertigt wurden. Danach Füße hoch, abends Cocktails in Hannam.</p><span class="log-t">Nachmittag</span></article><article class="log-e"><span class="log-h">LOG 07 · <b>Jamsil</b> · Fr 27.11.</span><h3>123 Stockwerke über der Stadt</h3><p>Bus von der DMZ zurück, durchatmen, dann rauf auf den Lotte World Tower, wenn die Sonne untergeht und Seoul Stück für Stück anknipst. Hanwoo im Turm, danach Kino im Superplex. Alles im selben Gebäude.</p><span class="log-t">Abend</span></article><article class="log-e"><span class="log-h">LOG 08 · <b>Suwon</b> · Sa 28.11.</span><h3>Technik von Edison bis heute</h3><p>Im Samsung Innovation Museum stehen Röhrenradios neben faltbaren Displays, ein Rundgang durch hundert Jahre Elektronik. Mittags Suwon-Galbi, groß wie ein Teller, und ein kurzer Blick auf die Festungsmauer.</p><span class="log-t">Tag</span></article></div>
+<div class="box" id="troBox"><div class="tro-top"><span class="label">Trophäen · gemeinsam</span><div class="seg" role="radiogroup" aria-label="Wer schaltet frei?"><input type="radio" name="trowho" id="trC" value="Christoph"><label for="trC">Christoph</label><input type="radio" name="trowho" id="trM" value="Michi"><label for="trM">Michi</label></div></div>
+<p>Antippen schaltet frei, beide sehen es. Nochmal zweimal tippen nimmt es zurück.</p>
+<span class="tro-p" id="troP">0 / 0</span><div class="tro-bar"><i id="troBar"></i></div><div class="tro" id="tro"></div></div>
 </section>
 <section id="fotos">
 <div class="sh"><span class="n">05</span><h2>Unsere Fotos</h2><svg class="doodle" viewBox="0 0 60 36" aria-hidden="true"><g filter="url(#spray)" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8 l10 10 M16 8 l-10 10" stroke="#3BE6D6"/><path d="M26 28 l6 -16 l6 16 l-16 -10 h20z" stroke="#FF3E8A"/></g></svg><span class="ko">사진</span></div>
@@ -1695,6 +1767,11 @@ pflichtprogramm: <span class="n">null</span>,
 <div class="conv"><label for="rate">₩ für 1 €<input id="rate" type="number" inputmode="decimal" value="1550" min="1"></label><label for="rateJ">¥ für 1 €<input id="rateJ" type="number" inputmode="decimal" value="170" min="1"></label></div>
 </details>
 </div>
+<div class="box" id="say"><span class="label">Sprachmodul · zum Vorspielen</span><p>Auf 🔊 tippen, dann spricht das Handy. Auf den Text tippen, dann wird er riesig, zum Herzeigen.</p>
+<div class="say-tabs" role="group" aria-label="Sprache"><button type="button" data-l="ko" aria-pressed="true">한국어 Korea</button><button type="button" data-l="ja" aria-pressed="false">日本語 Fukuoka</button></div>
+<ul class="say-l" id="sayL"></ul></div>
+<div class="box" id="offBox"><span class="label">Offline-Modus</span><b>Als App aufs Handy</b><p>iPhone: Safari → Teilen → „Zum Home-Bildschirm“. Android: Chrome-Menü → „App installieren“. Dann einmal unten tippen, damit Fotos und Bilder für den Flugmodus gespeichert werden.</p>
+<div class="off-row"><button type="button" class="btn" id="offBtn">Alles offline speichern</button><span class="status" id="offStatus">…</span></div></div>
 <div class="facts">
 <div class="box"><span class="label">Vom Flughafen</span><b>AREX</b><p>Express zur Seoul Station, rund 45 Minuten. Dort weiter mit Linie 1 oder 4.</p></div>
 <div class="box"><span class="label">Unterwegs</span><b>T-money-Karte</b><p>Im Convenience Store kaufen und bar aufladen. Gilt für U-Bahn, Bus und viele Taxis.</p></div>
@@ -1730,7 +1807,8 @@ const PLAN = [
 ["2026-11-29","So","Abreise",["Ca. 8:30 Taxi nach Incheon","12:05 Abflug KE937, 17:10 in Wien"]]
 ];
 const $ = id => document.getElementById(id);
-const seoulDate = () => new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Seoul"}).format(new Date());
+const SIM = (new URLSearchParams(location.search).get("sim")||"").match(/^\d{4}-\d{2}-\d{2}$/)?.[0] || "";
+const seoulDate = () => SIM || new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Seoul"}).format(new Date());
 let fcByDate = {};
 function tick(){
 const t = new Intl.DateTimeFormat("de-AT",{timeZone:"Asia/Seoul",hour:"2-digit",minute:"2-digit"}).format(new Date());
@@ -2410,6 +2488,159 @@ document.addEventListener("click",e=>{const q=e.target.closest(".pxd .q"); if(!q
 q.classList.remove("bump"); void q.getBoundingClientRect(); q.classList.add("bump"); if(pop){pop.classList.remove("go"); void pop.offsetWidth; pop.classList.add("go");}});
 const f=document.querySelector("footer"); if(f){const r=document.createElement("div"); r.className="pxfoot"; r.setAttribute("aria-hidden","true");
 r.innerHTML=["brick","brick","q","brick","coin","pipe"].map(k=>svg(k,col[k])).join(""); f.insertBefore(r,f.firstChild);}
+})();
+// ---------- PWA: offline ----------
+(function(){
+const box=document.getElementById("offBox"); if(!box) return;
+const st=document.getElementById("offStatus"), btn=document.getElementById("offBtn");
+if(!LIVE||!("serviceWorker" in navigator)){ st.textContent="Offline-Modus gibt es nur auf seoul.staycurious.art (nicht in dieser Vorschau)."; btn.hidden=true; return; }
+navigator.serviceWorker.register("/sw.js").then(()=>{ st.textContent="Bereit. Die Seite ist nach dem ersten Laden auch ohne Netz da."; }).catch(()=>{ st.textContent="Offline-Modus konnte nicht starten."; btn.hidden=true; });
+navigator.serviceWorker.addEventListener("message",e=>{ if(e.data&&e.data.type==="precached"){ st.textContent=`Gespeichert: ${e.data.ok} von ${e.data.total} Dateien. Funktioniert jetzt auch im Flugmodus.`; btn.disabled=false; }});
+btn.addEventListener("click",async()=>{
+const reg=await navigator.serviceWorker.ready; btn.disabled=true; st.textContent="Speichere Seite, Fotos und Schriften …";
+const urls=new Set([location.origin+"/", location.origin+"/api/photos", location.origin+"/api/rates"]);
+document.querySelectorAll("img").forEach(i=>{ const s=i.currentSrc||i.src; if(s&&!s.startsWith("data:")) urls.add(s); });
+document.querySelectorAll("[style*='--bg']").forEach(el=>{ const m=el.getAttribute("style").match(/url\('([^']+)'\)/); if(m) urls.add(m[1]); });
+document.querySelectorAll(".g-it").forEach(b=>{ if(b.dataset.src) urls.add(b.dataset.src); });
+document.querySelectorAll('link[rel="stylesheet"]').forEach(l=>urls.add(l.href));
+(reg.active||navigator.serviceWorker.controller).postMessage({type:"precache",urls:[...urls]});
+});
+const on=()=>{ document.body.classList.toggle("offline",!navigator.onLine); }; addEventListener("online",on); addEventListener("offline",on); on();
+})();
+// ---------- Sprachmodul: vorlesen + groß zeigen ----------
+(function(){
+const box=document.getElementById("say"); if(!box) return;
+const L={ko:[
+["Hallo","안녕하세요","annyeong-haseyo"],["Danke","감사합니다","gamsa-hamnida"],["Zwei Bier, bitte","맥주 두 병 주세요","maekju du byeong juseyo"],
+["Eine Flasche Soju, bitte","소주 한 병 주세요","soju han byeong juseyo"],["Das hier, bitte","이거 주세요","igeo juseyo"],["Bitte nicht scharf","안 맵게 해 주세요","an maepge hae juseyo"],
+["Prost!","건배!","geonbae!"],["Sehr lecker!","정말 맛있어요!","jeongmal masisseoyo!"],["Die Rechnung, bitte","계산해 주세요","gyesanhae juseyo"],
+["Geht Karte?","카드 돼요?","kadeu dwaeyo?"],["Bitte hierhin (Taxi)","여기로 가 주세요","yeogiro ga juseyo"],["Wo ist die Toilette?","화장실 어디예요?","hwajangsil eodiyeyo?"]],
+ja:[["Hallo","こんにちは","konnichiwa"],["Danke","ありがとうございます","arigatō gozaimasu"],["Zwei Bier, bitte","ビールを二つください","bīru o futatsu kudasai"],
+["Prost!","乾杯！","kanpai!"],["Sehr lecker!","とてもおいしいです","totemo oishii desu"],["Die Rechnung, bitte","お会計お願いします","okaikei onegaishimasu"],["Geht Karte?","カード使えますか？","kādo tsukaemasu ka?"]]};
+const LANG={ko:"ko-KR",ja:"ja-JP"}; let cur="ko";
+const ul=document.getElementById("sayL"), tts="speechSynthesis" in window;
+const draw=()=>{ ul.innerHTML=L[cur].map(([de,t,r],i)=>`<li><span class="de">${de}</span><button type="button" class="ko" data-i="${i}" lang="${cur}" title="Groß anzeigen">${t}</button><span class="rm">${r}</span>${tts?`<button type="button" class="sp" data-i="${i}" aria-label="Vorlesen: ${de}">🔊</button>`:""}</li>`).join(""); };
+draw();
+box.querySelectorAll(".say-tabs button").forEach(b=>b.addEventListener("click",()=>{ cur=b.dataset.l; box.querySelectorAll(".say-tabs button").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); draw(); }));
+function speak(txt,btn){ if(!tts) return; speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(txt); u.lang=LANG[cur]; u.rate=.85;
+const v=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.replace("_","-").startsWith(LANG[cur].slice(0,2))); if(v) u.voice=v;
+if(btn){ btn.classList.add("on"); u.onend=u.onerror=()=>btn.classList.remove("on"); } speechSynthesis.speak(u); }
+if(tts) speechSynthesis.getVoices();
+ul.addEventListener("click",e=>{ const sp=e.target.closest(".sp"), ko=e.target.closest(".ko"); if(!sp&&!ko) return; const [de,t,r]=L[cur][+(sp||ko).dataset.i];
+if(sp){ speak(t,sp); return; }
+const o=document.createElement("div"); o.className="say-big"; o.innerHTML=`<b lang="${cur}">${t}</b><small>${r}</small><span>${de} · Tippen zum Schließen</span>`;
+o.addEventListener("click",()=>o.remove()); document.body.appendChild(o); speak(t); });
+})();
+// ---------- Heute-Modus / Game Clear ----------
+(function(){
+const d=seoulDate(), lvl=$("lvl"), clr=$("clear"); if(!lvl||!clr) return;
+const i=PLAN.findIndex(p=>p[0]===d);
+if(d>=TRIP_START&&d<=TRIP_END&&i>=0){
+const [day,wd,title,items]=PLAN[i];
+lvl.innerHTML=`<div class="lvl-h"><span>LEVEL ${i+1} / ${PLAN.length}</span><b>${title}</b><span>${wd} ${+day.slice(8)}.11.</span></div><div class="lvl-bar"><i style="width:${Math.round((i+1)/PLAN.length*100)}%"></i></div><ul>${items.slice(0,4).map(t=>`<li>${t.replace(/^★\s*/,"")}</li>`).join("")}</ul><a class="btn" href="#plan" id="lvlGo">Zum Tagesplan ▸</a>`;
+lvl.hidden=false;
+$("lvlGo").addEventListener("click",e=>{ const r=document.querySelector("#planList .row.today"); if(r){ e.preventDefault(); r.scrollIntoView({behavior:"smooth",block:"center"}); }});
+}
+const h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Seoul",hour:"2-digit",hourCycle:"h23"}).format(new Date());
+if(d>TRIP_END||(d===TRIP_END&&h>=12&&!SIM)){ clr.hidden=false; }
+})();
+// ---------- Abspann ----------
+function credits(){
+const nGal=document.querySelectorAll("#gallery .g-it").length, n17=document.querySelectorAll("#polas .pola").length;
+const tro=window.__tro?window.__tro():{n:0,t:0};
+const imgs=[...document.querySelectorAll("#gallery .g-it img, #polas .pola img")].slice(0,10).map((im,k)=>`<img src="${im.currentSrc||im.src}" alt="" style="--r:${(k%2?1:-1)*(2+k%3)}deg">`).join("");
+const o=document.createElement("div"); o.className="credits"; o.setAttribute("role","dialog"); o.setAttribute("aria-label","Abspann");
+o.innerHTML=`<button type="button" class="cr-x" aria-label="Schließen">✕</button><div class="cr-roll">
+<p class="cr-sub">EIN FILM VON CHRISTOPH & MICHI</p><h2>seoul, <em>november.</em></h2><p class="cr-sub">21. – 29. NOVEMBER 2026</p>
+<div class="cr-stats"><div><b>9</b><span>TAGE</span></div><div><b>2</b><span>LÄNDER</span></div><div><b>${nGal}</b><span>FOTOS HOCHGELADEN</span></div><div><b>${tro.n}/${tro.t}</b><span>TROPHÄEN</span></div></div>
+<dl class="cr-l"><dt>Hauptrolle</dt><dd>Christoph</dd><dt>Hauptrolle</dt><dd>Michi</dd><dt>Reiseleitung</dt><dd>Christoph</dd><dt>Verpflegung</dt><dd>Michi</dd><dt>Grimassen</dt><dd>Michi</dd><dt>Navigation</dt><dd>Naver Map & viel Gefühl</dd><dt>Spezialeffekte</dt><dd>Soju</dd><dt>Bonuslevel</dt><dd>Fukuoka</dd><dt>Kulisse</dt><dd>Seoul bei Nacht</dd><dt>Gastauftritt</dt><dd>die DMZ im Nebel</dd><dt>Konsole</dt><dd>Switch 2</dd><dt>Vorgeschichte</dt><dd>Japan 2017 · ${n17} Fotos</dd></dl>
+<div class="cr-ph">${imgs}</div>
+<p class="cr-sub">KEIN TIER UND KEIN FREUND WURDE BEI DIESER REISE ZURÜCKGELASSEN.</p>
+<div class="cr-fin"><p class="cr-end">Fortsetzung folgt …?</p><p class="cr-cont" id="crCont">CONTINUE? 9</p></div></div>`;
+document.body.appendChild(o); document.body.style.overflow="hidden";
+const close=()=>{ o.remove(); document.body.style.overflow=""; clearInterval(ci); };
+o.querySelector(".cr-x").addEventListener("click",close); addEventListener("keydown",function k(e){ if(e.key==="Escape"){ close(); removeEventListener("keydown",k);} });
+let ci=0; const cont=()=>{ let n=9; const c=o.querySelector("#crCont"); ci=setInterval(()=>{ n--; c.textContent=n>0?`CONTINUE? ${n}`:"NEUES SPIEL: NÄCHSTES ZIEL ___ 20XX"; if(n<=0) clearInterval(ci); },1000); };
+const roll=o.querySelector(".cr-roll"), fin=o.querySelector(".cr-fin");
+if(matchMedia("(prefers-reduced-motion: reduce)").matches){ cont(); return; }
+requestAnimationFrame(()=>{ const to=-(innerHeight/2+fin.offsetTop+fin.offsetHeight/2); const dur=Math.max(20000,Math.abs(to)/45*1000);
+const a=roll.animate([{transform:"translateY(0)"},{transform:`translateY(${to}px)`}],{duration:dur,easing:"linear",fill:"forwards"}); a.onfinish=cont; o.addEventListener("click",e=>{ if(e.target===o||e.target.closest(".cr-roll")) a.playbackRate=a.playbackRate===1?4:1; }); });
+}
+(function(){ const b=document.getElementById("clearGo"); if(b) b.addEventListener("click",credits); })();
+// ---------- Trophäen ----------
+(function(){
+const T=[["soju","소주","Erste Flasche Soju"],["chimaek","치맥","Chimaek-Abend"],["hanwoo","한우","Hanwoo gegessen"],["bindae","전","Gwangjang: Bindaetteok"],
+["makgeolli","막걸","Makgeolli probiert"],["nogari","노가","Nogari-Gasse überlebt"],["jjimjil","찜질","Im Jjimjilbang geschwitzt"],["robot","로봇","Roboter getroffen"],
+["palast","궁","Gyeongbokgung gesehen"],["sky","123","Seoul Sky, 123. Stock"],["dmz","2049","An der Grenze (DMZ)"],["ramen","屋台","Yatai-Ramen in Fukuoka"],
+["nintendo","任","Nintendo-Store geplündert"],["samsung","삼성","Samsung Museum"],["orbitals","2P","Orbitals-Abend auf der Switch 2"],["schritte","20K","20.000 Schritte an einem Tag"],
+["foto","사진","Erstes Foto hochgeladen"],["verloren","GPS","Niemand ist verloren gegangen"]];
+const grid=$("tro"); if(!grid) return;
+let data={}; const KEY="ach", SEEN="ach_seen";
+const ls=(k,v)=>{ try{ if(v===undefined) return JSON.parse(localStorage.getItem(k)||"null"); localStorage.setItem(k,JSON.stringify(v)); }catch(e){ return null; } };
+const who=()=>{ try{ return localStorage.getItem("who")||""; }catch(e){ return ""; } };
+const seg=document.querySelectorAll('input[name="trowho"]');
+seg.forEach(r=>{ if(r.value===(who()||"Christoph")) r.checked=true; r.addEventListener("change",()=>{ try{ localStorage.setItem("who",r.value); }catch(e){} }); });
+const fmt=ts=>new Intl.DateTimeFormat("de-AT",{day:"numeric",month:"numeric"}).format(new Date(ts));
+function draw(){ const n=T.filter(t=>data[t[0]]).length;
+grid.innerHTML=T.map(([id,ic,name])=>{ const d=data[id]; return `<button type="button" data-id="${id}" class="${d?"on":""}" aria-pressed="${!!d}"><i>${ic}</i><b>${name}</b><small>${d?`${d.by} · ${fmt(d.ts)}`:"gesperrt"}</small></button>`; }).join("");
+$("troP").textContent=`${n} / ${T.length} · ${Math.round(n/T.length*100)} %`; $("troBar").style.width=(n/T.length*100)+"%"; }
+window.__tro=()=>({n:T.filter(t=>data[t[0]]).length,t:T.length});
+function toast(id,by){ const t=T.find(x=>x[0]===id); if(!t) return; document.querySelectorAll(".toast").forEach(x=>x.remove());
+const o=document.createElement("div"); o.className="toast"; o.setAttribute("role","status"); o.innerHTML=`<i>${t[1]}</i><span><small>TROPHÄE FREIGESCHALTET</small>${t[2]} · ${by}</span>`; document.body.appendChild(o); setTimeout(()=>o.remove(),4400); }
+async function load(first){
+if(LIVE){ try{ const r=await fetch("/api/achievements",{cache:"no-store"}); if(r.ok){ const j=await r.json(); if(j&&!j.offline) data=j; } }catch(e){} }
+else data=ls(KEY)||{};
+const seen=ls(SEEN)||[]; const fresh=Object.keys(data).filter(k=>!seen.includes(k));
+if(!first) fresh.filter(k=>data[k].by!==who()).slice(-1).forEach(k=>toast(k,data[k].by));
+ls(SEEN,Object.keys(data)); draw(); }
+async function save(id,undo){ const by=[...seg].find(r=>r.checked)?.value||"Christoph";
+if(undo) delete data[id]; else data[id]={by,ts:Date.now()}; draw(); if(!undo) toast(id,by); ls(SEEN,Object.keys(data));
+if(LIVE){ try{ const r=await fetch("/api/achievements",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id,by,undo:!!undo})}); if(r.ok){ data=await r.json(); draw(); } }catch(e){} }
+else ls(KEY,data); }
+grid.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; const id=b.dataset.id;
+if(!data[id]){ save(id,false); return; }
+if(b.classList.contains("sure")){ save(id,true); return; }
+b.classList.add("sure"); b.querySelector("small").textContent="nochmal tippen = zurücknehmen"; setTimeout(()=>{ if(b.isConnected) draw(); },2600); });
+load(true); if(LIVE) setInterval(()=>{ if(!document.hidden) load(false); },60000);
+})();
+// ---------- Wetter in der Skyline ----------
+(function(){
+const sky=$("sky"); if(!sky) return;
+const ph=$("heroPhrase"); const q=new URLSearchParams(location.search).get("wx");
+const h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Seoul",hour:"2-digit",hourCycle:"h23"}).format(new Date());
+const setDay=()=>sky.classList.toggle("day",q==="day"||(!q&&h>=7&&h<17)); setDay();
+const tag=document.createElement("span"); tag.className="wxtag"; sky.appendChild(tag);
+const cv=document.createElement("canvas"); cv.className="wxc"; sky.appendChild(cv); const g=cv.getContext("2d");
+let mode="", P=[], raf=0; const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function size(){ const d=Math.min(2,devicePixelRatio||1); cv.width=cv.clientWidth*d; cv.height=cv.clientHeight*d; g.setTransform(d,0,0,d,0,0); }
+function start(m){ if(m===mode) return; mode=m; cancelAnimationFrame(raf); size(); g.clearRect(0,0,cv.width,cv.height);
+tag.textContent=m==="rain"?"SEOUL · REGEN LIVE":m==="snow"?"SEOUL · SCHNEE LIVE":"";
+if(!m) return; const W=cv.clientWidth,H=cv.clientHeight, N=m==="rain"?Math.round(W/9):Math.round(W/14);
+P=Array.from({length:N},()=>({x:Math.random()*W,y:Math.random()*H,v:m==="rain"?2.2+Math.random()*2:.25+Math.random()*.35,s:Math.random()}));
+const draw=()=>{ g.clearRect(0,0,W,H);
+P.forEach(p=>{ if(m==="rain"){ g.strokeStyle=`rgba(${p.s>.7?"255,62,138":"159,243,255"},${.25+p.s*.35})`; g.lineWidth=1; g.beginPath(); g.moveTo(p.x,p.y); g.lineTo(p.x-1.5,p.y+7+p.s*5); g.stroke(); p.y+=p.v; p.x-=.4; }
+else { g.fillStyle=`rgba(240,245,255,${.45+p.s*.4})`; g.beginPath(); g.arc(p.x,p.y,.8+p.s*1.2,0,6.3); g.fill(); p.y+=p.v; p.x+=Math.sin((p.y+p.s*50)/18)*.25; }
+if(p.y>H){ p.y=-10; p.x=Math.random()*W; } });
+if(!reduce) raf=requestAnimationFrame(draw); };
+draw(); }
+const pick=()=>{ const t=(q||ph.textContent||"").toLowerCase(); start(/schnee|snow/.test(t)?"snow":/regen|schauer|gewitter|niesel|rain/.test(t)?"rain":""); };
+pick(); new MutationObserver(pick).observe(ph,{childList:true,characterData:true,subtree:true});
+addEventListener("resize",()=>{ const m=mode; mode=""; start(m); });
+document.addEventListener("visibilitychange",()=>{ if(document.hidden) cancelAnimationFrame(raf); else { const m=mode; mode=""; start(m); } });
+})();
+// ---------- Cheat-Code ----------
+(function(){
+let taps=[], keys=[]; const K=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+function fire(){ if(document.querySelector(".cheat")) return; const o=document.createElement("div"); o.className="cheat"; o.setAttribute("aria-hidden","true");
+o.innerHTML='<canvas></canvas><b><small>CHEAT AKTIVIERT</small>UNENDLICH SOJU</b>'; document.body.appendChild(o);
+const c=o.querySelector("canvas"), g=c.getContext("2d"), W=c.width=innerWidth, H=c.height=innerHeight, FS=16, cols=Array.from({length:Math.ceil(W/FS)},()=>Math.random()*-40);
+const CH="소주서울アイウエオカキ0123456789".split(""); let f=0;
+const step=()=>{ g.fillStyle="rgba(5,4,12,.18)"; g.fillRect(0,0,W,H); g.font=FS+"px monospace";
+cols.forEach((y,i)=>{ g.fillStyle=Math.random()>.9?"#F4F1FF":"#3BE6D6"; g.fillText(CH[(Math.random()*CH.length)|0],i*FS,y*FS); cols[i]=y*FS>H&&Math.random()>.96?0:y+1; });
+if(++f<160) requestAnimationFrame(step); else o.remove(); };
+if(matchMedia("(prefers-reduced-motion: reduce)").matches) setTimeout(()=>o.remove(),2500); else step(); }
+const hg=document.querySelector(".hangul"); if(hg){ hg.style.cursor="default"; hg.addEventListener("click",()=>{ const t=Date.now(); taps=taps.filter(x=>t-x<4000); taps.push(t); if(taps.length>=7){ taps=[]; fire(); } }); }
+addEventListener("keydown",e=>{ keys.push(e.key); keys=keys.slice(-K.length); if(K.every((k,i)=>keys[i]&&keys[i].toLowerCase()===k.toLowerCase())){ keys=[]; fire(); } });
 })();
 // ---------- neon trail + tap sparks, holo reveal ----------
 (function(){
