@@ -883,6 +883,41 @@ background:linear-gradient(var(--line),var(--line)) 0 6px/100% 1px no-repeat,rep
 @keyframes pxspin{0%,100%{transform:translateY(0) scaleX(1)}25%{transform:translateY(-4px) scaleX(.3)}50%{transform:translateY(-6px) scaleX(1)}75%{transform:translateY(-4px) scaleX(.3)}}
 .pxs{animation:tw 3.8s var(--d) steps(1) infinite}
 }
+.orb-box{overflow:hidden;isolation:isolate}
+.orb-box>*:not(.warp):not(.orbit){position:relative;z-index:1}
+.warp{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.32;
+background:radial-gradient(1.2px 1.2px at 12% 20%,#fff,transparent),radial-gradient(1px 1px at 40% 70%,#fff,transparent),radial-gradient(1.4px 1.4px at 66% 35%,#fff,transparent),radial-gradient(1px 1px at 85% 80%,#fff,transparent),radial-gradient(1px 1px at 25% 55%,#fff,transparent),
+repeating-linear-gradient(90deg,transparent 0 18px,rgba(255,140,40,.55) 18px 20px,transparent 20px 41px,rgba(59,230,214,.5) 41px 42px,transparent 42px 63px,rgba(255,62,138,.55) 63px 65px,transparent 65px 88px,rgba(180,140,255,.5) 88px 89px,transparent 89px 110px,rgba(252,238,10,.45) 110px 111px,transparent 111px 140px);
+-webkit-mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent),linear-gradient(90deg,transparent 30%,#000);mask-image:linear-gradient(90deg,transparent 35%,#000 85%)}
+.orbit{position:absolute;right:14px;top:14px;width:74px;height:74px;z-index:1;pointer-events:none}
+.orbit .planet{position:absolute;inset:26px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffd28a,#ff8a3c 45%,#7a2a6a 100%);box-shadow:0 0 14px rgba(255,140,60,.6)}
+.orbit .ring{position:absolute;inset:6px;border:1px dashed rgba(244,241,255,.35);border-radius:50%}
+.orbit .r2{inset:0;transform:rotate(60deg) scaleY(.55)}
+.orbit .r1{transform:rotate(-20deg) scaleY(.5)}
+.orbit .ring i{position:absolute;left:50%;top:-4px;width:8px;height:8px;margin-left:-4px;border-radius:50%}
+.orbit .p1{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.orbit .p2{background:var(--neon);box-shadow:0 0 8px var(--neon)}
+.orbit span{position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);white-space:nowrap;font:700 8.5px var(--f-mono);letter-spacing:.14em;color:var(--cp)}
+.orb-box .list{padding-right:0}
+.orb-box>.label{padding-right:96px}
+@media (prefers-reduced-motion:no-preference){
+.warp{animation:warp 9s linear infinite}
+@keyframes warp{from{background-position:0 0,0 0,0 0,0 0,0 0,0 0}to{background-position:0 0,0 0,0 0,0 0,0 0,140px 0}}
+.orbit .r1{animation:orb1 9s linear infinite}
+.orbit .r2{animation:orb2 14s linear infinite reverse}
+@keyframes orb1{from{transform:rotate(-20deg) scaleY(.5) rotate(0)}to{transform:rotate(-20deg) scaleY(.5) rotate(360deg)}}
+@keyframes orb2{from{transform:rotate(60deg) scaleY(.55) rotate(0)}to{transform:rotate(60deg) scaleY(.55) rotate(360deg)}}
+}
+.orb-box>.label{padding-right:0}
+.orb-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:-4px 0 4px}
+.orbit{position:relative;right:auto;top:auto;flex:none;width:64px;height:64px;margin-bottom:12px}
+.orbit .planet{inset:22px}
+.orb-title{position:relative;flex:1;min-width:0;height:64px;display:flex;flex-direction:column;justify-content:center;padding-left:6px;overflow:hidden;border-radius:2px;
+background:repeating-conic-gradient(from 0deg at 30% 55%,rgba(255,255,255,.10) 0 2deg,transparent 2deg 9deg),linear-gradient(135deg,#1c2a7a,#0b1240)}
+.orb-title .slash{position:absolute;left:-10%;top:42%;width:120%;height:18px;background:#E8202E;transform:rotate(-14deg);box-shadow:0 0 18px rgba(232,32,46,.6)}
+.orb-title b{position:relative;font:400 clamp(20px,5.6vw,28px)/1 var(--f-sign);color:#fff;letter-spacing:.02em;-webkit-text-stroke:1px #0b1240;text-shadow:3px 3px 0 #E8202E,0 0 12px rgba(255,255,255,.35)}
+.orb-title small{position:relative;margin-top:4px;font:700 9px var(--f-mono);letter-spacing:.18em;color:var(--cp)}
+@media (prefers-reduced-motion:no-preference){.orb-title{animation:speed 3.2s linear infinite}@keyframes speed{50%{background-position:0 0,0 0;filter:brightness(1.15)}}}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -1297,7 +1332,7 @@ pflichtprogramm: <span class="n">null</span>,
 </ul>
 </div>
 </div>
-<div class="box hot"><span class="label">Game-Abend · Orbitals auf der Switch 2</span><p>Eingeplant am <b>Ankunftsabend</b>, wenn der Jetlag eh keine große Tour zulässt. Ausweichtermin: Mittwochabend in Fukuoka.</p>
+<div class="box hot orb-box"><div class="warp" aria-hidden="true"></div><div class="orb-head" aria-hidden="true"><div class="orb-title"><i class="slash"></i><b>オービタルズ</b><small>ORBITALS · NUR ZU ZWEIT</small></div><div class="orbit"><div class="planet"></div><div class="ring r1"><i class="p1"></i></div><div class="ring r2"><i class="p2"></i></div><span>2P CO-OP</span></div></div><span class="label">Game-Abend · Orbitals auf der Switch 2</span><p>Ein Spiel, das man nur zu zweit spielen kann. Passt also. Eingeplant am <b>Ankunftsabend</b>, wenn der Jetlag eh keine große Tour zulässt. Ausweichtermin: Mittwochabend in Fukuoka.</p>
 <ul class="list">
 <li><span>Switch 2 mit Dock, <b>HDMI-Kabel</b> und Netzteil einpacken</span><span>Packliste</span></li>
 <li><span>Beim Hotel nach einem Zimmer mit <b>freiem HDMI-Anschluss</b> am TV fragen. Sonst im Handheld-Modus spielen</span><span>Hotel</span></li>
