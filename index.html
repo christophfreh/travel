@@ -1482,6 +1482,86 @@ background:radial-gradient(70% 60% at 50% 30%,#ffcf7a,#f39a3a 35%,#c2571c 70%,#5
 @media (prefers-reduced-motion:reduce){.dist .d-cover{display:none}}
 /* Faltbare Bereiche: Banner & Co. nicht zusammenquetschen */
 section.fold:not(.open)>*{flex-shrink:0}
+/* ===== Night City 4.0: Quickhacks, Ruf & Perks, Minimap, Breach ===== */
+.qh{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (min-width:560px){.qh{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.qh-b{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:12px 12px 11px;background:linear-gradient(160deg,rgba(252,238,10,.09),rgba(27,24,64,.9) 60%);color:var(--ink);border:1px solid rgba(252,238,10,.45);clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));cursor:pointer;font:inherit;min-height:92px;transition:background .2s,transform .12s}
+.qh-b:active{transform:scale(.97)}
+.qh-b:hover{background:linear-gradient(160deg,rgba(252,238,10,.2),rgba(27,24,64,.9) 60%)}
+.qh-b i{font:700 9px/1 var(--f-mono);letter-spacing:.2em;color:#0a0818;background:var(--y);padding:3px 6px 2px;font-style:normal}
+.qh-b b{font:400 19px/1.05 var(--f-sign);letter-spacing:.02em}
+.qh-b small{font:400 10.5px/1.35 var(--f-mono);color:var(--muted)}
+.qh-b.on{border-color:var(--y);box-shadow:0 0 18px -4px rgba(252,238,10,.55)}
+.qh-out{display:none;position:relative;border:1px solid rgba(252,238,10,.5);background:rgba(8,6,20,.7);padding:14px 14px 14px;clip-path:polygon(0 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%)}
+.qh-out.on{display:block}
+.qh-out .k{font:700 10px/1 var(--f-mono);letter-spacing:.18em;color:var(--y);display:block;margin-bottom:8px}
+.qh-out .big{font:400 clamp(22px,6.4vw,30px)/1.15 var(--f-body);font-weight:700;color:#fff}
+.qh-out p{color:var(--muted);font-size:13px;margin-top:6px}
+.qh-out .chips{display:flex;flex-wrap:wrap;gap:8px}
+.qh-out .chip{padding:8px 11px 7px;border:1px solid var(--cyan);background:rgba(59,230,214,.08);color:var(--cyan);font:700 12px/1 var(--f-mono);cursor:pointer;clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,7px 100%,0 calc(100% - 7px))}
+.qh-out .chip:hover{background:rgba(59,230,214,.22)}
+.qh-out .row2{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.qh-out .ping{position:relative;height:90px;margin:2px 0 10px;display:grid;place-items:center}
+.qh-out .ping i{position:absolute;width:20px;height:20px;border:2px solid var(--y);border-radius:50%;opacity:0;animation:pgring 2.4s ease-out infinite}
+.qh-out .ping i:nth-child(2){animation-delay:.8s}.qh-out .ping i:nth-child(3){animation-delay:1.6s}
+.qh-out .ping b{width:10px;height:10px;background:var(--y);border-radius:50%;box-shadow:0 0 14px var(--y)}
+@keyframes pgring{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(4.2)}}
+@media (prefers-reduced-motion:reduce){.qh-out .ping i{animation:none;opacity:.4}}
+/* Ruf & Perks */
+.cred{position:relative;border:1px solid rgba(252,238,10,.4);background:linear-gradient(160deg,rgba(252,238,10,.07),rgba(17,15,39,.9));padding:14px;margin-bottom:4px;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%)}
+.cred .c-h{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.cred .c-h small{font:700 10px/1 var(--f-mono);letter-spacing:.18em;color:var(--y)}
+.cred .c-lv{font:400 46px/.85 var(--f-sign);color:var(--y);text-shadow:0 0 14px rgba(252,238,10,.4)}
+.cred .c-lv em{font:700 10px/1 var(--f-mono);font-style:normal;color:var(--muted);letter-spacing:.16em;display:block;margin-bottom:4px}
+.cred .c-rank{font:400 17px/1.1 var(--f-sign);color:#fff}
+.cred .c-bar{height:8px;background:rgba(252,238,10,.14);margin:12px 0 4px;clip-path:polygon(0 0,100% 0,calc(100% - 5px) 100%,0 100%)}
+.cred .c-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--y),#fff);transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.cred .c-n{font:700 10px/1.3 var(--f-mono);letter-spacing:.1em;color:var(--muted)}
+.perks{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-top:14px}
+.perks .br{display:flex;flex-direction:column;align-items:center;gap:0}
+.perks .br h4{font:700 8px/1 var(--f-mono);letter-spacing:.08em;color:var(--cyan);margin:0 0 8px}
+.perks .nd{position:relative;display:grid;place-items:center;width:100%;max-width:56px;aspect-ratio:1;padding:0;border:1.5px solid rgba(171,165,207,.4);background:rgba(10,8,24,.7);color:rgba(171,165,207,.6);font:400 11px/1 var(--f-sign);clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);cursor:pointer}
+.perks .nd+.nd{margin-top:14px}
+.perks .nd+.nd::before{content:"";position:absolute;left:50%;top:-15px;width:2px;height:14px;background:rgba(171,165,207,.35);transform:translateX(-50%);z-index:-1}
+.perks .nd.on{border-color:var(--y);background:rgba(252,238,10,.16);color:var(--y);text-shadow:0 0 8px rgba(252,238,10,.6)}
+.perks .nd.on+.nd::before{background:var(--y)}
+.perks .nd.sel{outline:2px solid #fff;outline-offset:2px}
+.perk-i{margin-top:12px;min-height:38px;font:400 12px/1.45 var(--f-mono);color:var(--muted);border-left:3px solid var(--y);padding:2px 0 2px 10px}
+.perk-i b{color:var(--y);font-weight:700}
+/* Karte: Kompass, Zielpins, Route */
+.lf-compass{position:absolute;right:10px;bottom:34px;z-index:700;width:46px;height:46px;pointer-events:none;border:1.5px solid rgba(252,238,10,.7);border-radius:50%;background:rgba(8,6,20,.7);box-shadow:0 0 12px -2px rgba(252,238,10,.5);display:grid;place-items:center}
+.lf-compass::before{content:"N";position:absolute;top:2px;font:700 8px/1 var(--f-mono);color:var(--y)}
+.lf-compass i{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:17px solid var(--y);transform:translateY(2px);filter:drop-shadow(0 0 4px var(--y))}
+.lf-compass i::after{content:"";position:absolute;left:50%;top:50%;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:12px solid rgba(255,255,255,.5);transform:translate(-50%,0)}
+.lf-pin span{border-radius:0;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);width:28px;height:28px;border:0;box-shadow:none;background:var(--c);filter:drop-shadow(0 0 6px var(--c))}
+.lf-route{animation:lfdash 1.2s linear infinite}
+@keyframes lfdash{to{stroke-dashoffset:-20}}
+@media (prefers-reduced-motion:reduce){.lf-route{animation:none}}
+.leaflet-popup-content .pp-d{display:block;font:700 10px/1.3 var(--f-mono);letter-spacing:.1em;color:var(--y);margin:4px 0 2px}
+.leaflet-popup-content-wrapper{border-radius:0!important;border-color:rgba(252,238,10,.55)!important}
+/* Breach Protocol */
+.bp{position:fixed;inset:0;z-index:62;background:#05040c;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:calc(14px + env(safe-area-inset-top,0px)) 14px calc(14px + env(safe-area-inset-bottom,0px));overflow:auto}
+.bp h3{font:400 26px/1 var(--f-sign);color:var(--y);margin:0;letter-spacing:.04em;text-align:center}
+.bp .bp-sub{font:700 10px/1.4 var(--f-mono);letter-spacing:.14em;color:var(--muted);text-align:center;margin-top:-6px}
+.bp .bp-t{width:min(100%,360px);height:7px;background:rgba(252,238,10,.14)}
+.bp .bp-t i{display:block;height:100%;width:100%;background:var(--y);transform-origin:0 50%}
+.bp .bp-buf{display:flex;gap:6px}
+.bp .bp-buf b{display:grid;place-items:center;width:42px;height:38px;border:1.5px solid rgba(252,238,10,.5);font:700 15px/1 var(--f-mono);color:var(--y)}
+.bp .bp-main{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;justify-content:center}
+.bp .bp-g{display:grid;grid-template-columns:repeat(5,44px);gap:4px;padding:8px;border:1px solid rgba(252,238,10,.35);background:rgba(252,238,10,.03)}
+.bp .bp-g button{height:44px;font:700 16px/1 var(--f-mono);color:var(--y);background:transparent;border:1px solid transparent;cursor:pointer}
+.bp .bp-g button.ok{border-color:rgba(252,238,10,.4);background:rgba(252,238,10,.08)}
+.bp .bp-g button.hi{background:rgba(59,230,214,.14);border-color:var(--cyan);color:#fff}
+.bp .bp-g button.used{color:rgba(171,165,207,.3);pointer-events:none}
+.bp .bp-g button:disabled{cursor:default}
+.bp .bp-d{display:flex;flex-direction:column;gap:10px;min-width:150px}
+.bp .bp-d div{border:1px solid rgba(252,238,10,.35);padding:7px 9px}
+.bp .bp-d div.done{border-color:var(--cyan);background:rgba(59,230,214,.1)}
+.bp .bp-d div.fail{opacity:.4}
+.bp .bp-d code{display:block;font:700 13px/1.3 var(--f-mono);color:#fff;letter-spacing:.08em}
+.bp .bp-d small{display:block;font:400 10.5px/1.3 var(--f-mono);color:var(--muted);margin-top:3px}
+.bp .bp-res{font:700 13px/1.5 var(--f-mono);color:#fff;text-align:center;min-height:40px;max-width:360px}
+.bp .bp-x{margin-top:2px}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -1509,6 +1589,11 @@ section.fold:not(.open)>*{flex-shrink:0}
 <div class="marquee" aria-hidden="true"><div><span>ICN ✦ 21.11.</span><span>종로 JONGNO</span><span>을지로 EULJIRO</span><span>福岡 FUKUOKA</span><span>DMZ</span><span>NIGHT CITY? NEIN, SEOUL</span><span>BLADE RUNNER WEATHER</span><span>삼성 SAMSUNG</span><span>소주 SOJU</span><span>라면 RAMEN</span><span>LoL PARK</span><span>ICN ✦ 21.11.</span><span>종로 JONGNO</span><span>을지로 EULJIRO</span><span>福岡 FUKUOKA</span><span>DMZ</span><span>NIGHT CITY? NEIN, SEOUL</span><span>BLADE RUNNER WEATHER</span><span>삼성 SAMSUNG</span><span>소주 SOJU</span><span>라면 RAMEN</span><span>LoL PARK</span></div></div>
 </header>
 <aside class="q" aria-label="Zitat"><p>Wake up, Samurai. We have a city to explore.</p><span>frei nach Johnny Silverhand · Cyberpunk 2077</span></aside>
+<section id="hacks" aria-label="Quickhacks">
+<div class="sh"><span class="n">▶</span><h2>Quickhacks</h2><span class="ko">해킹</span></div>
+<div class="qh"><button type="button" class="qh-b" data-h="taxi"><i>TAXI</i><b>Taxi-Hack</b><small>Ziel riesig auf Koreanisch</small></button><button type="button" class="qh-b" data-h="food"><i>FOOD</i><b>Hunger-Hack</b><small>Zufälliger Essens-Tipp</small></button><button type="button" class="qh-b" data-h="base"><i>PING</i><b>Basis-Ping</b><small>Route zurück nach Jongno</small></button><button type="button" class="qh-b" data-h="breach"><i>BREACH</i><b>Breach Protocol</b><small>Hack das Netz, schalte Perks frei</small></button></div>
+<div class="qh-out" id="qhOut" aria-live="polite"></div>
+</section>
 <section id="highlights" aria-label="Highlights">
 <div class="sh"><span class="n">★</span><h2>Die besten Ideen</h2><span class="ko">최고</span></div>
 <div class="hl-strip">
@@ -2381,9 +2466,13 @@ const map=L.map(el.querySelector(".lf-map"),{scrollWheelZoom:false,tap:true});
 map.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'}).addTo(map);
 if(m.zone){const z=m.zone;L.rectangle([[z[0],z[2]],[z[1],z[3]]],{color:"#FCEE0A",weight:1.5,dashArray:"6 4",fillColor:"#FCEE0A",fillOpacity:.05,className:"lf-zone"}).addTo(map).bindTooltip("Jongno · Euljiro, unsere Basis");}
+const base=m.zone?[(m.zone[0]+m.zone[1])/2,(m.zone[2]+m.zone[3])/2]:null;
+const dist=p=>{ if(!base) return ""; const t=Math.PI/180,dl=(p[3]-base[0])*t,dn=(p[4]-base[1])*t,x=Math.sin(dl/2)**2+Math.cos(base[0]*t)*Math.cos(p[3]*t)*Math.sin(dn/2)**2,km=12742*Math.asin(Math.sqrt(x)); return `<span class="pp-d">${km.toFixed(1).replace(".",",")} KM VON DER BASIS · ZU FUSS CA. ${Math.max(1,Math.round(km*1.25/5*60))} MIN</span>`; };
 const pts=m.pins.map((p,i)=>{L.marker([p[3],p[4]],{icon:L.divIcon({className:"lf-pin",html:`<span style="--c:${PCOL[p[0]]}"><i>${i+1}</i></span>`,iconSize:[26,26],iconAnchor:[13,13]}),title:p[1]}).addTo(map)
-.bindPopup(`<span class="pp-k">&gt; ZIEL ${String(i+1).padStart(2,"0")}</span><b>${p[1]}</b><small>${p[2]}</small><a href="${GM(p[1])}" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>`); return [p[3],p[4]];});
+.bindPopup(`<span class="pp-k">&gt; ZIEL ${String(i+1).padStart(2,"0")}</span><b>${p[1]}</b><small>${p[2]}</small>${dist(p)}<a href="${GM(p[1])}" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>`); return [p[3],p[4]];});
 map.fitBounds(pts,{padding:[28,28]}); el._lf=map;
+let route=null; map.on("popupopen",e=>{ if(!base) return; const ll=e.popup.getLatLng(); if(route) map.removeLayer(route); route=L.polyline([base,[ll.lat,ll.lng]],{color:"#FCEE0A",weight:2.5,dashArray:"3 9",opacity:.9,className:"lf-route"}).addTo(map); }); map.on("popupclose",()=>{ if(route){ map.removeLayer(route); route=null; } });
+const cmp=document.createElement("div"); cmp.className="lf-compass"; cmp.setAttribute("aria-hidden","true"); cmp.innerHTML="<i></i>"; el.querySelector(".lf-map").appendChild(cmp);
 const hud=document.createElement("div"); hud.className="lf-hud"; hud.setAttribute("aria-hidden","true"); el.querySelector(".lf-map").appendChild(hud);
 const upd=()=>{const c=map.getCenter(); hud.innerHTML=`<span>N ${c.lat.toFixed(4)} · E ${c.lng.toFixed(4)}</span><span>ZOOM ${map.getZoom()} · ${m.pins.length} ZIELE</span>`;}; map.on("move zoomend",upd); upd();
 const ch=document.createElement("div"); ch.className="lf-cross"; ch.setAttribute("aria-hidden","true"); el.querySelector(".lf-map").appendChild(ch);
@@ -2395,7 +2484,7 @@ js.onload=()=>{ try{ Object.values(MAPS).forEach(leaf); }catch(e){ Object.values
 document.head.appendChild(js);
 }
 // ---------- Navigation ----------
-const NAV=[["highlights","Top","최고"],["damals","2017","추억"],["reise","Flug","여행"],["wetter","Wetter","날씨"],["plan","Plan","일정"],["logbuch","Logbuch","기록"],["fotos","Fotos","사진"],["los","Events","행사"],["essen","Essen","음식"],["abends","Nacht","밤"],["bier","Bier","술"],["lokal","Lokal","맛"],["shopping","Shop","쇼핑"],["mitbringsel","Geschenke","선물"],["regen","Regen","비"],["fukuoka","Japan","福岡"],["karten","Karte","지도"],["games","Games","게임"],["viertel","Viertel","동네"],["tipps","Tipps","꿀팁"],["preise","Preise","가격"],["beachten","To-do","준비"],["packen","Packen","짐"],["praktisch","Info","정보"]];
+const NAV=[["highlights","Top","최고"],["hacks","Hacks","해킹"],["damals","2017","추억"],["reise","Flug","여행"],["wetter","Wetter","날씨"],["plan","Plan","일정"],["logbuch","Logbuch","기록"],["fotos","Fotos","사진"],["los","Events","행사"],["essen","Essen","음식"],["abends","Nacht","밤"],["bier","Bier","술"],["lokal","Lokal","맛"],["shopping","Shop","쇼핑"],["mitbringsel","Geschenke","선물"],["regen","Regen","비"],["fukuoka","Japan","福岡"],["karten","Karte","지도"],["games","Games","게임"],["viertel","Viertel","동네"],["tipps","Tipps","꿀팁"],["preise","Preise","가격"],["beachten","To-do","준비"],["packen","Packen","짐"],["praktisch","Info","정보"]];
 const nav=document.createElement("nav"); nav.className="dock"; nav.setAttribute("aria-label","Abschnitte");
 nav.innerHTML=`<div class="prog"><i id="prog"></i></div><div class="dock-in">`+NAV.map(([id,de,ko])=>`<a href="#${id}" data-id="${id}"><b>${ko}</b><span>${de}</span></a>`).join("")+`</div>`;
 document.body.appendChild(nav);
@@ -2918,7 +3007,7 @@ const T=[["soju","소주","Erste Flasche Soju"],["chimaek","치맥","Chimaek-Abe
 ["makgeolli","막걸","Makgeolli probiert"],["nogari","노가","Nogari-Gasse überlebt"],["jjimjil","찜질","Im Jjimjilbang geschwitzt"],["robot","로봇","Roboter getroffen"],
 ["palast","궁","Gyeongbokgung gesehen"],["sky","123","Seoul Sky, 123. Stock"],["dmz","2049","An der Grenze (DMZ)"],["ramen","屋台","Yatai-Ramen in Fukuoka"],
 ["nintendo","任","Nintendo-Store geplündert"],["samsung","삼성","Samsung Museum"],["orbitals","2P","Orbitals-Abend auf der Switch 2"],["schritte","20K","20.000 Schritte an einem Tag"],
-["foto","사진","Erstes Foto hochgeladen"],["verloren","GPS","Niemand ist verloren gegangen"]];
+["foto","사진","Erstes Foto hochgeladen"],["verloren","GPS","Niemand ist verloren gegangen"],["breach","BD","Breach Protocol geknackt"]];
 const grid=$("tro"); if(!grid) return;
 let data={}; const KEY="ach", SEEN="ach_seen";
 const ls=(k,v)=>{ try{ if(v===undefined) return JSON.parse(localStorage.getItem(k)||"null"); localStorage.setItem(k,JSON.stringify(v)); }catch(e){ return null; } };
@@ -3093,6 +3182,81 @@ else { const G="#%&$*/\\<>01=+"; const io=new IntersectionObserver(es=>es.forEac
   const nmEl=d.querySelector(".d-name"), fin=nmEl.dataset.t; let f=0;
   setTimeout(()=>{ nmEl.classList.add("gl"); const t=setInterval(()=>{ f++; nmEl.textContent=[...fin].map((c,k)=>k<f*fin.length/9?c:G[Math.floor(Math.random()*G.length)]).join(""); if(f>=9){clearInterval(t);nmEl.textContent=fin;} },45); setTimeout(()=>nmEl.classList.remove("gl"),450); },420);
  }),{threshold:.35}); dists.forEach(d=>io.observe(d)); }
+})();
+</script>
+<script>
+/* Night City 4.0: Quickhacks, Ruf & Perks, Breach Protocol */
+(function(){
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const out=$("qhOut"), btns=[...document.querySelectorAll(".qh-b")];
+if(!out||!btns.length) return;
+const BASE=[37.5704,126.9922];
+const josa=w=>{ const c=w.trim().slice(-1).charCodeAt(0); if(c<0xAC00||c>0xD7A3) return "로"; const f=(c-0xAC00)%28; return (f===0||f===8)?"로":"으로"; };
+const DEST=[["Flughafen Incheon, T2","인천국제공항 제2터미널","Incheon Gukje-gonghang Je-i Teominol"],["Basis Jongno","종로3가역","Jongno-samga-yeok"],["Gwangjang Markt","광장시장","Gwangjang Sijang"],["Euljiro","을지로3가역","Euljiro-samga-yeok"],["Gyeongbokgung","경복궁","Gyeongbokgung"],["Myeongdong","명동","Myeongdong"],["Hongdae","홍대입구역","Hongdae-ipgu-yeok"],["Seoul Station","서울역","Seoul-yeok"],["Lotte World Tower","롯데월드타워","Lotte Woldeu Tawo"],["Hakata, Fukuoka","博多駅","Hakata-eki"]];
+const say=i=>{ const d=DEST[i], jp=d[1]==="博多駅"; const o=document.createElement("div"); o.className="say-big"; o.setAttribute("role","dialog");
+ o.innerHTML=`<small>&gt; TAXI-HACK · ZIEL GESETZT</small><b lang="${jp?"ja":"ko"}">${esc(d[1])}</b><b lang="${jp?"ja":"ko"}" style="font-size:clamp(26px,8vw,52px)">${jp?"までお願いします":josa(d[1])+" 가 주세요"}</b><small>${esc(d[2])}</small><span>${esc(d[0])} · bitte hierher fahren · Tippen zum Schließen</span>`;
+ o.addEventListener("click",()=>{ o.remove(); document.body.style.overflow=""; }); document.body.appendChild(o); document.body.style.overflow="hidden"; };
+let foodPool=null, foodLast=-1;
+const food=()=>{ if(!foodPool){ foodPool=[...document.querySelectorAll("#essen .list li, #lokal .list li")].map(li=>{ const s=li.querySelectorAll("span"); return [s[0]?.textContent.trim()||"",s[1]?.textContent.trim()||""]; }).filter(x=>x[0]); }
+ if(!foodPool.length) return "<p>Noch keine Tipps gefunden.</p>"; let i; do{ i=Math.floor(Math.random()*foodPool.length); }while(foodPool.length>1&&i===foodLast); foodLast=i; const [n,w]=foodPool[i];
+ return `<span class="k">&gt; HUNGER-HACK · ZIEL ERFASST</span><div class="big">${esc(n)}</div><p>${esc(w)}</p><div class="row2"><a class="btn sm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(n.split(/[:,&]/)[0]+" Seoul")}">In Maps suchen ↗</a><button type="button" class="btn sm" data-more>Nächster Tipp</button></div>`; };
+const ping=()=>`<span class="k">&gt; BASIS-PING</span><div class="ping"><i></i><i></i><i></i><b></b></div><div class="big" id="pgTxt">Ortung läuft …</div><p>Basis = Jongno-3-ga, Mitte der Stadt. Das genaue Hotel tragen wir nach der Buchung ein.</p><div class="row2"><a class="btn sm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${BASE[0]},${BASE[1]}&travelmode=transit">Route zur Basis ↗</a></div>`;
+const hav=(a,b)=>{ const t=Math.PI/180,dl=(b[0]-a[0])*t,dn=(b[1]-a[1])*t,x=Math.sin(dl/2)**2+Math.cos(a[0]*t)*Math.cos(b[0]*t)*Math.sin(dn/2)**2; return 12742*Math.asin(Math.sqrt(x)); };
+const locate=()=>{ const t=$("pgTxt"); if(!t) return; if(!navigator.geolocation){ t.textContent="Keine Ortung auf diesem Gerät."; return; }
+ navigator.geolocation.getCurrentPosition(p=>{ const d=hav([p.coords.latitude,p.coords.longitude],BASE); t.textContent=d<.15?"Du bist an der Basis.":(d<20?`${d.toFixed(1).replace(".",",")} km Luftlinie bis zur Basis`:`${Math.round(d)} km bis zur Basis`); },()=>{ t.textContent="Ortung nicht erlaubt. Die Route funktioniert trotzdem."; },{timeout:8000,maximumAge:60000}); };
+const show=k=>{ btns.forEach(b=>b.classList.toggle("on",b.dataset.h===k)); out.classList.add("on");
+ if(k==="taxi"){ out.innerHTML=`<span class="k">&gt; TAXI-HACK · WOHIN?</span><div class="chips">${DEST.map((d,i)=>`<button type="button" class="chip" data-i="${i}">${esc(d[0])}</button>`).join("")}</div><p>Tippen zeigt das Ziel riesig auf Koreanisch, zum Herzeigen für den Fahrer.</p>`; }
+ else if(k==="food") out.innerHTML=food();
+ else if(k==="base"){ out.innerHTML=ping(); locate(); } };
+btns.forEach(b=>b.addEventListener("click",()=>{ const k=b.dataset.h; if(k==="breach"){ breach(); return; } if(b.classList.contains("on")&&k!=="food"){ b.classList.remove("on"); out.classList.remove("on"); return; } show(k); }));
+out.addEventListener("click",e=>{ const c=e.target.closest(".chip"); if(c){ say(+c.dataset.i); return; } if(e.target.closest("[data-more]")) show("food"); });
+/* Breach Protocol */
+function breach(){
+ const CD=["1C","55","BD","E9","7A","FF"], N=5, BL=6, TM=28, rnd=n=>Math.floor(Math.random()*n);
+ const o=document.createElement("div"); o.className="bp"; o.setAttribute("role","dialog"); document.body.appendChild(o); document.body.style.overflow="hidden";
+ let tid=0, buf, used, mode, idx, grid, seq, D, over, t0;
+ const close=()=>{ clearInterval(tid); o.remove(); document.body.style.overflow=""; };
+ const setup=()=>{ clearInterval(tid); over=false; buf=[]; used=new Set(); mode="row"; idx=0;
+  const path=[[0,rnd(N)]], taken=new Set([path[0].join()]);
+  for(let k=1;k<BL;k++){ const prev=path[k-1]; let c,t=0; do{ c=(k%2===1)?[rnd(N),prev[1]]:[prev[0],rnd(N)]; t++; }while(taken.has(c.join())&&t<60); taken.add(c.join()); path.push(c); }
+  seq=Array.from({length:BL},()=>CD[rnd(CD.length)]); grid=Array.from({length:N},()=>Array.from({length:N},()=>CD[rnd(CD.length)])); path.forEach((p,i)=>{ grid[p[0]][p[1]]=seq[i]; });
+  D=[{n:"DATAMINE",c:seq.slice(1,3),r:"Soju-Rabatt: Wer verliert, zahlt die erste Flasche.",ok:0},{n:"ICEPICK",c:seq.slice(3,6),r:"Freie Wahl: Du bestimmst das nächste Lokal.",ok:0}];
+  t0=performance.now(); tid=setInterval(tick,100); draw(); };
+ const tick=()=>{ const f=1-(performance.now()-t0)/(TM*1000); const bar=o.querySelector(".bp-t i"); if(bar) bar.style.transform=`scaleX(${Math.max(0,f)})`; if(f<=0&&!over) finish(); };
+ const hasSeq=c=>(" "+buf.join(" ")+" ").includes(" "+c.join(" ")+" ");
+ const finish=()=>{ over=true; clearInterval(tid); D.forEach(d=>d.ok=hasSeq(d.c)); const n=D.filter(d=>d.ok).length; let msg;
+  if(n===2){ msg="BREACH ERFOLGREICH · beide Daemons geladen"; const b=document.querySelector('#tro button[data-id="breach"]:not(.on)'); if(b) b.click(); }
+  else if(n===1) msg="TEILWEISE ERFOLGREICH · ein Daemon geladen"; else msg="BREACH GESCHEITERT · Netzwerk dicht";
+  draw(msg); };
+ const draw=res=>{ const act=g=>{ if(over) return false; return mode==="row"?false:false; };
+  o.innerHTML=`<h3>BREACH PROTOCOL</h3><div class="bp-sub">CODE-MATRIX · ${BL} SLOTS · ${TM} S</div><div class="bp-t"><i></i></div><div class="bp-buf">${Array.from({length:BL},(_,i)=>`<b>${buf[i]||"··"}</b>`).join("")}</div>
+  <div class="bp-main"><div class="bp-g">${grid.map((row,r)=>row.map((v,c)=>{ const u=used.has(r+","+c); const ok=!over&&!u&&(mode==="row"?r===idx:c===idx); return `<button type="button" data-r="${r}" data-c="${c}" class="${u?"used":ok?"ok":""}" ${ok?"":"disabled"}>${v}</button>`; }).join("")).join("")}</div>
+  <div class="bp-d">${D.map(d=>`<div class="${over?(d.ok?"done":"fail"):(hasSeq(d.c)?"done":"")}"><code>${d.c.join(" ")}</code><small>${d.n}${over&&d.ok?" · "+d.r:""}</small></div>`).join("")}</div></div>
+  <div class="bp-res">${res?esc(res)+(res.startsWith("BREACH ERFOLG")?"<br>Trophäe „Breach Protocol geknackt“ freigeschaltet":""):"Wähle Codes: erst aus der markierten Zeile, dann abwechselnd Spalte und Zeile."}</div>
+  <div class="row2 bp-x" style="display:flex;gap:8px;justify-content:center"><button type="button" class="btn sm" data-a="again">Neu</button><button type="button" class="btn sm" data-a="x">Schließen</button></div>`; };
+ o.addEventListener("click",e=>{ const a=e.target.closest("[data-a]"); if(a){ if(a.dataset.a==="x") close(); else setup(); return; }
+  const b=e.target.closest(".bp-g button.ok"); if(!b||over) return; const r=+b.dataset.r,c=+b.dataset.c; buf.push(grid[r][c]); used.add(r+","+c);
+  if(mode==="row"){ mode="col"; idx=c; } else { mode="row"; idx=r; }
+  const done=buf.length>=BL||D.every(d=>hasSeq(d.c)); if(done){ finish(); } else draw(); });
+ addEventListener("keydown",function k(e){ if(!o.isConnected){ removeEventListener("keydown",k); return; } if(e.key==="Escape") close(); });
+ setup(); }
+})();
+/* Ruf & Perks im Logbuch */
+(function(){
+const tro=document.getElementById("tro"); if(!tro) return;
+const BR=[["HUNGER",["hanwoo","bindae","chimaek","ramen"]],["DURST",["soju","makgeolli","nogari"]],["ERKUNDEN",["palast","sky","dmz","schritte","verloren"]],["TEAM",["orbitals","nintendo","foto","jjimjil"]],["TECH",["robot","samsung","breach"]]];
+const PK={soju:"Leberschutz +5",chimaek:"Fritteusen-Aura",hanwoo:"Marmor-Muskeln",bindae:"Knusper-Panzer",makgeolli:"Milchiger Mut",nogari:"Gassen-Reflexe",jjimjil:"Dampf-Immunität",robot:"Cyber-Freundschaft",palast:"Königliche Haltung",sky:"Höhenangst −100 %",dmz:"Grenzgänger",ramen:"Tonkotsu-Blut",nintendo:"Sammler-Instinkt",samsung:"Silizium-Hirn",orbitals:"Orbitale Ruhe",schritte:"Marathon-Beine",foto:"Archivar",verloren:"Innerer Kompass",breach:"Schwarze Mauer"};
+const RK=[[0,"Frischling"],[3,"Nachtschwärmer"],[6,"Gassen-Kenner"],[10,"Straßenlegende"],[15,"Netrunner"],[19,"Legende von Seoul"]];
+const box=document.createElement("div"); box.className="cred"; tro.parentNode.insertBefore(box,tro);
+let sel=null;
+function render(){ const bt={}; tro.querySelectorAll("button").forEach(b=>{ bt[b.dataset.id]={on:b.classList.contains("on"),name:b.querySelector("b")?.textContent||b.dataset.id,ic:b.querySelector("i")?.textContent||""}; });
+ const ids=Object.keys(bt); const tot=ids.length||1, n=ids.filter(i=>bt[i].on).length; const lv=Math.round(1+n*49/tot); let rank=RK[0][1]; RK.forEach(r=>{ if(n>=r[0]) rank=r[1]; });
+ const info=sel&&bt[sel]?(bt[sel].on?`<b>PERK AKTIV · ${PK[sel]||"?"}</b> · ${bt[sel].name}`:`<b>Gesperrt</b> · Schalte „${bt[sel].name}“ frei für ${PK[sel]||"?"}`):"Tippe auf einen Perk.";
+ box.innerHTML=`<div class="c-h"><div><small>STRASSENRUF</small><div class="c-rank">${rank}</div></div><div class="c-lv"><em>LEVEL</em>${lv}</div></div><div class="c-bar"><i style="width:${n/tot*100}%"></i></div><div class="c-n">${n} VON ${tot} PERKS FREI · RUF ${Math.round(n/tot*100)} %</div>
+ <div class="perks">${BR.map(([t,l])=>`<div class="br"><h4>${t}</h4>${l.filter(i=>bt[i]).map(i=>`<button type="button" class="nd ${bt[i].on?"on":""} ${sel===i?"sel":""}" data-i="${i}" aria-label="${PK[i]||i}">${bt[i].ic}</button>`).join("")}</div>`).join("")}</div><div class="perk-i">${info}</div>`; }
+box.addEventListener("click",e=>{ const b=e.target.closest(".nd"); if(!b) return; sel=b.dataset.i; render(); });
+new MutationObserver(()=>render()).observe(tro,{childList:true}); render();
 })();
 </script>
 </body></html>
