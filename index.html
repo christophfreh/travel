@@ -1350,6 +1350,57 @@ background:radial-gradient(70% 60% at 50% 30%,#ffcf7a,#f39a3a 35%,#c2571c 70%,#5
 .boot .p5pop .nm{font-size:min(1em,calc(90vw / (var(--n) * .98)))}
 .boot .bt-row>.p5nova{border-width:6px}
 .boot .bt-row>.p5radar{background:conic-gradient(from 0deg,rgba(59,230,214,0) 0 235deg,rgba(59,230,214,.85) 360deg)}
+/* ===== Persona-Look 2.3: Feinheiten ===== */
+.p5bg .burst{width:150vmax;height:150vmax;margin:-75vmax 0 0 -75vmax;-webkit-mask:none;mask:none}
+.p5bg .vig{position:absolute;inset:0;background:radial-gradient(ellipse 120% 58% at 50% 46%,transparent 8%,rgba(9,1,3,.55) 50%,#090103 88%)}
+.p5bg .burst{translate:calc(var(--px,0) * 16px) calc(var(--py,0) * 10px)}
+.boot .bt-row{translate:calc(var(--px,0) * -9px) calc(var(--py,0) * -6px);transition:translate .12s linear}
+.boot .p5prog{position:absolute;left:0;right:0;top:env(safe-area-inset-top,0px);height:5px;z-index:11;background:#fff;box-shadow:0 3px 0 #E60012;transform-origin:left;transform:scaleX(0);animation:p5prog 11.5s linear forwards;pointer-events:none}
+@keyframes p5prog{to{transform:scaleX(1)}}
+.boot>small.p5skip{left:auto;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:12;background:#000;color:#fff;border:2px solid #fff;padding:4px 12px 3px;font:italic 700 10px var(--f-mono);letter-spacing:.2em;transform:skewX(-14deg);box-shadow:3px 3px 0 #E60012;animation:p5skip .9s steps(2) infinite alternate}
+.boot>small.p5skip b{display:inline-block;color:#E60012;font-style:normal;letter-spacing:0;animation:p5arrow .45s steps(2) infinite alternate}
+@keyframes p5skip{to{box-shadow:5px 5px 0 #E60012}}
+@keyframes p5arrow{to{translate:3px 0}}
+.p5x{position:fixed;inset:0;z-index:2100;pointer-events:none;overflow:hidden}
+.p5x i{position:absolute;inset:-2%}
+.p5x .r{background:#E60012;animation:p5xio .9s cubic-bezier(.6,0,.3,1) both}
+.p5x .b{background:#000;animation:p5xio .9s .09s cubic-bezier(.6,0,.3,1) both}
+@keyframes p5xio{0%{clip-path:polygon(-25% 0,-25% 0,-45% 100%,-45% 100%)}38%,52%{clip-path:polygon(-25% 0,130% 0,130% 100%,-45% 100%)}100%{clip-path:polygon(130% 0,130% 0,130% 100%,130% 100%)}}
+/* ===== Persona-Look 2.4: Eröffnungssequenz ===== */
+.boot .p5o{position:absolute;inset:0;overflow:hidden;background:#000;z-index:3;animation:oshake .45s 1.25s steps(6) forwards}
+@keyframes oshake{0%{transform:translate(8px,-5px)}20%{transform:translate(-9px,4px)}40%{transform:translate(6px,6px)}60%{transform:translate(-5px,-6px)}80%{transform:translate(3px,2px)}100%{transform:none}}
+.p5o .o-bg{position:absolute;inset:0;background:radial-gradient(circle,#E60012 24%,transparent 27%) 0 0/20px 20px,#050102;opacity:.5;animation:obgm 2.6s linear both}
+@keyframes obgm{from{background-position:0 0}to{background-position:0 60px}}
+.p5o .o-stack{position:absolute;inset:-18% -30%;rotate:-11deg;display:flex;flex-direction:column;z-index:2}
+.p5o .o-b{flex:1;display:flex;align-items:center;overflow:hidden;white-space:nowrap;animation:oin .38s calc(var(--i) * 70ms) cubic-bezier(.2,.9,.25,1.12) both,oout .26s calc(.95s + var(--i) * 45ms) cubic-bezier(.6,0,.9,.4) forwards}
+.p5o .o-b.r{background:#E60012;color:#fff}.p5o .o-b.w{background:#fff;color:#000}.p5o .o-b.k{background:#000;color:#E60012;border-block:3px solid #fff}
+.p5o .o-b span{display:block;width:max-content;font:italic 400 clamp(40px,9.5vh,92px)/1 var(--f-sign);letter-spacing:.02em;text-shadow:5px 5px 0 rgba(0,0,0,.5);animation:omq 1.4s linear both}
+.p5o .o-b.k span{text-shadow:4px 4px 0 #fff}
+@keyframes oin{from{transform:translateX(calc(var(--d) * -125%))}to{transform:none}}
+@keyframes oout{to{transform:translateX(calc(var(--d) * 125%))}}
+@keyframes omq{from{transform:translateX(calc(var(--d) * 9%))}to{transform:translateX(calc(var(--d) * -16%))}}
+.p5o .o-disc{position:absolute;left:50%;top:50%;width:min(96vw,74vh);aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:#E60012;box-shadow:0 0 0 10px #000,0 0 0 14px #fff;z-index:1;opacity:0;animation:odisc .3s 1.15s cubic-bezier(.2,1.4,.4,1) forwards}
+@keyframes odisc{from{opacity:0;scale:.2}to{opacity:1;scale:1}}
+.p5o .p5cw{position:absolute;left:50%;top:50%;width:min(84vw,430px);translate:-50% -50%;rotate:-4deg;z-index:4;filter:drop-shadow(8px 10px 0 rgba(0,0,0,.65));animation:ocin .3s 1.2s cubic-bezier(.2,.9,.25,1.25) both}
+@keyframes ocin{from{opacity:0;scale:2.5;rotate:13deg}to{opacity:1;scale:1;rotate:-4deg}}
+.p5o .p5c{position:relative;background:#f3ead2 radial-gradient(circle,rgba(0,0,0,.07) 1px,transparent 1.5px) 0 0/6px 6px;color:#16110d;padding:30px 22px 22px;text-align:center}
+.p5c .tape{position:absolute;width:76px;height:22px;top:-6px;background:rgba(232,215,122,.88);box-shadow:0 1px 2px rgba(0,0,0,.3)}
+.p5c .tape.a{left:-16px;rotate:-32deg}.p5c .tape.b{right:-16px;rotate:30deg}
+.p5c .c-top{font:italic 700 10px var(--f-mono);letter-spacing:.3em;color:#E60012;border-bottom:2px solid #16110d;padding-bottom:7px;margin-bottom:16px}
+.p5c .c-big{display:flex;flex-direction:column;align-items:center;gap:9px;font-size:clamp(26px,min(8.6vw,7vh),46px)}
+.p5c .c-big .nm{white-space:nowrap}
+.p5c .c-big em{opacity:0;animation:oletter .13s calc(1.4s + var(--i) * 45ms) steps(2) forwards,rnj .7s ease-in-out infinite alternate}
+@keyframes oletter{from{opacity:0;scale:2.2}to{opacity:1;scale:1}}
+.p5c .c-sub{margin-top:16px;font:700 10px/1.55 var(--f-mono);letter-spacing:.14em}
+.p5c .c-stamp{position:absolute;right:12px;bottom:46px;rotate:-12deg;border:3px double #E60012;color:#E60012;padding:4px 10px 3px;font:italic 700 10px var(--f-mono);letter-spacing:.18em;text-align:center;opacity:0;mix-blend-mode:multiply;animation:ostamp .28s 1.95s cubic-bezier(.2,1.6,.4,1) forwards}
+.p5c .c-stamp b{display:block;font-size:14px;letter-spacing:.06em}
+@keyframes ostamp{from{opacity:0;scale:3}to{opacity:.92;scale:1}}
+.p5c .c-sig{margin-top:20px;font:italic 400 17px/1 Georgia,serif;text-align:left;opacity:0;animation:osig .3s 2.15s steps(3) forwards}
+@keyframes osig{to{opacity:1}}
+.p5o .o-flash{position:absolute;inset:0;z-index:9;background:#fff;opacity:0;pointer-events:none;animation:oflash .35s 1.2s steps(4) both}
+@keyframes oflash{0%{opacity:0}10%{opacity:.95}100%{opacity:0}}
+@media (max-height:520px){.p5c .c-sub,.p5c .c-sig{display:none}.p5c .c-stamp{bottom:12px}}
+.boot .p5prog{animation-duration:10.8s}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -2523,9 +2574,17 @@ if(!reduce){
 const L=["&gt; VERBINDE MIT <b>SEOUL.NET</b> …","&gt; LADE TEAM: <b>MICHI</b> + <b>CHRISTOPH</b>","&gt; ZIEL ICN · 21.11.2026 · 14:30 KST","&gt; HUNGER: <b>KRITISCH</b> · DURST: <b>HOCH</b>","&gt; BONUSLEVEL FUKUOKA FREIGESCHALTET","&gt; BASELINE-TEST: <b>INTERLINKED</b>","&gt; WAKE UP, SAMURAI."];
 const o=document.createElement("div"); o.className="boot"; o.setAttribute("aria-hidden","true");
 o.innerHTML=L.map(t=>`<p>${t}</p>`).join("")+"<small>TIPPEN ZUM ÜBERSPRINGEN</small>"; document.body.appendChild(o);
-const ps=[...o.querySelectorAll("p")]; let i=0, done=false;
-const end=()=>{if(done)return;done=true;o.classList.add("out");setTimeout(()=>o.remove(),480);};
+const ps=[...o.querySelectorAll("p")]; let i=0, done=false, off=null;
+const end=()=>{if(done)return;done=true; if(off) off();
+ const w=document.createElement("div"); w.className="p5x"; w.setAttribute("aria-hidden","true"); w.innerHTML="<i class=\"b\"></i><i class=\"r\"></i>"; document.body.appendChild(w);
+ o.style.pointerEvents="none"; setTimeout(()=>o.remove(),430); setTimeout(()=>w.remove(),1050);};
 const rn=t=>[...t].map((c,k)=>c===" "?'<i class="sp"></i>':`<em class="rn${(k*7+c.charCodeAt(0))%4}" style="--r:${((k*37)%13)-6}deg">${c}</em>`).join("");
+const rnk=(t,off)=>[...t].map((c,k)=>c===" "?'<i class="sp"></i>':`<em class="rn${(k*7+c.charCodeAt(0))%4}" style="--r:${((k*37)%13)-6}deg;--i:${k+off}">${c}</em>`).join("");
+const jag=()=>{ const a=[0,1.5,.4,1.9,.2,1.2,.8,1.7], b=[1.6,.3,1.3,.1,1.8,.5,1.1,.2], q=[]; for(let x=0,k=0;x<=100;x+=4,k++) q.push(x+"% "+a[k%8]+"%"); for(let x=100,k=0;x>=0;x-=4,k++) q.push(x+"% "+(100-b[k%8])+"%"); return "polygon("+q.join(",")+")"; };
+const opening=()=>{ if(done) return;
+ const W=[["SEOUL ✦ SEOUL ✦ SEOUL ✦ SEOUL ✦ SEOUL","r"],["NOVEMBER ✦ 2026 ✦ NOVEMBER ✦ 2026","w"],["MICHI × CHRISTOPH × MICHI × CHRISTOPH","k"],["21.–29.11. ✦ 21.–29.11. ✦ 21.–29.11.","r"],["FUKUOKA ✦ BONUSLEVEL ✦ FUKUOKA","w"],["SEOUL ✦ SEOUL ✦ SEOUL ✦ SEOUL ✦ SEOUL","k"]];
+ o.innerHTML=`<div class="p5o" aria-hidden="true"><div class="o-bg"></div><div class="o-disc"></div><div class="o-stack">${W.map(([t,c],k)=>`<div class="o-b ${c}" style="--i:${k};--d:${k%2?1:-1}"><span>${t}</span></div>`).join("")}</div><div class="p5cw"><div class="p5c" style="clip-path:${jag()}"><i class="tape a"></i><i class="tape b"></i><div class="c-top">AN: SEOUL, SÜDKOREA</div><div class="c-big"><span class="nm">${rnk("WIR KOMMEN",0)}</span><span class="nm">${rnk("NACH SEOUL.",10)}</span></div><div class="c-sub">21.–29.11.2026 · 2 PERSONEN · HUNGER UNGEBREMST</div><div class="c-stamp">ANKUNFT<b>21.11. · 14:30</b></div><div class="c-sig">— Michi &amp; Christoph</div></div></div><div class="o-flash"></div></div><small class="p5skip">TIPPEN <b>▶▶</b> ÜBERSPRINGEN</small>`;
+ setTimeout(team,2600); };
 const team=()=>{ if(done) return;
 const pick=a=>a[Math.floor(Math.random()*a.length)];
 const spC=pick([["NAVER-RADAR","FINDET JEDE U-BAHN · TREFFER 100%"],["ZEITPLAN-BLITZ","JEDER TAG BIS ZUR MINUTE GEPLANT"],["PUFFER-SCHILD","NIE ZU SPÄT · IMMER ZEIT FÜR SNACKS"]]);
@@ -2536,19 +2595,25 @@ const stars=[[7,19,22,0],[91,13,16,.4],[15,56,14,.8],[86,46,26,.2],[52,9,12,1.1]
 const shards=[[6,18,"#fff",9],[19,12,"#000",13],[33,22,"#FCEE0A",8],[47,16,"#fff",11],[61,26,"#000",14],[74,20,"#fff",9],[88,14,"#000",12],[94,24,"#FCEE0A",8]].map(([x,s,c,t],k)=>`<i class="sh" style="--x:${x}%;--s:${s}px;--c:${c};--t:${t}s;--d:${-(k*1.7)}s"></i>`).join("");
 const sp=(n,r1,r2)=>Array.from({length:n*2},(_,i)=>{const an=Math.PI*i/n-Math.PI/2,r=i%2?r2:r1;return (50+r*Math.cos(an)).toFixed(1)+"% "+(50+r*Math.sin(an)).toFixed(1)+"%";}).join(",");
 const starClip="polygon("+sp(12,50,37)+")";
-const bg=`<div class="p5bg" aria-hidden="true"><div class="burst"></div><i class="slab a"></i><i class="slab b"></i><div class="gword">서울</div><i class="ht"></i>${shards}<div class="tick t1"><span>${bandA}${bandA}</span></div><div class="tick t2"><span>${bandB}${bandB}</span></div>${stars}</div><i class="p5w b"></i><i class="p5w r"></i><i class="p5flash"></i>`;
+const bg=`<div class="p5bg" aria-hidden="true"><div class="burst"></div><i class="vig"></i><i class="slab a"></i><i class="slab b"></i><div class="gword">서울</div><i class="ht"></i>${shards}<div class="tick t1"><span>${bandA}${bandA}</span></div><div class="tick t2"><span>${bandB}${bandB}</span></div>${stars}</div><i class="p5w b"></i><i class="p5w r"></i><i class="p5flash"></i><i class="p5prog"></i>`;
 o.innerHTML=`${bg}<div class="bt"><svg class="brushx" viewBox="0 0 200 240" aria-hidden="true"><defs><filter id="brush" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035 .9" numOctaves="3" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="14"/></filter></defs><g filter="url(#brush)" stroke="#FF3E8A" stroke-linecap="round" fill="none"><path d="M30 18 L172 226" stroke-width="30"/><path d="M168 14 L34 224" stroke-width="26"/><path d="M44 30 L160 210" stroke-width="6" stroke="#ff7ab0" opacity=".6"/></g><g fill="#FF3E8A"><circle cx="24" cy="40" r="3"/><circle cx="180" cy="200" r="4"/><circle cx="186" cy="30" r="2"/><circle cx="16" cy="210" r="2.5"/><circle cx="150" cy="236" r="2"/></g></svg><i class="p5s a"></i><i class="p5s b"></i><div class="bt-hp"><div class="hp l"><span>CHRISTOPH</span><i></i></div><b class="hp-t" id="hpT">99</b><div class="hp r"><span>MICHI</span><i></i></div></div><p class="bt-h">SPIELER AUSGEWÄHLT</p><div class="bt-call"><span class="r1">${rn("ROUND 1")}</span><span class="fi">${rn("FIGHT!")}</span></div><i class="spk s1"></i><i class="spk s2"></i><i class="spk s3"></i><div class="bt-combo l"><b>${rn("3 HITS")}</b><small>U-BAHN-COMBO</small></div><div class="bt-combo r"><b>${rn("5 HITS")}</b><small>STREETFOOD-COMBO</small></div><div class="bt-row"><i class="p5radar noshift"></i><i class="p5nova noshift"></i><i class="p5nova n2 noshift"></i><i class="p5nova n3 noshift"></i><i class="p5star k sl" style="clip-path:${starClip}"></i><i class="p5star sl" style="clip-path:${starClip}"></i><i class="p5star k sr" style="clip-path:${starClip}"></i><i class="p5star sr" style="clip-path:${starClip}"></i>
 <div class="bt-c l"><div class="bt-av"><img src="kaempfer/kaempfer-christoph.jpg" alt="Christoph als Kämpfer" width="480" height="600"></div><b>CHRISTOPH</b><small><i>SPEZIALKRAFT</i>${spC[0]}</small><ul><li><span>PLANUNG</span><i style="--v:96%"></i></li><li><span>NEUGIER</span><i style="--v:100%"></i></li><li><span>NAVIGATION</span><i style="--v:82%"></i></li></ul></div>
 <div class="bt-vs"><svg viewBox="0 0 30 80" aria-hidden="true"><path d="M18 0 L10 26 L20 30 L8 56 L16 58 L10 80" fill="none" stroke="#C9B8FF" stroke-width="2.4"/><path d="M18 0 L10 26 L20 30 L8 56 L16 58 L10 80" fill="none" stroke="#fff" stroke-width=".9"/></svg><b>VS</b></div>
 <div class="bt-c r"><div class="bt-av"><img src="kaempfer/kaempfer-michi.jpg" alt="Michi als Kämpfer" width="480" height="600"></div><b>MICHI</b><small><i>SPEZIALKRAFT</i>${spM[0]}</small><ul><li><span>HUNGER</span><i style="--v:99%"></i></li><li><span>HUMOR</span><i style="--v:97%"></i></li><li><span>GRIMASSEN</span><i style="--v:100%"></i></li></ul></div>
-</div><p class="bt-go">UNENTSCHIEDEN · TEAM WIN · SEOUL WARTET</p></div><div class="p5pop a noshift"><small class="who">CHRISTOPH · SPEZIALKRAFT</small><span class="nm" style="--n:${spC[0].length}">${rn(spC[0])}</span><small>${spC[1]}</small></div><div class="p5pop b noshift"><small class="who">MICHI · SPEZIALKRAFT</small><span class="nm" style="--n:${spM[0].length}">${rn(spM[0])}</span><small>${spM[1]}</small></div><div class="p5fin"><i class="ht"></i><img class="cut l" src="kaempfer/kaempfer-christoph.jpg" alt=""><img class="cut r" src="kaempfer/kaempfer-michi.jpg" alt=""><span>${rn("TEAM")}</span><span class="b2">${rn("ATTACK!")}</span><small>SUPERKOMBO · ${supK}</small></div><small>TIPPEN ZUM ÜBERSPRINGEN</small>`;
+</div><p class="bt-go">UNENTSCHIEDEN · TEAM WIN · SEOUL WARTET</p></div><div class="p5pop a noshift"><small class="who">CHRISTOPH · SPEZIALKRAFT</small><span class="nm" style="--n:${spC[0].length}">${rn(spC[0])}</span><small>${spC[1]}</small></div><div class="p5pop b noshift"><small class="who">MICHI · SPEZIALKRAFT</small><span class="nm" style="--n:${spM[0].length}">${rn(spM[0])}</span><small>${spM[1]}</small></div><div class="p5fin"><i class="ht"></i><img class="cut l" src="kaempfer/kaempfer-christoph.jpg" alt=""><img class="cut r" src="kaempfer/kaempfer-michi.jpg" alt=""><span>${rn("TEAM")}</span><span class="b2">${rn("ATTACK!")}</span><small>SUPERKOMBO · ${supK}</small></div><small class="p5skip">TIPPEN <b>▶▶</b> ÜBERSPRINGEN</small>`;
 /* Ablauf strecken: ROUND 1 +0,7 s, FIGHT/Treffer/Combos +1,2 s, Finale/Abschlusszeile +2,2 s */
 o.getAnimations({subtree:true}).forEach(an=>{ try{ const tg=an.effect.target; if(tg&&tg.closest&&tg.closest(".noshift")) return; const d=an.effect.getTiming().delay; let s=0;
  if(d>=5000) s=2200; else if(d>=2500) s=1200; else if(an.animationName==="call1") s=700;
  if(s) an.effect.updateTiming({delay:d+s}); }catch(e){} });
+const clampv=v=>Math.max(-1,Math.min(1,v)), par=(x,y)=>{o.style.setProperty("--px",x.toFixed(3));o.style.setProperty("--py",y.toFixed(3));};
+const onMove=e=>par(clampv((e.clientX/innerWidth-.5)*2),clampv((e.clientY/innerHeight-.5)*2));
+const onTilt=e=>{ if(e.gamma==null||e.beta==null) return; par(clampv(e.gamma/22),clampv((e.beta-55)/22)); };
+if(matchMedia("(pointer:fine)").matches) addEventListener("pointermove",onMove,{passive:true});
+addEventListener("deviceorientation",onTilt,{passive:true});
+off=()=>{removeEventListener("pointermove",onMove);removeEventListener("deviceorientation",onTilt);};
 const ht=document.getElementById("hpT"); let hv=99; const hi=setInterval(()=>{ if(done||!ht){clearInterval(hi);return;} hv=Math.max(0,hv-1); ht.textContent=String(hv).padStart(2,"0"); },700);
-setTimeout(end,11500); };
-const t=setInterval(()=>{ if(i>0&&i<ps.length) ps[i-1].classList.add("ok"); if(i<ps.length){ps[i].classList.add("on");i++;} else {clearInterval(t);setTimeout(team,300);} },200);
+setTimeout(end,10800); };
+const t=setInterval(()=>{ if(i>0&&i<ps.length) ps[i-1].classList.add("ok"); if(i<ps.length){ps[i].classList.add("on");i++;} else {clearInterval(t);setTimeout(opening,120);} },110);
 o.addEventListener("click",()=>{clearInterval(t);end();});
 }
 if(reduce) return;
