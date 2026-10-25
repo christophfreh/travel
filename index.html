@@ -957,6 +957,8 @@ background:repeating-conic-gradient(from 0deg at 30% 55%,rgba(255,255,255,.10) 0
 .gift>*:not(.gtag):not(.gdrip){position:relative;z-index:1}
 .gdrip{position:absolute;top:0;width:3px;border-radius:0 0 3px 3px;pointer-events:none;opacity:.55}
 @media (prefers-reduced-motion:no-preference){.gdrip{animation:gdrip 6s ease-in infinite}@keyframes gdrip{0%{height:0}60%{height:var(--h)}100%{height:var(--h);opacity:0}}}
+.list li{grid-template-columns:minmax(0,1fr) minmax(0,max-content)}
+.list li>span:last-child{max-width:38vw;overflow-wrap:anywhere}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -1101,7 +1103,7 @@ pflichtprogramm: <span class="n">null</span>,
 <section id="los">
 <div class="sh"><span class="n">06</span><h2>Was los ist</h2><span class="ko">행사</span></div>
 <ul class="list">
-<li><span><b>Unfold X</b> · Medienkunst und Technik im alten Bahnhofsgebäude Culture Station Seoul 284</span><span class="mono">26.11.–9.12. (laut Lacha, offiziell noch offen)</span></li>
+<li><span><b>Unfold X</b> · Medienkunst und Technik im alten Bahnhofsgebäude Culture Station Seoul 284. Termin laut Lacha, offiziell noch nicht bestätigt</span><span class="mono">26.11.–9.12.</span></li>
 <li><span><b>Seoul Independent Film Festival</b> · Indie-Kino rund um CGV Apgujeong</span><span class="mono">25.11.–4.12.</span></li>
 <li><span><b>Seoul Autumn Festa</b> · Theater und Performances in der ganzen Stadt, Infostand in Daehak-ro</span><span class="mono">bis 29.11.</span></li>
 <li><span><b>Hanseong-Baekje-Museum</b> · Sonderschau zu den Drei Reichen, Olympic Park, Eintritt frei</span><span class="mono">ab 20.11.</span></li>
