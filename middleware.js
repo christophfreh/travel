@@ -53,7 +53,7 @@ body::after{content:"";position:fixed;inset:0;background:repeating-linear-gradie
 canvas{position:fixed;inset:0;width:100%;height:100%;opacity:.35}
 .floor{position:fixed;left:-50%;right:-50%;bottom:0;height:34vh;transform:perspective(220px) rotateX(60deg);transform-origin:bottom;background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 26px,linear-gradient(90deg,rgba(59,230,214,.5) 1px,transparent 1px) 0 0/46px 100%;opacity:.55;animation:fl 2.6s linear infinite}
 @keyframes fl{to{background-position:0 26px,0 0}}
-main{position:relative;z-index:2;min-height:100%;display:flex;align-items:center;justify-content:center;padding:24px max(18px,env(safe-area-inset-left))}
+main{position:relative;z-index:2;min-height:100%;display:flex;align-items:center;justify-content:center;padding:90px max(18px,env(safe-area-inset-left)) 24px}
 .term{width:min(440px,100%);padding:26px 22px 22px;background:rgba(17,15,39,.82);border:1px solid rgba(59,230,214,.5);clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%);box-shadow:0 0 40px rgba(59,230,214,.15),inset 0 0 30px rgba(59,230,214,.06);backdrop-filter:blur(6px);position:relative}
 .term::before{content:"";position:absolute;inset:8px;pointer-events:none;background:linear-gradient(var(--y),var(--y)) left top/22px 2px no-repeat,linear-gradient(var(--y),var(--y)) left top/2px 22px no-repeat,linear-gradient(var(--n),var(--n)) right bottom/22px 2px no-repeat,linear-gradient(var(--n),var(--n)) right bottom/2px 22px no-repeat}
 .k{font-size:10px;letter-spacing:.2em;color:var(--mu)}
@@ -81,10 +81,18 @@ button:hover{background:var(--c)}button:active{transform:scale(.98)}
 .ft{margin-top:16px;font-size:9px;letter-spacing:.18em;color:rgba(171,165,207,.55);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .cur{display:inline-block;width:8px;height:14px;background:var(--c);vertical-align:-2px;animation:bl 1s steps(1) infinite}@keyframes bl{50%{opacity:0}}
 body.ok .term{animation:okk .7s forwards}@keyframes okk{0%{filter:none}30%{filter:brightness(2) hue-rotate(90deg)}100%{transform:scale(1.04);opacity:0;filter:blur(4px)}}
+
+.orbw{position:relative;width:120px;height:120px;margin:-86px auto 6px;z-index:3}
+.orb{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 35% 30%,#e9fbff 0 4%,rgba(159,243,255,.9) 6%,transparent 18%),radial-gradient(circle at 50% 55%,#2f8cff,#1438a8 60%,#0a1550 100%);box-shadow:0 0 30px #3BB8FF,0 0 80px rgba(59,184,255,.6),inset 0 -12px 30px rgba(0,0,40,.6),inset 0 8px 24px rgba(159,243,255,.35)}
+.orb::before{content:"";position:absolute;inset:-30%;background:conic-gradient(from 0deg,transparent,rgba(159,243,255,.35),transparent 30%,rgba(90,140,255,.4) 55%,transparent 70%,rgba(159,243,255,.3));filter:blur(8px);mix-blend-mode:screen;animation:sw 9s linear infinite}
+.orb::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 26%,rgba(255,255,255,.95) 0 3%,transparent 9%)}
+@keyframes sw{to{transform:rotate(360deg)}}
+.glowf{position:absolute;left:50%;top:84%;width:340px;height:60px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(59,184,255,.9),transparent) center 50%/100% 2px no-repeat,linear-gradient(transparent,rgba(59,184,255,.9),transparent) 50% center/2px 100% no-repeat,radial-gradient(closest-side,rgba(59,184,255,.45),transparent);filter:blur(.5px) drop-shadow(0 0 8px #3BB8FF);pointer-events:none;animation:pl 3.6s ease-in-out infinite}
+@keyframes pl{50%{opacity:.55}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style></head><body>
 <canvas id="r" aria-hidden="true"></canvas><div class="floor" aria-hidden="true"></div>
-<main><section class="term" aria-label="Zugang">
+<main><div style="width:min(440px,100%)"><div class="orbw" aria-hidden="true"><div class="glowf"></div><div class="orb"></div></div><section class="term" aria-label="Zugang">
 <div class="k">SYS://SEOUL.NOV · <b>SECURE NODE</b> · 37.57N 126.98E</div>
 <h1 aria-hidden="true">서울</h1>
 <div class="t">SEOUL, NOVEMBER.</div>
@@ -96,7 +104,7 @@ body.ok .term{animation:okk .7s forwards}@keyframes okk{0%{filter:none}30%{filte
 </form>
 <div class="err" role="alert">✕ ZUGANG VERWEIGERT · CODE FALSCH. NOCHMAL, CHOOM.</div>
 <div class="ft"><span>WAKE UP, SAMURAI.</span><span>BUILT, NOT TALKED ABOUT.</span></div>
-</section></main>
+</section></div></main>
 <script>
 (function(){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;const c=document.getElementById("r"),g=c.getContext("2d");let W,H,cols,dr;const ch="서울종로을지로福岡アイウエオカキクケコ0110".split("");
 function s(){W=c.width=innerWidth;H=c.height=innerHeight;cols=Math.ceil(W/18);dr=Array.from({length:cols},()=>Math.random()*-40)}s();addEventListener("resize",s);

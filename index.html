@@ -788,6 +788,33 @@ radial-gradient(circle,#9FF3FF 0 2px,transparent 3px) right 2px bottom 2px/8px 8
 .flash figcaption{position:relative}
 .flash figcaption::after{content:"";position:absolute;right:6px;top:6px;width:90px;height:70px;pointer-events:none;opacity:.55;
 background:radial-gradient(circle at 20% 30%,rgba(255,62,138,.7) 0 4px,transparent 5px),radial-gradient(circle at 60% 20%,rgba(59,230,214,.6) 0 2.5px,transparent 3.5px),radial-gradient(circle at 75% 60%,rgba(252,238,10,.55) 0 3px,transparent 4px),radial-gradient(circle at 40% 70%,rgba(255,62,138,.5) 0 1.8px,transparent 2.8px),radial-gradient(circle at 88% 30%,rgba(59,184,255,.6) 0 1.5px,transparent 2.5px),radial-gradient(ellipse 30px 16px at 70% 75%,rgba(255,62,138,.18),transparent 70%),radial-gradient(ellipse 26px 14px at 30% 40%,rgba(59,230,214,.15),transparent 70%);filter:blur(.3px)}
+.sky .ship{transform:translate(-80px,100px) scale(.8)}
+.sky .hexglow{filter:drop-shadow(0 0 4px #9FF3FF) drop-shadow(0 0 8px #3BB8FF)}
+.sky .tagz{opacity:.8}
+.sky::after{content:"";position:absolute;left:0;right:0;bottom:22%;height:34%;pointer-events:none;background:linear-gradient(0deg,rgba(60,200,140,.10),rgba(255,62,138,.06) 50%,transparent);mix-blend-mode:screen}
+@media (prefers-reduced-motion:no-preference){
+.sky .ship{animation:ship 70s linear infinite}
+@keyframes ship{from{transform:translate(-80px,100px) scale(.8)}50%{transform:translate(440px,92px) scale(.8)}to{transform:translate(900px,102px) scale(.8)}}
+.sky .hexglow{animation:hxg 2.4s ease-in-out infinite}
+@keyframes hxg{50%{opacity:.4}}
+}
+.hexcore{width:clamp(44px,11vw,60px);height:clamp(44px,11vw,60px);perspective:240px;filter:drop-shadow(0 0 10px rgba(59,184,255,.7))}
+.hc{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(-24deg) rotateY(35deg)}
+.hc i{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(135deg,#3BB8FF,#1E5BD8);border:2px solid #C9A25A;border-radius:6px;box-shadow:inset 0 0 0 3px rgba(17,15,39,.35),inset 0 0 14px rgba(159,243,255,.6);clip-path:polygon(18% 0,82% 0,100% 18%,100% 82%,82% 100%,18% 100%,0 82%,0 18%)}
+.hc i b{font:700 clamp(14px,3.6vw,20px)/1 var(--f-body);color:#E6FBFF;text-shadow:0 0 6px #9FF3FF}
+.hc .f0{transform:translateZ(calc(clamp(44px,11vw,60px)/2))}
+.hc .f1{transform:rotateY(180deg) translateZ(calc(clamp(44px,11vw,60px)/2))}
+.hc .f2{transform:rotateY(90deg) translateZ(calc(clamp(44px,11vw,60px)/2))}
+.hc .f3{transform:rotateY(-90deg) translateZ(calc(clamp(44px,11vw,60px)/2))}
+.hc .f4{transform:rotateX(90deg) translateZ(calc(clamp(44px,11vw,60px)/2))}
+.hc .f5{transform:rotateX(-90deg) translateZ(calc(clamp(44px,11vw,60px)/2))}
+@media (prefers-reduced-motion:no-preference){
+.hc{animation:hcspin 22s linear infinite}
+@keyframes hcspin{from{transform:rotateX(-24deg) rotateY(0)}to{transform:rotateX(-24deg) rotateY(360deg)}}
+.hexcore{animation:hcglow 4.8s ease-in-out infinite}
+@keyframes hcglow{50%{filter:drop-shadow(0 0 18px rgba(159,243,255,.95))}}
+}
+.arcane .hexcore{margin:6px 8px}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -1161,11 +1188,7 @@ pflichtprogramm: <span class="n">null</span>,
 <section id="games">
 <div class="sh"><span class="n">16</span><h2>Games</h2><span class="ko">게임</span></div>
 <div class="arcane" aria-hidden="true">
-<svg class="hex" viewBox="0 0 120 120"><defs><radialGradient id="hxg"><stop offset="0" stop-color="#9FF3FF"/><stop offset=".45" stop-color="#3BB8FF" stop-opacity=".8"/><stop offset="1" stop-color="#1B3A8A" stop-opacity="0"/></radialGradient></defs>
-<circle cx="60" cy="60" r="56" fill="url(#hxg)" opacity=".35"/>
-<g class="hx-r"><polygon points="60,8 105,34 105,86 60,112 15,86 15,34" fill="none" stroke="#E8C77A" stroke-width="2"/><polygon points="60,20 94,40 94,80 60,100 26,80 26,40" fill="none" stroke="#E8C77A" stroke-width="1" stroke-dasharray="4 5"/></g>
-<polygon class="hx-c" points="60,34 78,46 78,74 60,86 42,74 42,46" fill="#3BB8FF" fill-opacity=".25" stroke="#9FF3FF" stroke-width="2"/>
-<path d="M60 34v52M42 46l36 28M78 46L42 74" stroke="#9FF3FF" stroke-width="1" opacity=".6"/></svg>
+<div class="hexcore" aria-hidden="true"><div class="hc"><i class="f0"><b>◇</b></i><i class="f1"><b>Ⅲ</b></i><i class="f2"><b>♡</b></i><i class="f3"><b>≋</b></i><i class="f4"><b>✧</b></i><i class="f5"><b>⌘</b></i></div></div>
 <svg class="graf" viewBox="0 0 320 120"><defs><filter id="spray" x="-10%" y="-10%" width="120%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3"/><feGaussianBlur stdDeviation=".4"/></filter></defs>
 <g filter="url(#spray)" fill="none" stroke-linecap="round" stroke-linejoin="round">
 <path class="g1" d="M18 70 C40 20, 70 20, 80 60 S120 100, 140 50" stroke="#FF3E8A" stroke-width="5"/>
@@ -1931,10 +1954,13 @@ for(let x=-4;x<800;){const w=30+rnd()*46,h=40+rnd()*70; if(x>620&&x<700){x+=8;co
 o+=`<rect class="bld" x="${x}" y="${220-h}" width="${w}" height="${h}"/>`;
 for(let wy=220-h+8;wy<214;wy+=10)for(let wx=x+5;wx<x+w-6;wx+=9){ if(rnd()>.62) o+=`<rect class="win ${cols[(rnd()*3)|0]}" x="${wx.toFixed(1)}" y="${wy.toFixed(1)}" width="4" height="5" style="--d:${(5+rnd()*14).toFixed(1)}s;--o:-${(rnd()*9).toFixed(1)}s"/>`; }
 x+=w+3;}
+// arcane: piltover airship + zaun graffiti
+o+=`<g class="ship"><ellipse cx="0" cy="0" rx="34" ry="9" fill="#2a2040" stroke="#E8C77A" stroke-width="1.4"/><path d="M-26 0 h52 M-18 -7 v14 M0 -9 v18 M18 -7 v14" stroke="#E8C77A" stroke-width=".8" opacity=".7"/><rect x="-12" y="9" width="24" height="7" rx="2" fill="#1a1430" stroke="#E8C77A" stroke-width="1"/><circle cx="-38" cy="0" r="3.5" fill="#9FF3FF" class="hexglow"/><circle cx="38" cy="2" r="2" fill="#9FF3FF" class="hexglow"/><path d="M-34 -2 l-6 -6 M-34 2 l-6 6" stroke="#E8C77A" stroke-width="1.2"/></g>`;
+o+=`<g class="tagz" fill="none" stroke-linecap="round"><path d="M300 178 l14 18 M314 178 l-14 18" stroke="#FF3E8A" stroke-width="3"/><circle cx="340" cy="188" r="8" stroke="#3BE6D6" stroke-width="2"/><path d="M336 186 h.1 M344 186 h.1" stroke="#3BE6D6" stroke-width="2.4"/><path d="M335 191 q5 4 10 0" stroke="#3BE6D6" stroke-width="1.6"/><path d="M520 192 c6 -10 14 6 20 -4 s12 4 16 -4" stroke="#FF3E8A" stroke-width="2.4"/></g>`;
 // flying cars
 for(let i=0;i<5;i++) o+=`<rect class="car${i%2?" r":""}" x="0" y="${30+rnd()*70}" width="10" height="2" rx="1" style="--t:${(12+rnd()*12).toFixed(1)}s;--o:-${(rnd()*10).toFixed(1)}s"/>`;
 sv.innerHTML=`<g transform="scale(1,.68)">${o}</g>`;
-const H=["서울 · 2026","JOI · EVERYTHING YOU WANT TO SEE","WAKE UP, SAMURAI","소주 4.500₩","MICHI × CHRISTOPH","福岡 BONUSLEVEL","GLÜCKWUNSCH, CHOOM"],C=["","c","y"]; let i=0; const hb=document.getElementById("holo");
+const H=["서울 · 2026","JOI · EVERYTHING YOU WANT TO SEE","PILTOVER ⇅ ZAUN","HEXTECH INSIDE","WAKE UP, SAMURAI","소주 4.500₩","MICHI × CHRISTOPH","福岡 BONUSLEVEL","GLÜCKWUNSCH, CHOOM"],C=["","c","y"]; let i=0; const hb=document.getElementById("holo");
 if(!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(()=>{i=(i+1)%H.length; hb.textContent=H[i]; hb.className="holo sw "+C[i%3]; setTimeout(()=>hb.classList.remove("sw"),550);},4800);
 })();
 // ---------- matrix strips ----------
