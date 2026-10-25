@@ -2601,7 +2601,7 @@ const sfx=k=>{ try{ if(!ac||ac.state!=="running") return; const t=ac.currentTime
  else if(k==="fight"){ tone(196,196,.28,.14,"sawtooth"); tone(294,294,.28,.12,"sawtooth"); noise(300,2400,.3,.2); }
  }catch(e){} };
 const at=(ms,k)=>setTimeout(()=>{ if(!done) sfx(k); },ms);
-let seen=false; try{ seen=sessionStorage.getItem("p5seen")==="1"; }catch(e){}
+const seen=false; /* Kurzfassung bewusst aus: immer die volle Sequenz, Überspringen per Tippen */
 const rn=t=>[...t].map((c,k)=>c===" "?'<i class="sp"></i>':`<em class="rn${(k*7+c.charCodeAt(0))%4}" style="--r:${((k*37)%13)-6}deg">${c}</em>`).join("");
 const rnk=(t,off)=>[...t].map((c,k)=>c===" "?'<i class="sp"></i>':`<em class="rn${(k*7+c.charCodeAt(0))%4}" style="--r:${((k*37)%13)-6}deg;--i:${k+off}">${c}</em>`).join("");
 const jag=()=>{ const a=[0,1.5,.4,1.9,.2,1.2,.8,1.7], b=[1.6,.3,1.3,.1,1.8,.5,1.1,.2], q=[]; for(let x=0,k=0;x<=100;x+=4,k++) q.push(x+"% "+a[k%8]+"%"); for(let x=100,k=0;x>=0;x-=4,k++) q.push(x+"% "+(100-b[k%8])+"%"); return "polygon("+q.join(",")+")"; };
