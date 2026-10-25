@@ -771,6 +771,14 @@ radial-gradient(circle,#9FF3FF 0 2px,transparent 3px) right 2px bottom 2px/8px 8
 .bt-vs svg{width:20px;height:56px;filter:drop-shadow(0 0 6px #A98BFF) drop-shadow(0 0 14px #7A5CFF)}
 .bt-vs b{font:400 16px/1 var(--f-sign);color:var(--cp);text-shadow:0 0 12px var(--cp)}
 @media (prefers-reduced-motion:no-preference){.bt-vs svg{animation:vsbolt 1.2s steps(1) infinite}@keyframes vsbolt{0%{opacity:1}20%{opacity:.25}30%{opacity:1}60%{opacity:.6}70%{opacity:1}}}
+.bt-c{border:1.5px solid #C9A25A;background:linear-gradient(160deg,rgba(201,162,90,.10),rgba(20,16,48,.85) 60%);box-shadow:inset 0 0 0 3px rgba(17,15,39,.9),inset 0 0 0 4px rgba(201,162,90,.35),0 0 22px rgba(59,184,255,.18)}
+.bt-c.r{border-color:#C9A25A;background:linear-gradient(200deg,rgba(201,162,90,.10),rgba(20,16,48,.85) 60%);box-shadow:inset 0 0 0 3px rgba(17,15,39,.9),inset 0 0 0 4px rgba(201,162,90,.35),0 0 22px rgba(255,62,138,.2)}
+.bt-av{border-color:#C9A25A;background:radial-gradient(circle,rgba(159,243,255,.35),transparent 65%)}
+.bt-c b{text-shadow:0 0 10px rgba(159,243,255,.35)}
+.boot::before{content:"BLA BLA  ✦  BLA";position:absolute;left:6%;top:12%;font:400 clamp(28px,9vw,64px)/1 var(--f-sign);color:rgba(255,62,138,.07);transform:rotate(-12deg);pointer-events:none}
+.boot::after{content:"BLA";position:absolute;right:8%;bottom:16%;font:400 clamp(24px,7vw,52px)/1 var(--f-sign);color:rgba(59,230,214,.07);transform:rotate(8deg);pointer-events:none}
+.arcane .graf{background:none}
+.arcane .ar-bla{position:absolute;right:16%;bottom:2px;font:400 22px/1 var(--f-sign);color:rgba(255,62,138,.12);transform:rotate(-8deg);pointer-events:none}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -1160,6 +1168,7 @@ pflichtprogramm: <span class="n">null</span>,
 <text x="96" y="112" class="g-tag">MICHI + CHRISTOPH WAS HERE</text>
 <circle cx="84" cy="64" r="2.5" fill="#FF3E8A"/><circle cx="84" cy="64" r="1" fill="#FF3E8A" class="drip"/></svg>
 <svg class="bolt" viewBox="0 0 60 120" preserveAspectRatio="none"><path d="M34 0 L26 28 L36 34 L22 62 L32 66 L18 96 L28 100 L20 120" fill="none" stroke="#C9B8FF" stroke-width="2.2"/><path d="M34 0 L26 28 L36 34 L22 62 L32 66 L18 96 L28 100 L20 120" fill="none" stroke="#fff" stroke-width=".8"/><path d="M36 34 L46 44 M32 66 L42 74" fill="none" stroke="#C9B8FF" stroke-width="1"/></svg>
+<span class="ar-bla">BLA BLA</span>
 <span class="ar-k">HEXTECH × ZAUN · ARCANE MODE</span>
 </div>
 <figure class="ph"><img src="https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=1200&h=520" alt="Arcade-Automaten im Neonlicht" loading="lazy" onerror="this.closest('figure').remove()"><span class="ph-l">게임 · Level up</span><figcaption>Foto: <a href="https://unsplash.com/@carltraw?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Carl Raw</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure>
