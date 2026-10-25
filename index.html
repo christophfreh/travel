@@ -3710,14 +3710,14 @@ if(hacks){ lab=document.createElement("div"); lab.className="lab"; lab.innerHTML
  const b=$("lbPaint"); if(!b) return; const set=on=>{ document.body.classList.toggle("paint",on); b.setAttribute("aria-pressed",String(on)); lsSet("paint",on); }; if(lsGet("paint",false)) set(true); b.addEventListener("click",()=>set(!document.body.classList.contains("paint"))); })();
 /* ---------- 8) Summen ---------- */
 (function(){ const b=$("lbHum"); if(!b) return; let o1,o2,o3,g,lp,run=false; const arc=document.querySelector(".arcane");
- function level(){ if(!arc) return .04; const r=arc.getBoundingClientRect(), vh=innerHeight; const d=Math.abs((r.top+r.height/2)-vh/2); const k=Math.max(0,1-d/(vh*.8)); return .025+k*k*.2; }
+ function level(){ if(!arc) return .04; const r=arc.getBoundingClientRect(), vh=innerHeight; const d=Math.abs((r.top+r.height/2)-vh/2); const k=Math.max(0,1-d/(vh*.8)); return .008+k*k*.07; }
  function upd(){ if(!run||!g) return; g.gain.setTargetAtTime(level(),ac.currentTime,.25); }
  function start(){ const a=ctx(); if(!a) return; g=a.createGain(); g.gain.value=.0001; lp=a.createBiquadFilter(); lp.type="lowpass"; lp.frequency.value=900;
   o1=a.createOscillator(); o1.type="sine"; o1.frequency.value=110; o2=a.createOscillator(); o2.type="sine"; o2.frequency.value=111.2; o3=a.createOscillator(); o3.type="triangle"; o3.frequency.value=220.6;
-  const o4=a.createOscillator(); o4.type="sine"; o4.frequency.value=330.9; o4.__x=1; const g3=a.createGain(); g3.gain.value=.8; const g4=a.createGain(); g4.gain.value=.3;
+  const o4=a.createOscillator(); o4.type="sine"; o4.frequency.value=330.9; o4.__x=1; const g3=a.createGain(); g3.gain.value=.5; const g4=a.createGain(); g4.gain.value=.12;
   const lfo=a.createOscillator(), lg=a.createGain(); lfo.frequency.value=.18; lg.gain.value=180; lfo.connect(lg).connect(lp.frequency); lfo.start();
   o1.connect(lp); o2.connect(lp); o3.connect(g3).connect(lp); o4.connect(g4).connect(lp); lp.connect(g).connect(a.destination); [o1,o2,o3,o4].forEach(o=>o.start()); o3.__o4=o4; run=true; upd();
-  const sw=a.createOscillator(), sg=a.createGain(); sw.type="triangle"; sw.frequency.setValueAtTime(180,a.currentTime); sw.frequency.exponentialRampToValueAtTime(900,a.currentTime+.35); sg.gain.setValueAtTime(.0001,a.currentTime); sg.gain.exponentialRampToValueAtTime(.04,a.currentTime+.05); sg.gain.exponentialRampToValueAtTime(.0001,a.currentTime+.45); sw.connect(sg).connect(a.destination); sw.start(); sw.stop(a.currentTime+.5); }
+  const sw=a.createOscillator(), sg=a.createGain(); sw.type="triangle"; sw.frequency.setValueAtTime(180,a.currentTime); sw.frequency.exponentialRampToValueAtTime(900,a.currentTime+.35); sg.gain.setValueAtTime(.0001,a.currentTime); sg.gain.exponentialRampToValueAtTime(.012,a.currentTime+.05); sg.gain.exponentialRampToValueAtTime(.0001,a.currentTime+.45); sw.connect(sg).connect(a.destination); sw.start(); sw.stop(a.currentTime+.5); }
  function stop(){ run=false; if(g){ g.gain.setTargetAtTime(.0001,ac.currentTime,.1); const a=[o1,o2,o3,o3.__o4]; setTimeout(()=>a.forEach(o=>{ try{o.stop();}catch(e){} }),500); } }
  b.addEventListener("click",()=>{ const on=b.getAttribute("aria-pressed")!=="true"; b.setAttribute("aria-pressed",String(on)); on?start():stop(); });
  addEventListener("scroll",upd,{passive:true}); document.addEventListener("visibilitychange",()=>{ if(document.hidden&&run){ b.click(); } }); })();
