@@ -1428,6 +1428,64 @@ background:radial-gradient(70% 60% at 50% 30%,#ffcf7a,#f39a3a 35%,#c2571c 70%,#5
 .boot.lite .p5bg .burst,.boot.lite .p5bg .shards,.boot.lite .p5bg .ht{animation:none!important}
 .boot.lite .p5bg .shards,.boot.lite .p5radar,.boot.lite .p5nova,.boot.lite .brushx,.boot.lite .spk,.boot.lite .p5s{display:none!important}
 .boot.lite .p5dmg,.boot.lite .p5pop{text-shadow:2px 2px 0 #000}
+/* ===== Night City 3.0 — Cyberpunk-2077-Stimmung (eigene Gestaltung, keine Marken) ===== */
+:root{--y:#FCEE0A}
+/* Hero: höhere Skyline mit Neon-Schildern und nasser Straße */
+.sky{height:clamp(170px,42vw,250px)}
+.sky::after{content:"";position:absolute;left:0;right:0;bottom:0;height:30%;z-index:3;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(10,8,24,.55)),repeating-linear-gradient(90deg,rgba(255,62,138,.0) 0 22px,rgba(255,62,138,.18) 22px 24px,rgba(59,230,214,.0) 24px 52px,rgba(59,230,214,.16) 52px 54px);mix-blend-mode:screen;filter:blur(1.5px)}
+.neons{position:absolute;inset:0;z-index:2;pointer-events:none}
+.neons b{position:absolute;bottom:var(--b,28%);left:var(--l);writing-mode:vertical-rl;font:400 var(--s,15px)/1.05 var(--f-sign);letter-spacing:.14em;color:var(--c);padding:7px 4px 5px;border:1.5px solid var(--c);background:rgba(8,6,20,.72);text-shadow:0 0 6px var(--c),0 0 14px var(--c);box-shadow:0 0 12px -2px var(--c),inset 0 0 8px -3px var(--c);opacity:.95}
+.neons b.h{writing-mode:horizontal-tb;padding:4px 7px 3px;letter-spacing:.06em}
+.neons b::after{content:"";position:absolute;left:50%;top:100%;width:1.5px;height:12px;background:var(--c);opacity:.5}
+.neons b.y{--c:#FCEE0A}.neons b.p{--c:#FF3E8A}.neons b.c{--c:#3BE6D6}
+.neons .ad{position:absolute;right:4%;top:16%;width:min(24vw,110px);aspect-ratio:3/4;border:1.5px solid rgba(252,238,10,.7);background:linear-gradient(160deg,rgba(252,238,10,.16),rgba(255,62,138,.14));box-shadow:0 0 22px -4px rgba(252,238,10,.5);clip-path:polygon(0 0,100% 0,100% 88%,82% 100%,0 100%);overflow:hidden}
+.neons .ad::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(252,238,10,.22) 0 2px,transparent 2px 6px)}
+.neons .ad i{position:absolute;left:10%;right:10%;bottom:14%;height:42%;background:conic-gradient(from 200deg at 50% 100%,transparent,rgba(59,230,214,.55),rgba(255,62,138,.6),transparent 70%);filter:blur(1px)}
+.neons .ad em{position:absolute;left:8px;top:7px;font:700 8px var(--f-mono);letter-spacing:.14em;color:var(--y);font-style:normal}
+@media (prefers-reduced-motion:no-preference){
+.neons b{animation:nflick var(--fd,7s) var(--fo,0s) infinite steps(1)}
+.neons b.h{--fd:9.4s}
+@keyframes nflick{0%,90%,93%,100%{opacity:.95}91%{opacity:.35}92%{opacity:.8}94%{opacity:.5}95%{opacity:.95}}
+.neons .ad::before{animation:adscan 5.6s linear infinite}
+@keyframes adscan{to{transform:translateY(24px)}}}
+/* Gelbes Rückgrat: Abschnittsnummer, Buttons, Dock */
+.sh .n{background:var(--y);color:#0a0818;text-shadow:none;font-size:26px;line-height:1;padding:7px 10px 5px;align-self:flex-end;clip-path:polygon(0 0,100% 0,100% 62%,84% 100%,0 100%)}
+.btn{border-radius:0;background:var(--y);color:#0a0818;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px));padding:10px 18px 9px}
+.btn:hover{background:var(--cyan);box-shadow:none}
+.dock a.on{background:var(--y);color:#0a0818;box-shadow:0 0 16px rgba(252,238,10,.4)}
+/* Bezirks-Banner */
+.dist{position:relative;margin:4px calc(50% - 50vw);filter:drop-shadow(7px 7px 0 var(--neon)) drop-shadow(-3px -2px 0 rgba(59,230,214,.8))}
+.dist .d-slab{position:relative;max-width:760px;margin:0 auto;background:var(--y);color:#0a0818;padding:14px max(20px,env(safe-area-inset-left,0px)) 16px;clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,26px 100%,0 calc(100% - 26px));overflow:hidden;min-height:128px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px}
+.dist .d-slab::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(10,8,24,.07) 0 2px,transparent 2px 9px);pointer-events:none}
+.dist .d-hz{position:absolute;left:0;right:0;top:0;height:9px;background:repeating-linear-gradient(115deg,#0a0818 0 10px,transparent 10px 20px)}
+.dist .d-tag{font:700 10px/1 var(--f-mono);letter-spacing:.22em;display:flex;gap:10px;align-items:center;margin-top:14px}
+.dist .d-tag::before{content:"";width:9px;height:9px;background:#0a0818}
+.dist .d-name{position:relative;display:block;font:400 min(15vw,84px,calc(80vw / (var(--n,6) * .82)))/.86 var(--f-sign);letter-spacing:.01em;font-style:italic;transform:skewX(-7deg);transform-origin:0 100%;margin-left:6px}
+.dist .d-name::before,.dist .d-name::after{content:attr(data-t);position:absolute;left:0;top:0;opacity:0;pointer-events:none}
+.dist .d-name::before{color:var(--cyan);mix-blend-mode:multiply}.dist .d-name::after{color:var(--neon);mix-blend-mode:multiply}
+.dist .d-name.gl::before{opacity:1;animation:dgl1 .42s steps(1)}.dist .d-name.gl::after{opacity:1;animation:dgl2 .42s steps(1)}
+@keyframes dgl1{0%{transform:translate(-5px,1px);clip-path:inset(10% 0 55% 0)}33%{transform:translate(4px,-1px);clip-path:inset(55% 0 12% 0)}66%{transform:translate(-3px,0);clip-path:inset(30% 0 40% 0)}100%{transform:none;clip-path:inset(0 0 100% 0)}}
+@keyframes dgl2{0%{transform:translate(5px,-1px);clip-path:inset(60% 0 8% 0)}33%{transform:translate(-4px,1px);clip-path:inset(8% 0 60% 0)}66%{transform:translate(3px,0);clip-path:inset(42% 0 30% 0)}100%{transform:none;clip-path:inset(0 0 100% 0)}}
+.dist .d-ko{position:absolute;right:14px;top:22px;font:400 clamp(70px,24vw,130px)/.8 var(--f-sign);color:transparent;-webkit-text-stroke:2px rgba(10,8,24,.28);pointer-events:none}
+.dist .d-meta{display:flex;flex-wrap:wrap;gap:6px 16px;font:700 9.5px/1 var(--f-mono);letter-spacing:.14em;margin-top:6px}
+.dist .d-meta span{display:inline-flex;align-items:center;gap:6px}
+.dist .d-meta u{display:inline-block;width:46px;height:6px;background:rgba(10,8,24,.22);position:relative;text-decoration:none}
+.dist .d-meta u::after{content:"";position:absolute;left:0;top:0;bottom:0;width:calc(var(--v) * 100%);background:#0a0818;transform-origin:0 50%}
+.dist .d-code{font:700 9px/1 var(--f-mono);letter-spacing:.14em;opacity:.8;margin-top:5px}
+.dist .d-cover{position:absolute;inset:0;background:#0a0818;z-index:3;transform-origin:100% 50%}
+@media (prefers-reduced-motion:no-preference){
+.dist .d-cover{transition:transform .55s cubic-bezier(.7,0,.2,1)}
+.dist.in .d-cover{transform:scaleX(0)}
+.dist .d-meta u::after{transform:scaleX(0);transition:transform .7s .5s cubic-bezier(.2,.8,.2,1)}
+.dist.in .d-meta u::after{transform:none}
+}
+@media (prefers-reduced-motion:reduce){.dist .d-cover{display:none}}
+/* HUD-Chip: aktueller Sektor */
+.hudchip{position:fixed;left:max(10px,env(safe-area-inset-left,0px));top:calc(8px + env(safe-area-inset-top,0px));z-index:22;pointer-events:none;background:var(--y);color:#0a0818;font:700 10px/1 var(--f-mono);letter-spacing:.14em;padding:6px 14px 5px 9px;clip-path:polygon(0 0,100% 0,calc(100% - 8px) 100%,0 100%);box-shadow:3px 3px 0 var(--neon);opacity:0;transform:translateX(-14px);transition:opacity .25s,transform .25s;max-width:70vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hudchip.on{opacity:.96;transform:none}
+.hudchip b{font-weight:700;margin-right:6px}
+.hudchip.sw{animation:chipsw .3s steps(3)}
+@keyframes chipsw{0%{transform:translateX(4px);filter:hue-rotate(90deg)}50%{transform:translateX(-3px)}100%{transform:none}}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -3016,4 +3074,38 @@ g.appendChild(sv);
 const d=document.createElement("i"); d.className="gdrip"; d.style.left=(30+((i*37)%55))+"%"; d.style.background=[P,C,Y][i%3]; d.style.setProperty("--h",(14+(i*7)%18)+"px"); d.style.animationDelay=(-i*1.3)+"s"; g.appendChild(d);
 });
 })();
-</script></body></html>
+</script><script>
+/* Night City 3.0: Neon-Schilder, Bezirks-Banner, HUD-Chip */
+(function(){
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const sky=document.getElementById("sky");
+if(sky){ const n=document.createElement("div"); n.className="neons"; n.setAttribute("aria-hidden","true");
+ n.innerHTML='<b class="p" style="--l:6%;--s:15px;--b:30%;--fo:-1s">호텔</b><b class="c h" style="--l:17%;--s:11px;--b:50%;--fo:-4s">24H</b><b class="y" style="--l:40%;--s:13px;--b:26%;--fo:-2s">소주</b><b class="c" style="--l:54%;--s:14px;--b:33%;--fo:-5s">ラーメン</b><b class="p h" style="--l:61%;--s:10px;--b:58%;--fo:-3s">포차</b><b class="y" style="--l:28%;--s:12px;--b:34%;--fo:-6s">치킨</b><div class="ad"><em>AD-7734</em><i></i></div>';
+ sky.appendChild(n); }
+const D={plan:["JONGNO","종로","BEZIRK 03","37.5704 N · 126.9822 E",[["NEON",.7],["HUNGER",.9],["LÄRM",.35]]],
+ essen:["GWANGJANG","광장","BEZIRK 07","MARKTSTRASSE · 24H",[["NEON",.55],["HUNGER",1],["LÄRM",.8]]],
+ abends:["EULJIRO","을지로","BEZIRK 08","HINTERHOF · NACHTSCHICHT",[["NEON",1],["DURST",.85],["LÄRM",.6]]],
+ fukuoka:["HAKATA","福岡","BONUSLEVEL","33.5902 N · 130.4207 E",[["NEON",.65],["RAMEN",1],["LÄRM",.45]]],
+ games:["ARCADE","게임","BEZIRK 16","INSERT COIN",[["NEON",.9],["EHRGEIZ",.8],["LÄRM",.7]]]};
+Object.keys(D).forEach(id=>{ const s=document.getElementById(id); if(!s) return; const [nm,ko,b,code,m]=D[id];
+ const d=document.createElement("div"); d.className="dist"; d.setAttribute("aria-hidden","true");
+ d.innerHTML='<div class="d-slab"><i class="d-hz"></i><span class="d-tag">'+b+' · 서울</span><b class="d-name" data-t="'+nm+'" style="--n:'+nm.length+'">'+nm+'</b><span class="d-ko">'+ko+'</span><span class="d-meta">'+m.map(x=>'<span>'+x[0]+'<u style="--v:'+x[1]+'"></u></span>').join("")+'</span><span class="d-code">'+code+'</span><i class="d-cover"></i></div>';
+ s.parentNode.insertBefore(d,s); });
+const dists=[...document.querySelectorAll(".dist")];
+if(reduce||!("IntersectionObserver" in window)) dists.forEach(d=>d.classList.add("in"));
+else { const G="#%&$*/\\<>01=+"; const io=new IntersectionObserver(es=>es.forEach(e=>{ if(!e.isIntersecting) return; io.unobserve(e.target); const d=e.target; d.classList.add("in");
+  const nmEl=d.querySelector(".d-name"), fin=nmEl.dataset.t; let f=0;
+  setTimeout(()=>{ nmEl.classList.add("gl"); const t=setInterval(()=>{ f++; nmEl.textContent=[...fin].map((c,k)=>k<f*fin.length/9?c:G[Math.floor(Math.random()*G.length)]).join(""); if(f>=9){clearInterval(t);nmEl.textContent=fin;} },45); setTimeout(()=>nmEl.classList.remove("gl"),450); },420);
+ }),{threshold:.35}); dists.forEach(d=>io.observe(d)); }
+/* HUD-Chip */
+const chip=document.createElement("div"); chip.className="hudchip"; chip.setAttribute("aria-hidden","true"); document.body.appendChild(chip);
+const secs=[...document.querySelectorAll(".wrap section[id]")].filter(s=>s.querySelector(".sh h2")); let cur=null;
+const upd=()=>{ if(scrollY<innerHeight*.6){ chip.classList.remove("on"); cur=null; return; }
+ const mid=innerHeight*.35; let best=null; for(const s of secs){ const r=s.getBoundingClientRect(); if(r.top<=mid&&r.bottom>mid){ best=s; break; } }
+ if(!best){ chip.classList.remove("on"); cur=null; return; }
+ if(best!==cur){ cur=best; const n=best.querySelector(".sh .n").textContent.trim(), t=best.querySelector(".sh h2").textContent.trim().toUpperCase();
+  chip.innerHTML="<b>SEKTOR "+n+"</b>"+t; chip.classList.add("on"); if(!reduce){ chip.classList.remove("sw"); void chip.offsetWidth; chip.classList.add("sw"); } } };
+let tk=false; addEventListener("scroll",()=>{ if(tk) return; tk=true; requestAnimationFrame(()=>{tk=false;upd();}); },{passive:true}); upd();
+})();
+</script>
+</body></html>
