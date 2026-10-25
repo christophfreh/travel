@@ -3761,17 +3761,23 @@ if(hacks){ lab=document.createElement("div"); lab.className="lab"; lab.innerHTML
 })();
 </script>
 <script>
-(function(){ const g=document.getElementById("games"), lab=document.querySelector(".lab"); if(!g||!lab) return;
- const b=document.createElement("button"); b.type="button"; b.className="lbx"; b.id="lbPz"; b.setAttribute("aria-pressed","false"); b.innerHTML="Piltover | Zaun<small>Trennlinie im Games-Kapitel</small>"; lab.appendChild(b);
- const pz=document.createElement("div"); pz.className="pz"; pz.hidden=true; pz.setAttribute("aria-hidden","true"); pz.innerHTML='<i class="pz-l"></i><i class="pz-r"></i><i class="pz-line"></i><b class="pz-h" role="slider" aria-label="Trennlinie"></b>'; g.appendChild(pz);
- const L=pz.querySelector(".pz-l"), R=pz.querySelector(".pz-r"), line=pz.querySelector(".pz-line"), h=pz.querySelector(".pz-h"); let x=.5;
- function place(){ const w=pz.clientWidth||g.clientWidth, H=pz.clientHeight||g.clientHeight, sk=Math.min(40,w*.09), cx=x*w, top=cx+sk, bot=cx-sk;
-  L.style.clipPath=`polygon(0 0,${top}px 0,${bot}px 100%,0 100%)`; R.style.clipPath=`polygon(${top}px 0,100% 0,100% 100%,${bot}px 100%)`;
-  const ang=Math.atan2(-2*sk,H)*180/Math.PI; line.style.left=cx+"px"; line.style.transform=`rotate(${-ang}deg)`; const ar=g.querySelector('.arcane'); const hy=ar?(ar.getBoundingClientRect().top-pz.getBoundingClientRect().top+ar.offsetHeight/2):140; h.style.top=hy+'px'; h.style.left=(cx+sk*(1-2*hy/H))+"px"; }
- let drag=false; h.addEventListener("pointerdown",e=>{ drag=true; h.setPointerCapture(e.pointerId); e.preventDefault(); });
- h.addEventListener("pointermove",e=>{ if(!drag) return; const r=pz.getBoundingClientRect(); x=Math.min(.95,Math.max(.05,(e.clientX-r.left)/r.width)); place(); });
- const end=()=>{ drag=false; }; h.addEventListener("pointerup",end); h.addEventListener("pointercancel",end);
- b.addEventListener("click",()=>{ const on=b.getAttribute("aria-pressed")!=="true"; b.setAttribute("aria-pressed",String(on)); pz.hidden=!on; if(on){ place(); const ar=g.querySelector('.arcane'); if(ar) ar.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"center"}); } });
- addEventListener("resize",()=>{ if(!pz.hidden) place(); }); })();
+(function(){ const lab=document.querySelector(".lab"); if(!lab) return; const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+ const b=document.createElement("button"); b.type="button"; b.className="lbx"; b.id="lbPz"; b.setAttribute("aria-pressed","false"); b.innerHTML="Piltover | Zaun<small>Trennlinie in Games und Tipps</small>"; lab.appendChild(b);
+ const list=[]; 
+ [["games",".arcane"],["tipps",".sh"]].forEach(([id,anc])=>{ const g=document.getElementById(id); if(!g) return;
+  const pz=document.createElement("div"); pz.className="pz"; pz.hidden=true; pz.setAttribute("aria-hidden","true"); pz.innerHTML='<i class="pz-l"></i><i class="pz-r"></i><i class="pz-line"></i><b class="pz-h" role="slider" aria-label="Trennlinie"></b>'; g.style.position="relative"; g.appendChild(pz);
+  const L=pz.querySelector(".pz-l"), R=pz.querySelector(".pz-r"), line=pz.querySelector(".pz-line"), h=pz.querySelector(".pz-h"); let x=.5;
+  function place(){ const w=pz.clientWidth||g.clientWidth, H=pz.clientHeight||g.clientHeight, sk=Math.min(40,w*.09), cx=x*w, top=cx+sk, bot=cx-sk;
+   L.style.clipPath=`polygon(0 0,${top}px 0,${bot}px 100%,0 100%)`; R.style.clipPath=`polygon(${top}px 0,100% 0,100% 100%,${bot}px 100%)`;
+   const ang=Math.atan2(-2*sk,H)*180/Math.PI; line.style.left=cx+"px"; line.style.transform=`rotate(${-ang}deg)`;
+   const ar=g.querySelector(anc); const hy=id==="games"&&ar?(ar.getBoundingClientRect().top-pz.getBoundingClientRect().top+ar.offsetHeight/2):Math.min(H-30,Math.max(30,innerHeight*.45-pz.getBoundingClientRect().top)); h.style.top=hy+"px"; h.style.left=(cx+sk*(1-2*hy/H))+"px"; }
+  let drag=false; h.addEventListener("pointerdown",e=>{ drag=true; h.setPointerCapture(e.pointerId); e.preventDefault(); });
+  h.addEventListener("pointermove",e=>{ if(!drag) return; const r=pz.getBoundingClientRect(); x=Math.min(.95,Math.max(.05,(e.clientX-r.left)/r.width)); place(); });
+  const end=()=>{ drag=false; }; h.addEventListener("pointerup",end); h.addEventListener("pointercancel",end);
+  list.push({pz,place,id,g,anc}); });
+ b.addEventListener("click",()=>{ const on=b.getAttribute("aria-pressed")!=="true"; b.setAttribute("aria-pressed",String(on)); list.forEach(o=>{ o.pz.hidden=!on; if(on) o.place(); });
+  if(on&&list[0]){ const o=list[0], ar=o.g.querySelector(o.anc); (ar||o.g).scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"}); } });
+ addEventListener("resize",()=>list.forEach(o=>{ if(!o.pz.hidden) o.place(); }));
+ let tk=null; addEventListener("scroll",()=>{ if(tk) return; tk=requestAnimationFrame(()=>{ tk=null; list.forEach(o=>{ if(!o.pz.hidden&&o.id!=="games") o.place(); }); }); },{passive:true}); })();
 </script>
 </body></html>
