@@ -758,6 +758,19 @@ radial-gradient(circle,#9FF3FF 0 2px,transparent 3px) right 2px bottom 2px/8px 8
 .box.pilt::after{background:#E8C77A}
 .fhex{width:14px;height:14px;vertical-align:-2px;margin-right:6px;filter:drop-shadow(0 0 4px #3BB8FF)}
 @media (prefers-reduced-motion:no-preference){.fhex{animation:hxc 4.8s ease-in-out infinite}}
+.arcane{background:radial-gradient(70% 140% at 75% 60%,rgba(200,30,70,.28),transparent 70%),radial-gradient(40% 90% at 30% 30%,rgba(140,40,120,.18),transparent 70%),radial-gradient(60% 120% at 8% 50%,rgba(59,184,255,.10),transparent 70%),linear-gradient(135deg,#1a0f2a,#24101f)}
+.arcane .bolt{position:absolute;left:58%;top:0;height:100%;width:22px;pointer-events:none;opacity:0;filter:drop-shadow(0 0 6px #A98BFF) drop-shadow(0 0 14px #7A5CFF)}
+@media (prefers-reduced-motion:no-preference){
+.arcane .bolt{animation:bolt 9s steps(1) infinite}
+@keyframes bolt{0%,88%,100%{opacity:0}89%{opacity:1}90%{opacity:.2}91%{opacity:.9}93%{opacity:0}}
+.arcane::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(40% 80% at 60% 40%,rgba(201,184,255,.35),transparent 70%);opacity:0;animation:boltflash 9s steps(1) infinite}
+@keyframes boltflash{0%,88%,100%{opacity:0}89%{opacity:.8}90%{opacity:.1}91%{opacity:.6}93%{opacity:0}}
+}
+.boot{background:radial-gradient(60% 50% at 25% 55%,rgba(59,120,255,.16),transparent 70%),radial-gradient(60% 50% at 75% 55%,rgba(230,40,110,.16),transparent 70%),#0a0818}
+.bt-vs{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:0;text-shadow:none}
+.bt-vs svg{width:20px;height:56px;filter:drop-shadow(0 0 6px #A98BFF) drop-shadow(0 0 14px #7A5CFF)}
+.bt-vs b{font:400 16px/1 var(--f-sign);color:var(--cp);text-shadow:0 0 12px var(--cp)}
+@media (prefers-reduced-motion:no-preference){.bt-vs svg{animation:vsbolt 1.2s steps(1) infinite}@keyframes vsbolt{0%{opacity:1}20%{opacity:.25}30%{opacity:1}60%{opacity:.6}70%{opacity:1}}}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -1146,6 +1159,7 @@ pflichtprogramm: <span class="n">null</span>,
 </g>
 <text x="96" y="112" class="g-tag">MICHI + CHRISTOPH WAS HERE</text>
 <circle cx="84" cy="64" r="2.5" fill="#FF3E8A"/><circle cx="84" cy="64" r="1" fill="#FF3E8A" class="drip"/></svg>
+<svg class="bolt" viewBox="0 0 60 120" preserveAspectRatio="none"><path d="M34 0 L26 28 L36 34 L22 62 L32 66 L18 96 L28 100 L20 120" fill="none" stroke="#C9B8FF" stroke-width="2.2"/><path d="M34 0 L26 28 L36 34 L22 62 L32 66 L18 96 L28 100 L20 120" fill="none" stroke="#fff" stroke-width=".8"/><path d="M36 34 L46 44 M32 66 L42 74" fill="none" stroke="#C9B8FF" stroke-width="1"/></svg>
 <span class="ar-k">HEXTECH × ZAUN · ARCANE MODE</span>
 </div>
 <figure class="ph"><img src="https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=1200&h=520" alt="Arcade-Automaten im Neonlicht" loading="lazy" onerror="this.closest('figure').remove()"><span class="ph-l">게임 · Level up</span><figcaption>Foto: <a href="https://unsplash.com/@carltraw?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Carl Raw</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure>
@@ -1871,7 +1885,7 @@ const end=()=>{if(done)return;done=true;o.classList.add("out");setTimeout(()=>o.
 const team=()=>{ if(done) return;
 o.innerHTML=`<div class="bt"><p class="bt-h">&gt; SPIELER AUSGEWÄHLT</p><div class="bt-row">
 <div class="bt-c l"><div class="bt-av">C</div><b>CHRISTOPH</b><small>KLASSE: NETRUNNER</small><ul><li><span>PLANUNG</span><i style="--v:96%"></i></li><li><span>NEUGIER</span><i style="--v:100%"></i></li><li><span>NAVIGATION</span><i style="--v:82%"></i></li></ul></div>
-<div class="bt-vs">×</div>
+<div class="bt-vs"><svg viewBox="0 0 30 80" aria-hidden="true"><path d="M18 0 L10 26 L20 30 L8 56 L16 58 L10 80" fill="none" stroke="#C9B8FF" stroke-width="2.4"/><path d="M18 0 L10 26 L20 30 L8 56 L16 58 L10 80" fill="none" stroke="#fff" stroke-width=".9"/></svg><b>VS</b></div>
 <div class="bt-c r"><div class="bt-av">M</div><b>MICHI</b><small>KLASSE: GOURMET</small><ul><li><span>HUNGER</span><i style="--v:99%"></i></li><li><span>HUMOR</span><i style="--v:97%"></i></li><li><span>GRIMASSEN</span><i style="--v:100%"></i></li></ul></div>
 </div><p class="bt-go">TEAM BEREIT · SEOUL WARTET</p></div><small>TIPPEN ZUM ÜBERSPRINGEN</small>`;
 setTimeout(end,2600); };
