@@ -1480,12 +1480,8 @@ background:radial-gradient(70% 60% at 50% 30%,#ffcf7a,#f39a3a 35%,#c2571c 70%,#5
 .dist.in .d-meta u::after{transform:none}
 }
 @media (prefers-reduced-motion:reduce){.dist .d-cover{display:none}}
-/* HUD-Chip: aktueller Sektor */
-.hudchip{position:fixed;left:max(10px,env(safe-area-inset-left,0px));top:calc(8px + env(safe-area-inset-top,0px));z-index:22;pointer-events:none;background:var(--y);color:#0a0818;font:700 10px/1 var(--f-mono);letter-spacing:.14em;padding:6px 14px 5px 9px;clip-path:polygon(0 0,100% 0,calc(100% - 8px) 100%,0 100%);box-shadow:3px 3px 0 var(--neon);opacity:0;transform:translateX(-14px);transition:opacity .25s,transform .25s;max-width:70vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hudchip.on{opacity:.96;transform:none}
-.hudchip b{font-weight:700;margin-right:6px}
-.hudchip.sw{animation:chipsw .3s steps(3)}
-@keyframes chipsw{0%{transform:translateX(4px);filter:hue-rotate(90deg)}50%{transform:translateX(-3px)}100%{transform:none}}
+/* Faltbare Bereiche: Banner & Co. nicht zusammenquetschen */
+section.fold:not(.open)>*{flex-shrink:0}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -3085,8 +3081,8 @@ if(sky){ const n=document.createElement("div"); n.className="neons"; n.setAttrib
 const D={plan:["JONGNO","종로","BEZIRK 03","37.5704 N · 126.9822 E",[["NEON",.7],["HUNGER",.9],["LÄRM",.35]]],
  essen:["GWANGJANG","광장","BEZIRK 07","MARKTSTRASSE · 24H",[["NEON",.55],["HUNGER",1],["LÄRM",.8]]],
  abends:["EULJIRO","을지로","BEZIRK 08","HINTERHOF · NACHTSCHICHT",[["NEON",1],["DURST",.85],["LÄRM",.6]]],
- fukuoka:["HAKATA","福岡","BONUSLEVEL","33.5902 N · 130.4207 E",[["NEON",.65],["RAMEN",1],["LÄRM",.45]]],
- games:["ARCADE","게임","BEZIRK 16","INSERT COIN",[["NEON",.9],["EHRGEIZ",.8],["LÄRM",.7]]]};
+ fukuoka:["HAKATA","福岡","BONUSLEVEL","33.5902 N · 130.4207 E",[["NEON",.65],["RAMEN",1],["LÄRM",.45]]]};
+
 Object.keys(D).forEach(id=>{ const s=document.getElementById(id); if(!s) return; const [nm,ko,b,code,m]=D[id];
  const d=document.createElement("div"); d.className="dist"; d.setAttribute("aria-hidden","true");
  d.innerHTML='<div class="d-slab"><i class="d-hz"></i><span class="d-tag">'+b+' · 서울</span><b class="d-name" data-t="'+nm+'" style="--n:'+nm.length+'">'+nm+'</b><span class="d-ko">'+ko+'</span><span class="d-meta">'+m.map(x=>'<span>'+x[0]+'<u style="--v:'+x[1]+'"></u></span>').join("")+'</span><span class="d-code">'+code+'</span><i class="d-cover"></i></div>';
@@ -3097,15 +3093,6 @@ else { const G="#%&$*/\\<>01=+"; const io=new IntersectionObserver(es=>es.forEac
   const nmEl=d.querySelector(".d-name"), fin=nmEl.dataset.t; let f=0;
   setTimeout(()=>{ nmEl.classList.add("gl"); const t=setInterval(()=>{ f++; nmEl.textContent=[...fin].map((c,k)=>k<f*fin.length/9?c:G[Math.floor(Math.random()*G.length)]).join(""); if(f>=9){clearInterval(t);nmEl.textContent=fin;} },45); setTimeout(()=>nmEl.classList.remove("gl"),450); },420);
  }),{threshold:.35}); dists.forEach(d=>io.observe(d)); }
-/* HUD-Chip */
-const chip=document.createElement("div"); chip.className="hudchip"; chip.setAttribute("aria-hidden","true"); document.body.appendChild(chip);
-const secs=[...document.querySelectorAll(".wrap section[id]")].filter(s=>s.querySelector(".sh h2")); let cur=null;
-const upd=()=>{ if(scrollY<innerHeight*.6){ chip.classList.remove("on"); cur=null; return; }
- const mid=innerHeight*.35; let best=null; for(const s of secs){ const r=s.getBoundingClientRect(); if(r.top<=mid&&r.bottom>mid){ best=s; break; } }
- if(!best){ chip.classList.remove("on"); cur=null; return; }
- if(best!==cur){ cur=best; const n=best.querySelector(".sh .n").textContent.trim(), t=best.querySelector(".sh h2").textContent.trim().toUpperCase();
-  chip.innerHTML="<b>SEKTOR "+n+"</b>"+t; chip.classList.add("on"); if(!reduce){ chip.classList.remove("sw"); void chip.offsetWidth; chip.classList.add("sw"); } } };
-let tk=false; addEventListener("scroll",()=>{ if(tk) return; tk=true; requestAnimationFrame(()=>{tk=false;upd();}); },{passive:true}); upd();
 })();
 </script>
 </body></html>
