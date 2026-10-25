@@ -762,6 +762,22 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 .pxd .float{animation:pxfl 4s ease-in-out infinite alternate}
 @keyframes pxfl{to{transform:translateY(-3px)}}
 }
+.girders{position:relative;height:56px;margin:18px 0 0;opacity:.85}
+.girders .gd{position:absolute;inset:0;width:100%;height:100%}
+.girders .tr{fill:none;stroke:#FF3E8A;stroke-width:1.4;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 3px rgba(255,62,138,.7))}
+.girders .ld{fill:none;stroke:#3BE6D6;stroke-width:1.2;vector-effect:non-scaling-stroke;opacity:.8;filter:drop-shadow(0 0 3px rgba(59,230,214,.6))}
+.girders .brl{position:absolute;left:4%;top:calc(23% - 12px);width:13px;height:13px;filter:drop-shadow(0 0 4px rgba(255,154,46,.75))}
+.girders .brl svg{width:100%;height:100%;display:block}
+.girders .b2,.girders .b3{opacity:0}
+.gd-t{position:absolute;left:0;bottom:0;font-size:9px;letter-spacing:.2em;color:var(--cp);opacity:.6}
+@media (prefers-reduced-motion:no-preference){
+.girders .brl{animation:brl 14s linear infinite}.girders .b2{animation-delay:-4.7s}.girders .b3{animation-delay:-9.4s}
+.girders .b2,.girders .b3{opacity:1}
+@keyframes brl{0%{left:-4%;top:calc(23% - 12px);opacity:0}4%{opacity:1}86%{left:86%;top:calc(47% - 12px);opacity:1}92%{left:89%;top:calc(80% - 12px);opacity:.6}100%{left:89%;top:calc(100% - 4px);opacity:0}}
+.girders .brl svg{animation:brlr .8s steps(4) infinite}
+@keyframes brlr{to{transform:rotate(360deg)}}
+.gd-t{animation:gdt 2.4s steps(2) infinite}@keyframes gdt{50%{opacity:.25}}
+}
 .mx{height:84px;margin:-26px 0;opacity:.8}
 .mx canvas{opacity:1;mix-blend-mode:normal}
 .mx span{padding:4px 10px;background:rgba(17,15,39,.72);color:var(--cyan);letter-spacing:.14em;box-shadow:0 0 0 1px rgba(59,230,214,.25)}
@@ -1573,6 +1589,11 @@ pflichtprogramm: <span class="n">null</span>,
 </ul>
 </div>
 <p class="status">Ende November finden meist keine LCK-Spiele statt. Ob im LoL Park etwas läuft, vorher auf der LCK-Seite schauen.</p>
+<div class="girders" aria-hidden="true">
+<svg class="gd" viewBox="0 0 400 60" preserveAspectRatio="none"><g class="tr"><path d="M0 14 L400 30 M0 20 L400 36"/><path d="M0 14 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6 l8 -6 l8 6" transform="skewY(2.29)"/></g><g class="ld"><path d="M352 34 V60 M362 34 V60 M352 40 h10 M352 46 h10 M352 52 h10 M352 58 h10"/></g></svg>
+<i class="brl b1"><svg viewBox="0 0 8 8" shape-rendering="crispEdges"><path d="M2 0h4v1h1v1h1v4h-1v1h-1v1h-4v-1h-1v-1h-1v-4h1v-1h1z" fill="#FF9A2E"/><path d="M1 2h6v1h-6zM1 5h6v1h-6z" fill="#7a3a08"/><path d="M3 3h1v2h-1z" fill="#FFE0A0"/></svg></i><i class="brl b2"><svg viewBox="0 0 8 8" shape-rendering="crispEdges"><path d="M2 0h4v1h1v1h1v4h-1v1h-1v1h-4v-1h-1v-1h-1v-4h1v-1h1z" fill="#FF9A2E"/><path d="M1 2h6v1h-6zM1 5h6v1h-6z" fill="#7a3a08"/><path d="M3 3h1v2h-1z" fill="#FFE0A0"/></svg></i><i class="brl b3"><svg viewBox="0 0 8 8" shape-rendering="crispEdges"><path d="M2 0h4v1h1v1h1v4h-1v1h-1v1h-4v-1h-1v-1h-1v-4h1v-1h1z" fill="#FF9A2E"/><path d="M1 2h6v1h-6zM1 5h6v1h-6z" fill="#7a3a08"/><path d="M3 3h1v2h-1z" fill="#FFE0A0"/></svg></i>
+<span class="gd-t mono">1UP · HIGH SCORE 소주</span>
+</div>
 </section>
 <aside class="q" aria-label="Zitat"><p>„More human than human is our motto.“</p><span>Eldon Tyrell · Blade Runner, 1982 · passt zum Robot & AI Museum</span></aside>
 <section id="viertel">
