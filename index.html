@@ -729,6 +729,22 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 @keyframes btgo2{0%{opacity:0}30%{opacity:1}45%{opacity:.2}60%,100%{opacity:1}}
 }
 @media (prefers-reduced-motion:reduce){.bt-call,.spk,.bt-combo,.p5fin{display:none}.bt-go{opacity:1}}
+.boot{overflow:hidden}
+.bt-go{white-space:normal!important;text-align:center;max-width:92vw;line-height:1.5}
+.bt-c b{font-size:clamp(14px,4.4vw,24px);max-width:100%;overflow:hidden;text-overflow:clip}
+.bt-call span{font-size:clamp(28px,min(10vw,15vh),80px)}
+.bt-call .fi{font-size:clamp(34px,min(12.5vw,18vh),104px)}
+.p5fin span{font-size:clamp(32px,min(11.5vw,17vh),120px)}
+.bt-combo b{font-size:clamp(18px,min(5.5vw,8vh),32px)}
+@media (max-width:380px){.bt-go{font-size:11px;letter-spacing:.14em}.bt-c li{grid-template-columns:1fr;gap:2px}.p5fin span.b2{transform:rotate(-8deg)}}
+@media (max-height:520px){
+.boot{padding-top:10px;padding-bottom:10px}
+.bt{gap:8px}.bt-h{display:none}
+.bt-c{padding:8px 10px}.bt-av{width:34px;height:34px;font-size:20px;margin-bottom:0}
+.bt-c ul{margin-top:4px;gap:3px}.bt-vs svg{height:36px}
+.boot>small{display:none}
+.bt-combo{top:72%}
+}
 .mx{height:84px;margin:-26px 0;opacity:.8}
 .mx canvas{opacity:1;mix-blend-mode:normal}
 .mx span{padding:4px 10px;background:rgba(17,15,39,.72);color:var(--cyan);letter-spacing:.14em;box-shadow:0 0 0 1px rgba(59,230,214,.25)}
