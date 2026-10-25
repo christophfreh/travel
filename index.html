@@ -1816,9 +1816,9 @@ body.paint::before{content:"";position:fixed;inset:0;z-index:13;pointer-events:n
 #games{position:relative}
 .pz{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
 .pz .pz-l,.pz .pz-r{position:absolute;inset:0}
-.pz .pz-l{background:linear-gradient(90deg,rgba(232,199,122,.16),rgba(59,184,255,.12))}
-.pz .pz-r{background:linear-gradient(90deg,rgba(255,62,138,.12),rgba(122,92,255,.18))}
-.pz .pz-line{position:absolute;top:-5%;height:110%;width:2px;margin-left:-1px;background:#E8C77A;box-shadow:0 0 10px #E8C77A,0 0 22px rgba(255,62,138,.7);transform-origin:center}
+.pz .pz-l{background:linear-gradient(90deg,rgba(232,199,122,.32),rgba(59,184,255,.26));-webkit-backdrop-filter:sepia(.55) saturate(1.5) brightness(1.08);backdrop-filter:sepia(.55) saturate(1.5) brightness(1.08)}
+.pz .pz-r{background:linear-gradient(90deg,rgba(255,62,138,.28),rgba(122,92,255,.38));-webkit-backdrop-filter:hue-rotate(95deg) saturate(1.8) contrast(1.1);backdrop-filter:hue-rotate(95deg) saturate(1.8) contrast(1.1)}
+.pz .pz-line{position:absolute;top:-5%;height:110%;width:3px;margin-left:-1px;background:#E8C77A;box-shadow:0 0 10px #E8C77A,0 0 22px rgba(255,62,138,.7);transform-origin:center}
 .pz .pz-h{position:absolute;top:140px;width:34px;height:46px;margin:-23px 0 0 -17px;background:#1b1238;border:2px solid #E8C77A;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);pointer-events:auto;touch-action:none;cursor:ew-resize;box-shadow:0 0 12px #E8C77A}
 .pz .pz-h::after{content:"⇆";position:absolute;inset:0;display:grid;place-items:center;color:#E8C77A;font:700 14px var(--f-mono)}
 </style>
