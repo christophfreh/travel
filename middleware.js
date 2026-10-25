@@ -31,19 +31,17 @@ export default async function middleware(request) {
     return new Response(null, { status: 303, headers: { "Location": "/?zugang=verweigert" } });
   }
 
+  if (url.pathname === "/__logout") {
+    return new Response(null, { status: 303, headers: { "Location": "/?abgemeldet=1", "Set-Cookie": `${COOKIE}=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0`, "Cache-Control": "no-store" } });
+  }
   if (getCookie(request, COOKIE) === token) return next();
 
-  // keep old Basic auth working
-  const h = request.headers.get("authorization") || "";
-  if (h.startsWith("Basic ")) {
-    try { const [, pass] = atob(h.slice(6)).split(/:(.*)/s); if (pass === pw) return next(); } catch (e) {}
-  }
 
   if (url.pathname.startsWith("/api/")) return new Response(JSON.stringify({ error: "Nicht eingeloggt" }), { status: 401, headers: { "Content-Type": "application/json" } });
-  return new Response(page(url.searchParams.has("zugang")), { status: 401, headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } });
+  return new Response(page(url.searchParams.has("zugang"), url.searchParams.has("abgemeldet")), { status: 401, headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } });
 }
 
-function page(err) { return `<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><title>seoul, november · Zugang</title>
+function page(err, out) { return `<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><title>seoul, november · Zugang</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Space+Mono:wght@400;700&display=swap">
 <style>
 :root{--n:#FF3E8A;--c:#3BE6D6;--y:#FCEE0A;--bg:#0a0818;--ink:#F4F1FF;--mu:#ABA5CF}
@@ -78,6 +76,7 @@ button{cursor:pointer;border:0;padding:14px;font:700 13px "Space Mono";letter-sp
 button:hover{background:var(--c)}button:active{transform:scale(.98)}
 .err{display:${err ? "block" : "none"};margin-top:12px;padding:8px 10px;border:1px solid #ff2a4a;color:#ff5470;font-size:12px;letter-spacing:.14em;background:rgba(255,42,74,.08);animation:sh .45s 1}
 @keyframes sh{0%,100%{transform:none}20%{transform:translateX(-8px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(3px)}}
+.bye{margin-top:12px;padding:8px 10px;border:1px solid var(--c);color:var(--c);font-size:12px;letter-spacing:.14em;background:rgba(59,230,214,.08)}
 .ft{margin-top:16px;font-size:9px;letter-spacing:.18em;color:rgba(171,165,207,.55);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .cur{display:inline-block;width:8px;height:14px;background:var(--c);vertical-align:-2px;animation:bl 1s steps(1) infinite}@keyframes bl{50%{opacity:0}}
 body.ok .term{animation:okk .7s forwards}@keyframes okk{0%{filter:none}30%{filter:brightness(2) hue-rotate(90deg)}100%{transform:scale(1.04);opacity:0;filter:blur(4px)}}
@@ -102,6 +101,7 @@ body.ok .term{animation:okk .7s forwards}@keyframes okk{0%{filter:none}30%{filte
 <div class="in"><span>&gt;</span><input id="pw" name="pw" type="password" autocomplete="current-password" autofocus required aria-label="Passwort"></div>
 <button type="submit">ZUGANG ANFORDERN ▸</button>
 </form>
+<div class="bye" role="status" style="display:${out ? "block" : "none"}">⏻ ABGEMELDET · SESSION BEENDET. BIS BALD, CHOOM.</div>
 <div class="err" role="alert">✕ ZUGANG VERWEIGERT · CODE FALSCH. NOCHMAL, CHOOM.</div>
 <div class="ft"><span>WAKE UP, SAMURAI.</span><span>BUILT, NOT TALKED ABOUT.</span></div>
 </section></div></main>
@@ -110,5 +110,5 @@ body.ok .term{animation:okk .7s forwards}@keyframes okk{0%{filter:none}30%{filte
 function s(){W=c.width=innerWidth;H=c.height=innerHeight;cols=Math.ceil(W/18);dr=Array.from({length:cols},()=>Math.random()*-40)}s();addEventListener("resize",s);
 let l=0;(function f(t){requestAnimationFrame(f);if(t-l<90)return;l=t;g.fillStyle="rgba(10,8,24,.18)";g.fillRect(0,0,W,H);g.font="15px 'Black Han Sans',sans-serif";
 for(let i=0;i<cols;i++){const y=dr[i]*18;g.fillStyle=i%5?"rgba(255,62,138,.55)":"rgba(59,230,214,.7)";g.fillText(ch[(Math.random()*ch.length)|0],i*18,y);if(y>H&&Math.random()>.97)dr[i]=Math.random()*-10;dr[i]+=.4}})(0);})();
-if(location.search.indexOf("zugang")>-1)history.replaceState(null,"","/");
+if(location.search)history.replaceState(null,"","/");
 </script></body></html>`; }

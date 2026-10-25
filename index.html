@@ -821,6 +821,42 @@ background:radial-gradient(circle at 20% 30%,rgba(255,62,138,.7) 0 4px,transpare
 .gem.on{background:radial-gradient(circle at 34% 28%,#fff 0 6%,rgba(159,243,255,.8) 9%,transparent 20%),radial-gradient(circle at 50% 55%,#3a9bff,#1438a8 65%,#0a1550);box-shadow:0 0 14px #3BB8FF,0 0 32px rgba(59,184,255,.6),inset 0 -4px 10px rgba(0,0,40,.5)}
 .gems small{color:var(--muted);font-size:12px;flex:1;min-width:160px}
 @media (prefers-reduced-motion:no-preference){.gem.on{animation:gempulse 3.6s ease-in-out infinite}@keyframes gempulse{50%{box-shadow:0 0 22px #9FF3FF,0 0 46px rgba(59,184,255,.75),inset 0 -4px 10px rgba(0,0,40,.5)}}}
+.px8{position:relative;border:2px solid #F4F1FF;background:#5C94FC;image-rendering:pixelated;overflow:hidden;box-shadow:4px 4px 0 #110F27;border-radius:0}
+.px8 svg{display:block;width:100%;height:auto}
+.px-t,.px-c{position:absolute;top:6px;font:700 10px/1 var(--f-mono);letter-spacing:.08em;color:#fff;text-shadow:2px 2px 0 #000}
+.px-t{left:8px}.px-c{right:8px}
+.gift{border-color:rgba(255,255,255,.12)}
+.gift::before{content:"";position:absolute;right:10px;bottom:10px;width:46px;height:28px;pointer-events:none;opacity:.35;
+background:radial-gradient(circle at 20% 40%,#FF3E8A 0 3px,transparent 4px),radial-gradient(circle at 55% 25%,#3BE6D6 0 2px,transparent 3px),radial-gradient(circle at 80% 65%,#FCEE0A 0 2.5px,transparent 3.5px),radial-gradient(circle at 40% 80%,#FF3E8A 0 1.5px,transparent 2.5px)}
+.gift:nth-child(odd)::before{transform:rotate(30deg)}
+.coinpop{position:absolute;right:18px;top:12px;display:flex;align-items:center;gap:4px;font:700 13px var(--f-mono);color:#FCD34D;text-shadow:2px 2px 0 #000;pointer-events:none;animation:coinup 1.2s ease-out forwards}
+.coinpop i{width:10px;height:14px;background:#FCD34D;box-shadow:inset -3px 0 0 #B7791F,0 0 0 2px #110F27}
+@keyframes coinup{0%{transform:translateY(8px);opacity:0}20%{opacity:1}100%{transform:translateY(-34px);opacity:0}}
+@media (prefers-reduced-motion:no-preference){
+.px8 .cn{animation:cnbob 1.6s var(--d) ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes cnbob{0%,100%{transform:translateY(0) scaleX(1)}25%{transform:translateY(-3px) scaleX(.4)}50%{transform:translateY(-5px) scaleX(1)}75%{transform:translateY(-3px) scaleX(.4)}}
+.px8 .stars rect{animation:tw 2.4s steps(1) infinite}.px8 .stars rect:nth-child(2n){animation-delay:1.2s}
+@keyframes tw{50%{opacity:.2}}
+}
+.logout{font:700 11px var(--f-mono);letter-spacing:.12em;color:var(--neon);text-decoration:none;border:1px solid rgba(255,62,138,.5);padding:6px 10px;clip-path:polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%)}
+.logout:hover{background:var(--neon);color:#110F27}
+.sky .fz{stroke:#0c0a1c;fill:#0c0a1c}
+.sky .fz-b{stroke:#1b2550;fill:#1b2550;filter:drop-shadow(0 0 3px #3BB8FF)}
+.sky .fz-p{stroke:#3a1430;fill:#3a1430;filter:drop-shadow(0 0 3px #FF3E8A)}
+.sky .fz .hx{fill:#9FF3FF;stroke:none}
+.sky .fz .gl{fill:#E8C77A;stroke:none}
+.sky .fa{transform:translate(-40px,0)}.sky .fb{transform:translate(40px,0)}
+.sky .clash{fill:none;stroke:#E6FBFF;stroke-width:1.2;opacity:0;filter:drop-shadow(0 0 4px #C9B8FF)}
+.sky .clash circle{fill:rgba(201,184,255,.6);stroke:none}
+@media (prefers-reduced-motion:no-preference){
+.sky .fa{animation:fa 11s ease-in-out infinite}
+.sky .fb{animation:fb 11s ease-in-out infinite}
+.sky .clash{animation:clash 11s linear infinite}
+@keyframes fa{0%,30%{transform:translate(-40px,0)}38%{transform:translate(-16px,-16px)}44%{transform:translate(-5px,0)}50%{transform:translate(-5px,0)}56%{transform:translate(-24px,-10px)}64%,100%{transform:translate(-40px,0)}}
+@keyframes fb{0%,32%{transform:translate(40px,0)}40%{transform:translate(18px,-14px)}44%{transform:translate(5px,0)}50%{transform:translate(5px,0)}58%{transform:translate(26px,-12px)}66%,100%{transform:translate(40px,0)}}
+@keyframes clash{0%,43.5%{opacity:0;transform:scale(.4)}44.5%{opacity:1;transform:scale(1.2)}46%{opacity:.6;transform:scale(.9)}48%{opacity:0}100%{opacity:0}}
+.sky .clash{transform-box:fill-box;transform-origin:center}
+}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -1090,8 +1126,9 @@ pflichtprogramm: <span class="n">null</span>,
 <div class="box"><span class="label">Tax-free in Korea</span><p>Viele Läden ziehen die Steuer ab 15.000 ₩ direkt an der Kasse ab (bis 1 Mio. ₩ pro Einkauf), sonst Formular mitnehmen und am Flughafen Incheon erstatten lassen. Pass immer dabei.</p></div>
 </section>
 <section id="mitbringsel">
-<div class="sh"><span class="n">12</span><h2>Geschenke für die Familie</h2><span class="ko">선물</span></div>
+<div class="sh"><span class="n">12</span><h2>Geschenke für die Familie</h2><svg class="doodle" viewBox="0 0 60 36" aria-hidden="true"><g filter="url(#spray)" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 26 l6 -14 l6 14 l-15 -9 h18z" stroke="#FF3E8A"/><path d="M32 10 q8 -6 14 2 q6 10 -6 14 q-12 2 -8 -8" stroke="#3BE6D6"/><path d="M50 26 l6 -6" stroke="#FCEE0A"/></g></svg><span class="ko">선물</span></div>
 <figure class="ph"><img src="https://images.unsplash.com/photo-1760020954071-13a2c86076ff?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=1200&h=520" alt="Olive Young in Myeongdong am Abend" loading="lazy" onerror="this.closest('figure').remove()"><span class="ph-l">명동 · Einkaufen am Abend</span><figcaption>Foto: <a href="https://unsplash.com/@shipduck?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Jin-Woo Lee</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure>
+<div class="px8" aria-hidden="true"><svg viewBox="0 0 320 48" shape-rendering="crispEdges"><g class="bricks"><rect x="0" y="36" width="320" height="12" fill="#B4532A"/><path d="M0 42h320M16 36v6M48 36v6M80 36v6M112 36v6M144 36v6M176 36v6M208 36v6M240 36v6M272 36v6M304 36v6M32 42v6M64 42v6M96 42v6M128 42v6M160 42v6M192 42v6M224 42v6M256 42v6M288 42v6" stroke="#6E2A12" stroke-width="2"/></g><g class="coins"><g class="cn" style="--d:0s"><rect x="40" y="12" width="8" height="12" fill="#FCD34D"/><rect x="38" y="14" width="2" height="8" fill="#FCD34D"/><rect x="48" y="14" width="2" height="8" fill="#FCD34D"/><rect x="43" y="15" width="2" height="6" fill="#B7791F"/></g><g class="cn" style="--d:.4s"><rect x="110" y="8" width="8" height="12" fill="#FCD34D"/><rect x="108" y="10" width="2" height="8" fill="#FCD34D"/><rect x="118" y="10" width="2" height="8" fill="#FCD34D"/><rect x="113" y="11" width="2" height="6" fill="#B7791F"/></g><g class="cn" style="--d:.8s"><rect x="180" y="12" width="8" height="12" fill="#FCD34D"/><rect x="178" y="14" width="2" height="8" fill="#FCD34D"/><rect x="188" y="14" width="2" height="8" fill="#FCD34D"/><rect x="183" y="15" width="2" height="6" fill="#B7791F"/></g><g class="cn" style="--d:1.2s"><rect x="250" y="8" width="8" height="12" fill="#FCD34D"/><rect x="248" y="10" width="2" height="8" fill="#FCD34D"/><rect x="258" y="10" width="2" height="8" fill="#FCD34D"/><rect x="253" y="11" width="2" height="6" fill="#B7791F"/></g></g><g fill="#F4F1FF" class="stars"><rect x="80" y="6" width="2" height="2"/><rect x="150" y="2" width="2" height="2"/><rect x="220" y="4" width="2" height="2"/><rect x="296" y="10" width="2" height="2"/></g></svg><span class="px-t">LEVEL 1-2 · GESCHENKE SAMMELN</span><span class="px-c">🪙 × <b id="coinN">0</b>/6</span></div>
 <p class="sub">Für Alva, Martin, Eva, Felix, Sophie und Babsi. Abhaken, sobald etwas im Koffer ist.</p>
 <div class="gifts">
 <div class="box gift"><div class="gift-h"><b>Alva</b><span class="mono">6 J.</span></div><p>Kakao-Friends-Plüschtier (Ryan oder Apeach), Hanbok-Mini-Puppe aus Insadong, Glitzer-Sticker von Artbox</p><span class="meta mono">Kakao Friends Store, Insadong, Artbox</span><label class="gift-ok"><input type="checkbox" id="g_alva"> Besorgt</label></div>
@@ -1360,7 +1397,7 @@ pflichtprogramm: <span class="n">null</span>,
 </div>
 </section>
 <p class="status">Geprüft am 24.10.2026: <a href="https://english.visitseoul.net/events/2026SeoulAutumnFesta/ENPjm3hw1">Visit Seoul</a> · <a href="https://www.cineplay.co.kr/en-us/articles/29470">Cineplay (SIFF)</a> · <a href="https://lacha.co.kr/korea-guide/en/korea-festivals-november-2026/">Lacha Event-Guide</a> · <a href="https://thesoulofseoul.net/the-seoul-robot-ai-museum-where-technology-meets-imagination/">The Soul of Seoul (RAIM)</a> · <a href="https://globaltaxnews.ey.com/news/2026-0101-korea-extends-temporary-electronic-travel-authorization-exemption-until-31-december-2026">EY (K-ETA)</a> · <a href="https://www.trvlogue.com/en/fukuoka-christmas-advent-2026">Fukuoka Advent</a>. Fotos in den Bereichen: Unsplash, Fotografen jeweils am Bild. Termine können sich ändern.</p>
-<footer><svg class="fhex" viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 18,5.5 18,14.5 10,19 2,14.5 2,5.5" fill="rgba(59,184,255,.25)" stroke="#E8C77A"/></svg><a class="brand-l" href="https://www.staycurious.art/en/" target="_blank" rel="noopener">staycurious · built, not talked about.</a><span class="mono" id="updated"></span></footer>
+<footer><svg class="fhex" viewBox="0 0 20 20" aria-hidden="true"><polygon points="10,1 18,5.5 18,14.5 10,19 2,14.5 2,5.5" fill="rgba(59,184,255,.25)" stroke="#E8C77A"/></svg><a class="brand-l" href="https://www.staycurious.art/en/" target="_blank" rel="noopener">staycurious · built, not talked about.</a><span class="mono" id="updated"></span><a class="logout" id="logout" href="/__logout" hidden>⏻ Abmelden</a></footer>
 </div>
 <script>
 try{ if("scrollRestoration" in history) history.scrollRestoration="manual"; }catch(e){}
@@ -1546,6 +1583,10 @@ return {date:day,dayOfWeek:wd[dt.getDay()],displayDate:dt.getDate()+"."+(dt.getM
 // ---------- To-do ----------
 document.querySelectorAll("#todo input").forEach(cb=>{try{cb.checked=localStorage.getItem("todo_"+cb.id)==="1";}catch(e){}
 cb.addEventListener("change",()=>{try{localStorage.setItem("todo_"+cb.id,cb.checked?"1":"0");}catch(e){}});});
+function coinCount(){const n=[...document.querySelectorAll(".gift-ok input")].filter(c=>c.checked).length; const el=document.getElementById("coinN"); if(el) el.textContent=n;}
+document.addEventListener("change",e=>{const cb=e.target.closest&&e.target.closest(".gift-ok input"); if(!cb) return; coinCount(); if(!cb.checked||matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+const box=cb.closest(".gift"); const pop=document.createElement("span"); pop.className="coinpop"; pop.innerHTML='<i></i>+1'; box.appendChild(pop); setTimeout(()=>pop.remove(),1300);});
+setTimeout(coinCount,0);
 document.querySelectorAll(".gift-ok input").forEach(cb=>{try{cb.checked=localStorage.getItem(cb.id)==="1";}catch(e){} cb.addEventListener("change",()=>{try{localStorage.setItem(cb.id,cb.checked?"1":"0");}catch(e){}});});
 // ---------- Maps ----------
 // (LIVE defined at top)
@@ -1963,6 +2004,8 @@ x+=w+3;}
 // arcane: piltover airship + zaun graffiti
 o+=`<g class="ship"><ellipse cx="0" cy="0" rx="34" ry="9" fill="#2a2040" stroke="#E8C77A" stroke-width="1.4"/><path d="M-26 0 h52 M-18 -7 v14 M0 -9 v18 M18 -7 v14" stroke="#E8C77A" stroke-width=".8" opacity=".7"/><rect x="-12" y="9" width="24" height="7" rx="2" fill="#1a1430" stroke="#E8C77A" stroke-width="1"/><circle cx="-38" cy="0" r="3.5" fill="#9FF3FF" class="hexglow"/><circle cx="38" cy="2" r="2" fill="#9FF3FF" class="hexglow"/><path d="M-34 -2 l-6 -6 M-34 2 l-6 6" stroke="#E8C77A" stroke-width="1.2"/></g>`;
 o+=`<g class="tagz" fill="none" stroke-linecap="round"><path d="M300 178 l14 18 M314 178 l-14 18" stroke="#FF3E8A" stroke-width="3"/><circle cx="340" cy="188" r="8" stroke="#3BE6D6" stroke-width="2"/><path d="M336 186 h.1 M344 186 h.1" stroke="#3BE6D6" stroke-width="2.4"/><path d="M335 191 q5 4 10 0" stroke="#3BE6D6" stroke-width="1.6"/><path d="M520 192 c6 -10 14 6 20 -4 s12 4 16 -4" stroke="#FF3E8A" stroke-width="2.4"/></g>`;
+// arcane: rooftop fight (silhouettes)
+o+=`<g class="fight" transform="translate(470,170)"><g class="fa"><g class="fz fz-b"><circle cx="0" cy="-15" r="2.6"/><path d="M0 -12 L0 -4 M0 -10 L4 -7 M0 -10 L5 -12 M0 -4 L-3 2 M0 -4 L3 2" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="6" cy="-12" r="1.6" class="hx"/></g></g><g class="fb"><g class="fz fz-p"><circle cx="0" cy="-15" r="2.6"/><path d="M0 -12 L0 -4 M0 -10 L-4 -7 M0 -10 L-5 -12 M0 -4 L-3 2 M0 -4 L3 2" stroke-width="1.8" stroke-linecap="round" fill="none"/><rect x="-8" y="-13" width="4" height="4" rx="1" class="gl"/></g></g><g class="clash"><circle cx="0" cy="-12" r="5"/><path d="M-9 -12 h18 M0 -21 v18 M-6 -18 l12 12 M6 -18 l-12 12"/></g></g>`;
 // flying cars
 for(let i=0;i<5;i++) o+=`<rect class="car${i%2?" r":""}" x="0" y="${30+rnd()*70}" width="10" height="2" rx="1" style="--t:${(12+rnd()*12).toFixed(1)}s;--o:-${(rnd()*10).toFixed(1)}s"/>`;
 sv.innerHTML=`<g transform="scale(1,.68)">${o}</g>`;
@@ -2046,4 +2089,5 @@ const up=()=>{ic.innerHTML=pick(ph.textContent);}; up(); new MutationObserver(up
 // ---------- arcane draw-in ----------
 (function(){const a=document.querySelector(".arcane"); if(!a) return; if(!("IntersectionObserver" in window)){a.classList.add("in");return;}
 const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){a.classList.add("in");io.disconnect();}},{rootMargin:"0px 0px -20% 0px"}); io.observe(a);})();
+if(LIVE){const lo=document.getElementById("logout"); if(lo) lo.hidden=false;}
 </script></body></html>
