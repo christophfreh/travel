@@ -1696,6 +1696,13 @@ html.night body::before{filter:saturate(1.5) brightness(1.15)}
 html.night .sky .neons b{opacity:1}
 @media (prefers-reduced-motion:no-preference){html.night .sh h2{text-shadow:0 0 12px rgba(59,230,214,.28)}}
 .p5o .o-tip .o-wx{display:none;font-style:normal;font-weight:400;margin-top:4px;font-size:11px;letter-spacing:.14em;color:#ffd9dc;text-transform:uppercase}
+/* Banner: Schilder kleiner, damit Raumschiff und Kämpfer frei bleiben */
+.sky .neons b{font-size:calc(var(--s,15px) * .72);padding:5px 3px 4px;border-width:1px;opacity:.9;translate:0 14%}
+.sky .neons b.h{padding:3px 5px 2px}
+.sky .neons b::after{height:8px}
+.sky .neons .ad{right:1.5%;top:auto;bottom:4%;width:min(11vw,48px);aspect-ratio:2/3;opacity:.85}
+.sky .neons .ad em{font-size:6px;left:4px;top:4px;letter-spacing:.08em}
+.sky{margin-top:-14px}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -3300,7 +3307,7 @@ const d=document.createElement("i"); d.className="gdrip"; d.style.left=(30+((i*3
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const sky=document.getElementById("sky");
 if(sky){ const n=document.createElement("div"); n.className="neons"; n.setAttribute("aria-hidden","true");
- n.innerHTML='<b class="p" style="--l:6%;--s:15px;--b:30%;--fo:-1s">호텔</b><b class="c h" style="--l:17%;--s:11px;--b:50%;--fo:-4s">24H</b><b class="y" style="--l:40%;--s:13px;--b:26%;--fo:-2s">소주</b><b class="c" style="--l:54%;--s:14px;--b:33%;--fo:-5s">ラーメン</b><b class="p h" style="--l:61%;--s:10px;--b:58%;--fo:-3s">포차</b><b class="y" style="--l:28%;--s:12px;--b:34%;--fo:-6s">치킨</b><div class="ad"><em>AD-7734</em><i></i></div>';
+ n.innerHTML='<b class="p" style="--l:6%;--s:15px;--b:30%;--fo:-1s">호텔</b><b class="c h" style="--l:17%;--s:11px;--b:50%;--fo:-4s">24H</b><b class="y" style="--l:40%;--s:13px;--b:26%;--fo:-2s">소주</b><b class="c" style="--l:47%;--s:14px;--b:30%;--fo:-5s">ラーメン</b><b class="p h" style="--l:32%;--s:10px;--b:60%;--fo:-3s">포차</b><b class="y" style="--l:28%;--s:12px;--b:34%;--fo:-6s">치킨</b><div class="ad"><em>AD-7734</em><i></i></div>';
  sky.appendChild(n); }
 const D={plan:["JONGNO","종로","BEZIRK 03","37.5704 N · 126.9822 E",[["NEON",.7],["HUNGER",.9],["LÄRM",.35]]],
  essen:["GWANGJANG","광장","BEZIRK 07","MARKTSTRASSE · 24H",[["NEON",.55],["HUNGER",1],["LÄRM",.8]]],
