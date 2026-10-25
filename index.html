@@ -242,6 +242,13 @@ h2{font-size:30px}
 .g-it span:empty{display:none}
 .lb{position:fixed;inset:0;z-index:40;background:rgba(10,8,24,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 .lb img{max-width:100%;max-height:80vh;border-radius:12px;box-shadow:0 0 40px rgba(255,62,138,.35)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:64px;border:1px solid var(--line);background:rgba(17,15,39,.7);color:var(--cyan,#3BE6D6);font:400 30px/1 var(--f-mono);cursor:pointer;z-index:2;clip-path:polygon(0 0,100% 12%,100% 88%,0 100%)}
+.lb-nav.prev{left:max(8px,env(safe-area-inset-left,0px));clip-path:polygon(0 12%,100% 0,100% 100%,0 88%)}.lb-nav.next{right:max(8px,env(safe-area-inset-right,0px))}
+.lb-nav[hidden]{display:none}.lb-n{font-size:10px;letter-spacing:.2em;color:var(--muted)}
+.lb img{touch-action:pan-y;user-select:none;-webkit-user-drag:none}
+@media (prefers-reduced-motion:no-preference){.lb img.in-l{animation:lbl .45s ease-out}.lb img.in-r{animation:lbr .45s ease-out}
+@keyframes lbl{from{opacity:0;transform:translateX(-40px)}}@keyframes lbr{from{opacity:0;transform:translateX(40px)}}}
+@media (max-width:600px){.lb-nav{width:36px;height:52px;font-size:24px;opacity:.75}}
 .lb p{font:400 12px var(--f-mono);color:var(--muted);letter-spacing:.08em}
 .lb-x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:calc(14px + env(safe-area-inset-right,0px));width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:16px;cursor:pointer}
 .zoom-btn{position:absolute;right:12px;top:12px;z-index:2;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(17,15,39,.8);color:var(--ink);font:700 11px var(--f-mono);letter-spacing:.06em;cursor:pointer}
@@ -798,6 +805,24 @@ background:radial-gradient(circle at 20% 30%,rgba(255,62,138,.7) 0 4px,transpare
 .sky .hexglow{animation:hxg 2.4s ease-in-out infinite}
 @keyframes hxg{50%{opacity:.4}}
 }
+.sky .pad .hut{fill:#FCEE0A;opacity:.55}.sky .padm{fill:none;stroke:#3BE6D6;stroke-width:.8;opacity:.7}.sky .padl{fill:#FF3E8A}.sky .padl.b{fill:#3BE6D6}
+.sky .spn .sb{fill:#0c0a1c}.sky .spn .sw{fill:#1b2550}.sky .spn .sd{fill:#0c0a1c;opacity:1}.sky .spn .sedge{fill:none;stroke:#3BB8FF;stroke-width:.6;opacity:.8}
+.sky .spn{filter:drop-shadow(0 0 3px rgba(59,184,255,.6))}.sky .spn .sl{fill:#FCEE0A}.sky .spn .sl.r{fill:#FF3E8A}.sky .spn .cone{fill:rgba(159,243,255,.18);opacity:0}
+.sky .pp{fill:#0c0a1c}.sky .pp.a{filter:drop-shadow(0 0 2px #3BE6D6)}.sky .pp.b{filter:drop-shadow(0 0 2px #FF3E8A)}
+@media (prefers-reduced-motion:no-preference){
+.sky .spn{animation:spn 48s ease-in-out infinite}
+@keyframes spn{0%{transform:translate(160px,10px) scale(.5);opacity:0}5%{opacity:1}30%{transform:translate(322px,118px) scale(.95)}38%,84%{transform:translate(326px,134px) scale(1);opacity:1}100%{transform:translate(560px,-20px) scale(.55);opacity:0}}
+.sky .spn .cone{animation:cone 48s ease-in-out infinite}
+@keyframes cone{0%,8%{opacity:0}14%,34%{opacity:1}39%,84%{opacity:0}88%,94%{opacity:.8}100%{opacity:0}}
+.sky .spn .sd{animation:sdoor 48s ease-in-out infinite}
+@keyframes sdoor{0%,41%{opacity:0}44%,76%{opacity:1}79%,100%{opacity:0}}
+.sky .spn .sl,.sky .padl{animation:slb 2.6s steps(2) infinite}.sky .spn .sl.r,.sky .padl.b{animation-delay:1.3s}
+@keyframes slb{50%{opacity:.15}}
+.sky .pw1{animation:pw1 48s linear infinite}
+@keyframes pw1{0%,44%{transform:translate(328px,134px) scale(.9);opacity:0}47%{opacity:1}70%{transform:translate(362px,134px) scale(1);opacity:1}73%,100%{transform:translate(363px,134px) scale(1);opacity:0}}
+.sky .pw2{animation:pw2 48s linear infinite}
+@keyframes pw2{0%,48%{transform:translate(328px,134px) scale(.85);opacity:0}51%{opacity:1}73%{transform:translate(361px,134px) scale(.94);opacity:1}76%,100%{transform:translate(362px,134px) scale(.94);opacity:0}}
+}
 .hexcore{width:clamp(44px,11vw,60px);height:clamp(44px,11vw,60px);perspective:240px;filter:drop-shadow(0 0 10px rgba(59,184,255,.7))}
 .hc{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(-24deg) rotateY(35deg)}
 .hc i{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(135deg,#3BB8FF,#1E5BD8);border:2px solid #C9A25A;border-radius:6px;box-shadow:inset 0 0 0 3px rgba(17,15,39,.35),inset 0 0 14px rgba(159,243,255,.6);clip-path:polygon(18% 0,82% 0,100% 18%,100% 82%,82% 100%,18% 100%,0 82%,0 18%)}
@@ -974,8 +999,20 @@ background:radial-gradient(70% 60% at 50% 30%,#ffcf7a,#f39a3a 35%,#c2571c 70%,#5
 .row.bz{border-color:rgba(255,140,40,.6);background:linear-gradient(135deg,rgba(255,140,40,.16),var(--panel) 60%)}
 .row.bz .dt b{color:#FF8C28;border-color:#FF8C28}
 @media (prefers-reduced-motion:no-preference){
-.dz-sky .walker{animation:walk 30s ease-in-out infinite alternate}
-@keyframes walk{from{transform:translate(236px,178px) scale(.92)}to{transform:translate(256px,184px) scale(1.04)}}
+.dz-sky .spin{animation:spin 40s ease-in-out infinite}
+@keyframes spin{0%{transform:translate(360px,40px) scale(.4);opacity:0}6%{opacity:1}30%{transform:translate(266px,150px) scale(.88)}40%,92%{transform:translate(255px,176px) scale(1);opacity:1}100%{transform:translate(255px,176px) scale(1);opacity:0}}
+.dz-sky .thr{animation:thr 40s ease-in-out infinite}
+@keyframes thr{0%,4%{opacity:0}10%,36%{opacity:.55}42%,100%{opacity:0}}
+.dz-sky .dust{animation:dust 40s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes dust{0%,32%{opacity:0;transform:scale(.4)}38%{opacity:.5}50%,100%{opacity:0;transform:scale(1.6)}}
+.dz-sky .door{animation:door 40s ease-in-out infinite}
+@keyframes door{0%,43%{opacity:0}47%,100%{opacity:1}}
+.dz-sky .lt{animation:lt 2.4s steps(2) infinite}.dz-sky .lt.r{animation-delay:1.2s}
+@keyframes lt{50%{opacity:.15}}
+.dz-sky .f1{animation:f1 40s linear infinite}
+@keyframes f1{0%,47%{transform:translate(252px,176px) scale(.9);opacity:0}50%{opacity:1}92%{transform:translate(214px,184px) scale(1.06);opacity:1}97%,100%{transform:translate(212px,184px) scale(1.06);opacity:0}}
+.dz-sky .f2{animation:f2 40s linear infinite}
+@keyframes f2{0%,52%{transform:translate(254px,176px) scale(.86);opacity:0}55%{opacity:1}92%{transform:translate(226px,183px) scale(.98);opacity:1}97%,100%{transform:translate(225px,183px) scale(.98);opacity:0}}
 .dmz2049::after{animation:haze 24s ease-in-out infinite alternate}
 @keyframes haze{to{transform:translateX(8%)}}
 }
@@ -1102,11 +1139,20 @@ pflichtprogramm: <span class="n">null</span>,
 <path d="M0 184 Q90 176 170 186 T400 180 V220 H0z" fill="#9a320a" opacity=".8"/>
 <g fill="#6e2208" opacity=".7"><ellipse cx="300" cy="174" rx="22" ry="4"/><ellipse cx="62" cy="196" rx="10" ry="2.5"/><ellipse cx="340" cy="204" rx="14" ry="3"/></g>
 <rect width="400" height="220" fill="url(#dzf)"/>
-<g class="walker"><g fill="#1a0602">
-<circle cx="0" cy="-58" r="4.6"/>
-<path d="M-9 -52 Q0 -55 9 -52 L11 -26 L13 -6 L4 -6 L3 -20 L1 -6 L-1 -6 L-3 -20 L-4 -6 L-13 -6 L-11 -26z"/>
-<path d="M-3 -7 h2.6 v7 h-3.4z M1 -7 h2.6 l.6 7 h-3.2z"/>
-</g><ellipse cx="0" cy="1" rx="10" ry="1.6" fill="#5a1a06" opacity=".5"/></g>
+<ellipse class="dust" cx="255" cy="177" rx="40" ry="5" fill="#ffd08a" opacity="0"/>
+<g class="spin" transform="translate(255 176)">
+<ellipse cx="0" cy="1" rx="34" ry="3" fill="#5a1a06" opacity=".45"/>
+<ellipse class="thr" cx="0" cy="0" rx="22" ry="4" fill="#ffe2a8" opacity="0"/>
+<g fill="#1a0602">
+<path d="M-36 -6 L-30 -13 L-10 -19 L14 -19 L30 -13 L38 -7 L36 -2 L-34 -2z"/>
+<path d="M-8 -19 L-2 -26 L12 -26 L18 -19z" fill="#3a1408"/>
+<rect x="-24" y="-2" width="10" height="2"/><rect x="12" y="-2" width="10" height="2"/>
+<path class="door" d="M-2 -19 L-8 -33 L6 -30 L10 -19z" fill="#2a0c04" opacity="1"/>
+</g>
+<circle class="lt" cx="37" cy="-8" r="1.3" fill="#ffd27a"/><circle class="lt r" cx="-34" cy="-6" r="1.1" fill="#ff5a3a"/>
+</g>
+<g class="f1" transform="translate(222 180)"><g fill="#1a0602"><circle cx="0" cy="-32" r="2.6"/><path d="M-5 -28.6 Q0 -30.2 5 -28.6 L6 -14.3 L7.2 -3.3 L2.2 -3.3 L1.6 -11 L.5 -3.3 L-.5 -3.3 L-1.6 -11 L-2.2 -3.3 L-7.2 -3.3 L-6 -14.3z"/><path d="M-1.7 -3.8 h1.5 v3.8 h-1.9z M.5 -3.8 h1.5 l.4 3.8 h-1.8z"/></g><ellipse cx="0" cy=".6" rx="6" ry="1" fill="#5a1a06" opacity=".5"/></g>
+<g class="f2" transform="translate(208 182) scale(.94)"><g fill="#1a0602"><circle cx="0" cy="-32" r="2.6"/><path d="M-5 -28.6 Q0 -30.2 5 -28.6 L6 -14.3 L7.2 -3.3 L2.2 -3.3 L1.6 -11 L.5 -3.3 L-.5 -3.3 L-1.6 -11 L-2.2 -3.3 L-7.2 -3.3 L-6 -14.3z"/><path d="M-1.7 -3.8 h1.5 v3.8 h-1.9z M.5 -3.8 h1.5 l.4 3.8 h-1.8z"/></g><ellipse cx="0" cy=".6" rx="6" ry="1" fill="#5a1a06" opacity=".5"/></g>
 </svg>
 <div class="dz-txt"><span class="label">Fr 27.11. · Halbtagestour</span><b>DMZ · Grenze zu Nordkorea</b><p>Orange Dunst, Stille, Beton und Stacheldraht. So nah kommt man der anderen Seite sonst nirgends. Bus ab Seoul, mittags zurück, Pass mitnehmen.</p><span class="dz-q">„You've never seen a miracle.“ <i>— Blade Runner 2049</i></span></div>
 </div>
@@ -1135,7 +1181,7 @@ pflichtprogramm: <span class="n">null</span>,
 </div>
 <div id="gallery" class="gallery"><p class="status">Noch keine Fotos. Das erste kommt am 21.11.</p></div>
 <div class="zm" id="zm" hidden><div class="zm-bar"><b id="zmT"></b><span><button type="button" id="zmOut" aria-label="Verkleinern">−</button><button type="button" id="zmIn" aria-label="Vergrößern">+</button><button type="button" id="zmX" aria-label="Schließen">✕</button></span></div><div class="zm-scroll" id="zmS"><div id="zmC"></div></div></div>
-<div class="lb" id="lb" hidden><button type="button" class="lb-x" id="lbX" aria-label="Schließen">✕</button><img id="lbImg" alt=""><p id="lbCap"></p><button type="button" class="del" id="lbDel" hidden>Foto löschen</button></div>
+<div class="lb" id="lb" hidden><button type="button" class="lb-x" id="lbX" aria-label="Schließen">✕</button><button type="button" class="lb-nav prev" id="lbPrev" aria-label="Vorheriges Foto">‹</button><button type="button" class="lb-nav next" id="lbNext" aria-label="Nächstes Foto">›</button><img id="lbImg" alt=""><p id="lbCap"></p><span class="lb-n mono" id="lbN"></span><button type="button" class="del" id="lbDel" hidden>Foto löschen</button></div>
 </section>
 <aside class="q" aria-label="Zitat"><p>„Enhance 224 to 176. Enhance, stop.“</p><span>Rick Deckard · Blade Runner, 1982</span></aside>
 <section id="los">
@@ -2152,6 +2198,10 @@ x+=w+3;}
 o+=`<g class="ship"><ellipse cx="0" cy="0" rx="34" ry="9" fill="#2a2040" stroke="#E8C77A" stroke-width="1.4"/><path d="M-26 0 h52 M-18 -7 v14 M0 -9 v18 M18 -7 v14" stroke="#E8C77A" stroke-width=".8" opacity=".7"/><rect x="-12" y="9" width="24" height="7" rx="2" fill="#1a1430" stroke="#E8C77A" stroke-width="1"/><circle cx="-38" cy="0" r="3.5" fill="#9FF3FF" class="hexglow"/><circle cx="38" cy="2" r="2" fill="#9FF3FF" class="hexglow"/><path d="M-34 -2 l-6 -6 M-34 2 l-6 6" stroke="#E8C77A" stroke-width="1.2"/></g>`;
 // arcane: rooftop fight (silhouettes)
 o+=`<g class="fight" transform="translate(470,128)"><rect class="roof" x="-62" y="0" width="44" height="100"/><rect class="roof" x="18" y="6" width="46" height="100"/><path class="roofl" d="M-62 0 h44 M18 6 h46"/><g class="tagz" fill="none" stroke-linecap="round"><path d="M-48 24 l14 18 M-34 24 l-14 18" stroke="#FF3E8A" stroke-width="3"/><circle cx="41" cy="34" r="8" stroke="#3BE6D6" stroke-width="2"/><path d="M37 32 h.1 M45 32 h.1" stroke="#3BE6D6" stroke-width="2.4"/><path d="M36 37 q5 4 10 0" stroke="#3BE6D6" stroke-width="1.6"/><path d="M24 58 c5 -8 11 5 16 -3 s10 3 14 -3" stroke="#FF3E8A" stroke-width="2.2"/><path d="M-56 56 h20" stroke="#FCEE0A" stroke-width="2"/></g><g class="fa"><g class="fz fz-b"><circle cx="0" cy="-15" r="2.6"/><path d="M0 -12 L0 -4 M0 -10 L4 -7 M0 -10 L5 -12 M0 -4 L-3 2 M0 -4 L3 2" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="6" cy="-12" r="1.6" class="hx"/></g></g><g class="fb"><g class="fz fz-p"><circle cx="0" cy="-15" r="2.6"/><path d="M0 -12 L0 -4 M0 -10 L-4 -7 M0 -10 L-5 -12 M0 -4 L-3 2 M0 -4 L3 2" stroke-width="1.8" stroke-linecap="round" fill="none"/><rect x="-8" y="-13" width="4" height="4" rx="1" class="gl"/></g></g><g class="clash"><circle cx="0" cy="-12" r="5"/><path d="M-9 -12 h18 M0 -21 v18 M-6 -18 l12 12 M6 -18 l-12 12"/></g></g>`;
+// blade runner: spinner landing on a rooftop pad, two people get out
+o+=`<g class="pad"><rect class="roof" x="296" y="134" width="78" height="100"/><path class="roofl" d="M296 134 h78"/><rect class="roof" x="356" y="123" width="14" height="11"/><rect class="hut" x="361" y="126" width="5" height="8"/><ellipse class="padm" cx="326" cy="134" rx="17" ry="2.2"/><circle class="padl" cx="300" cy="133" r="1.2"/><circle class="padl b" cx="352" cy="133" r="1.2"/></g>`;
+o+=`<g class="spn" transform="translate(326,134)"><path class="cone" d="M-8 -6 L-26 0 L26 0 L8 -6z"/><path class="sb" d="M-22 -3 L-18 -8 L-6 -12 L8 -12 L18 -8 L23 -4 L22 -1 L-21 -1z"/><path class="sw" d="M-5 -12 L-1 -16 L8 -16 L11 -12z"/><path class="sd" d="M-1 -12 L-5 -20 L5 -18 L8 -12z"/><rect class="sb" x="-14" y="-1" width="6" height="1.2"/><rect class="sb" x="8" y="-1" width="6" height="1.2"/><circle class="sl" cx="23" cy="-4" r="1"/><circle class="sl r" cx="-21" cy="-3" r=".9"/><path class="sedge" d="M-18 -8 L-6 -12 L8 -12 L18 -8"/></g>`;
+o+=`<g class="pw1" transform="translate(340,134)"><g class="pp a"><circle cx="0" cy="-14" r="2.3"/><path d="M-3 -11.4 Q0 -12.4 3 -11.4 L3.8 -5 L4.6 0 L.8 0 L.4 -4 L-.4 -4 L-.8 0 L-4.6 0 L-3.8 -5z"/></g></g><g class="pw2" transform="translate(333,134) scale(.94)"><g class="pp b"><circle cx="0" cy="-14" r="2.3"/><path d="M-3 -11.4 Q0 -12.4 3 -11.4 L3.8 -5 L4.6 0 L.8 0 L.4 -4 L-.4 -4 L-.8 0 L-4.6 0 L-3.8 -5z"/></g></g>`;
 // flying cars
 for(let i=0;i<5;i++) o+=`<rect class="car${i%2?" r":""}" x="0" y="${30+rnd()*70}" width="10" height="2" rx="1" style="--t:${(12+rnd()*12).toFixed(1)}s;--o:-${(rnd()*10).toFixed(1)}s"/>`;
 sv.innerHTML=`<g transform="scale(1,.68)">${o}</g>`;
@@ -2191,6 +2241,27 @@ const d=document.getElementById("lbDel"); if(d) d.hidden=true; lb.hidden=false;}
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){const lb=document.getElementById("lb"); if(lb) lb.hidden=true;}});
 (function(){const lb=document.getElementById("lb"); if(!lb) return; const x=document.getElementById("lbX");
 if(x) x.addEventListener("click",()=>lb.hidden=true); lb.addEventListener("click",e=>{if(e.target===lb) lb.hidden=true;});})();
+// ---------- Lightbox: wischen, Pfeile, Tasten ----------
+(function(){
+const lb=document.getElementById("lb"); if(!lb) return;
+const SEL=".g-it, .pola img, .flash img"; let set=[], idx=-1, dir="";
+function groupOf(el){ if(el.closest("#gallery")) return [...document.querySelectorAll("#gallery .g-it")];
+if(el.closest(".pola")) return [...document.querySelectorAll("#polas .pola:not([hidden]) img")].filter(i=>i.offsetParent!==null||true);
+return [...document.querySelectorAll(".flash img")]; }
+document.addEventListener("click",e=>{const el=e.target.closest(SEL); if(!el||lb.contains(el)) return;
+set=groupOf(el); idx=set.indexOf(el); requestAnimationFrame(ui);},true);
+function ui(){const many=set.length>1; document.getElementById("lbPrev").hidden=!many; document.getElementById("lbNext").hidden=!many;
+document.getElementById("lbN").textContent=many?`${idx+1} / ${set.length}`:"";
+const im=document.getElementById("lbImg"); im.classList.remove("in-l","in-r"); if(dir){void im.offsetWidth; im.classList.add(dir);} dir="";}
+function go(d){ if(lb.hidden||set.length<2) return; idx=(idx+d+set.length)%set.length; dir=d>0?"in-r":"in-l"; const el=set[idx];
+const keep=[set,idx,dir]; el.click(); [set,idx,dir]=keep; lb.hidden=false; ui(); }
+document.getElementById("lbPrev").addEventListener("click",e=>{e.stopPropagation();go(-1);});
+document.getElementById("lbNext").addEventListener("click",e=>{e.stopPropagation();go(1);});
+document.addEventListener("keydown",e=>{if(lb.hidden) return; if(e.key==="ArrowLeft") go(-1); if(e.key==="ArrowRight") go(1);});
+let x0=null,y0=0; lb.addEventListener("touchstart",e=>{const t=e.touches[0]; x0=t.clientX; y0=t.clientY;},{passive:true});
+lb.addEventListener("touchend",e=>{if(x0===null) return; const t=e.changedTouches[0], dx=t.clientX-x0, dy=t.clientY-y0; x0=null;
+if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.3) go(dx<0?1:-1);},{passive:true});
+})();
 // ---------- neon trail + tap sparks, holo reveal ----------
 (function(){
 if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
