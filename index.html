@@ -1411,6 +1411,8 @@ background:radial-gradient(70% 60% at 50% 30%,#ffcf7a,#f39a3a 35%,#c2571c 70%,#5
 .boot .p5dmg{position:absolute;z-index:8;pointer-events:none;opacity:0;font:italic 400 clamp(26px,8vw,50px)/1 var(--f-sign);color:#fff;letter-spacing:.02em;text-shadow:-3px -3px 0 #000,3px -3px 0 #000,-3px 3px 0 #000,3px 3px 0 #000,5px 6px 0 #E60012;animation:p5dmg .85s var(--dl) cubic-bezier(.2,.9,.3,1) both}
 .boot .p5dmg.c{color:#ffe600;font-size:clamp(36px,11vw,72px);text-shadow:-3px -3px 0 #E60012,3px -3px 0 #E60012,-3px 3px 0 #E60012,3px 3px 0 #E60012,6px 7px 0 #000}
 @keyframes p5dmg{0%{opacity:0;transform:translateY(14px) scale(2.6) rotate(var(--r))}14%{opacity:1;transform:scale(1) rotate(var(--r))}65%{opacity:1;transform:translateY(-34px) scale(1) rotate(var(--r))}100%{opacity:0;transform:translateY(-64px) scale(.9) rotate(var(--r))}}
+/* ===== Mobile-Fixes 2.5 ===== */
+@media (max-height:520px){.boot .bt-c{width:min(40%,calc((100vh - 140px) * .8))}.p5o .p5cw{width:min(70vw,400px)}.p5c{padding:22px 18px 16px}.p5c .c-big{gap:6px;font-size:clamp(20px,6.2vh,30px)}.p5c .c-top{margin-bottom:10px}.p5c .c-stamp{display:none}.p5o .o-tip{bottom:4%}.boot .bt-c.l{margin-right:70px}.boot .bt-c.r{margin-left:70px}}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -2637,7 +2639,7 @@ const onTilt=e=>{ if(e.gamma==null||e.beta==null) return; par(clampv(e.gamma/22)
 if(matchMedia("(pointer:fine)").matches) addEventListener("pointermove",onMove,{passive:true});
 addEventListener("deviceorientation",onTilt,{passive:true});
 off=()=>{removeEventListener("pointermove",onMove);removeEventListener("deviceorientation",onTilt);};
-{ const mk=(side,n,t0)=>{ const out=[]; for(let k=0;k<n;k++){ const last=k===n-1, v=last?"1.337":String(100+Math.floor(Math.random()*880)); const x=side==="l"?14+Math.random()*24:58+Math.random()*24, y=22+Math.random()*16; const e=document.createElement("b"); e.className="p5dmg noshift"+(last?" c":""); e.textContent=v; e.style.cssText=`left:${x.toFixed(1)}%;top:${y.toFixed(1)}%;--r:${(Math.random()*16-8).toFixed(1)}deg;--dl:${(t0+k*.11).toFixed(2)}s`; o.appendChild(e); at((t0+k*.11)*1000,last?"hit":"tick"); } };
+{ const mk=(side,n,t0)=>{ const out=[]; for(let k=0;k<n;k++){ const last=k===n-1, v=last?"1.337":String(100+Math.floor(Math.random()*880)); const x=side==="l"?10+(k%3)*11+Math.random()*4:54+(k%5)*7+Math.random()*3, y=18+(k%2)*13+Math.random()*5; const e=document.createElement("b"); e.className="p5dmg noshift"+(last?" c":""); e.textContent=v; e.style.cssText=`left:${x.toFixed(1)}%;top:${y.toFixed(1)}%;--r:${(Math.random()*16-8).toFixed(1)}deg;--dl:${(t0+k*.11).toFixed(2)}s`; o.appendChild(e); at((t0+k*.11)*1000,last?"hit":"tick"); } };
  mk("l",3,5.0); mk("r",5,5.6); at(80,"whoosh"); at(3800,"fight"); at(5900,"whoosh"); at(6500,"whoosh"); at(7500,"hit"); }
 const ht=document.getElementById("hpT"); let hv=99; const hi=setInterval(()=>{ if(done||!ht){clearInterval(hi);return;} hv=Math.max(0,hv-1); ht.textContent=String(hv).padStart(2,"0"); },700);
 setTimeout(end,10800); };
