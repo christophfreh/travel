@@ -1218,6 +1218,87 @@ background:radial-gradient(70% 60% at 50% 30%,#ffcf7a,#f39a3a 35%,#c2571c 70%,#5
 .dmz2049::after{animation:haze 24s ease-in-out infinite alternate}
 @keyframes haze{to{transform:translateX(8%)}}
 }
+/* ===== Persona-Look 2.0: Spielerauswahl ===== */
+.boot{background:#090103}
+.boot::before,.boot::after{content:none}
+.boot .brushx,.boot .p5s{display:none}
+.p5bg{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.p5bg .burst{position:absolute;left:50%;top:46%;width:190vmax;height:190vmax;margin:-95vmax 0 0 -95vmax;background:repeating-conic-gradient(from 0deg,#E60012 0 4deg,#8d000b 4deg 9deg);-webkit-mask:radial-gradient(closest-side,#000 6%,rgba(0,0,0,.7) 26%,transparent 54%);mask:radial-gradient(closest-side,#000 6%,rgba(0,0,0,.7) 26%,transparent 54%);will-change:transform;animation:p5burst .9s .45s cubic-bezier(.2,.9,.3,1) both,p5spin 70s linear infinite}
+@keyframes p5burst{from{opacity:0;scale:.25}to{opacity:1;scale:1}}
+@keyframes p5spin{to{rotate:360deg}}
+.p5bg .slab{position:absolute;background:#000}
+.p5bg .slab.a{right:-6%;bottom:-3%;width:78%;height:46%;clip-path:polygon(0 42%,100% 0,100% 100%,14% 100%);animation:p5slab .6s .3s cubic-bezier(.2,.9,.3,1) both}
+.p5bg .slab.b{left:-6%;top:-3%;width:70%;height:30%;clip-path:polygon(0 0,100% 0,62% 100%,0 70%);animation:p5slab .6s .4s cubic-bezier(.2,.9,.3,1) both;--x:-30%}
+.p5bg .slab.a{--x:30%}
+@keyframes p5slab{from{transform:translateX(var(--x));opacity:0}}
+.p5bg .ht{position:absolute;inset:0;background:radial-gradient(circle,#000 30%,transparent 34%) 0 0/15px 15px;opacity:.55;-webkit-mask:linear-gradient(0deg,#000 0,transparent 48%);mask:linear-gradient(0deg,#000 0,transparent 48%)}
+.p5bg .tick{position:absolute;left:-12%;right:-12%;height:32px;display:flex;align-items:center;overflow:hidden;transform:rotate(-4deg);background:#000;border-block:3px solid #fff;box-shadow:0 7px 0 #E60012;animation:p5band .5s .5s cubic-bezier(.2,.9,.3,1) both}
+.p5bg .tick.t1{top:8%}
+.p5bg .tick.t2{bottom:10%;background:#E60012;border-color:#000;box-shadow:0 -6px 0 #fff;transform:rotate(-4deg)}
+.p5bg .tick span{display:block;width:max-content;white-space:nowrap;font:italic 400 19px/1 var(--f-sign);letter-spacing:.1em;color:#fff;animation:p5tick 16s linear infinite}
+.p5bg .tick.t2 span{animation-direction:reverse}
+.p5bg .tick b{font-weight:400;color:#E60012;margin:0 .3em}
+.p5bg .tick.t2 b{color:#000}
+@keyframes p5tick{to{transform:translateX(-50%)}}
+@keyframes p5band{from{opacity:0;translate:0 -40px}}
+.p5bg .st{position:absolute;width:var(--s);height:var(--s);background:#fff;clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);animation:p5tw 1.7s ease-in-out infinite both}
+@keyframes p5tw{0%,100%{transform:scale(.2) rotate(0);opacity:0}50%{transform:scale(1) rotate(45deg);opacity:1}}
+.boot .p5w{position:absolute;inset:-2%;z-index:9;pointer-events:none}
+.boot .p5w.b{background:#000;animation:p5wipe .75s .14s cubic-bezier(.7,0,.3,1) both}
+.boot .p5w.r{z-index:10;background:#E60012;animation:p5wipe .75s 0s cubic-bezier(.7,0,.3,1) both}
+@keyframes p5wipe{0%{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}100%{clip-path:polygon(118% 0,118% 0,82% 100%,82% 100%)}}
+.boot .p5flash{position:absolute;inset:0;z-index:8;background:#fff;pointer-events:none;opacity:0;animation:p5fl .55s 2.82s steps(5) both}
+@keyframes p5fl{0%{opacity:0}12%{opacity:.95}40%{opacity:.35}100%{opacity:0}}
+.boot .bt{gap:14px}
+.boot .bt-h{display:inline-block;background:#E60012;color:#fff;font:italic 700 11px var(--f-mono);letter-spacing:.24em;padding:4px 16px 3px;transform:skewX(-14deg) rotate(-1.5deg);box-shadow:4px 4px 0 #000;text-shadow:none;margin:0;animation:p5h .35s .9s steps(3) both}
+@keyframes p5h{from{opacity:0;translate:-30px 0}}
+.boot .bt-row{position:relative;width:100%;max-width:560px;gap:0;align-items:flex-start}
+.boot .bt-c{--acc:#3BE6D6;flex:none;width:min(56%,270px);padding:0;border:0;background:none;box-shadow:none;clip-path:none;gap:6px;position:relative}
+.boot .bt-c.r{--acc:#FF3E8A}
+.boot .bt-c.l{margin-right:-7%;z-index:2;align-items:flex-start;animation:p5cl .7s .5s cubic-bezier(.2,.9,.25,1) both,p5idle 2.6s 1.4s ease-in-out infinite alternate}
+.boot .bt-c.r{margin-left:-7%;z-index:1;margin-top:30px;align-items:flex-end;animation:p5cr .7s .7s cubic-bezier(.2,.9,.25,1) both,p5idle 2.9s 1.6s ease-in-out infinite alternate-reverse}
+@keyframes p5cl{0%{opacity:0;transform:translate(-125%,14%) rotate(-18deg) scale(1.3)}60%{opacity:1;transform:translate(3%,-2%) rotate(2deg) scale(1.05)}80%{transform:translate(-1%,0) scale(.99)}100%{opacity:1;transform:none}}
+@keyframes p5cr{0%{opacity:0;transform:translate(125%,14%) rotate(18deg) scale(1.3)}60%{opacity:1;transform:translate(-3%,-2%) rotate(-2deg) scale(1.05)}80%{transform:translate(1%,0) scale(.99)}100%{opacity:1;transform:none}}
+@keyframes p5idle{from{transform:translateY(0)}to{transform:translateY(-6px)}}
+.boot .bt-c .bt-av{position:relative;isolation:isolate;width:100%;max-width:none;max-height:none;aspect-ratio:4/5;margin:0;padding:0;border:0;clip-path:none;background:none;box-shadow:none;transform-origin:50% 65%;filter:drop-shadow(6px 7px 0 #000);rotate:-5deg;animation:hit .35s 3.8s steps(3) both,p5jolt .4s 3.8s both}
+.boot .bt-c.r .bt-av{rotate:5deg;animation:hit .35s 4.4s steps(3) both,p5jolt .4s 4.4s both}
+@keyframes p5jolt{0%{translate:0 0}25%{translate:-7px 3px}50%{translate:6px -4px}75%{translate:-3px 2px}100%{translate:0 0}}
+.boot .bt-c .bt-av::before{content:"";position:absolute;inset:-4px;z-index:-1;background:#fff;clip-path:polygon(3% 0,100% 3%,97% 100%,0 97%)}
+.boot .bt-c .bt-av::after{content:"";position:absolute;inset:0;z-index:-2;border:0;background:var(--acc);transform:translate(-10px,10px) rotate(-3deg);clip-path:polygon(3% 0,100% 3%,97% 100%,0 97%)}
+.boot .bt-c.r .bt-av::before{clip-path:polygon(0 3%,97% 0,100% 97%,3% 100%)}
+.boot .bt-c.r .bt-av::after{transform:translate(10px,10px) rotate(3deg);clip-path:polygon(0 3%,97% 0,100% 97%,3% 100%)}
+.boot .bt-c .bt-av img{position:relative;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;clip-path:polygon(3% 0,100% 3%,97% 100%,0 97%)}
+.boot .bt-c.r .bt-av img{clip-path:polygon(0 3%,97% 0,100% 97%,3% 100%)}
+.boot .bt-c::after{content:"";position:absolute;inset:-2%;z-index:5;background:#fff;opacity:0;pointer-events:none;clip-path:polygon(3% 0,100% 3%,97% 100%,0 97%);animation:p5land .32s 1.05s steps(3) forwards}
+.boot .bt-c.r::after{animation-delay:1.25s}
+@keyframes p5land{0%{opacity:.95}100%{opacity:0}}
+.boot .bt-c::before{content:"";position:absolute;left:-12%;width:124%;top:30%;height:5px;z-index:6;background:#fff;box-shadow:0 0 0 2px #000,0 0 16px 3px #fff;opacity:0;pointer-events:none;transform:rotate(-26deg) scaleX(0);animation:p5slash .5s 3.8s ease-out forwards}
+.boot .bt-c.r::before{transform:rotate(26deg) scaleX(0);animation-name:p5slashr;animation-delay:4.4s}
+.boot .bt-combo{top:auto;bottom:-6px}
+@keyframes p5slash{0%{opacity:1;transform:rotate(-26deg) scaleX(0)}35%{opacity:1;transform:rotate(-26deg) scaleX(1)}100%{opacity:0;transform:rotate(-26deg) scaleX(1)}}
+@keyframes p5slashr{0%{opacity:1;transform:rotate(26deg) scaleX(0)}35%{opacity:1;transform:rotate(26deg) scaleX(1)}100%{opacity:0;transform:rotate(26deg) scaleX(1)}}
+.boot .bt-c ul{width:84%;margin:14px 0 0;gap:7px}
+.boot .bt-c li:nth-child(1){--k:0}.boot .bt-c li:nth-child(2){--k:1}.boot .bt-c li:nth-child(3){--k:2}
+.boot .bt-c li{display:grid;grid-template-columns:1fr;gap:3px;font:italic 700 10px/1 var(--f-mono);letter-spacing:.12em;color:#fff;animation:p5tag .3s calc(1.4s + var(--k) * .14s) steps(3) both}
+@keyframes p5tag{from{opacity:0;translate:-16px 0}}
+.boot .bt-c.r li{animation-name:p5tagr}
+@keyframes p5tagr{from{opacity:0;translate:16px 0}}
+.boot .bt-c li span{display:inline-block;justify-self:start;background:#000;padding:3px 8px 2px;transform:skewX(-14deg);box-shadow:3px 3px 0 var(--acc)}
+.boot .bt-c.r li span{justify-self:end;transform:skewX(14deg);box-shadow:-3px 3px 0 var(--acc)}
+.boot .bt-c li i{height:8px;transform:skewX(-20deg);border:2px solid #fff;box-shadow:3px 3px 0 #000;background:linear-gradient(90deg,var(--acc) var(--v),#2a0007 var(--v)) left/100% 100% no-repeat,#2a0007;animation:btbar .9s calc(1.5s + var(--k) * .14s) ease-out both}
+.boot .bt-c.r li i{transform:skewX(20deg);box-shadow:-3px 3px 0 #000}
+.boot .bt-c.r ul{align-self:flex-end}
+.boot .bt-vs{position:absolute;left:50%;top:20%;z-index:6;flex-direction:row;pointer-events:none;gap:0;transform:translate(-50%,-50%) rotate(-9deg);animation:p5vs .5s 1.05s cubic-bezier(.2,1.5,.4,1) both,p5vsp 1.1s 1.7s ease-in-out infinite alternate}
+.boot .bt-vs svg{position:absolute;left:50%;top:50%;height:150px;width:auto;margin:0;transform:translate(-50%,-50%) rotate(14deg);filter:drop-shadow(3px 3px 0 #000);animation:none}
+.boot .bt-vs svg path:first-child{stroke:#E60012;stroke-width:6}
+.boot .bt-vs svg path:last-child{stroke:#fff;stroke-width:1.8}
+.boot .bt-vs b{position:relative;font:italic 400 clamp(46px,14vw,74px)/1 var(--f-sign);color:#fff;-webkit-text-stroke:6px #000;paint-order:stroke fill;text-shadow:5px 5px 0 #E60012;letter-spacing:-.02em}
+@keyframes p5vs{0%{opacity:0;transform:translate(-50%,-50%) rotate(-9deg) scale(4)}60%{opacity:1;transform:translate(-50%,-50%) rotate(-9deg) scale(.88)}100%{opacity:1;transform:translate(-50%,-50%) rotate(-9deg) scale(1)}}
+@keyframes p5vsp{from{transform:translate(-50%,-50%) rotate(-9deg) scale(1)}to{transform:translate(-50%,-50%) rotate(-7deg) scale(1.08)}}
+.boot .bt-go{background:#000;color:#fff;border:2px solid #fff;padding:7px 16px;transform:skewX(-10deg);box-shadow:5px 5px 0 #E60012;text-shadow:none;font-style:italic;letter-spacing:.16em;margin-top:2px}
+@media (max-height:700px){.boot .bt-c{width:min(56%,270px,calc((100vh - 290px) * .8))}.p5bg .tick{height:26px}.p5bg .tick span{font-size:15px}.p5bg .tick.t1{top:.5%}}
+@media (min-width:900px) and (min-height:760px){.boot .bt-c{width:min(56%,340px)}.boot .bt-row{max-width:700px}.boot .bt-c.r{margin-top:40px}.p5bg .tick{height:38px}.p5bg .tick span{font-size:23px}.p5bg .tick.t1{top:2%}}
+@media (max-height:520px){.p5bg .tick.t1{display:none}.boot .bt-c ul,.boot .bt-h{display:none}.boot .bt-c{width:min(40%,calc((100vh - 150px) * .8))}.boot .bt-c.r{margin-top:14px}.boot .bt-vs svg{height:100px}}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -2395,7 +2476,10 @@ const ps=[...o.querySelectorAll("p")]; let i=0, done=false;
 const end=()=>{if(done)return;done=true;o.classList.add("out");setTimeout(()=>o.remove(),480);};
 const rn=t=>[...t].map((c,k)=>c===" "?'<i class="sp"></i>':`<em class="rn${(k*7+c.charCodeAt(0))%4}" style="--r:${((k*37)%13)-6}deg">${c}</em>`).join("");
 const team=()=>{ if(done) return;
-o.innerHTML=`<div class="bt"><svg class="brushx" viewBox="0 0 200 240" aria-hidden="true"><defs><filter id="brush" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035 .9" numOctaves="3" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="14"/></filter></defs><g filter="url(#brush)" stroke="#FF3E8A" stroke-linecap="round" fill="none"><path d="M30 18 L172 226" stroke-width="30"/><path d="M168 14 L34 224" stroke-width="26"/><path d="M44 30 L160 210" stroke-width="6" stroke="#ff7ab0" opacity=".6"/></g><g fill="#FF3E8A"><circle cx="24" cy="40" r="3"/><circle cx="180" cy="200" r="4"/><circle cx="186" cy="30" r="2"/><circle cx="16" cy="210" r="2.5"/><circle cx="150" cy="236" r="2"/></g></svg><i class="p5s a"></i><i class="p5s b"></i><div class="bt-hp"><div class="hp l"><span>CHRISTOPH</span><i></i></div><b class="hp-t" id="hpT">99</b><div class="hp r"><span>MICHI</span><i></i></div></div><p class="bt-h">&gt; SPIELER AUSGEWÄHLT</p><div class="bt-call"><span class="r1">${rn("ROUND 1")}</span><span class="fi">${rn("FIGHT!")}</span></div><i class="spk s1"></i><i class="spk s2"></i><i class="spk s3"></i><div class="bt-combo l"><b>${rn("3 HITS")}</b><small>NEUGIER-COMBO</small></div><div class="bt-combo r"><b>${rn("5 HITS")}</b><small>SNACK-COMBO</small></div><div class="bt-row">
+const bandA=("SEOUL <b>✦</b> NOVEMBER <b>✦</b> 21.–29.11.2026 <b>✦</b> ").repeat(5), bandB=("WAKE UP, SAMURAI <b>✦</b> BUILT, NOT TALKED ABOUT <b>✦</b> ").repeat(5);
+const stars=[[7,19,22,0],[91,13,16,.4],[15,56,14,.8],[86,46,26,.2],[52,9,12,1.1],[93,72,18,.6],[5,79,16,.9],[70,30,12,1.3]].map(([x,y,s,d])=>`<i class="st" style="left:${x}%;top:${y}%;--s:${s}px;animation-delay:${d}s"></i>`).join("");
+const bg=`<div class="p5bg" aria-hidden="true"><div class="burst"></div><i class="slab a"></i><i class="slab b"></i><i class="ht"></i><div class="tick t1"><span>${bandA}${bandA}</span></div><div class="tick t2"><span>${bandB}${bandB}</span></div>${stars}</div><i class="p5w b"></i><i class="p5w r"></i><i class="p5flash"></i>`;
+o.innerHTML=`${bg}<div class="bt"><svg class="brushx" viewBox="0 0 200 240" aria-hidden="true"><defs><filter id="brush" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035 .9" numOctaves="3" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="14"/></filter></defs><g filter="url(#brush)" stroke="#FF3E8A" stroke-linecap="round" fill="none"><path d="M30 18 L172 226" stroke-width="30"/><path d="M168 14 L34 224" stroke-width="26"/><path d="M44 30 L160 210" stroke-width="6" stroke="#ff7ab0" opacity=".6"/></g><g fill="#FF3E8A"><circle cx="24" cy="40" r="3"/><circle cx="180" cy="200" r="4"/><circle cx="186" cy="30" r="2"/><circle cx="16" cy="210" r="2.5"/><circle cx="150" cy="236" r="2"/></g></svg><i class="p5s a"></i><i class="p5s b"></i><div class="bt-hp"><div class="hp l"><span>CHRISTOPH</span><i></i></div><b class="hp-t" id="hpT">99</b><div class="hp r"><span>MICHI</span><i></i></div></div><p class="bt-h">SPIELER AUSGEWÄHLT</p><div class="bt-call"><span class="r1">${rn("ROUND 1")}</span><span class="fi">${rn("FIGHT!")}</span></div><i class="spk s1"></i><i class="spk s2"></i><i class="spk s3"></i><div class="bt-combo l"><b>${rn("3 HITS")}</b><small>NEUGIER-COMBO</small></div><div class="bt-combo r"><b>${rn("5 HITS")}</b><small>SNACK-COMBO</small></div><div class="bt-row">
 <div class="bt-c l"><div class="bt-av"><img src="kaempfer/kaempfer-christoph.jpg" alt="Christoph als Kämpfer" width="480" height="600"></div><b>CHRISTOPH</b><small>KLASSE: NETRUNNER</small><ul><li><span>PLANUNG</span><i style="--v:96%"></i></li><li><span>NEUGIER</span><i style="--v:100%"></i></li><li><span>NAVIGATION</span><i style="--v:82%"></i></li></ul></div>
 <div class="bt-vs"><svg viewBox="0 0 30 80" aria-hidden="true"><path d="M18 0 L10 26 L20 30 L8 56 L16 58 L10 80" fill="none" stroke="#C9B8FF" stroke-width="2.4"/><path d="M18 0 L10 26 L20 30 L8 56 L16 58 L10 80" fill="none" stroke="#fff" stroke-width=".9"/></svg><b>VS</b></div>
 <div class="bt-c r"><div class="bt-av"><img src="kaempfer/kaempfer-michi.jpg" alt="Michi als Kämpfer" width="480" height="600"></div><b>MICHI</b><small>KLASSE: GOURMET</small><ul><li><span>HUNGER</span><i style="--v:99%"></i></li><li><span>HUMOR</span><i style="--v:97%"></i></li><li><span>GRIMASSEN</span><i style="--v:100%"></i></li></ul></div>
