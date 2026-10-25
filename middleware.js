@@ -17,8 +17,8 @@ export default async function middleware(request) {
   if (!pw) return new Response("SITE_PASSWORD fehlt", { status: 500 });
   const token = await tokenFor(pw);
   const url = new URL(request.url);
-  // PWA-Dateien ohne Login (enthalten nichts Privates)
-  if (url.pathname === "/manifest.webmanifest" || url.pathname.startsWith("/icons/")) return next();
+  // PWA-Dateien und Kämpferbilder für die Login-Seite ohne Login
+  if (url.pathname === "/manifest.webmanifest" || url.pathname.startsWith("/icons/") || url.pathname.startsWith("/kaempfer/")) return next();
 
   // login form submit
   if (url.pathname === "/__login" && request.method === "POST") {
@@ -107,10 +107,31 @@ body.ok .term{animation:okk .7s forwards}@keyframes okk{0%{filter:none}30%{filte
   .ft{flex-direction:column;align-items:center;gap:2px;text-align:center;margin-top:14px}
 }
 @media (max-height:640px){.orbw{display:none}main{padding-top:24px}h1{font-size:54px}}
+
+.duel{position:relative;z-index:3;display:flex;align-items:flex-end;justify-content:center;margin:0 0 -30px;pointer-events:none}
+.fc{margin:0;flex:0 1 44%;max-width:176px;aspect-ratio:4/5;position:relative;filter:drop-shadow(5px 6px 0 #000) drop-shadow(0 0 18px rgba(230,0,18,.35))}
+.fc img{position:relative;z-index:1;display:block;width:100%;height:100%;object-fit:cover;clip-path:polygon(3% 0,100% 3%,97% 100%,0 97%)}
+.fc::before{content:"";position:absolute;inset:0;background:#fff;clip-path:polygon(3% 0,100% 3%,97% 100%,0 97%);transform:scale(1.05)}
+.fc::after{content:"";position:absolute;inset:0;z-index:-1;background:#E60012;clip-path:polygon(3% 0,100% 3%,97% 100%,0 97%)}
+.fc.l{transform:rotate(-7deg) translateY(8px);animation:inl 1.1s cubic-bezier(.2,.8,.2,1) both,bob 4.5s 1.2s ease-in-out infinite alternate}
+.fc.r{transform:rotate(6deg);animation:inr 1.1s .15s cubic-bezier(.2,.8,.2,1) both,bob 4.5s 1.6s ease-in-out infinite alternate-reverse}
+.fc.l::after{transform:translate(-9px,9px) rotate(-3deg)}.fc.r::after{transform:translate(9px,9px) rotate(3deg)}
+@keyframes inl{from{opacity:0;transform:translateX(-70%) rotate(-16deg)}to{opacity:1;transform:rotate(-7deg) translateY(8px)}}
+@keyframes inr{from{opacity:0;transform:translateX(70%) rotate(15deg)}to{opacity:1;transform:rotate(6deg)}}
+@keyframes bob{to{translate:0 -5px}}
+.duel .orbw{flex:none;width:76px;height:76px;margin:0 -20px 46px;z-index:4}
+.duel .glowf{width:190px;height:40px}
+.vs{position:absolute;left:50%;bottom:60px;z-index:5;transform:translateX(-50%) rotate(-8deg);font:400 38px/1 "Black Han Sans",sans-serif;color:var(--y);-webkit-text-stroke:2px #000;paint-order:stroke fill;text-shadow:3px 3px 0 #000,0 0 18px rgba(252,238,10,.6);animation:vsin .5s .9s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes vsin{from{opacity:0;transform:translateX(-50%) rotate(-8deg) scale(2.4)}}
+.duel+.term{padding-top:58px}
+body.ok .fc.l{animation:outl .6s forwards}body.ok .fc.r{animation:outr .6s forwards}body.ok .vs{animation:outv .4s forwards}
+@keyframes outl{to{opacity:0;transform:translateX(-90%) rotate(-20deg)}}@keyframes outr{to{opacity:0;transform:translateX(90%) rotate(20deg)}}@keyframes outv{to{opacity:0;transform:translateX(-50%) scale(2)}}
+@media (max-width:520px){main{padding-top:max(24px,env(safe-area-inset-top))}.fc{max-width:150px}.duel .orbw{width:62px;height:62px;margin:0 -18px 40px}.vs{font-size:32px;bottom:50px}.duel .glowf{width:150px}}
+@media (max-height:640px){.fc{max-width:112px}.vs{bottom:20px;font-size:28px}.duel{margin-bottom:-22px}.duel .orbw{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style></head><body>
 <canvas id="r" aria-hidden="true"></canvas><div class="floor" aria-hidden="true"></div>
-<main><div style="width:min(440px,100%)"><div class="orbw" aria-hidden="true"><div class="glowf"></div><div class="orb"></div></div><section class="term" aria-label="Zugang">
+<main><div style="width:min(440px,100%)"><div class="duel" aria-hidden="true"><figure class="fc l"><img src="/kaempfer/kaempfer-christoph.jpg" alt="" width="480" height="600"></figure><div class="orbw"><div class="glowf"></div><div class="orb"></div></div><figure class="fc r"><img src="/kaempfer/kaempfer-michi.jpg" alt="" width="480" height="600"></figure><b class="vs">VS</b></div><section class="term" aria-label="Zugang">
 <div class="k">SYS://SEOUL.NOV · <b>SECURE NODE</b><span class="geo"> · 37.57N 126.98E</span></div>
 <h1 aria-hidden="true">서울</h1>
 <div class="t">SEOUL, NOVEMBER.</div>
