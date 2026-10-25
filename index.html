@@ -845,6 +845,12 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 .cr-cont{font:700 13px var(--f-mono);letter-spacing:.24em;color:var(--neon)}
 @media (prefers-reduced-motion:no-preference){.credits.run .cr-roll{animation:roll var(--dur,60s) linear forwards}@keyframes roll{to{transform:translateY(calc(-100% - 100vh))}}}
 @media (prefers-reduced-motion:reduce){.credits{overflow:auto}.cr-roll{position:static;padding-top:80px}}
+.foldbtn{display:none}
+@media (max-width:700px){
+section.fold:not(.open){max-height:78vh;overflow:hidden;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+section.fold+.foldbtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin:-6px 0 0;padding:11px 14px;border:1px solid var(--cyan);background:rgba(59,230,214,.07);color:var(--cyan);font:700 11px var(--f-mono);letter-spacing:.18em;cursor:pointer;clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%)}
+section.fold.open+.foldbtn{border-color:var(--line);color:var(--muted);background:none}
+}
 .mx{height:84px;margin:-26px 0;opacity:.8}
 .mx canvas{opacity:1;mix-blend-mode:normal}
 .mx span{padding:4px 10px;background:rgba(17,15,39,.72);color:var(--cyan);letter-spacing:.14em;box-shadow:0 0 0 1px rgba(59,230,214,.25)}
@@ -2550,7 +2556,7 @@ if(d>=TRIP_START&&d<=TRIP_END&&i>=0){
 const [day,wd,title,items]=PLAN[i];
 lvl.innerHTML=`<div class="lvl-h"><span>LEVEL ${i+1} / ${PLAN.length}</span><b>${title}</b><span>${wd} ${+day.slice(8)}.11.</span></div><div class="lvl-bar"><i style="width:${Math.round((i+1)/PLAN.length*100)}%"></i></div><ul>${items.slice(0,4).map(t=>`<li>${t.replace(/^★\s*/,"")}</li>`).join("")}</ul><a class="btn" href="#plan" id="lvlGo">Zum Tagesplan ▸</a>`;
 lvl.hidden=false;
-$("lvlGo").addEventListener("click",e=>{ const r=document.querySelector("#planList .row.today"); if(r){ e.preventDefault(); r.scrollIntoView({behavior:"smooth",block:"center"}); }});
+$("lvlGo").addEventListener("click",e=>{ const r=document.querySelector("#planList .row.today"); if(r){ e.preventDefault(); if(window.__unfold) window.__unfold(r); r.scrollIntoView({behavior:"smooth",block:"center"}); }});
 }
 const h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Seoul",hour:"2-digit",hourCycle:"h23"}).format(new Date());
 if(d>TRIP_END||(d===TRIP_END&&h>=12&&!SIM)){ clr.hidden=false; }
@@ -2652,6 +2658,21 @@ if(++f<160) requestAnimationFrame(step); else o.remove(); };
 if(matchMedia("(prefers-reduced-motion: reduce)").matches) setTimeout(()=>o.remove(),2500); else step(); }
 const hg=document.querySelector(".hangul"); if(hg){ hg.style.cursor="default"; hg.addEventListener("click",()=>{ const t=Date.now(); taps=taps.filter(x=>t-x<4000); taps.push(t); if(taps.length>=7){ taps=[]; fire(); } }); }
 addEventListener("keydown",e=>{ keys.push(e.key); keys=keys.slice(-K.length); if(K.every((k,i)=>keys[i]&&keys[i].toLowerCase()===k.toLowerCase())){ keys=[]; fire(); } });
+})();
+// ---------- Handy: lange Bereiche zuklappen ----------
+(function(){
+const mq=matchMedia("(max-width:700px)"), SKIP=["highlights"];
+const secs=[...document.querySelectorAll("main section[id], section[id]")].filter((x,i,a)=>a.indexOf(x)===i&&!SKIP.includes(x.id));
+const label=s=>s.classList.contains("open")?"▴ WENIGER ANZEIGEN":"▾ GANZEN BEREICH ANZEIGEN";
+secs.forEach(s=>{ const b=document.createElement("button"); b.type="button"; b.className="foldbtn"; s.after(b);
+b.addEventListener("click",()=>{ const was=s.classList.contains("open"); s.classList.toggle("open"); b.textContent=label(s); b.setAttribute("aria-expanded",String(!was));
+if(was){ const y=s.getBoundingClientRect().top+scrollY-70; scrollTo({top:y,behavior:"smooth"}); } }); });
+function check(){ secs.forEach(s=>{ const b=s.nextElementSibling; if(!mq.matches){ s.classList.remove("fold"); return; }
+if(s.classList.contains("open")) return; s.classList.remove("fold"); const long=s.scrollHeight>innerHeight*1.6; s.classList.toggle("fold",long);
+if(b){ b.textContent=label(s); b.setAttribute("aria-expanded","false"); } }); }
+window.__unfold=el=>{ const s=el&&el.closest("section.fold"); if(s&&!s.classList.contains("open")){ s.classList.add("open"); const b=s.nextElementSibling; if(b) b.textContent=label(s); } };
+check(); addEventListener("load",check); setTimeout(check,3000); mq.addEventListener?mq.addEventListener("change",check):0;
+let t; addEventListener("resize",()=>{clearTimeout(t);t=setTimeout(check,300);});
 })();
 // ---------- neon trail + tap sparks, holo reveal ----------
 (function(){
