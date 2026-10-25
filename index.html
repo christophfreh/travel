@@ -1703,6 +1703,28 @@ html.night .sky .neons b{opacity:1}
 .sky .neons .ad{right:1.5%;top:auto;bottom:4%;width:min(11vw,48px);aspect-ratio:2/3;opacity:.85}
 .sky .neons .ad em{font-size:6px;left:4px;top:4px;letter-spacing:.08em}
 .sky{margin-top:-14px}
+/* 8-bit Blöcke: größer, anklickbar, mit Sound */
+.pxd{gap:6px;bottom:38px;pointer-events:none}
+.pxd svg,.pxfoot svg{width:26px;height:26px;opacity:1;pointer-events:auto;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;transition:opacity .25s}
+.pxfoot{gap:6px;opacity:1}
+.pxfoot svg{width:24px;height:24px}
+.pxcount{text-align:center;font:700 11px var(--f-mono);letter-spacing:.14em;color:var(--cp,#FCEE0A);margin:0 0 12px;text-shadow:0 0 8px rgba(252,238,10,.5)}
+.pxd svg.gone,.pxfoot svg.gone{opacity:0;pointer-events:none}
+.mcoin{position:fixed;z-index:60;width:12px;height:18px;margin:-9px 0 0 -6px;background:#FCEE0A;box-shadow:inset -3px 0 0 #B7791F,0 0 0 2px #110F27,0 0 10px rgba(252,238,10,.8);pointer-events:none;animation:mcoin .75s cubic-bezier(.2,.7,.4,1) forwards}
+@keyframes mcoin{0%{transform:translateY(0) scaleX(1)}40%{transform:translateY(-52px) scaleX(.3)}70%{transform:translateY(-62px) scaleX(1)}100%{transform:translateY(-24px) scaleX(.2);opacity:0}}
+.mtxt{position:fixed;z-index:60;font:700 11px var(--f-mono);letter-spacing:.1em;color:#FCEE0A;text-shadow:2px 2px 0 #000;pointer-events:none;transform:translateX(-50%);animation:mtxt .9s ease-out forwards}
+@keyframes mtxt{0%{opacity:0;transform:translate(-50%,0)}20%{opacity:1}100%{opacity:0;transform:translate(-50%,-30px)}}
+@media (prefers-reduced-motion:no-preference){
+.pxd svg.c,.pxfoot svg.c{animation:mpipe 3.6s steps(6) infinite}
+@keyframes mpipe{0%,100%{transform:translateY(0)}35%{transform:translateY(-4px)}60%{transform:translateY(2px)}}
+.pxd svg.c.warp,.pxfoot svg.c.warp{animation:mwarp .5s steps(5)}
+@keyframes mwarp{40%{transform:translateY(7px) scaleY(.6)}100%{transform:translateY(0)}}
+.pxd svg.q,.pxfoot svg.q{animation:mhint 4.4s ease-in-out infinite}
+@keyframes mhint{0%,80%,100%{filter:drop-shadow(0 0 3px rgba(252,238,10,.65))}90%{filter:drop-shadow(0 0 10px rgba(252,238,10,1))}}
+.pxd svg.hit,.pxfoot svg.hit{animation:pxbump .3s steps(3)}
+.pxd svg.spin,.pxfoot svg.spin{animation:pxflip 2.4s steps(4) infinite;transform-origin:center}
+.pxd svg.float,.pxfoot svg.float{animation:pxfl 2.6s ease-in-out infinite alternate}
+}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -3528,6 +3550,35 @@ const pl=$("planList"); if(pl){ new MutationObserver(injectGigs).observe(pl,{chi
  b.addEventListener("click",()=>{ document.body.classList.toggle("camhud"); lsSet("camhud",on()); sync(); }); })();
 /* ---- Ruf: Gigs einbeziehen ---- */
 document.addEventListener("gigs",()=>{ const c=document.querySelector(".cred"); if(c&&c.__r) c.__r(); });
+})();
+</script>
+<script>
+/* 8-bit Blöcke: Sound, Münzen, Warp-Rohr */
+(function(){
+const AC=window.AudioContext||window.webkitAudioContext; let ac=null;
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const ctx=()=>{ if(!AC) return null; if(!ac) ac=new AC(); if(ac.state==="suspended") ac.resume(); return ac; };
+function tone(f,t0,d,type,v,f2){ const a=ctx(); if(!a) return; const o=a.createOscillator(), g=a.createGain(); o.type=type||"square"; o.frequency.setValueAtTime(f,a.currentTime+t0); if(f2) o.frequency.exponentialRampToValueAtTime(f2,a.currentTime+t0+d);
+ g.gain.setValueAtTime(0.0001,a.currentTime+t0); g.gain.exponentialRampToValueAtTime(v||.07,a.currentTime+t0+.01); g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+t0+d); o.connect(g).connect(a.destination); o.start(a.currentTime+t0); o.stop(a.currentTime+t0+d+.03); }
+const SFX={coin(){ tone(988,0,.07); tone(1319,.07,.32); }, up(){ [659,784,1319,1047,1175,1568].forEach((f,i)=>tone(f,i*.09,.12)); }, bump(){ tone(150,0,.1,"square",.09,70); }, warp(){ tone(700,0,.55,"square",.06,90); tone(520,.05,.5,"triangle",.07,70); }};
+let n=0; try{ n=parseInt(localStorage.getItem("pxcoins"))||0; }catch(e){}
+const foot=document.querySelector(".pxfoot"); let cnt=null;
+if(foot){ cnt=document.createElement("div"); cnt.className="pxcount"; cnt.setAttribute("aria-live","off"); foot.after(cnt); }
+const show=()=>{ if(cnt) cnt.textContent="¢ × "+String(n).padStart(2,"0"); };
+const add=()=>{ n++; try{ localStorage.setItem("pxcoins",String(n)); }catch(e){} show(); if(n%10===0){ setTimeout(SFX.up,350); } };
+show();
+function fly(el,txt){ if(reduce) return; const r=el.getBoundingClientRect(); const x=r.left+r.width/2, y=r.top;
+ const c=document.createElement("i"); c.className="mcoin"; c.style.left=x+"px"; c.style.top=y+"px"; document.body.appendChild(c); setTimeout(()=>c.remove(),800);
+ if(txt){ const t=document.createElement("span"); t.className="mtxt"; t.textContent=txt; t.style.left=x+"px"; t.style.top=(y-8)+"px"; document.body.appendChild(t); setTimeout(()=>t.remove(),950); } }
+function hit(el){ el.classList.remove("hit"); void el.getBoundingClientRect(); el.classList.add("hit"); }
+document.addEventListener("click",e=>{ const s=e.target.closest&&e.target.closest(".pxd svg,.pxfoot svg"); if(!s||s.classList.contains("gone")) return;
+ if(s.classList.contains("q")){ SFX.coin(); fly(s,"+1 ¢"); add(); hit(s); }
+ else if(s.classList.contains("spin")){ SFX.coin(); fly(s,"+1 ¢"); add(); s.classList.add("gone"); setTimeout(()=>s.classList.remove("gone"),9000); }
+ else if(s.classList.contains("float")){ SFX.up(); fly(s,"1-UP"); }
+ else if(s.classList.contains("c")){ SFX.warp(); s.classList.remove("warp"); void s.getBoundingClientRect(); s.classList.add("warp");
+   const secs=[...document.querySelectorAll("main section, .wrap > section, section")]; const cur=s.closest("section"); let nx=null; const i=secs.indexOf(cur); if(i>=0) nx=secs[i+1]; if(!cur||!nx){ nx=document.body; }
+   setTimeout(()=>{ if(nx===document.body) window.scrollTo({top:0,behavior:reduce?"auto":"smooth"}); else nx.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"}); },380); }
+ else { SFX.bump(); hit(s); } },true);
 })();
 </script>
 </body></html>
