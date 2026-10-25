@@ -1725,6 +1725,36 @@ html.night .sky .neons b{opacity:1}
 .pxd svg.spin,.pxfoot svg.spin{animation:pxflip 2.4s steps(4) infinite;transform-origin:center}
 .pxd svg.float,.pxfoot svg.float{animation:pxfl 2.6s ease-in-out infinite alternate}
 }
+/* Arcane: Piltover × Zaun, kräftiger */
+.arcane{min-height:176px;padding:16px 14px 18px;gap:14px;border-color:rgba(232,199,122,.6);box-shadow:inset 0 0 0 1px rgba(232,199,122,.18),0 0 26px -6px rgba(255,62,138,.5),0 0 34px -10px rgba(59,184,255,.55)}
+.arcane::before{opacity:.12}
+.arcane>*{position:relative;z-index:2}
+.arcane>.ar-split,.arcane>.ar-smoke,.arcane>.ar-gear{position:absolute;z-index:0;pointer-events:none}
+.arcane>.bolt{position:absolute;z-index:3}
+.arcane>.brushx,.arcane>.ar-bla,.arcane>.ar-k{position:absolute}
+.ar-split{inset:0;background:linear-gradient(105deg,rgba(232,199,122,.16) 0 38%,transparent 38%),linear-gradient(105deg,transparent calc(38% - 1.5px),rgba(232,199,122,.9) calc(38% - 1.5px) 38%,transparent 38%);mix-blend-mode:screen;opacity:.9}
+.ar-smoke{width:170px;height:120px;border-radius:50%;filter:blur(22px);opacity:.55}
+.ar-smoke.s1{right:-30px;bottom:-30px;background:radial-gradient(circle,rgba(110,255,160,.55),transparent 70%)}
+.ar-smoke.s2{right:90px;top:-40px;background:radial-gradient(circle,rgba(255,62,138,.55),transparent 70%)}
+.ar-gear{left:-26px;top:50%;width:170px;height:170px;margin-top:-85px;opacity:.55;filter:drop-shadow(0 0 8px rgba(232,199,122,.7))}
+.arcane .hexcore{transform:scale(1.55);margin:30px 28px 30px 24px}
+.arcane .graf{max-height:112px;max-width:100%;opacity:1;justify-self:center;filter:drop-shadow(0 0 6px rgba(255,62,138,.6))}
+.arcane .ar-k{right:14px;top:9px;font:700 11px var(--f-mono);letter-spacing:.2em;color:#E8C77A;text-shadow:0 0 10px rgba(232,199,122,.7);white-space:nowrap}
+.arcane .ar-bla{font-size:34px;color:rgba(255,62,138,.22)}
+@media (max-width:420px){.arcane .ar-k{font-size:9px;letter-spacing:.14em}}
+@media (prefers-reduced-motion:no-preference){
+.ar-gear{animation:argear 48s linear infinite}
+@keyframes argear{to{transform:rotate(360deg)}}
+.ar-smoke.s1{animation:arsm 15s ease-in-out infinite alternate}
+.ar-smoke.s2{animation:arsm 19s -6s ease-in-out infinite alternate-reverse}
+@keyframes arsm{to{transform:translate(-50px,-14px) scale(1.25)}}
+.arcane .bolt{animation-duration:5.5s}
+.arcane::after{animation-duration:5.5s}
+}
+#games .grid2 .box{position:relative;border-color:rgba(232,199,122,.38);box-shadow:inset 0 0 0 1px rgba(232,199,122,.08),0 0 18px -8px rgba(59,184,255,.5)}
+#games .grid2 .box::before,#games .grid2 .box::after{content:"";position:absolute;width:12px;height:12px;pointer-events:none;border:2px solid #E8C77A;opacity:.85}
+#games .grid2 .box::before{left:-1px;top:-1px;border-right:0;border-bottom:0}
+#games .grid2 .box::after{right:-1px;bottom:-1px;border-left:0;border-top:0}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -2153,6 +2183,7 @@ pflichtprogramm: <span class="n">null</span>,
 <section id="games">
 <div class="sh"><span class="n">16</span><h2>Games</h2><span class="ko">게임</span></div>
 <div class="arcane" aria-hidden="true">
+<i class="ar-split"></i><i class="ar-smoke s1"></i><i class="ar-smoke s2"></i><svg class="ar-gear" viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="#E8C77A" stroke-width="10" stroke-dasharray="9 7"/><circle cx="100" cy="100" r="74" fill="none" stroke="#E8C77A" stroke-width="1.5"/><circle cx="100" cy="100" r="58" fill="none" stroke="#3BB8FF" stroke-width="1" stroke-dasharray="2 5"/></svg>
 <div class="hexcore" aria-hidden="true"><div class="hc"><i class="f0"><b>◇</b></i><i class="f1"><b>Ⅲ</b></i><i class="f2"><b>♡</b></i><i class="f3"><b>≋</b></i><i class="f4"><b>✧</b></i><i class="f5"><b>⌘</b></i></div></div>
 <svg class="graf" viewBox="0 0 320 120"><defs><filter id="spray" x="-10%" y="-10%" width="120%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3"/><feGaussianBlur stdDeviation=".4"/></filter></defs>
 <g filter="url(#spray)" fill="none" stroke-linecap="round" stroke-linejoin="round">
