@@ -845,23 +845,27 @@ background:radial-gradient(circle at 20% 40%,#FF3E8A 0 3px,transparent 4px),radi
 .sky .fz-p{stroke:#3a1430;fill:#3a1430;filter:drop-shadow(0 0 3px #FF3E8A)}
 .sky .fz .hx{fill:#9FF3FF;stroke:none}
 .sky .fz .gl{fill:#E8C77A;stroke:none}
-.sky .fa{transform:translate(-40px,0)}.sky .fb{transform:translate(40px,0)}
+.sky .fa{transform:translate(-40px,-2px)}.sky .fb{transform:translate(42px,4px)}
+.sky .roof{fill:#0c0a1c}.sky .roofl{stroke:#3BE6D6;stroke-width:1;opacity:.6;fill:none}
+.sky .clash{transform:translate(0,-16px)}
 .sky .clash{fill:none;stroke:#E6FBFF;stroke-width:1.2;opacity:0;filter:drop-shadow(0 0 4px #C9B8FF)}
 .sky .clash circle{fill:rgba(201,184,255,.6);stroke:none}
 @media (prefers-reduced-motion:no-preference){
 .sky .fa{animation:fa 11s ease-in-out infinite}
 .sky .fb{animation:fb 11s ease-in-out infinite}
 .sky .clash{animation:clash 11s linear infinite}
-@keyframes fa{0%,30%{transform:translate(-40px,0)}38%{transform:translate(-16px,-16px)}44%{transform:translate(-5px,0)}50%{transform:translate(-5px,0)}56%{transform:translate(-24px,-10px)}64%,100%{transform:translate(-40px,0)}}
-@keyframes fb{0%,32%{transform:translate(40px,0)}40%{transform:translate(18px,-14px)}44%{transform:translate(5px,0)}50%{transform:translate(5px,0)}58%{transform:translate(26px,-12px)}66%,100%{transform:translate(40px,0)}}
-@keyframes clash{0%,43.5%{opacity:0;transform:scale(.4)}44.5%{opacity:1;transform:scale(1.2)}46%{opacity:.6;transform:scale(.9)}48%{opacity:0}100%{opacity:0}}
-.sky .clash{transform-box:fill-box;transform-origin:center}
+@keyframes fa{0%,30%{transform:translate(-40px,-2px)}38%{transform:translate(-18px,-22px)}44%,48%{transform:translate(-6px,-16px)}56%{transform:translate(-26px,-14px)}64%,100%{transform:translate(-40px,-2px)}}
+@keyframes fb{0%,32%{transform:translate(42px,4px)}40%{transform:translate(20px,-20px)}44%,48%{transform:translate(6px,-16px)}58%{transform:translate(28px,-10px)}66%,100%{transform:translate(42px,4px)}}
+@keyframes clash{0%,43.5%{opacity:0;transform:translate(0,-16px) scale(.4)}44.5%{opacity:1;transform:translate(0,-16px) scale(1.2)}46%{opacity:.6;transform:translate(0,-16px) scale(.9)}48%{opacity:0}100%{opacity:0}}
+.sky .clash{transform-origin:0 -12px}
 }
+.brand-r{display:flex;align-items:center;gap:10px}
+.logout.sm{padding:4px 8px;font-size:10px}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
 <div class="sky" id="sky" aria-hidden="true"><div class="holo" id="holo">서울 · 2026</div><svg id="skySvg" viewBox="0 0 800 150" preserveAspectRatio="xMidYMax slice"></svg><div class="floor"></div></div>
-<div class="brand"><span></span><span class="label mono" id="clock">Seoul --:--</span></div>
+<div class="brand"><span></span><span class="brand-r"><span class="label mono" id="clock">Seoul --:--</span><a class="logout sm" id="logoutTop" href="/__logout" hidden title="Abmelden">⏻ Logout</a></span></div>
 <div class="hud" aria-hidden="true"><span>&gt; SYS://SEOUL.NOV <b>ONLINE</b></span><span>37.57N 126.98E</span><span>KST UTC+9</span><span>FUK 33.59N<i class="cur"></i></span></div>
 <div class="hangul" aria-hidden="true">서울</div>
 <div class="kata" aria-hidden="true">フクオカ<small>+ FUK</small></div>
@@ -2005,7 +2009,7 @@ x+=w+3;}
 o+=`<g class="ship"><ellipse cx="0" cy="0" rx="34" ry="9" fill="#2a2040" stroke="#E8C77A" stroke-width="1.4"/><path d="M-26 0 h52 M-18 -7 v14 M0 -9 v18 M18 -7 v14" stroke="#E8C77A" stroke-width=".8" opacity=".7"/><rect x="-12" y="9" width="24" height="7" rx="2" fill="#1a1430" stroke="#E8C77A" stroke-width="1"/><circle cx="-38" cy="0" r="3.5" fill="#9FF3FF" class="hexglow"/><circle cx="38" cy="2" r="2" fill="#9FF3FF" class="hexglow"/><path d="M-34 -2 l-6 -6 M-34 2 l-6 6" stroke="#E8C77A" stroke-width="1.2"/></g>`;
 o+=`<g class="tagz" fill="none" stroke-linecap="round"><path d="M300 178 l14 18 M314 178 l-14 18" stroke="#FF3E8A" stroke-width="3"/><circle cx="340" cy="188" r="8" stroke="#3BE6D6" stroke-width="2"/><path d="M336 186 h.1 M344 186 h.1" stroke="#3BE6D6" stroke-width="2.4"/><path d="M335 191 q5 4 10 0" stroke="#3BE6D6" stroke-width="1.6"/><path d="M520 192 c6 -10 14 6 20 -4 s12 4 16 -4" stroke="#FF3E8A" stroke-width="2.4"/></g>`;
 // arcane: rooftop fight (silhouettes)
-o+=`<g class="fight" transform="translate(470,170)"><g class="fa"><g class="fz fz-b"><circle cx="0" cy="-15" r="2.6"/><path d="M0 -12 L0 -4 M0 -10 L4 -7 M0 -10 L5 -12 M0 -4 L-3 2 M0 -4 L3 2" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="6" cy="-12" r="1.6" class="hx"/></g></g><g class="fb"><g class="fz fz-p"><circle cx="0" cy="-15" r="2.6"/><path d="M0 -12 L0 -4 M0 -10 L-4 -7 M0 -10 L-5 -12 M0 -4 L-3 2 M0 -4 L3 2" stroke-width="1.8" stroke-linecap="round" fill="none"/><rect x="-8" y="-13" width="4" height="4" rx="1" class="gl"/></g></g><g class="clash"><circle cx="0" cy="-12" r="5"/><path d="M-9 -12 h18 M0 -21 v18 M-6 -18 l12 12 M6 -18 l-12 12"/></g></g>`;
+o+=`<g class="fight" transform="translate(470,128)"><rect class="roof" x="-62" y="0" width="44" height="100"/><rect class="roof" x="18" y="6" width="46" height="100"/><path class="roofl" d="M-62 0 h44 M18 6 h46"/><g class="fa"><g class="fz fz-b"><circle cx="0" cy="-15" r="2.6"/><path d="M0 -12 L0 -4 M0 -10 L4 -7 M0 -10 L5 -12 M0 -4 L-3 2 M0 -4 L3 2" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="6" cy="-12" r="1.6" class="hx"/></g></g><g class="fb"><g class="fz fz-p"><circle cx="0" cy="-15" r="2.6"/><path d="M0 -12 L0 -4 M0 -10 L-4 -7 M0 -10 L-5 -12 M0 -4 L-3 2 M0 -4 L3 2" stroke-width="1.8" stroke-linecap="round" fill="none"/><rect x="-8" y="-13" width="4" height="4" rx="1" class="gl"/></g></g><g class="clash"><circle cx="0" cy="-12" r="5"/><path d="M-9 -12 h18 M0 -21 v18 M-6 -18 l12 12 M6 -18 l-12 12"/></g></g>`;
 // flying cars
 for(let i=0;i<5;i++) o+=`<rect class="car${i%2?" r":""}" x="0" y="${30+rnd()*70}" width="10" height="2" rx="1" style="--t:${(12+rnd()*12).toFixed(1)}s;--o:-${(rnd()*10).toFixed(1)}s"/>`;
 sv.innerHTML=`<g transform="scale(1,.68)">${o}</g>`;
@@ -2089,5 +2093,5 @@ const up=()=>{ic.innerHTML=pick(ph.textContent);}; up(); new MutationObserver(up
 // ---------- arcane draw-in ----------
 (function(){const a=document.querySelector(".arcane"); if(!a) return; if(!("IntersectionObserver" in window)){a.classList.add("in");return;}
 const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){a.classList.add("in");io.disconnect();}},{rootMargin:"0px 0px -20% 0px"}); io.observe(a);})();
-if(LIVE){const lo=document.getElementById("logout"); if(lo) lo.hidden=false;}
+if(LIVE){["logout","logoutTop"].forEach(id=>{const lo=document.getElementById(id); if(lo) lo.hidden=false;});}
 </script></body></html>
