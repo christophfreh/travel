@@ -1413,6 +1413,21 @@ background:radial-gradient(70% 60% at 50% 30%,#ffcf7a,#f39a3a 35%,#c2571c 70%,#5
 @keyframes p5dmg{0%{opacity:0;transform:translateY(14px) scale(2.6) rotate(var(--r))}14%{opacity:1;transform:scale(1) rotate(var(--r))}65%{opacity:1;transform:translateY(-34px) scale(1) rotate(var(--r))}100%{opacity:0;transform:translateY(-64px) scale(.9) rotate(var(--r))}}
 /* ===== Mobile-Fixes 2.5 ===== */
 @media (max-height:520px){.boot .bt-c{width:min(40%,calc((100vh - 140px) * .8))}.p5o .p5cw{width:min(70vw,400px)}.p5c{padding:22px 18px 16px}.p5c .c-big{gap:6px;font-size:clamp(20px,6.2vh,30px)}.p5c .c-top{margin-bottom:10px}.p5c .c-stamp{display:none}.p5o .o-tip{bottom:4%}.boot .bt-c.l{margin-right:70px}.boot .bt-c.r{margin-left:70px}}
+/* ===== Lesbarkeit 2.5 ===== */
+.p5c i.sp{width:.65em}
+.p5c .c-foot{display:flex;justify-content:space-between;align-items:center;margin-top:18px;gap:10px}
+.p5c .c-foot .c-sig{margin-top:0}
+.p5c .c-foot .c-stamp{position:static;flex:none}
+.p5c .c-sub{font-size:11px;color:#16110d}
+.p5c .c-big em{box-shadow:0 0 0 2px #16110d}
+.p5o .o-tip span{font-size:13px}
+.boot .bt-c small{font-size:10.5px;padding:5px 11px 4px}.boot .bt-c small i{font-size:8.5px}
+@media (max-height:520px){.p5c .c-foot{display:none}}
+/* ===== Lite-Modus für schwache Geräte ===== */
+.boot.lite *{filter:none!important}
+.boot.lite .p5bg .burst,.boot.lite .p5bg .shards,.boot.lite .p5bg .ht{animation:none!important}
+.boot.lite .p5bg .shards,.boot.lite .p5radar,.boot.lite .p5nova,.boot.lite .brushx,.boot.lite .spk,.boot.lite .p5s{display:none!important}
+.boot.lite .p5dmg,.boot.lite .p5pop{text-shadow:2px 2px 0 #000}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -2591,6 +2606,8 @@ const end=()=>{if(done)return;done=true; if(off) off();
  const w=document.createElement("div"); w.className="p5x"; w.setAttribute("aria-hidden","true"); w.innerHTML="<i class=\"b\"></i><i class=\"r\"></i>"; document.body.appendChild(w);
  try{sessionStorage.setItem("p5seen","1");}catch(e){}
  o.style.pointerEvents="none"; setTimeout(()=>o.remove(),430); setTimeout(()=>w.remove(),1050);};
+const fr=[]; (function samp(t){ if(done||fr.length>400) return; fr.push(t); requestAnimationFrame(samp); })(performance.now());
+const slow=()=>{ const n=fr.length; if(n<12) return (navigator.hardwareConcurrency||8)<=4; const a=fr.slice(-30); return (a[a.length-1]-a[0])/(a.length-1)>26 || (navigator.hardwareConcurrency||8)<=4; };
 const AC=window.AudioContext||window.webkitAudioContext; let ac=null, nb=null;
 try{ if(AC){ ac=new AC(); if(ac.state==="suspended") ac.resume().catch(()=>{}); const un=()=>{ try{ac.resume();}catch(e){} }; addEventListener("pointerdown",un,{once:true}); addEventListener("keydown",un,{once:true}); } }catch(e){ ac=null; }
 const sfx=k=>{ try{ if(!ac||ac.state!=="running") return; const t=ac.currentTime;
@@ -2610,10 +2627,10 @@ const jag=()=>{ const a=[0,1.5,.4,1.9,.2,1.2,.8,1.7], b=[1.6,.3,1.3,.1,1.8,.5,1.
 const TIPS=["Ohne Frühstück kein Gwangjang.","Die U-Bahn kommt immer. Der Hunger auch.","Nie hungrig in einen Convenience Store gehen.","Essen zuerst, dann Sehenswürdigkeit.","T-money laden, bevor der Hunger lädt.","Kimchi ist ein Gemüse. Sagt Christoph.","Fukuoka ist ein Bonuslevel. Kein Skip.","Zwei Mägen sind besser als einer.","Michi fotografiert, Christoph navigiert. Fast immer."];
 const opening=(short)=>{ if(done) return;
  const W=[["SEOUL ✦ SEOUL ✦ SEOUL ✦ SEOUL ✦ SEOUL","r"],["NOVEMBER ✦ 2026 ✦ NOVEMBER ✦ 2026","w"],["MICHI × CHRISTOPH × MICHI × CHRISTOPH","k"],["21.–29.11. ✦ 21.–29.11. ✦ 21.–29.11.","r"],["FUKUOKA ✦ BONUSLEVEL ✦ FUKUOKA","w"],["SEOUL ✦ SEOUL ✦ SEOUL ✦ SEOUL ✦ SEOUL","k"]];
- o.innerHTML=`<div class="p5o${short?" short":""}" aria-hidden="true"><div class="o-bg"></div><div class="o-disc"></div><div class="o-stack">${W.map(([t,c],k)=>`<div class="o-b ${c}" style="--i:${k};--d:${k%2?1:-1}"><span>${t}</span></div>`).join("")}</div><div class="p5cw"><div class="p5c" style="clip-path:${jag()}"><i class="tape a"></i><i class="tape b"></i><div class="c-top">AN: SEOUL, SÜDKOREA</div><div class="c-big"><span class="nm">${rnk("WIR KOMMEN",0)}</span><span class="nm">${rnk("NACH SEOUL.",10)}</span></div><div class="c-sub">21.–29.11.2026 · 2 PERSONEN · HUNGER UNGEBREMST</div><div class="c-stamp">ANKUNFT<b>21.11. · 14:30</b></div><div class="c-sig">— Michi &amp; Christoph</div></div></div><div class="o-flash"></div><div class="o-tip"><span><b>TIPP</b>${TIPS[Math.floor(Math.random()*TIPS.length)]}</span></div></div><small class="p5skip">TIPPEN <b>▶▶</b> ÜBERSPRINGEN</small>`;
+ o.innerHTML=`<div class="p5o${short?" short":""}" aria-hidden="true"><div class="o-bg"></div><div class="o-disc"></div><div class="o-stack">${W.map(([t,c],k)=>`<div class="o-b ${c}" style="--i:${k};--d:${k%2?1:-1}"><span>${t}</span></div>`).join("")}</div><div class="p5cw"><div class="p5c" style="clip-path:${jag()}"><i class="tape a"></i><i class="tape b"></i><div class="c-top">AN: SEOUL, SÜDKOREA</div><div class="c-big"><span class="nm">${rnk("WIR KOMMEN",0)}</span><span class="nm">${rnk("NACH SEOUL.",10)}</span></div><div class="c-sub">21.–29.11.2026 · 2 PERSONEN · HUNGER UNGEBREMST</div><div class="c-foot"><div class="c-sig">— Michi &amp; Christoph</div><div class="c-stamp">ANKUNFT<b>21.11. · 14:30</b></div></div></div></div><div class="o-flash"></div><div class="o-tip"><span><b>TIPP</b>${TIPS[Math.floor(Math.random()*TIPS.length)]}</span></div></div><small class="p5skip">TIPPEN <b>▶▶</b> ÜBERSPRINGEN</small>`;
  if(short){ at(60,"whoosh"); setTimeout(end,1350); return; }
  at(60,"whoosh"); at(1200,"hit"); at(1950,"tick"); setTimeout(team,3400); };
-const team=()=>{ if(done) return;
+const team=()=>{ if(done) return; if(slow()) o.classList.add("lite");
 const pick=a=>a[Math.floor(Math.random()*a.length)];
 const spC=pick([["NAVER-RADAR","FINDET JEDE U-BAHN · TREFFER 100%"],["ZEITPLAN-BLITZ","JEDER TAG BIS ZUR MINUTE GEPLANT"],["PUFFER-SCHILD","NIE ZU SPÄT · IMMER ZEIT FÜR SNACKS"]]);
 const spM=pick([["HUNGER-NOVA","TRIFFT ALLE STREETFOOD-STÄNDE"],["GRIMASSEN-BLITZ","JEDES FOTO WIRD ZUR LEGENDE"],["GWANGJANG-RAUSCH","MARKT-BONUS · ALLES PROBIEREN ×2"]]);
@@ -2639,7 +2656,7 @@ const onTilt=e=>{ if(e.gamma==null||e.beta==null) return; par(clampv(e.gamma/22)
 if(matchMedia("(pointer:fine)").matches) addEventListener("pointermove",onMove,{passive:true});
 addEventListener("deviceorientation",onTilt,{passive:true});
 off=()=>{removeEventListener("pointermove",onMove);removeEventListener("deviceorientation",onTilt);};
-{ const mk=(side,n,t0)=>{ const out=[]; for(let k=0;k<n;k++){ const last=k===n-1, v=last?"1.337":String(100+Math.floor(Math.random()*880)); const x=side==="l"?10+(k%3)*11+Math.random()*4:54+(k%5)*7+Math.random()*3, y=18+(k%2)*13+Math.random()*5; const e=document.createElement("b"); e.className="p5dmg noshift"+(last?" c":""); e.textContent=v; e.style.cssText=`left:${x.toFixed(1)}%;top:${y.toFixed(1)}%;--r:${(Math.random()*16-8).toFixed(1)}deg;--dl:${(t0+k*.11).toFixed(2)}s`; o.appendChild(e); at((t0+k*.11)*1000,last?"hit":"tick"); } };
+{ const mk=(side,n,t0)=>{ const out=[]; for(let k=0;k<n;k++){ const last=k===n-1, v=last?"1.337":String(100+Math.floor(Math.random()*880)); const x=side==="l"?10+(k%3)*11+Math.random()*4:54+(k%5)*7+Math.random()*3, y=27+(k%2)*11+Math.random()*5; const e=document.createElement("b"); e.className="p5dmg noshift"+(last?" c":""); e.textContent=v; e.style.cssText=`left:${x.toFixed(1)}%;top:${y.toFixed(1)}%;--r:${(Math.random()*16-8).toFixed(1)}deg;--dl:${(t0+k*.11).toFixed(2)}s`; o.appendChild(e); at((t0+k*.11)*1000,last?"hit":"tick"); } };
  mk("l",3,5.0); mk("r",5,5.6); at(80,"whoosh"); at(3800,"fight"); at(5900,"whoosh"); at(6500,"whoosh"); at(7500,"hit"); }
 const ht=document.getElementById("hpT"); let hv=99; const hi=setInterval(()=>{ if(done||!ht){clearInterval(hi);return;} hv=Math.max(0,hv-1); ht.textContent=String(hv).padStart(2,"0"); },700);
 setTimeout(end,10800); };
