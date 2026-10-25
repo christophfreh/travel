@@ -47,13 +47,13 @@ function page(err, out) { return `<!doctype html><html lang="de"><head><meta cha
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Space+Mono:wght@400;700&display=swap">
 <style>
 :root{--n:#FF3E8A;--c:#3BE6D6;--y:#FCEE0A;--bg:#0a0818;--ink:#F4F1FF;--mu:#ABA5CF}
-*{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:400 14px/1.5 "Space Mono",ui-monospace,monospace;overflow:hidden}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:400 14px/1.5 "Space Mono",ui-monospace,monospace;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0;background:radial-gradient(60% 50% at 20% 30%,rgba(255,62,138,.22),transparent 70%),radial-gradient(60% 50% at 85% 70%,rgba(59,230,214,.16),transparent 70%);pointer-events:none}
 body::after{content:"";position:fixed;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 1px,transparent 1px 3px);pointer-events:none;z-index:5}
 canvas{position:fixed;inset:0;width:100%;height:100%;opacity:.35}
 .floor{position:fixed;left:-50%;right:-50%;bottom:0;height:34vh;transform:perspective(220px) rotateX(60deg);transform-origin:bottom;background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 26px,linear-gradient(90deg,rgba(59,230,214,.5) 1px,transparent 1px) 0 0/46px 100%;opacity:.55;animation:fl 2.6s linear infinite}
 @keyframes fl{to{background-position:0 26px,0 0}}
-main{position:relative;z-index:2;min-height:100%;display:flex;align-items:center;justify-content:center;padding:90px max(18px,env(safe-area-inset-left)) 24px}
+main{position:relative;z-index:2;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:90px max(18px,env(safe-area-inset-left)) 24px}
 .term{width:min(440px,100%);padding:26px 22px 22px;background:rgba(17,15,39,.82);border:1px solid rgba(59,230,214,.5);clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%);box-shadow:0 0 40px rgba(59,230,214,.15),inset 0 0 30px rgba(59,230,214,.06);backdrop-filter:blur(6px);position:relative}
 .term::before{content:"";position:absolute;inset:8px;pointer-events:none;background:linear-gradient(var(--y),var(--y)) left top/22px 2px no-repeat,linear-gradient(var(--y),var(--y)) left top/2px 22px no-repeat,linear-gradient(var(--n),var(--n)) right bottom/22px 2px no-repeat,linear-gradient(var(--n),var(--n)) right bottom/2px 22px no-repeat}
 .k{font-size:10px;letter-spacing:.2em;color:var(--mu)}
@@ -90,17 +90,34 @@ body.ok .term{animation:okk .7s forwards}@keyframes okk{0%{filter:none}30%{filte
 @keyframes sw{to{transform:rotate(360deg)}}
 .glowf{position:absolute;left:50%;top:84%;width:340px;height:60px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(59,184,255,.9),transparent) center 50%/100% 2px no-repeat,linear-gradient(transparent,rgba(59,184,255,.9),transparent) 50% center/2px 100% no-repeat,radial-gradient(closest-side,rgba(59,184,255,.45),transparent);filter:blur(.5px) drop-shadow(0 0 8px #3BB8FF);pointer-events:none;animation:pl 3.6s ease-in-out infinite}
 @keyframes pl{50%{opacity:.55}}
+.in .eye{flex:none;width:40px;height:40px;padding:0;background:none;box-shadow:none;clip-path:none;color:var(--mu);font-size:16px;letter-spacing:0}
+.in .eye[aria-pressed="true"]{color:var(--y)}.in .eye:hover{background:none;color:var(--c)}
+@media (max-width:520px){
+  main{padding:70px 16px calc(20px + env(safe-area-inset-bottom))}
+  .orbw{width:84px;height:84px;margin:-58px auto 4px}.glowf{width:240px;height:44px}
+  .term{padding:22px 16px 18px}
+  .k .geo{display:none}
+  h1{font-size:clamp(52px,17vw,80px);margin-top:8px}
+  .t{font-size:13px;letter-spacing:.22em;margin-bottom:12px}
+  .lines p{font-size:11.5px;line-height:1.6}
+  form{margin-top:14px}
+  input{font-size:18px;padding:11px 0}
+  button[type=submit]{padding:15px 10px;font-size:12.5px;letter-spacing:.18em}
+  .bye,.err{font-size:11px;letter-spacing:.1em;line-height:1.5}
+  .ft{flex-direction:column;align-items:center;gap:2px;text-align:center;margin-top:14px}
+}
+@media (max-height:640px){.orbw{display:none}main{padding-top:24px}h1{font-size:54px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style></head><body>
 <canvas id="r" aria-hidden="true"></canvas><div class="floor" aria-hidden="true"></div>
 <main><div style="width:min(440px,100%)"><div class="orbw" aria-hidden="true"><div class="glowf"></div><div class="orb"></div></div><section class="term" aria-label="Zugang">
-<div class="k">SYS://SEOUL.NOV · <b>SECURE NODE</b> · 37.57N 126.98E</div>
+<div class="k">SYS://SEOUL.NOV · <b>SECURE NODE</b><span class="geo"> · 37.57N 126.98E</span></div>
 <h1 aria-hidden="true">서울</h1>
 <div class="t">SEOUL, NOVEMBER.</div>
 <div class="lines" aria-hidden="true"><p>&gt; VERBINDUNG ZU SEOUL.NET HERGESTELLT</p><p>&gt; TEAM: MICHI + CHRISTOPH · <span>2 SPIELER</span></p><p>&gt; IDENTITÄT BESTÄTIGEN <i class="cur"></i></p></div>
 <form method="post" action="/__login" onsubmit="document.body.classList.add('ok')">
 <label for="pw">ZUGANGSCODE</label>
-<div class="in"><span>&gt;</span><input id="pw" name="pw" type="password" autocomplete="current-password" autofocus required aria-label="Passwort"></div>
+<div class="in"><span>&gt;</span><input id="pw" name="pw" type="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" required aria-label="Passwort"><button type="button" class="eye" id="eye" aria-label="Code anzeigen" aria-pressed="false">◉</button></div>
 <button type="submit">ZUGANG ANFORDERN ▸</button>
 </form>
 <div class="bye" role="status" style="display:${out ? "block" : "none"}">⏻ ABGEMELDET · SESSION BEENDET. BIS BALD, CHOOM.</div>
@@ -113,4 +130,7 @@ function s(){W=c.width=innerWidth;H=c.height=innerHeight;cols=Math.ceil(W/18);dr
 let l=0;(function f(t){requestAnimationFrame(f);if(t-l<90)return;l=t;g.fillStyle="rgba(10,8,24,.18)";g.fillRect(0,0,W,H);g.font="15px 'Black Han Sans',sans-serif";
 for(let i=0;i<cols;i++){const y=dr[i]*18;g.fillStyle=i%5?"rgba(255,62,138,.55)":"rgba(59,230,214,.7)";g.fillText(ch[(Math.random()*ch.length)|0],i*18,y);if(y>H&&Math.random()>.97)dr[i]=Math.random()*-10;dr[i]+=.4}})(0);})();
 if(location.search)history.replaceState(null,"","/");
+(function(){const i=document.getElementById("pw"),e=document.getElementById("eye");if(matchMedia("(pointer:fine)").matches)i.focus();
+e.addEventListener("click",()=>{const s=i.type==="password";i.type=s?"text":"password";e.setAttribute("aria-pressed",String(s));e.setAttribute("aria-label",s?"Code verbergen":"Code anzeigen");i.focus();});
+i.addEventListener("focus",()=>{if(innerWidth<600)setTimeout(()=>i.scrollIntoView({block:"center",behavior:"smooth"}),300);});})();
 </script></body></html>`; }
