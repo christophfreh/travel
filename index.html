@@ -704,6 +704,37 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 .st-sleep .moons i.nx{background:var(--cp);box-shadow:0 0 8px var(--cp)}
 .st-sleep b .tm{font-size:.5em;color:var(--muted);margin-right:2px;vertical-align:.35em}
 @media (prefers-reduced-motion:no-preference){.st-sleep .moons i.nx{animation:moonb 3.2s ease-in-out infinite}}
+.hl-card.has-bg::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(17,15,39,.55),rgba(17,15,39,.92) 70%),var(--bg) center/cover no-repeat;opacity:.95;transition:transform .8s ease,opacity .4s}
+.hl-card.has-bg>*{position:relative;z-index:1}
+.hl-card.has-bg .hl-k{position:absolute}
+.hl-card.has-bg:hover::before{transform:scale(1.06)}
+.hl-card.c4{background:linear-gradient(160deg,rgba(255,140,40,.25),var(--panel) 55%);border-color:rgba(255,140,40,.6);box-shadow:0 0 24px rgba(255,140,40,.18)}
+.hl-card.c4.has-bg::before{background:linear-gradient(180deg,rgba(120,45,0,.45),rgba(30,12,5,.92) 70%),var(--bg) center/cover no-repeat;filter:sepia(.6) saturate(1.6) hue-rotate(-10deg)}
+.hl-card.c4 .hl-ico{filter:drop-shadow(0 0 6px rgba(255,140,40,.9))} .hl-card.c4 .hl-ico .a{stroke:#FF8C28} .hl-card.c4 i{color:#FF8C28}
+.hl-card.c4::after{content:"2049";position:absolute;right:12px;bottom:10px;font:400 10px var(--f-mono);letter-spacing:.2em;color:rgba(255,140,40,.7)}
+.hl-cred{margin:-8px 0 0;font:400 9.5px/1.5 var(--f-mono);color:rgba(171,165,207,.6)}
+.hl-cred a{color:inherit}
+section .q{margin:4px 0}
+.arcane{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px;padding:10px 12px 14px;border:1px solid rgba(232,199,122,.35);border-radius:4px 4px 16px 4px;
+background:radial-gradient(60% 120% at 10% 50%,rgba(59,184,255,.18),transparent 70%),radial-gradient(50% 120% at 90% 60%,rgba(255,62,138,.14),transparent 70%),linear-gradient(135deg,#141030,#1b1238);overflow:hidden}
+.arcane::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.12;background:repeating-linear-gradient(115deg,transparent 0 12px,rgba(232,199,122,.6) 12px 13px)}
+.arcane .hex{width:clamp(70px,20vw,110px);height:auto;filter:drop-shadow(0 0 12px rgba(59,184,255,.7))}
+.arcane .graf{width:100%;height:auto;max-height:120px}
+.g-tag{font:400 11px var(--f-sign);letter-spacing:.06em;fill:#FCEE0A;transform:rotate(-3deg);transform-origin:center}
+.ar-k{position:absolute;right:12px;top:8px;font:400 9px var(--f-mono);letter-spacing:.2em;color:#E8C77A;opacity:.8}
+@media (prefers-reduced-motion:no-preference){
+.hx-r{transform-origin:60px 60px;animation:hxr 48s linear infinite}
+@keyframes hxr{to{transform:rotate(360deg)}}
+.hx-c{animation:hxc 4.8s ease-in-out infinite}
+@keyframes hxc{50%{fill-opacity:.55;filter:drop-shadow(0 0 10px #9FF3FF)}}
+.arcane.in .graf path{stroke-dasharray:420;stroke-dashoffset:420;animation:spray 2.4s ease-out forwards}
+.arcane.in .graf .g2{animation-delay:.6s}.arcane.in .graf .g3{animation-delay:1.1s}.arcane.in .graf .g4{animation-delay:1.6s}.arcane.in .graf .g5{animation-delay:2.1s}
+@keyframes spray{to{stroke-dashoffset:0}}
+.arcane .g-tag{opacity:0}.arcane.in .g-tag{animation:tagin 1s 2.6s steps(3) forwards}
+@keyframes tagin{to{opacity:1}}
+.drip{animation:drip 3.2s 2s ease-in infinite}
+@keyframes drip{0%{transform:translateY(0);opacity:1}80%{transform:translateY(18px);opacity:.8}100%{transform:translateY(22px);opacity:0}}
+}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -726,19 +757,22 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 <section id="highlights" aria-label="Highlights">
 <div class="sh"><span class="n">★</span><h2>Die besten Ideen</h2><span class="ko">최고</span></div>
 <div class="hl-strip">
-<a class="hl-card" href="#fukuoka"><span class="hl-k">福岡</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="20" width="52" height="26" rx="13"/><path d="M18 27v12M12 33h12"/><circle cx="44" cy="30" r="2.6"/><circle cx="50" cy="36" r="2.6"/></svg><b>Nintendo FUKUOKA</b><small>Offizieller Store mit Anspiel-Stationen, direkt am Bahnhof Hakata</small><i>Mi 25.11.</i></a>
-<a class="hl-card c2" href="#los"><span class="hl-k">전시</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M8 50h48M12 50V26l20-12 20 12v24"/><path d="M20 50V32h24v18"/><path d="M26 40h12" class="a"/></svg><b>Unfold X</b><small>Medienkunst und Technik im alten Bahnhof, wir sind am Eröffnungstag da</small><i>Do 26.11.</i></a>
-<a class="hl-card c3" href="#plan"><span class="hl-k">屋台</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M10 22h44l-5-10H15z"/><path d="M14 22v28M50 22v28M10 36h44"/><path d="M24 22v6M32 22v6M40 22v6" class="a"/><path d="M8 54c6-3 10 3 16 0s10 3 16 0 10 3 16 0" class="a"/></svg><b>Yatai in Nakasu</b><small>Ramen, Oden und Highball an winzigen Straßenständen am Fluss</small><i>Di & Mi</i></a>
-<a class="hl-card" href="#plan"><span class="hl-k">123층</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6c5 14 7 28 7 48H25c0-20 2-34 7-48z"/><path d="M27 54h10M29 30h6M28 40h8" class="a"/><path d="M8 54h48"/></svg><b>Seoul Sky + Kino</b><small>Aussicht vom 123-Stock-Turm, Hanwoo, dann Film im selben Gebäude</small><i>Fr 27.11.</i></a>
-<a class="hl-card c2" href="#abends"><span class="hl-k">을지로</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 12h20l-10 14z"/><path d="M24 26v16M17 42h14"/><circle cx="44" cy="38" r="10"/><circle cx="44" cy="38" r="2.5" class="a"/></svg><b>Euljiro-Bar-Hopping</b><small>Versteckte Bars in alten Druckereien, Vinyl, Nogari & Bier</small><i>Sa 21., Mo 23. &amp; Sa 28.</i></a>
-<a class="hl-card c3" href="#games"><span class="hl-k">LoL</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="12" width="48" height="30" rx="4"/><path d="M24 50h16M32 42v8"/><path d="M20 32l6-8 6 6 6-10 6 12" class="a"/></svg><b>LoL Park</b><small>Die E-Sports-Arena der LCK, mitten in Jongno</small><i>Mo 23.11.</i></a>
-<a class="hl-card" href="#plan"><span class="hl-k">삼성</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="28" r="12"/><path d="M27 42h10M28 47h8M32 16v-6" class="a"/><path d="M14 28H8M56 28h-6M19 15l-4-4M45 15l4-4"/></svg><b>Samsung Museum</b><small>Technikgeschichte von Edison bis heute, samstags ohne Reservierung</small><i>Sa 28.11.</i></a>
-<a class="hl-card c3" href="#mitbringsel"><span class="hl-k">선물</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="24" width="44" height="30" rx="3"/><path d="M8 24h48v-8H8z"/><path d="M32 16v38" class="a"/><path d="M32 16c-6-10-16-6-12 0M32 16c6-10 16-6 12 0" class="a"/></svg><b>Geschenke für die Kids</b><small>Pokémon für Martin, Plüsch für Felix und Alva, Schreibwaren für Eva, was Schönes für Sophie und Babsi</small><i>ganze Woche</i></a>
-<a class="hl-card c2" href="#plan"><span class="hl-k">DMZ</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M8 50h48M12 50V24M52 50V24"/><path d="M12 28h40M12 36h40M12 44h40"/><path d="M16 24l4-4 4 4 4-4 4 4 4-4 4 4 4-4 4 4" class="a"/></svg><b>Grenze zu Nordkorea</b><small>Halbtagestour, einmal im Leben sehen</small><i>Fr 27.11.</i></a>
+<a class="hl-card has-bg" href="#fukuoka" style="--bg:url('https://images.unsplash.com/photo-1767839581596-4c3ce952b577?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=60&w=560&h=420')"><span class="hl-k">福岡</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="20" width="52" height="26" rx="13"/><path d="M18 27v12M12 33h12"/><circle cx="44" cy="30" r="2.6"/><circle cx="50" cy="36" r="2.6"/></svg><b>Nintendo FUKUOKA</b><small>Offizieller Store mit Anspiel-Stationen, direkt am Bahnhof Hakata</small><i>Mi 25.11.</i></a>
+<a class="hl-card has-bg c2" href="#los" style="--bg:url('https://images.unsplash.com/photo-1593073862407-a3ce22748763?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=60&w=560&h=420')"><span class="hl-k">전시</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M8 50h48M12 50V26l20-12 20 12v24"/><path d="M20 50V32h24v18"/><path d="M26 40h12" class="a"/></svg><b>Unfold X</b><small>Medienkunst und Technik im alten Bahnhof, wir sind am Eröffnungstag da</small><i>Do 26.11.</i></a>
+<a class="hl-card has-bg c3" href="#plan" style="--bg:url('https://images.unsplash.com/photo-1685845283904-f67cfc9a85d5?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=60&w=560&h=420')"><span class="hl-k">屋台</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M10 22h44l-5-10H15z"/><path d="M14 22v28M50 22v28M10 36h44"/><path d="M24 22v6M32 22v6M40 22v6" class="a"/><path d="M8 54c6-3 10 3 16 0s10 3 16 0 10 3 16 0" class="a"/></svg><b>Yatai in Nakasu</b><small>Ramen, Oden und Highball an winzigen Straßenständen am Fluss</small><i>Di & Mi</i></a>
+<a class="hl-card has-bg" href="#plan" style="--bg:url('https://images.unsplash.com/photo-1703838078830-c639058d9522?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=60&w=560&h=420')"><span class="hl-k">123층</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6c5 14 7 28 7 48H25c0-20 2-34 7-48z"/><path d="M27 54h10M29 30h6M28 40h8" class="a"/><path d="M8 54h48"/></svg><b>Seoul Sky + Kino</b><small>Aussicht vom 123-Stock-Turm, Hanwoo, dann Film im selben Gebäude</small><i>Fr 27.11.</i></a>
+<a class="hl-card has-bg c2" href="#abends" style="--bg:url('https://images.unsplash.com/photo-1683132507258-dafa8312bf03?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=60&w=560&h=420')"><span class="hl-k">을지로</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 12h20l-10 14z"/><path d="M24 26v16M17 42h14"/><circle cx="44" cy="38" r="10"/><circle cx="44" cy="38" r="2.5" class="a"/></svg><b>Euljiro-Bar-Hopping</b><small>Versteckte Bars in alten Druckereien, Vinyl, Nogari & Bier</small><i>Sa 21., Mo 23. &amp; Sa 28.</i></a>
+<a class="hl-card has-bg c3" href="#games" style="--bg:url('https://images.unsplash.com/photo-1633545495735-25df17fb9f31?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=60&w=560&h=420')"><span class="hl-k">LoL</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="12" width="48" height="30" rx="4"/><path d="M24 50h16M32 42v8"/><path d="M20 32l6-8 6 6 6-10 6 12" class="a"/></svg><b>LoL Park</b><small>Die E-Sports-Arena der LCK, mitten in Jongno</small><i>Mo 23.11.</i></a>
+<a class="hl-card has-bg" href="#plan" style="--bg:url('https://images.unsplash.com/photo-1638964663550-e2123ac8900b?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=60&w=560&h=420')"><span class="hl-k">궁</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M6 24h52L32 10z"/><path d="M12 24v26M52 24v26M24 30v20M40 30v20" /><path d="M6 54h52" class="a"/><path d="M10 24c4 4 8 4 12 0M42 24c4 4 8 4 12 0" class="a"/></svg><b>Gyeongbokgung</b><small>Königspalast mit Wachablösung, danach Bindaetteok im Gwangjang Market</small><i>Mo 23.11.</i></a>
+<a class="hl-card has-bg" href="#plan" style="--bg:url('https://images.unsplash.com/photo-1633294666093-ab54f43a947a?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=60&w=560&h=420')"><span class="hl-k">삼성</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="28" r="12"/><path d="M27 42h10M28 47h8M32 16v-6" class="a"/><path d="M14 28H8M56 28h-6M19 15l-4-4M45 15l4-4"/></svg><b>Samsung Museum</b><small>Technikgeschichte von Edison bis heute, samstags ohne Reservierung</small><i>Sa 28.11.</i></a>
+<a class="hl-card has-bg c3" href="#mitbringsel" style="--bg:url('https://images.unsplash.com/photo-1760020954071-13a2c86076ff?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=60&w=560&h=420')"><span class="hl-k">선물</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="24" width="44" height="30" rx="3"/><path d="M8 24h48v-8H8z"/><path d="M32 16v38" class="a"/><path d="M32 16c-6-10-16-6-12 0M32 16c6-10 16-6 12 0" class="a"/></svg><b>Geschenke für die Kids</b><small>Pokémon für Martin, Plüsch für Felix und Alva, Schreibwaren für Eva, was Schönes für Sophie und Babsi</small><i>ganze Woche</i></a>
+<a class="hl-card has-bg c4" href="#plan" style="--bg:url('https://images.unsplash.com/photo-1706442969354-58c81fa38bd5?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=60&w=560&h=420')"><span class="hl-k">DMZ</span><svg class="hl-ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M8 50h48M12 50V24M52 50V24"/><path d="M12 28h40M12 36h40M12 44h40"/><path d="M16 24l4-4 4 4 4-4 4 4 4-4 4 4 4-4 4 4" class="a"/></svg><b>Grenze zu Nordkorea</b><small>Halbtagestour, einmal im Leben sehen</small><i>Fr 27.11.</i></a>
 </div>
+<p class="hl-cred">Fotos: <a href="https://unsplash.com/@prince_perry?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Perry Merrity II</a>, <a href="https://unsplash.com/@notethanun?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">note thanun</a>, <a href="https://unsplash.com/@little_sweet_potato_chips?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Tracy Xu</a>, <a href="https://unsplash.com/@santesson89?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Andrea De Santis</a>, <a href="https://unsplash.com/@travelershigh?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">INHYEOK PARK</a>, <a href="https://unsplash.com/@elladon?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">ELLA DON</a>, <a href="https://unsplash.com/@shipduck?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Jin-Woo Lee</a>, <a href="https://unsplash.com/@podstolina?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Alicja Podstolska</a>, <a href="https://unsplash.com/@nardly?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Daniel Bernard</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></p>
 </section>
 <section id="damals">
 <div class="sh"><span class="n">00</span><h2>Damals in Japan</h2><span class="ko">2017</span></div>
+<aside class="q" aria-label="Zitat"><p>„Someone lived this, yes.“</p><span>Ana Stelline · Blade Runner 2049</span></aside>
 <p class="sub">Oktober 2017: Purikura in Tokyo, Izakaya in Akihabara, Bowling-Fotobox in Kyoto, Mario und Luigi am Skytree, Regen-Wanderung und Yukata-Abend im Ryokan. Jetzt kommt die Fortsetzung.</p>
 <div class="polas" id="polas">
 <figure class="pola" data-id="tokyo" style="--r:-3deg"><img src="fotos/1-tokyo.jpg" alt="Purikura-Fotostreifen aus Tokyo, 2017" loading="lazy"><figcaption>Tokyo · Joypolis<small>16.10.2017</small></figcaption><button type="button" class="del" data-id="tokyo" aria-label="Foto löschen">✕ Löschen</button></figure>
@@ -1073,6 +1107,24 @@ pflichtprogramm: <span class="n">null</span>,
 <div class="mx" aria-hidden="true"><canvas></canvas><span>// THERE IS NO SPOON. ES GIBT STÄBCHEN.</span></div>
 <section id="games">
 <div class="sh"><span class="n">16</span><h2>Games</h2><span class="ko">게임</span></div>
+<div class="arcane" aria-hidden="true">
+<svg class="hex" viewBox="0 0 120 120"><defs><radialGradient id="hxg"><stop offset="0" stop-color="#9FF3FF"/><stop offset=".45" stop-color="#3BB8FF" stop-opacity=".8"/><stop offset="1" stop-color="#1B3A8A" stop-opacity="0"/></radialGradient></defs>
+<circle cx="60" cy="60" r="56" fill="url(#hxg)" opacity=".35"/>
+<g class="hx-r"><polygon points="60,8 105,34 105,86 60,112 15,86 15,34" fill="none" stroke="#E8C77A" stroke-width="2"/><polygon points="60,20 94,40 94,80 60,100 26,80 26,40" fill="none" stroke="#E8C77A" stroke-width="1" stroke-dasharray="4 5"/></g>
+<polygon class="hx-c" points="60,34 78,46 78,74 60,86 42,74 42,46" fill="#3BB8FF" fill-opacity=".25" stroke="#9FF3FF" stroke-width="2"/>
+<path d="M60 34v52M42 46l36 28M78 46L42 74" stroke="#9FF3FF" stroke-width="1" opacity=".6"/></svg>
+<svg class="graf" viewBox="0 0 320 120"><defs><filter id="spray" x="-10%" y="-10%" width="120%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3"/><feGaussianBlur stdDeviation=".4"/></filter></defs>
+<g filter="url(#spray)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path class="g1" d="M18 70 C40 20, 70 20, 80 60 S120 100, 140 50" stroke="#FF3E8A" stroke-width="5"/>
+<path class="g2" d="M150 44 l20 22 l-24 4 l26 26" stroke="#3BE6D6" stroke-width="4"/>
+<path class="g3" d="M200 30 l6 16 l17 1 l-13 11 l5 17 l-15 -10 l-14 10 l5 -17 l-13 -11 l17 -1z" stroke="#FF3E8A" stroke-width="3"/>
+<path class="g4" d="M250 70 c-10 -18 18 -30 26 -14 c10 -16 34 -2 22 14 c12 10 -6 26 -18 16 c-10 12 -34 4 -30 -16z" stroke="#3BE6D6" stroke-width="3"/>
+<path class="g5" d="M30 100 h40 M60 92 l10 8 l-10 8" stroke="#FCEE0A" stroke-width="3"/>
+</g>
+<text x="96" y="112" class="g-tag">MICHI + CHRISTOPH WAS HERE</text>
+<circle cx="84" cy="64" r="2.5" fill="#FF3E8A"/><circle cx="84" cy="64" r="1" fill="#FF3E8A" class="drip"/></svg>
+<span class="ar-k">HEXTECH × ZAUN · ARCANE MODE</span>
+</div>
 <figure class="ph"><img src="https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=1200&h=520" alt="Arcade-Automaten im Neonlicht" loading="lazy" onerror="this.closest('figure').remove()"><span class="ph-l">게임 · Level up</span><figcaption>Foto: <a href="https://unsplash.com/@carltraw?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Carl Raw</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure>
 <figure class="flash"><img src="fotos/9-skytree.jpg" alt="Erinnerungsfoto aus Japan 2017" loading="lazy"><figcaption><span class="fl-k">▶ FLASHBACK · <b>JAPAN 2017</b></span>Mario und Luigi am Tokyo Skytree. Fortsetzung im Nintendo-Store am Bahnhof Hakata.</figcaption></figure>
 <p class="sub">Seoul ist die Hauptstadt des E-Sports, Fukuoka hat Nintendo direkt am Bahnhof.</p>
@@ -1788,7 +1840,7 @@ let t=0;addEventListener("scroll",()=>{if(t)return;t=requestAnimationFrame(()=>{
 (function(){
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 if(!reduce){
-const L=["&gt; VERBINDE MIT <b>SEOUL.NET</b> …","&gt; LADE TEAM: <b>MICHI</b> + <b>CHRISTOPH</b>","&gt; ZIEL ICN · 21.11.2026 · 14:30 KST","&gt; HUNGER: <b>KRITISCH</b> · DURST: <b>HOCH</b>","&gt; BONUSLEVEL FUKUOKA FREIGESCHALTET","&gt; WAKE UP, SAMURAI."];
+const L=["&gt; VERBINDE MIT <b>SEOUL.NET</b> …","&gt; LADE TEAM: <b>MICHI</b> + <b>CHRISTOPH</b>","&gt; ZIEL ICN · 21.11.2026 · 14:30 KST","&gt; HUNGER: <b>KRITISCH</b> · DURST: <b>HOCH</b>","&gt; BONUSLEVEL FUKUOKA FREIGESCHALTET","&gt; BASELINE-TEST: <b>INTERLINKED</b>","&gt; WAKE UP, SAMURAI."];
 const o=document.createElement("div"); o.className="boot"; o.setAttribute("aria-hidden","true");
 o.innerHTML=L.map(t=>`<p>${t}</p>`).join("")+"<small>TIPPEN ZUM ÜBERSPRINGEN</small>"; document.body.appendChild(o);
 const ps=[...o.querySelectorAll("p")]; let i=0, done=false;
@@ -1826,7 +1878,7 @@ x+=w+3;}
 // flying cars
 for(let i=0;i<5;i++) o+=`<rect class="car${i%2?" r":""}" x="0" y="${30+rnd()*70}" width="10" height="2" rx="1" style="--t:${(12+rnd()*12).toFixed(1)}s;--o:-${(rnd()*10).toFixed(1)}s"/>`;
 sv.innerHTML=`<g transform="scale(1,.68)">${o}</g>`;
-const H=["서울 · 2026","WAKE UP, SAMURAI","소주 4.500₩","MICHI × CHRISTOPH","福岡 BONUSLEVEL","GLÜCKWUNSCH, CHOOM"],C=["","c","y"]; let i=0; const hb=document.getElementById("holo");
+const H=["서울 · 2026","JOI · EVERYTHING YOU WANT TO SEE","WAKE UP, SAMURAI","소주 4.500₩","MICHI × CHRISTOPH","福岡 BONUSLEVEL","GLÜCKWUNSCH, CHOOM"],C=["","c","y"]; let i=0; const hb=document.getElementById("holo");
 if(!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(()=>{i=(i+1)%H.length; hb.textContent=H[i]; hb.className="holo sw "+C[i%3]; setTimeout(()=>hb.classList.remove("sw"),550);},4800);
 })();
 // ---------- matrix strips ----------
@@ -1903,4 +1955,7 @@ return night?I.moon:I.sun;};
 const ph=document.getElementById("heroPhrase"), ic=document.getElementById("heroIco"); if(!ph||!ic) return;
 const up=()=>{ic.innerHTML=pick(ph.textContent);}; up(); new MutationObserver(up).observe(ph,{childList:true,characterData:true,subtree:true});
 })();
+// ---------- arcane draw-in ----------
+(function(){const a=document.querySelector(".arcane"); if(!a) return; if(!("IntersectionObserver" in window)){a.classList.add("in");return;}
+const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){a.classList.add("in");io.disconnect();}},{rootMargin:"0px 0px -20% 0px"}); io.observe(a);})();
 </script></body></html>
