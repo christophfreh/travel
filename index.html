@@ -648,7 +648,7 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 .bt-c li i{display:block;height:5px;background:linear-gradient(90deg,var(--cyan) var(--v),rgba(255,255,255,.08) var(--v))}
 .bt-c.r li i{background:linear-gradient(90deg,var(--neon) var(--v),rgba(255,255,255,.08) var(--v))}
 .bt-vs{font:400 34px/1 var(--f-sign);color:var(--cp);text-shadow:0 0 18px var(--cp)}
-.bt-go{opacity:1!important;font:700 13px var(--f-mono);letter-spacing:.24em;color:var(--cp);text-shadow:0 0 12px var(--cp)}
+.bt-go{font:700 13px var(--f-mono);letter-spacing:.24em;color:var(--cp);text-shadow:0 0 12px var(--cp)}
 @media (max-width:420px){.bt-row{gap:8px}.bt-c{padding:10px}.bt-av{width:44px;height:44px;font-size:26px}.bt-vs{font-size:24px}}
 @media (prefers-reduced-motion:no-preference){
 .bt-c.l{animation:btl .5s cubic-bezier(.2,.9,.3,1.2) both}
@@ -663,6 +663,72 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 .bt-go{animation:btgo 1s .9s steps(2) both}
 @keyframes btgo{0%{opacity:0}30%{opacity:1}45%{opacity:.2}60%{opacity:1}}
 }
+.boot .bt{z-index:1}
+.p5s{position:absolute;pointer-events:none;z-index:-2;left:50%;top:50%;width:160vw;height:34vh;background:#E60012;transform:translate(-50%,-50%) rotate(-14deg);clip-path:polygon(0 30%,100% 0,100% 70%,0 100%);opacity:.22}
+.p5s.b{background:#fff;height:9vh;transform:translate(-50%,-50%) translateY(16vh) rotate(-14deg);opacity:.07}
+.bt-hp{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;width:100%;max-width:640px}
+.hp{display:flex;flex-direction:column;gap:4px}.hp.r{align-items:flex-end}
+.hp span{font:700 9.5px var(--f-mono);letter-spacing:.18em;color:#fff;background:#000;padding:1px 6px;transform:skewX(-14deg)}
+.hp.r span{transform:skewX(14deg)}
+.hp i{display:block;width:100%;height:11px;border:2px solid #fff;background:linear-gradient(90deg,#3BE6D6,#E6FBFF) left/100% 100% no-repeat,#5a000a;transform:skewX(-20deg);box-shadow:3px 3px 0 #000}
+.hp.r i{background:linear-gradient(270deg,#FF3E8A,#ffd1e1) right/100% 100% no-repeat,#5a000a;transform:skewX(20deg);box-shadow:-3px 3px 0 #000}
+.hp-t{font:400 clamp(24px,7vw,34px)/1 var(--f-sign);color:#fff;background:#E60012;padding:4px 8px 2px;clip-path:polygon(8% 0,100% 6%,92% 100%,0 94%);min-width:2.2ch;text-align:center}
+.boot em{font-style:normal;display:inline-block;transform:rotate(var(--r));padding:.04em .12em;margin:0 .02em;line-height:1}
+.boot .rn0{background:#000;color:#fff;font-family:var(--f-sign)}
+.boot .rn1{background:#fff;color:#000;font-family:Georgia,'Times New Roman',serif;font-weight:700}
+.boot .rn2{background:#E60012;color:#fff;font-family:var(--f-mono);font-weight:700}
+.boot .rn3{background:#fff;color:#E60012;font-family:var(--f-sign);outline:2px solid #000}
+.boot i.sp{display:inline-block;width:.3em}
+.bt-call{position:absolute;left:0;right:0;top:44%;transform:translateY(-50%);display:grid;place-items:center;pointer-events:none;z-index:5}
+.bt-call span{grid-area:1/1;font-size:clamp(34px,11vw,80px);opacity:0;white-space:nowrap;filter:drop-shadow(5px 5px 0 #000)}
+.bt-call .fi{font-size:clamp(42px,14vw,104px)}
+.spk{position:absolute;width:80px;height:80px;left:50%;top:44%;margin:-40px;pointer-events:none;opacity:0;z-index:4;background:#fff;clip-path:polygon(50% 0,58% 36%,96% 18%,66% 48%,100% 62%,62% 62%,72% 100%,50% 70%,26% 98%,36% 62%,0 66%,34% 46%,6% 16%,42% 36%)}
+.spk.s2{left:28%;top:62%;background:#E60012}.spk.s3{left:72%;top:60%;background:#FCEE0A}
+.bt-combo{position:absolute;top:68%;display:flex;flex-direction:column;opacity:0;pointer-events:none;z-index:4}
+.bt-combo.l{left:max(4%,8px);align-items:flex-start}.bt-combo.r{right:max(4%,8px);align-items:flex-end}
+.bt-combo b{font-size:clamp(20px,6vw,32px);filter:drop-shadow(3px 3px 0 #000)}
+.bt-combo small{position:static;font:700 9px var(--f-mono);letter-spacing:.2em;color:#fff;background:#E60012;padding:2px 6px;margin-top:6px;transform:skewX(-14deg)}
+.p5fin{position:fixed;inset:0;z-index:6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;pointer-events:none;opacity:0;background:#E60012;clip-path:polygon(0 0,0 0,0 100%,0 100%)}
+.p5fin .ht{position:absolute;inset:0;background:radial-gradient(circle,#000 28%,transparent 31%) 0 0/14px 14px;opacity:.28;-webkit-mask:linear-gradient(115deg,#000 20%,transparent 60%);mask:linear-gradient(115deg,#000 20%,transparent 60%)}
+.p5fin span{position:relative;font-size:clamp(44px,15vw,120px);transform:rotate(-8deg);filter:drop-shadow(6px 6px 0 #000)}
+.p5fin span.b2{margin-top:-.1em;transform:rotate(-8deg) translateX(.4em)}
+.p5fin small{position:relative;font:700 11px var(--f-mono);letter-spacing:.3em;color:#000;background:#fff;padding:3px 10px;transform:rotate(-8deg) skewX(-14deg);margin-top:14px}
+@media (prefers-reduced-motion:no-preference){
+.p5s.a{animation:p5in .45s .05s cubic-bezier(.2,.9,.3,1) both}.p5s.b{animation:p5inb .45s .2s cubic-bezier(.2,.9,.3,1) both}
+@keyframes p5in{from{clip-path:polygon(0 30%,0 30%,0 100%,0 100%)}}
+@keyframes p5inb{from{opacity:0}}
+.hp i{animation:hpin .8s .3s ease-out both,hpdrop 2.4s 3.7s ease-out forwards}
+.hp.r i{animation:hpin .8s .3s ease-out both,hpdropr 2.4s 4.3s ease-out forwards}
+@keyframes hpin{from{background-size:0 100%,auto}}
+@keyframes hpdrop{to{background-size:76% 100%,auto}}
+@keyframes hpdropr{to{background-size:82% 100%,auto}}
+.bt-call .r1{animation:call1 1.3s 1.2s cubic-bezier(.2,.9,.3,1.2) both}
+@keyframes call1{0%{opacity:0;transform:translateX(-40%) skewX(-20deg)}22%{opacity:1;transform:none}80%{opacity:1;transform:none}100%{opacity:0;transform:translateX(30%) skewX(20deg)}}
+.bt-call .fi{animation:call2 1.5s 2.6s cubic-bezier(.2,.9,.3,1.3) both}
+@keyframes call2{0%{opacity:0;transform:rotate(-8deg) scale(3)}18%{opacity:1;transform:rotate(-8deg) scale(.92)}26%{transform:rotate(-8deg) scale(1.05)}80%{opacity:1;transform:rotate(-8deg) scale(1)}100%{opacity:0;transform:rotate(-8deg) scale(1.3)}}
+.boot em{animation:rnj .7s ease-in-out infinite alternate}.boot em:nth-child(2n){animation-delay:.35s}
+@keyframes rnj{to{transform:rotate(calc(var(--r) * -1)) translateY(-2px)}}
+.bt{animation:shake .5s 2.85s steps(6) both}
+@keyframes shake{0%{transform:translate(6px,-4px)}20%{transform:translate(-7px,3px)}40%{transform:translate(5px,5px)}60%{transform:translate(-4px,-5px)}80%{transform:translate(3px,2px)}100%{transform:none}}
+.spk{animation:spk .45s 2.85s ease-out both}.spk.s2{animation-delay:3.75s}.spk.s3{animation-delay:4.35s}
+@keyframes spk{0%{opacity:0;transform:scale(.2) rotate(0)}30%{opacity:1}100%{opacity:0;transform:scale(1.8) rotate(30deg)}}
+.bt-combo.l{animation:combo 1.5s 3.75s cubic-bezier(.2,.9,.3,1.3) both}
+.bt-combo.r{animation:combo 1.5s 4.35s cubic-bezier(.2,.9,.3,1.3) both}
+@keyframes combo{0%{opacity:0;transform:translateY(16px) scale(.6)}20%{opacity:1;transform:none}80%{opacity:1}100%{opacity:0;transform:translateY(-10px)}}
+.bt-c.l{animation:btl .5s cubic-bezier(.2,.9,.3,1.2) both,stance 1.3s .6s ease-in-out infinite alternate}
+.bt-c.r{animation:btr .5s .12s cubic-bezier(.2,.9,.3,1.2) both,stance 1.3s .9s ease-in-out infinite alternate}
+@keyframes stance{from{transform:translateY(0)}to{transform:translateY(-4px)}}
+.bt-c.l .bt-av{animation:hit .35s 3.8s steps(3) both}.bt-c.r .bt-av{animation:hit .35s 4.4s steps(3) both}
+@keyframes hit{0%,100%{filter:none}33%{filter:brightness(3) saturate(0)}66%{filter:sepia(1) saturate(6) hue-rotate(-30deg)}}
+.p5fin{animation:fin 1.9s 5.3s cubic-bezier(.7,0,.2,1) both}
+@keyframes fin{0%{opacity:1;clip-path:polygon(0 0,0 0,0 100%,0 100%)}18%{clip-path:polygon(0 0,130% 0,100% 100%,0 100%)}82%{opacity:1;clip-path:polygon(0 0,130% 0,100% 100%,0 100%)}100%{opacity:1;clip-path:polygon(100% 0,130% 0,100% 100%,100% 100%)}}
+.p5fin span{animation:finw 1.9s 5.3s ease-out both}.p5fin span.b2{animation-name:finw2}
+@keyframes finw{0%,12%{opacity:0;transform:rotate(-8deg) translateX(-60%)}26%{opacity:1;transform:rotate(-8deg)}100%{opacity:1;transform:rotate(-8deg) translateX(4%)}}
+@keyframes finw2{0%,16%{opacity:0;transform:rotate(-8deg) translateX(80%)}30%{opacity:1;transform:rotate(-8deg) translateX(.4em)}100%{opacity:1;transform:rotate(-8deg) translateX(0)}}
+.bt-go{animation:btgo2 1s 7.1s steps(2) both}
+@keyframes btgo2{0%{opacity:0}30%{opacity:1}45%{opacity:.2}60%,100%{opacity:1}}
+}
+@media (prefers-reduced-motion:reduce){.bt-call,.spk,.bt-combo,.p5fin{display:none}.bt-go{opacity:1}}
 .mx{height:84px;margin:-26px 0;opacity:.8}
 .mx canvas{opacity:1;mix-blend-mode:normal}
 .mx span{padding:4px 10px;background:rgba(17,15,39,.72);color:var(--cyan);letter-spacing:.14em;box-shadow:0 0 0 1px rgba(59,230,214,.25)}
@@ -2164,13 +2230,15 @@ const o=document.createElement("div"); o.className="boot"; o.setAttribute("aria-
 o.innerHTML=L.map(t=>`<p>${t}</p>`).join("")+"<small>TIPPEN ZUM ÜBERSPRINGEN</small>"; document.body.appendChild(o);
 const ps=[...o.querySelectorAll("p")]; let i=0, done=false;
 const end=()=>{if(done)return;done=true;o.classList.add("out");setTimeout(()=>o.remove(),480);};
+const rn=t=>[...t].map((c,k)=>c===" "?'<i class="sp"></i>':`<em class="rn${(k*7+c.charCodeAt(0))%4}" style="--r:${((k*37)%13)-6}deg">${c}</em>`).join("");
 const team=()=>{ if(done) return;
-o.innerHTML=`<div class="bt"><svg class="brushx" viewBox="0 0 200 240" aria-hidden="true"><defs><filter id="brush" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035 .9" numOctaves="3" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="14"/></filter></defs><g filter="url(#brush)" stroke="#FF3E8A" stroke-linecap="round" fill="none"><path d="M30 18 L172 226" stroke-width="30"/><path d="M168 14 L34 224" stroke-width="26"/><path d="M44 30 L160 210" stroke-width="6" stroke="#ff7ab0" opacity=".6"/></g><g fill="#FF3E8A"><circle cx="24" cy="40" r="3"/><circle cx="180" cy="200" r="4"/><circle cx="186" cy="30" r="2"/><circle cx="16" cy="210" r="2.5"/><circle cx="150" cy="236" r="2"/></g></svg><p class="bt-h">&gt; SPIELER AUSGEWÄHLT</p><div class="bt-row">
+o.innerHTML=`<div class="bt"><svg class="brushx" viewBox="0 0 200 240" aria-hidden="true"><defs><filter id="brush" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035 .9" numOctaves="3" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="14"/></filter></defs><g filter="url(#brush)" stroke="#FF3E8A" stroke-linecap="round" fill="none"><path d="M30 18 L172 226" stroke-width="30"/><path d="M168 14 L34 224" stroke-width="26"/><path d="M44 30 L160 210" stroke-width="6" stroke="#ff7ab0" opacity=".6"/></g><g fill="#FF3E8A"><circle cx="24" cy="40" r="3"/><circle cx="180" cy="200" r="4"/><circle cx="186" cy="30" r="2"/><circle cx="16" cy="210" r="2.5"/><circle cx="150" cy="236" r="2"/></g></svg><i class="p5s a"></i><i class="p5s b"></i><div class="bt-hp"><div class="hp l"><span>CHRISTOPH</span><i></i></div><b class="hp-t" id="hpT">99</b><div class="hp r"><span>MICHI</span><i></i></div></div><p class="bt-h">&gt; SPIELER AUSGEWÄHLT</p><div class="bt-call"><span class="r1">${rn("ROUND 1")}</span><span class="fi">${rn("FIGHT!")}</span></div><i class="spk s1"></i><i class="spk s2"></i><i class="spk s3"></i><div class="bt-combo l"><b>${rn("3 HITS")}</b><small>NEUGIER-COMBO</small></div><div class="bt-combo r"><b>${rn("5 HITS")}</b><small>SNACK-COMBO</small></div><div class="bt-row">
 <div class="bt-c l"><div class="bt-av">C</div><b>CHRISTOPH</b><small>KLASSE: NETRUNNER</small><ul><li><span>PLANUNG</span><i style="--v:96%"></i></li><li><span>NEUGIER</span><i style="--v:100%"></i></li><li><span>NAVIGATION</span><i style="--v:82%"></i></li></ul></div>
 <div class="bt-vs"><svg viewBox="0 0 30 80" aria-hidden="true"><path d="M18 0 L10 26 L20 30 L8 56 L16 58 L10 80" fill="none" stroke="#C9B8FF" stroke-width="2.4"/><path d="M18 0 L10 26 L20 30 L8 56 L16 58 L10 80" fill="none" stroke="#fff" stroke-width=".9"/></svg><b>VS</b></div>
 <div class="bt-c r"><div class="bt-av">M</div><b>MICHI</b><small>KLASSE: GOURMET</small><ul><li><span>HUNGER</span><i style="--v:99%"></i></li><li><span>HUMOR</span><i style="--v:97%"></i></li><li><span>GRIMASSEN</span><i style="--v:100%"></i></li></ul></div>
-</div><p class="bt-go">TEAM BEREIT · SEOUL WARTET</p></div><small>TIPPEN ZUM ÜBERSPRINGEN</small>`;
-setTimeout(end,2600); };
+</div><p class="bt-go">UNENTSCHIEDEN · TEAM WIN · SEOUL WARTET</p></div><div class="p5fin"><i class="ht"></i><span>${rn("TEAM")}</span><span class="b2">${rn("ATTACK!")}</span><small>CHRISTOPH × MICHI</small></div><small>TIPPEN ZUM ÜBERSPRINGEN</small>`;
+const ht=document.getElementById("hpT"); let hv=99; const hi=setInterval(()=>{ if(done||!ht){clearInterval(hi);return;} hv=Math.max(0,hv-1); ht.textContent=String(hv).padStart(2,"0"); },700);
+setTimeout(end,8400); };
 const t=setInterval(()=>{ if(i>0&&i<ps.length) ps[i-1].classList.add("ok"); if(i<ps.length){ps[i].classList.add("on");i++;} else {clearInterval(t);setTimeout(team,300);} },200);
 o.addEventListener("click",()=>{clearInterval(t);end();});
 }
