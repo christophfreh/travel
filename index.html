@@ -4294,9 +4294,9 @@ const CJK=/[぀-ヿ㐀-鿿가-힯]/;
 const E=c=>c.replace(/[&<>"]/g,q=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[q]));
 
 /* Index: jeder sichtbare Textblock aller Kapitel, auch zugeklappte Bereiche */
-const BLOCK="p,li,h2,h3,h4,dt,dd,td,th,figcaption,summary,blockquote,.label,.status,.meta,.gift-h,.row,.gig,.off-row,.area-b,.sub,.price";
+const BLOCK="p,li,h2,h3,h4,dt,dd,td,th,summary,blockquote,.label,.status,.meta,.gift-h,.row,.gig,.off-row,.area-b,.sub,.price";
 const ATOM=".hl-card,.ck,.btn,[data-kw]";
-const SKIP=".sovl,[aria-hidden='true'],svg,script,style,noscript,.gift-ok,.ck-ok,.rel,.boot,.dtick,.tick,.coinpop,.gtag,.gdrip";
+const SKIP=".sovl,[aria-hidden='true'],svg,script,style,noscript,.gift-ok,.ck-ok,.rel,.boot,.dtick,.tick,.coinpop,.gtag,.gdrip,figcaption,.ph-l";
 const INL=/^(B|I|EM|STRONG|SPAN|SMALL|A|MARK|CODE|SUP|SUB|ABBR|TIME|U|S)$/;
 function txt(el){ const parts=[]; const tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT); let tn; while((tn=tw.nextNode())){ const pe=tn.parentElement; if(pe&&pe!==el&&pe.closest(SKIP)&&el.contains(pe.closest(SKIP))) continue; const v=tn.nodeValue; if(v.trim()) parts.push(v); }
  let out=""; parts.forEach(v=>{ out+=(out&&!/\s$/.test(out)&&!/^[\s.,;:!?)\]»“”…]/.test(v)&&!/[(\[„«]$/.test(out)?" ":"")+v; }); return out.replace(/\s+/g," ").trim(); }
@@ -4322,7 +4322,7 @@ function build(){ idx=[]; const seen=new Set(), covered=new Set();
 /* Synonyme (normalisiert) */
 const SYN=[["boxershorts","unterwasche","unterhose","pulli","pullover","heattech"],["ghibli","donguri","totoro"],["arcane","hextech","piltover","zaun"],["einkaufsliste","einkaufen","shopping","kaufen"],["zelda","ocarina"],["tshirt","t-shirt","shirt","utme","druck","bedrucken","motiv"],["switch","konsole","nintendo","regionsfrei","game-key"],["loschen","leeren","entfernen","zurucksetzen","reset"],["cache","zwischenspeicher","offline"],["neuladen","reload","aktualisieren","refresh"],["hotel","unterkunft","apartment","wohnen","booking","ubernachten"],["essen","restaurant","food","speisen","hunger","fruhstuck"],["trinken","bar","bars","bier","getrank","drink","cocktail"],["museum","ausstellung","kunst","galerie"],["karte","map","maps","standort","pin"],["flug","flughafen","airport","landung","abflug"],["geld","euro","won","yen","kosten","preis","preise","bezahlen","zahlen","bargeld"],["wetter","regen","temperatur","kalt","schnee"],["bahn","metro","ubahn","u-bahn","subway","zug","arex"],["taxi","uber","kakao t"],["geschenk","geschenke","mitbringsel","souvenir"],["ramen","nudeln","noodle"],["soju","소주"],["kino","film","imax","cgv"]].map(g=>g.map(norm));
 const lev=(a,b)=>{ if(Math.abs(a.length-b.length)>1) return 9; const D=[]; for(let i=0;i<=a.length;i++){ D[i]=[i]; for(let j=1;j<=b.length;j++) D[i][j]=i?0:j; } for(let i=1;i<=a.length;i++) for(let j=1;j<=b.length;j++){ const c=a[i-1]===b[j-1]?0:1; let v=Math.min(D[i-1][j]+1,D[i][j-1]+1,D[i-1][j-1]+c); if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1]) v=Math.min(v,D[i-2][j-2]+1); D[i][j]=v; } return D[a.length][b.length]; };
-function sTok(T,w){ let sc=0; for(const t of T){ if(t===w) return 3; if(t.startsWith(w)) sc=Math.max(sc,2.5); else if(w.length>=3&&t.includes(w)) sc=Math.max(sc,1.7); else if(w.length>=4&&(lev(t.slice(0,w.length),w)<=1||lev(t,w)<=1)) sc=Math.max(sc,1.2); } return sc; }
+function sTok(T,w){ let sc=0; for(const t of T){ if(t===w) return 3; if(t.startsWith(w)) sc=Math.max(sc,2.5); else if(w.length>=3&&t.includes(w)) sc=Math.max(sc,1.7); else if(w.length>=5&&(lev(t.slice(0,w.length),w)<=1||lev(t,w)<=1)) sc=Math.max(sc,1.2); } return sc; }
 const synOf=w=>SYN.find(g=>g.includes(w)||(w.length>=4&&g.some(x=>x.startsWith(w))));
 function hitW(o,w){ if(CJK.test(w)) return o.n.includes(w)?3:0; let s=sTok(o.tk,w); if(s<3){ const g=synOf(w); if(g) for(const x of g){ if(x===w) continue; s=Math.max(s,(CJK.test(x)?(o.n.includes(x)?3:0):sTok(o.tk,x))*.8); } } return s; }
 
