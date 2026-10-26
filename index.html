@@ -2033,7 +2033,7 @@ pflichtprogramm: <span class="n">null</span>,
 <span class="k">await</span> boarding(mission); <span class="c">// KE938 · VIE → ICN</span><i class="cur"></i></pre>
 <div class="box"><span class="label">So reisen wir</span><p>Ein Highlight pro Tag, dazu gutes Essen und eine Bar. Nachmittags zurück ins Hotel, Füße hoch. Alles über 20 Minuten mit dem Taxi, das ist hier billig. Was nicht passt, lassen wir weg.</p></div>
 <div class="plan" id="planList"></div>
-<div class="dmz2049" aria-label="DMZ-Ausflug">
+<div class="dmz2049" id="dmz" aria-label="DMZ-Ausflug">
 <svg class="dz-sky" viewBox="0 0 400 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
 <defs><linearGradient id="dzg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f9b419"/><stop offset=".55" stop-color="#f08a12"/><stop offset=".72" stop-color="#e2650f"/><stop offset="1" stop-color="#7c2408"/></linearGradient>
 <radialGradient id="dzf" cx=".5" cy=".7" r=".5"><stop offset="0" stop-color="#ffcc66" stop-opacity=".55"/><stop offset="1" stop-color="#ffcc66" stop-opacity="0"/></radialGradient></defs>
@@ -2558,12 +2558,24 @@ else { $("countdown").textContent = "✓"; $("countdownSub").textContent = "Reis
 }
 function renderPlan(){
 const today = seoulDate();
+const PKW=[["Gyeongbokgung","v-palast"],["Gwangjang Market","essen"],["Nogari-Gasse","bier"],["MicroVinylHouse","bier"],["LoL Park","games"],["Seoul Robot & AI Museum","mapSeoul","seoul"],["Ikseon-dong","v-jongno"],["Samgyeopsal","essen"],["Orbitals","games"],["Jjimjilbang","regen"],["Shin Shin","essen"],["Nintendo FUKUOKA","games"],["Yatai in Nakasu","v-nakasu"],["Ohori-Park","mapFuk"],["Unfold X","los"],["Cocktails in Hannam","abends"],["Lotte World Tower","v-jamsil"],["Hanwoo","essen"],["Superplex","abends"],["Halbtagestour DMZ","dmz"],["Samsung Innovation Museum","highlights"],["Suwon-Galbi","essen"],["AREX","praktisch"],["Euljiro","v-euljiro"],["Insadong","v-jongno"]];
+const PLINK=t=>{ const done=[]; let out=t; PKW.forEach(([k,id,ly])=>{ const i=out.indexOf(k); if(i<0) return; out=out.slice(0,i)+`\u0001${id}\u0002${ly||""}\u0003${k}\u0004`+out.slice(i+k.length); }); return out.replace(/\u0001([^\u0002]*)\u0002([^\u0003]*)\u0003([^\u0004]*)\u0004/g,(m,id,ly,k)=>`<a class="xref" data-go="${id}"${ly?` data-layer="${ly}"`:""} href="#${id}">${k}</a>`); };
+const PDAY={"2026-11-21":[["v-euljiro","Euljiro"],["essen","Essen"],["games","Games"],["mapSeoul","Karte","jongno"]],
+"2026-11-22":[["v-jongno","Ikseon-dong"],["abends","Bars"],["regen","Plan B"],["mapSeoul","Karte","seoul"]],
+"2026-11-23":[["highlights","Highlights"],["v-palast","Palast"],["essen","Essen"],["bier","Trinken"],["mapSeoul","Karte","top"]],
+"2026-11-24":[["fukuoka","Fukuoka"],["reise","Flug"],["mapFuk","Karte"]],
+"2026-11-25":[["fukuoka","Fukuoka"],["games","Games"],["bier","Trinken"],["mapFuk","Karte"]],
+"2026-11-26":[["los","Unfold X"],["abends","Bars"],["mapSeoul","Karte","seoul"]],
+"2026-11-27":[["dmz","DMZ"],["v-jamsil","Jamsil"],["abends","Kino"],["essen","Essen"]],
+"2026-11-28":[["highlights","Highlights"],["essen","Essen"],["bier","Trinken"],["shopping","Shopping"]],
+"2026-11-29":[["reise","Flug"],["praktisch","Praktisch"],["beachten","To-do"]]};
+const PCHIPS=d=>PDAY[d]?`<div class="rel"><span>Dazu</span>${PDAY[d].map(([id,l,ly])=>`<a href="#${id}" data-go="${id}"${ly?` data-layer="${ly}"`:""}>${l}<i>›</i></a>`).join("")}</div>`:"";
 $("planList").innerHTML = PLAN.map(([d,wd,title,items,note,book]) => {
 const f = fcByDate[d];
 const wx = f && d!=="2026-11-25" ? `<div class="wx">${Math.round(f.hi)}° / ${Math.round(f.lo)}° · ${f.phrase}${f.rain>=30?` · ${f.rain}% Regen`:""}</div>` : "";
 const jp = d==="2026-11-25";
 return `<div class="row${d===today?" today":""}${jp?" jp":""}${d==="2026-11-27"?" bz":""}"><div class="dt"><b>${+d.slice(8)}</b><span>${wd}</span></div>
-<div class="body"><h3>${title}${note?`<span class="tag">${note}</span>`:""}</h3><ul>${items.map(i=>i.startsWith("★ ")?`<li class="hl">${i.slice(2)}</li>`:`<li>${i}</li>`).join("")}</ul>${book?`<div class="btns">${book.map(([l,u])=>`<a class="btn sm" href="${u}" target="_blank" rel="noopener">${l} ↗</a>`).join("")}</div>`:""}${wx}</div></div>`;
+<div class="body"><h3>${title}${note?`<span class="tag">${note}</span>`:""}</h3><ul>${items.map(i=>i.startsWith("★ ")?`<li class="hl">${PLINK(i.slice(2))}</li>`:`<li>${PLINK(i)}</li>`).join("")}</ul>${PCHIPS(d)}${book?`<div class="btns">${book.map(([l,u])=>`<a class="btn sm" href="${u}" target="_blank" rel="noopener">${l} ↗</a>`).join("")}</div>`:""}${wx}</div></div>`;
 }).join("");
 }
 function iconFor(code){
