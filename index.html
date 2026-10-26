@@ -2439,7 +2439,8 @@ pflichtprogramm: <span class="n">null</span>,
 <div class="say-tabs" role="group" aria-label="Sprache"><button type="button" data-l="ko" aria-pressed="true">한국어 Korea</button><button type="button" data-l="ja" aria-pressed="false">日本語 Fukuoka</button></div>
 <ul class="say-l" id="sayL"></ul></div>
 <div class="box" id="offBox"><span class="label">Offline-Modus</span><b>Als App aufs Handy</b><p>iPhone: Safari → Teilen → „Zum Home-Bildschirm“. Android: Chrome-Menü → „App installieren“. Dann einmal unten tippen, damit Fotos und Bilder für den Flugmodus gespeichert werden.</p>
-<div class="off-row"><button type="button" class="btn" id="offBtn">Alles offline speichern</button><span class="status" id="offStatus">…</span></div></div>
+<div class="off-row"><button type="button" class="btn" id="offBtn">Alles offline speichern</button><span class="status" id="offStatus">…</span></div>
+<div class="off-row"><button type="button" class="btn" id="clrBtn">Cache leeren &amp; neu laden</button><span class="status" id="clrStatus">Holt die neueste Version. Deine Haken und Trophäen bleiben erhalten.</span></div></div>
 <div class="facts">
 <div class="box"><span class="label">Vom Flughafen</span><b>AREX</b><p>Express zur Seoul Station, rund 45 Minuten. Dort weiter mit Linie 1 oder 4.</p></div>
 <div class="box"><span class="label">Unterwegs</span><b>T-money-Karte</b><p>Im Convenience Store kaufen und bar aufladen. Gilt für U-Bahn, Bus und viele Taxis.</p></div>
@@ -3826,5 +3827,14 @@ if(hacks){ lab=document.createElement("div"); lab.className="lab"; lab.innerHTML
   if(on&&list[0]){ const o=list[0], ar=o.g.querySelector(o.anc); (ar||o.g).scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"}); } });
  addEventListener("resize",()=>list.forEach(o=>{ if(!o.pz.hidden) o.place(); }));
  let tk=null; addEventListener("scroll",()=>{ if(tk) return; tk=requestAnimationFrame(()=>{ tk=null; list.forEach(o=>{ if(!o.pz.hidden&&o.id!=="games") o.place(); }); }); },{passive:true}); })();
+</script>
+<script>
+(function(){ const b=document.getElementById("clrBtn"); if(!b) return; const st=document.getElementById("clrStatus");
+b.addEventListener("click",async()=>{ b.disabled=true; st.textContent="Räume auf …";
+ try{ if("caches" in window){ const ks=await caches.keys(); await Promise.all(ks.map(k=>caches.delete(k))); } }catch(e){}
+ try{ if("serviceWorker" in navigator){ const rs=await navigator.serviceWorker.getRegistrations(); await Promise.all(rs.map(r=>r.unregister())); } }catch(e){}
+ st.textContent="Lade neu …";
+ setTimeout(()=>{ const u=new URL(location.href); u.searchParams.set("r",Date.now()); location.replace(u.toString()); },400);
+}); })();
 </script>
 </body></html>
