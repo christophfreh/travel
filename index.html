@@ -1660,10 +1660,10 @@ body.scan .list li.mk::after{content:"⌖ MARKIERT";position:absolute;right:0;to
 .net .sg.s3 i:nth-child(-n+3){background:var(--y)}
 .net .sg.s2 i:nth-child(-n+2){background:var(--neon)}
 /* Ticker */
-.tick{position:sticky;top:0;z-index:24;margin:-24px calc(50% - 50vw) 10px;height:26px;overflow:hidden;background:var(--y);color:#0a0818;display:flex;align-items:center;font:700 11px/1 var(--f-mono);letter-spacing:.1em;box-shadow:0 3px 0 var(--neon)}
-.tick div{display:flex;gap:44px;white-space:nowrap;width:max-content;padding-left:16px}
-@media (prefers-reduced-motion:no-preference){.tick div{animation:tkroll var(--tk,30s) linear infinite}@keyframes tkroll{to{transform:translateX(-50%)}}}
-.tick b{background:#0a0818;color:var(--y);padding:3px 7px 2px;letter-spacing:.14em}
+.dtick{position:sticky;top:0;z-index:24;margin:-24px calc(50% - 50vw) 10px;height:26px;overflow:hidden;background:var(--y);color:#0a0818;display:flex;align-items:center;font:700 11px/1 var(--f-mono);letter-spacing:.1em;box-shadow:0 3px 0 var(--neon)}
+.dtick div{display:flex;gap:44px;white-space:nowrap;width:max-content;padding-left:16px}
+@media (prefers-reduced-motion:no-preference){.dtick div{animation:tkroll var(--tk,30s) linear infinite}@keyframes tkroll{to{transform:translateX(-50%)}}}
+.dtick b{background:#0a0818;color:var(--y);padding:3px 7px 2px;letter-spacing:.14em}
 /* Meter */
 .cps{margin-top:14px;border:1px solid rgba(255,62,138,.5);background:linear-gradient(160deg,rgba(255,62,138,.08),rgba(17,15,39,.9));padding:12px 14px;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%)}
 .cps .ch{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
@@ -1766,7 +1766,7 @@ html.night .sky .neons b{opacity:1}
 @keyframes hxrun{from{background-position:0 -40px}to{background-position:0 120px}}
 }
 @media (max-height:520px){.hxl{display:none}}
-body.mapfull .tick,body.mapfull .hxl{display:none}
+body.mapfull .dtick,body.mapfull .hxl{display:none}
 .map.lf.full .lf-map{z-index:1}
 /* Arcane-Labor: acht Spielereien */
 .lab{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
@@ -3650,7 +3650,7 @@ const pl=$("planList"); if(pl){ new MutationObserver(injectGigs).observe(pl,{chi
 (function(){ const wrap=document.querySelector(".wrap"); if(!wrap) return; const ev=[{t:Date.parse("2026-11-20T19:30:00+01:00"),l:"Boarding KE938 · VIE → ICN"}];
  P.forEach(p=>p[3].forEach(it=>{ const m=it.replace(/^★\s*/,"").match(/^(?:Ca\.\s*)?(\d{1,2}):(\d{2})\s+(.+)/); if(m) ev.push({t:Date.parse(`${p[0]}T${m[1].padStart(2,"0")}:${m[2]}:00+09:00`),l:m[3].replace(/[,.].*$/,"").slice(0,48)}); }));
  ev.sort((a,b)=>a.t-b.t);
- const el=document.createElement("div"); el.className="tick"; el.setAttribute("aria-hidden","true"); wrap.insertBefore(el,wrap.firstChild);
+ const el=document.createElement("div"); el.className="dtick"; el.setAttribute("aria-hidden","true"); wrap.insertBefore(el,wrap.firstChild);
  const dur=ms=>{ const m=Math.round(ms/6e4); if(m<60) return m+" Min"; const h=Math.floor(m/60); if(h<36) return h+" Std "+(m%60)+" Min"; return Math.round(h/24)+" Tage"; };
  const now=()=>{ const s=(typeof SIM!=="undefined"&&SIM)?SIM:""; return s?Date.parse(s+"T08:00:00+09:00")+(Date.now()%864e5):Date.now(); };
  function paint(){ const n=now(), nx=ev.filter(e=>e.t>n); let items;
