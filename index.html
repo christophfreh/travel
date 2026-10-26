@@ -1895,6 +1895,52 @@ body.mapfull .sfab{display:none}
 .laybar{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
 .lay{font:600 11px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);background:none;border:1px solid rgba(59,230,214,.45);border-radius:999px;padding:9px 12px;cursor:pointer}
 .lay.on{background:var(--cyan);color:#110F27;border-color:var(--cyan)}
+
+/* Arcane-Labor: Hextech-Werkbank, Piltover-Messing × Zaun-Glühen */
+.lab{position:relative;gap:10px;margin-top:16px;padding:16px 14px 14px;border:1px solid rgba(232,199,122,.55);background:
+radial-gradient(70% 90% at 100% 100%,rgba(255,62,138,.20),transparent 65%),
+radial-gradient(60% 80% at 0% 0%,rgba(59,184,255,.18),transparent 65%),
+url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'><path d='M14 1l13 7.5v15L14 31 1 23.5v-15zM0 32l14 8 14-8M14 40v9' fill='none' stroke='%23E8C77A' stroke-opacity='.07'/></svg>"),
+linear-gradient(160deg,#0f1426,#150f2a 60%,#1a0f26);
+clip-path:polygon(0 14px,14px 0,calc(100% - 14px) 0,100% 14px,100% calc(100% - 14px),calc(100% - 14px) 100%,14px 100%,0 calc(100% - 14px));
+box-shadow:inset 0 0 0 3px rgba(10,8,22,.9),inset 0 0 0 4px rgba(232,199,122,.28),inset 0 0 40px rgba(59,184,255,.08)}
+.lab::before{content:"";position:absolute;left:18px;right:18px;top:0;height:2px;background:linear-gradient(90deg,transparent,#E8C77A 20%,#9FF3FF 50%,#E8C77A 80%,transparent);opacity:.8;pointer-events:none}
+.lab::after{content:"";position:absolute;left:18px;right:18px;bottom:0;height:2px;background:linear-gradient(90deg,transparent,#FF3E8A 30%,#7CFF9E 70%,transparent);opacity:.45;pointer-events:none}
+.lab .lab-h{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding-bottom:12px;margin-bottom:2px;border-bottom:1px solid rgba(232,199,122,.25);letter-spacing:normal}
+.lab .lab-h .emb{width:42px;height:46px;background:linear-gradient(150deg,#9FF3FF,#3BB8FF 50%,#1d5fa8);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);filter:drop-shadow(0 0 8px rgba(59,184,255,.8));position:relative}
+.lab .lab-h .emb::after{content:"";position:absolute;inset:7px;background:#0b0f20;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.lab .lab-h .emb::before{content:"";position:absolute;inset:15px 14px;background:#9FF3FF;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);z-index:1;box-shadow:0 0 10px #9FF3FF}
+.lab .lab-h .tt{display:block;font:400 18px/1.05 var(--f-display);letter-spacing:.04em;white-space:nowrap;text-transform:uppercase;background:linear-gradient(180deg,#fff3c9,#E8C77A 55%,#a9812f);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 8px rgba(232,199,122,.3))}
+.lab .lab-h .st{display:block;margin-top:4px;font:400 9px/1.3 var(--f-mono);letter-spacing:.12em;color:#8fa6c9;text-transform:uppercase}
+.lab .lab-h b{display:flex;gap:4px;align-items:center}
+.lab .pip{width:13px;height:15px;background:rgba(232,199,122,.18);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);transition:background .4s,filter .4s}
+.lab .pip.on{background:linear-gradient(150deg,#9FF3FF,#3BB8FF);filter:drop-shadow(0 0 5px #3BB8FF)}
+.lab .lbx{position:relative;display:grid;align-content:center;row-gap:0;grid-template-columns:34px 1fr 10px;align-items:center;column-gap:10px;min-height:68px;padding:10px 12px 10px 10px;font:700 12px/1.25 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#f1e6c8;background:linear-gradient(170deg,rgba(232,199,122,.14),rgba(232,199,122,.03) 45%,rgba(10,8,22,.55));border:1px solid rgba(232,199,122,.55);overflow:hidden;transition:background .25s,border-color .25s,box-shadow .25s,transform .15s;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+.lab .lbx small{grid-column:2;margin-top:3px;font:400 10px/1.35 var(--f-body);letter-spacing:.02em;text-transform:none;color:#9aa6c0}
+.lab .lbx::before{content:"";grid-row:1/3;width:30px;height:30px;background:var(--ic,#E8C77A);-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat;filter:drop-shadow(0 0 5px currentColor);align-self:center}
+.lab .lbx::after{content:"";grid-column:3;grid-row:1/3;width:8px;height:8px;border-radius:50%;background:#3a3550;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);transition:background .25s,box-shadow .25s}
+.lab .lbx:active{transform:scale(.97)}
+.lab .lbx:focus-visible{outline:2px solid #9FF3FF;outline-offset:2px}
+.lab .lbx[aria-pressed="true"]{color:#fff}
+.lab .lbx[aria-pressed="true"]::after{background:var(--lc,#9FF3FF);box-shadow:0 0 10px var(--lc,#9FF3FF),0 0 22px var(--lc,#9FF3FF)}
+#lbPaint{--lc:#FF3E8A;--ic:#FF8FB8;--m:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M20.7 3.3c-.9-.9-2.4-.9-3.3 0L9.5 11.2l3.3 3.3 7.9-7.9c.9-.9.9-2.4 0-3.3zM8.2 12.6C6 12.6 4.6 14.2 4.6 16c0 1.2-.6 2.3-1.6 3 2.8.8 7.2.4 8.3-2.4.6-1.5-.3-3.9-3.1-4z'/></svg>")}
+#lbHum{--lc:#9FF3FF;--ic:#9FF3FF;--m:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11zm0 5.5l-4.8 2.8v5.4l4.8 2.8 4.8-2.8V9.3z' fill-rule='evenodd'/></svg>")}
+#lbPz{--lc:#7CFF9E;--ic:#E8C77A;--m:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M3 4h8v16H3zM13 4h8l-3 4 3 4-3 4 3 4h-8z'/></svg>")}
+#lbPaint[aria-pressed="true"]{background:linear-gradient(170deg,rgba(255,62,138,.30),rgba(255,62,138,.06) 55%,rgba(10,8,22,.55));border-color:#FF3E8A;box-shadow:0 0 18px -4px rgba(255,62,138,.7),inset 0 0 18px rgba(255,62,138,.15)}
+#lbHum[aria-pressed="true"]{background:linear-gradient(170deg,rgba(59,184,255,.32),rgba(59,184,255,.06) 55%,rgba(10,8,22,.55));border-color:#3BB8FF;box-shadow:0 0 18px -4px rgba(59,184,255,.8),inset 0 0 18px rgba(59,184,255,.16)}
+#lbPz[aria-pressed="true"]{background:linear-gradient(100deg,rgba(232,199,122,.28),rgba(124,255,158,.18));border-color:#7CFF9E;box-shadow:0 0 18px -4px rgba(124,255,158,.6)}
+@media (prefers-reduced-motion:no-preference){
+.lab .lbx:hover::selection{background:transparent}
+.lab .lbx{background-size:100% 100%}
+.lab .lbx>*{position:relative;z-index:1}
+.lab .lab-h .emb{animation:embp 3.6s ease-in-out infinite}
+@keyframes embp{50%{filter:drop-shadow(0 0 14px rgba(59,184,255,1))}}
+.lab .lbx[aria-pressed="true"]::after{animation:lamp 1.6s ease-in-out infinite}
+@keyframes lamp{50%{opacity:.55}}
+.lab::selection{background:transparent}
+}
+#lbPz{grid-column:1/-1}
+@media (max-width:360px){.lab{grid-template-columns:1fr}}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -3967,7 +4013,7 @@ const ctx=()=>{ if(!AC) return null; if(!ac) ac=new AC(); if(ac.state==="suspend
 function tone(f,t0,d,type,v){ const a=ctx(); if(!a) return; const o=a.createOscillator(), g=a.createGain(); o.type=type||"sine"; o.frequency.value=f; g.gain.setValueAtTime(.0001,a.currentTime+t0); g.gain.exponentialRampToValueAtTime(v||.06,a.currentTime+t0+.02); g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+t0+d); o.connect(g).connect(a.destination); o.start(a.currentTime+t0); o.stop(a.currentTime+t0+d+.05); }
 /* ---------- Labor-Box ---------- */
 const hacks=$("hacks"); let lab=null;
-if(hacks){ lab=document.createElement("div"); lab.className="lab"; lab.innerHTML='<div class="lab-h"><span>ARCANE-LABOR</span><b id="hxCnt">◇ 0 / 6</b></div><button type="button" class="lbx" id="lbPaint" aria-pressed="false">Ölgemälde<small>Pinsel-Look für Fotos</small></button><button type="button" class="lbx" id="lbHum" aria-pressed="false">Hextech-Summen<small>lauter am Arcane-Banner</small></button>'; hacks.appendChild(lab); }
+if(hacks){ lab=document.createElement("div"); lab.className="lab"; lab.innerHTML='<div class="lab-h"><i class="emb" aria-hidden="true"></i><span><span class="tt">Arcane-Labor</span><span class="st">Hextech-Werkbank · Piltover × Zaun</span></span><b id="hxCnt" role="img" aria-label="0 von 6 Hextech-Kristallen"></b></div><button type="button" class="lbx" id="lbPaint" aria-pressed="false">Ölgemälde<small>Pinsel-Look für Fotos</small></button><button type="button" class="lbx" id="lbHum" aria-pressed="false">Hextech-Summen<small>lauter am Arcane-Banner</small></button>'; hacks.appendChild(lab); }
 /* ---------- 5) Öl-Look ---------- */
 (function(){ const s=document.createElementNS("http://www.w3.org/2000/svg","svg"); s.setAttribute("width","0"); s.setAttribute("height","0"); s.style.position="absolute"; s.setAttribute("aria-hidden","true");
  s.innerHTML='<filter id="oil" x="-2%" y="-2%" width="104%" height="104%"><feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="2" seed="7" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="7" xChannelSelector="R" yChannelSelector="G" result="d"/><feGaussianBlur in="d" stdDeviation=".5"/></filter>'; document.body.appendChild(s);
@@ -4002,7 +4048,7 @@ if(hacks){ lab=document.createElement("div"); lab.className="lab"; lab.innerHTML
   setTimeout(()=>{ d.remove(); busy=false; },5200); },9000); })();
 /* ---------- 4) Hextech-Kristalle ---------- */
 (function(){ const secs=[...document.querySelectorAll(".wrap > section[id]")]; if(secs.length<6) return; const picks=[0,1,2,3,4,5].map(i=>secs[Math.floor((i+.5)*secs.length/6)]); const POS=[[12,300],[78,360],[45,280],[86,400],[22,340],[62,320]];
- let got=lsGet("hxg",[]); const cnt=$("hxCnt"); const show=()=>{ if(cnt) cnt.textContent="◇ "+got.length+" / 6"; }; show();
+ let got=lsGet("hxg",[]); const cnt=$("hxCnt"); const show=()=>{ if(cnt){ cnt.setAttribute("aria-label",got.length+" von 6 Hextech-Kristallen"); cnt.innerHTML=Array.from({length:6},(_,j)=>'<i class="pip'+(j<got.length?" on":"")+'"></i>').join(""); } }; show();
  picks.forEach((s,i)=>{ if(!s) return; if(getComputedStyle(s).position==="static") s.style.position="relative"; const g=document.createElement("b"); g.className="hxg"+(got.includes(i)?" got":""); g.style.left=POS[i][0]+"%"; g.style.top=POS[i][1]+"px"; g.setAttribute("role","button"); g.setAttribute("aria-label","Hextech-Kristall"); s.appendChild(g);
   g.addEventListener("click",e=>{ e.stopPropagation(); if(got.includes(i)) return; got.push(i); lsSet("hxg",got); g.classList.add("got"); show(); tone(1568,0,.18,"sine",.07); tone(2093,.1,.3,"sine",.06);
    if(got.length===6){ setTimeout(win,500); } }); });
