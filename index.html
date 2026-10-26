@@ -2504,9 +2504,9 @@ pflichtprogramm: <span class="n">null</span>,
 <div class="box" id="say"><span class="label">Sprachmodul · zum Vorspielen</span><p>Auf 🔊 tippen, dann spricht das Handy. Auf den Text tippen, dann wird er riesig, zum Herzeigen.</p>
 <div class="say-tabs" role="group" aria-label="Sprache"><button type="button" data-l="ko" aria-pressed="true">한국어 Korea</button><button type="button" data-l="ja" aria-pressed="false">日本語 Fukuoka</button></div>
 <ul class="say-l" id="sayL"></ul></div>
-<div class="box" id="offBox"><span class="label">Offline-Modus</span><b>Als App aufs Handy</b><p>iPhone: Safari → Teilen → „Zum Home-Bildschirm“. Android: Chrome-Menü → „App installieren“. Dann einmal unten tippen, damit Fotos und Bilder für den Flugmodus gespeichert werden.</p>
+<div class="box" id="offBox" data-kw="offline cache speichern app installieren home bildschirm"><span class="label">Offline-Modus</span><b>Als App aufs Handy</b><p>iPhone: Safari → Teilen → „Zum Home-Bildschirm“. Android: Chrome-Menü → „App installieren“. Dann einmal unten tippen, damit Fotos und Bilder für den Flugmodus gespeichert werden.</p>
 <div class="off-row"><button type="button" class="btn" id="offBtn">Alles offline speichern</button><span class="status" id="offStatus">…</span></div>
-<div class="off-row"><button type="button" class="btn" id="clrBtn">Cache leeren &amp; neu laden</button><span class="status" id="clrStatus">Holt die neueste Version. Deine Haken und Trophäen bleiben erhalten.</span></div></div>
+<div class="off-row"><button type="button" class="btn" id="clrBtn" data-kw="cache löschen leeren zurücksetzen reset neu laden aktualisieren update refresh">Cache leeren &amp; neu laden</button><span class="status" id="clrStatus">Holt die neueste Version. Deine Haken und Trophäen bleiben erhalten.</span></div></div>
 <div class="facts">
 <div class="box"><span class="label">Vom Flughafen</span><b>AREX</b><p>Express zur Seoul Station, rund 45 Minuten. Dort weiter mit Linie 1 oder 4.</p></div>
 <div class="box"><span class="label">Unterwegs</span><b>T-money-Karte</b><p>Im Convenience Store kaufen und bar aufladen. Gilt für U-Bahn, Bus und viele Taxis.</p></div>
@@ -3949,10 +3949,10 @@ const norm=t=>t.toLowerCase().replace(/ß/g,"ss").normalize("NFD").replace(/[\u0
 let idx=null;
 function build(){ idx=[]; const seen=new Set();
  document.querySelectorAll("section[id]").forEach(sec=>{ const h=sec.querySelector("h2"); const name=h?h.textContent.replace(/\s+/g," ").trim():sec.id;
-  sec.querySelectorAll("li,.box>p,.box>h3,p.sub,.area-b,.row,.gig,summary,figcaption").forEach(el=>{
+  sec.querySelectorAll("li,.box>p,.box>h3,.box>.label,p.sub,.area-b,.row,.gig,summary,figcaption,.btn,.off-row,.hl-card,.status,[data-kw]").forEach(el=>{
    if(el.closest(".sovl")) return; if(el.matches(".area-b,.row")&&el.querySelector("li")) return;
    const t=(el.innerText||el.textContent).replace(/\s+/g," ").trim(); if(t.length<3||seen.has(t)) return; seen.add(t);
-   idx.push({el,t,n:norm(t),name}); }); }); }
+   idx.push({el,t,n:norm(t+" "+(el.dataset.kw||"")),name}); }); }); }
 function snip(t,words){ const n=norm(t); let p=-1; for(const w of words){ const k=n.indexOf(w); if(k>=0&&(p<0||k<p)) p=k; }
  let a=Math.max(0,p-40), b=Math.min(t.length,a+150); let x=t.slice(a,b); if(a>0) x="…"+x; if(b<t.length) x+="…";
  const esc=x.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
@@ -3963,9 +3963,15 @@ function snip(t,words){ const n=norm(t); let p=-1; for(const w of words){ const 
  const E=c=>c.replace(/[&<>]/g,q=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[q]));
  m.forEach(r=>{ out+=E(x.slice(i,r[0]))+"<mark>"+E(x.slice(r[0],r[1]))+"</mark>"; i=r[1]; }); return out+E(x.slice(i)); }
 function run(){ if(!idx) build(); const q=norm(inp.value).trim(); res.innerHTML=""; sel=-1; if(q.length<2){ cnt.textContent=""; chips(); return; }
- const words=q.split(/\s+/).filter(Boolean); const ws=o=>words.every(w=>o.n.startsWith(w)||o.n.includes(" "+w)||o.n.includes("("+w)||o.n.includes("-"+w)||o.n.includes("/"+w)); let hits=idx.filter(ws); if(!hits.length) hits=idx.filter(o=>words.every(w=>o.n.includes(w))); hits=hits.slice(0,40);
+ const words=q.split(/\s+/).filter(Boolean); const SYN=[["loschen","leeren","entfernen","zurucksetzen","reset","clear","delete"],["cache","zwischenspeicher","offline"],["laden","neuladen","reload","aktualisieren","refresh","update"],["hotel","unterkunft","apartment","wohnen","booking","ubernachten"],["essen","restaurant","food","speisen","hunger","fruhstuck"],["trinken","bar","bier","getrank","drink","cocktail"],["museum","ausstellung","kunst","galerie"],["karte","map","maps","standort"],["flug","flughafen","airport","landung","abflug"],["geld","euro","won","kosten","preis","bezahlen","zahlen"],["wetter","regen","temperatur","kalt"],["bahn","metro","ubahn","subway","zug"],["taxi","uber","fahren"]];
+const ex=w=>{ const g=SYN.find(a=>a.some(x=>x===w||(w.length>=4&&x.startsWith(w)))); return g?g:[w]; };
+const lev=(a,b)=>{ if(Math.abs(a.length-b.length)>1) return 9; let d=[...Array(b.length+1).keys()]; for(let i=1;i<=a.length;i++){ let prev=d[0]; d[0]=i; for(let j=1;j<=b.length;j++){ const t=d[j]; d[j]=Math.min(d[j]+1,d[j-1]+1,prev+(a[i-1]===b[j-1]?0:1)); prev=t; } } return d[b.length]; };
+const tokOf=o=>o.tk||(o.tk=o.n.split(/[^a-z0-9]+/).filter(Boolean));
+const hit=(o,alts)=>{ const T=tokOf(o); let sc=0; for(const w of alts){ for(const t of T){ if(t===w) sc=Math.max(sc,3); else if(t.startsWith(w)) sc=Math.max(sc,2.5); else if(w.length>=4&&t.includes(w)) sc=Math.max(sc,1.5); else if(w.length>=5&&lev(t.slice(0,w.length),w)<=1) sc=Math.max(sc,1); } } return sc; };
+const groups=words.map(ex); let scored=[]; idx.forEach(o=>{ let tot=0; for(const g of groups){ const h=hit(o,g); if(!h){ tot=0; break; } tot+=h; } if(tot) scored.push([tot+(o.el.matches(".btn,.label,h3,[data-kw]")?1:0)+2/(1+o.t.length/60),o]); });
+scored.sort((a,b)=>b[0]-a[0]); let hits=scored.slice(0,40).map(x=>x[1]); const hw=[...new Set(groups.flat())];
  cnt.textContent=hits.length?(hits.length>=40?"40+":hits.length)+" TREFFER":"KEIN SIGNAL"; if(!hits.length){ res.innerHTML='<div class="sem">Nichts gefunden. Anderes Wort probieren.</div>'; return; }
- hits.forEach((o,k)=>{ const b=document.createElement("button"); b.type="button"; b.className="sit"; b.style.setProperty("--i",Math.min(k,12)); b.innerHTML="<small>"+o.name.replace(/[&<>]/g,"")+"</small>"+snip(o.t,words); b.addEventListener("click",()=>go(o.el)); res.appendChild(b); }); }
+ hits.forEach((o,k)=>{ const b=document.createElement("button"); b.type="button"; b.className="sit"; b.style.setProperty("--i",Math.min(k,12)); b.innerHTML="<small>"+o.name.replace(/[&<>]/g,"")+"</small>"+snip(o.t,hw); b.addEventListener("click",()=>go(o.el)); res.appendChild(b); }); }
 function go(el){ close(); if(window.__unfold) window.__unfold(el); setTimeout(()=>{ el.scrollIntoView({behavior:"smooth",block:"center"}); el.classList.remove("shit"); void el.offsetWidth; el.classList.add("shit"); setTimeout(()=>el.classList.remove("shit"),2600); },120); }
 function chips(){ const w=document.createElement("div"); w.className="schips"; ["Ramen","Hongdae","Bar","DMZ","Pass","Regen","Hotel","Karaoke-frei"].filter(x=>x!=="Karaoke-frei").concat(["Fukuoka","Preis"]).forEach(t=>{ const b=document.createElement("button"); b.type="button"; b.textContent=t; b.addEventListener("click",()=>{ inp.value=t; run(); inp.focus(); }); w.appendChild(b); }); res.appendChild(w); }
 function mv(d){ const it=[...res.querySelectorAll(".sit")]; if(!it.length) return; sel=(sel+d+it.length)%it.length; it.forEach((e,k)=>e.classList.toggle("sel",k===sel)); it[sel].scrollIntoView({block:"nearest"}); }
