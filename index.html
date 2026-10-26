@@ -28,7 +28,7 @@ b{font-weight:600}
 .mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 .label{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .hero{position:relative;display:flex;flex-direction:column;gap:16px;padding-top:6px}
-.brand{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
+.brand{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;position:relative;z-index:6}
 .brand .label:last-child{color:var(--cyan)}
 .hangul{font:400 clamp(120px,40vw,250px)/.82 var(--f-sign);margin:6px 0 0 -4px;color:transparent;-webkit-text-stroke:2px var(--neon);
 text-shadow:0 0 18px rgba(255,62,138,.55),0 0 46px rgba(255,62,138,.35);letter-spacing:-.02em;position:relative}
@@ -608,7 +608,7 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 .sky .holo.sw{animation:holosw 0.56s steps(3) 1}
 @keyframes holosw{0%{clip-path:inset(0 0 60% 0);transform:skewY(-4deg) translateX(6px)}50%{clip-path:inset(40% 0 0 0);transform:skewY(-4deg) translateX(-6px)}100%{clip-path:inset(0)}}
 }
-.hero>.kata{top:calc(clamp(105px,22vw,150px) + 70px)}
+.hero>.kata{top:calc(clamp(215px,56vw,310px) + 92px);pointer-events:none}
 .brand-l{color:var(--muted);text-decoration:none;border-bottom:1px dashed rgba(252,238,10,.4)}
 .brand-l:hover{color:var(--cp);text-shadow:0 0 10px rgba(252,238,10,.6)}
 .mx{position:relative;height:64px;margin:-28px calc(-1 * max(16px,env(safe-area-inset-left,0px)));overflow:hidden;border-block:1px solid rgba(0,255,106,.18);background:#050a07}
@@ -3435,8 +3435,8 @@ w+=`<g id="lnShip"><g class="lsh"><g class="bodyf"><g id="lnGear"><path d="M-12 
 <g transform="scale(-1 1)"><path d="M-20 1 C-18 -4 -8 -7 2 -7 C12 -7 18 -4 22 0 C20 3.4 14 5.2 4 5.2 H-14 C-18 5.2 -20 3.4 -20 1Z" fill="url(#lnHull)" stroke="#3BB8FF" stroke-width=".45"/><path d="M-20 .6 L-27 -6.4 L-15 -3.6Z" fill="#12142c" stroke="#3BB8FF" stroke-width=".35"/><path d="M2.6 -6.6 C9 -6.6 14 -3.8 17 -.4 L3 -.4Z" fill="url(#lnGl)" opacity=".85"/><path d="M5 -5.6 C9 -5.2 12 -3.8 14.4 -1.6" stroke="#fff" stroke-width=".35" fill="none" opacity=".75"/><path d="M-17 2.2 H18" stroke="#FF3E8A" stroke-width=".55"/><path d="M-14 .2 H-4 M-2 .2 H3" stroke="#E8C77A" stroke-width=".35" opacity=".8"/><circle cx="21" cy="-.2" r="1" fill="#FCEE0A"/><circle cx="-20" cy="1" r="1" fill="#FF3E8A"/></g>
 <rect id="lnDG" x="-4.6" y="-4.6" width="9.2" height="6.2" rx=".8" fill="#FFE27A" opacity="0"/><path id="lnDoor" d="M-5.2 -4.8 H5.2 L7.2 -9.4 H-3.2Z" fill="#12142c" stroke="#3BB8FF" stroke-width=".35" opacity="0"/><path id="lnRamp" d="M-1.6 1.6 L1.6 1.6 L10.4 9.2 L6 9.2Z" fill="#FFE27A" opacity="0"/></g></g></g>`;
 /* Personen */
-w+=person("lnP1","lp1",1.3,'<circle cx=".6" cy="-17.9" r="2.2" fill="#0b0a1a"/><path d="M-1.8 -18.9 Q.6 -21.4 3.2 -18.9 L5.6 -18.4 L-1.8 -18.2Z" fill="#0b0a1a"/><rect x="-6" y="-15" width="2.8" height="6.4" rx="1" fill="#0b0a1a"/>');
-w+=person("lnP2","lp2",1.22,'<circle cx=".6" cy="-17.9" r="2.2" fill="#0b0a1a"/><path d="M-1.9 -18.6 Q.6 -22 3.3 -18.6Z" fill="#0b0a1a"/><rect x="-1.9" y="-18.8" width="5.2" height="1" fill="#0b0a1a"/>');
+w+=person("lnP1","lp1",1.08,'<circle cx=".6" cy="-17.9" r="2.2" fill="#0b0a1a"/><path d="M-1.8 -18.9 Q.6 -21.4 3.2 -18.9 L5.6 -18.4 L-1.8 -18.2Z" fill="#0b0a1a"/><rect x="-6" y="-15" width="2.8" height="6.4" rx="1" fill="#0b0a1a"/>');
+w+=person("lnP2","lp2",1.0,'<circle cx=".6" cy="-17.9" r="2.2" fill="#0b0a1a"/><path d="M-1.9 -18.6 Q.6 -22 3.3 -18.6Z" fill="#0b0a1a"/><rect x="-1.9" y="-18.8" width="5.2" height="1" fill="#0b0a1a"/>');
 svg.innerHTML=w; sky.insertBefore(svg,sky.querySelector(".floor"));
 const q=id=>svg.querySelector("#"+id);
 const el={ship:q("lnShip"),gear:q("lnGear"),fl:q("lnFl"),dg:q("lnDG"),door:q("lnDoor"),ramp:q("lnRamp"),beam:q("lnBeamP"),glow:q("lnGlowE"),doorG:q("lnDoorG"),rings:[...svg.querySelectorAll(".rg")],dust:[...svg.querySelectorAll(".du")]};
