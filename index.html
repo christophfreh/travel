@@ -1013,24 +1013,7 @@ background:radial-gradient(circle at 20% 30%,rgba(255,62,138,.7) 0 4px,transpare
 .sky .hexglow{animation:hxg 2.4s ease-in-out infinite}
 @keyframes hxg{50%{opacity:.4}}
 }
-.sky .pad .hut{fill:#FCEE0A;opacity:.55}.sky .padm{fill:none;stroke:#3BE6D6;stroke-width:.8;opacity:.7}.sky .padl{fill:#FF3E8A}.sky .padl.b{fill:#3BE6D6}
-.sky .spn .sb{fill:#0c0a1c}.sky .spn .sw{fill:#1b2550}.sky .spn .sd{fill:#0c0a1c;opacity:1}.sky .spn .sedge{fill:none;stroke:#3BB8FF;stroke-width:.6;opacity:.8}
-.sky .spn{filter:drop-shadow(0 0 3px rgba(59,184,255,.6))}.sky .spn .sl{fill:#FCEE0A}.sky .spn .sl.r{fill:#FF3E8A}.sky .spn .cone{fill:rgba(159,243,255,.18);opacity:0}
-.sky .pp{fill:#0c0a1c}.sky .pp.a{filter:drop-shadow(0 0 2px #3BE6D6)}.sky .pp.b{filter:drop-shadow(0 0 2px #FF3E8A)}
-@media (prefers-reduced-motion:no-preference){
-.sky .spn{animation:spn 48s ease-in-out infinite}
-@keyframes spn{0%{transform:translate(160px,10px) scale(.5);opacity:0}5%{opacity:1}30%{transform:translate(322px,118px) scale(.95)}38%,84%{transform:translate(326px,134px) scale(1);opacity:1}100%{transform:translate(560px,-20px) scale(.55);opacity:0}}
-.sky .spn .cone{animation:cone 48s ease-in-out infinite}
-@keyframes cone{0%,8%{opacity:0}14%,34%{opacity:1}39%,84%{opacity:0}88%,94%{opacity:.8}100%{opacity:0}}
-.sky .spn .sd{animation:sdoor 48s ease-in-out infinite}
-@keyframes sdoor{0%,41%{opacity:0}44%,76%{opacity:1}79%,100%{opacity:0}}
-.sky .spn .sl,.sky .padl{animation:slb 2.6s steps(2) infinite}.sky .spn .sl.r,.sky .padl.b{animation-delay:1.3s}
-@keyframes slb{50%{opacity:.15}}
-.sky .pw1{animation:pw1 48s linear infinite}
-@keyframes pw1{0%,44%{transform:translate(328px,134px) scale(.9);opacity:0}47%{opacity:1}70%{transform:translate(362px,134px) scale(1);opacity:1}73%,100%{transform:translate(363px,134px) scale(1);opacity:0}}
-.sky .pw2{animation:pw2 48s linear infinite}
-@keyframes pw2{0%,48%{transform:translate(328px,134px) scale(.85);opacity:0}51%{opacity:1}73%{transform:translate(361px,134px) scale(.94);opacity:1}76%,100%{transform:translate(362px,134px) scale(.94);opacity:0}}
-}
+@media (prefers-reduced-motion:no-preference){.sky .land .padl{animation:slb 2.6s steps(2) infinite}.sky .land .padl.b{animation-delay:1.3s}@keyframes slb{50%{opacity:.15}}}
 .hexcore{width:clamp(44px,11vw,60px);height:clamp(44px,11vw,60px);perspective:240px;filter:drop-shadow(0 0 10px rgba(59,184,255,.7))}
 .hc{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(-24deg) rotateY(35deg)}
 .hc i{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(135deg,#3BB8FF,#1E5BD8);border:2px solid #C9A25A;border-radius:6px;box-shadow:inset 0 0 0 3px rgba(17,15,39,.35),inset 0 0 14px rgba(159,243,255,.6);clip-path:polygon(18% 0,82% 0,100% 18%,100% 82%,82% 100%,18% 100%,0 82%,0 18%)}
@@ -1437,7 +1420,7 @@ background:radial-gradient(70% 60% at 50% 30%,#ffcf7a,#f39a3a 35%,#c2571c 70%,#5
 /* ===== Night City 3.0 — Cyberpunk-2077-Stimmung (eigene Gestaltung, keine Marken) ===== */
 :root{--y:#FCEE0A}
 /* Hero: höhere Skyline mit Neon-Schildern und nasser Straße */
-.sky{height:clamp(170px,42vw,250px)}
+.sky{height:clamp(215px,56vw,310px)}
 .sky::after{content:"";position:absolute;left:0;right:0;bottom:0;height:30%;z-index:3;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(10,8,24,.55)),repeating-linear-gradient(90deg,rgba(255,62,138,.0) 0 22px,rgba(255,62,138,.18) 22px 24px,rgba(59,230,214,.0) 24px 52px,rgba(59,230,214,.16) 52px 54px);mix-blend-mode:screen;filter:blur(1.5px)}
 .neons{position:absolute;inset:0;z-index:2;pointer-events:none}
 .neons b{position:absolute;bottom:var(--b,28%);left:var(--l);writing-mode:vertical-rl;font:400 var(--s,15px)/1.05 var(--f-sign);letter-spacing:.14em;color:var(--c);padding:7px 4px 5px;border:1.5px solid var(--c);background:rgba(8,6,20,.72);text-shadow:0 0 6px var(--c),0 0 14px var(--c);box-shadow:0 0 12px -2px var(--c),inset 0 0 8px -3px var(--c);opacity:.95}
@@ -1697,11 +1680,11 @@ html.night .sky .neons b{opacity:1}
 @media (prefers-reduced-motion:no-preference){html.night .sh h2{text-shadow:0 0 12px rgba(59,230,214,.28)}}
 .p5o .o-tip .o-wx{display:none;font-style:normal;font-weight:400;margin-top:4px;font-size:11px;letter-spacing:.14em;color:#ffd9dc;text-transform:uppercase}
 /* Banner: Schilder kleiner, damit Raumschiff und Kämpfer frei bleiben */
-.sky .neons b{font-size:calc(var(--s,15px) * .72);padding:5px 3px 4px;border-width:1px;opacity:.9;translate:0 14%}
-.sky .neons b.h{padding:3px 5px 2px}
-.sky .neons b::after{height:8px}
-.sky .neons .ad{right:1.5%;top:auto;bottom:4%;width:min(11vw,48px);aspect-ratio:2/3;opacity:.85}
-.sky .neons .ad em{font-size:6px;left:4px;top:4px;letter-spacing:.08em}
+.sky .neons b{font-size:calc(var(--s,15px) * 1);padding:6px 4px 5px;border-width:1.5px;opacity:1}
+.sky .neons b.h{padding:4px 7px 3px}
+.sky .neons b::after{height:10px}
+.sky .neons .ad{right:1.5%;top:auto;bottom:5%;width:min(13vw,54px);aspect-ratio:2/3;opacity:.9}
+.sky .neons .ad em{font-size:7px;left:5px;top:5px;letter-spacing:.08em}
 .sky{margin-top:-68px}
 /* 8-bit Blöcke: größer, anklickbar, mit Sound */
 .pxd{gap:6px;bottom:12px;right:66px;pointer-events:none}
@@ -1941,6 +1924,14 @@ box-shadow:inset 0 0 0 3px rgba(10,8,22,.9),inset 0 0 0 4px rgba(232,199,122,.28
 }
 #lbPz{grid-column:1/-1}
 @media (max-width:360px){.lab{grid-template-columns:1fr}}
+
+/* Landeszene: Gleiter setzt auf dem großen Dach auf, zwei Personen steigen aus */
+.sky .land{position:absolute;left:0;bottom:7%;height:92%;width:auto;aspect-ratio:1.6;overflow:visible;z-index:3;pointer-events:none}
+.sky .land .lp1{filter:drop-shadow(0 0 .9px #3BE6D6) drop-shadow(0 0 2.4px rgba(59,230,214,.7))}
+.sky .land .lp2{filter:drop-shadow(0 0 .9px #FF3E8A) drop-shadow(0 0 2.4px rgba(255,62,138,.7))}
+.sky .land .lsh{filter:drop-shadow(0 0 2.5px rgba(59,184,255,.75))}
+.sky .land .padl{fill:#FF3E8A}.sky .land .padl.b{fill:#3BE6D6}
+.sky .land .lwin{fill:#FCEE0A;opacity:.7}.sky .land .lwin.c{fill:#3BE6D6}.sky .land .lwin.p{fill:#FF3E8A}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -3402,15 +3393,96 @@ x+=w+3;}
 o+=`<g class="ship"><ellipse cx="0" cy="0" rx="34" ry="9" fill="#2a2040" stroke="#E8C77A" stroke-width="1.4"/><path d="M-26 0 h52 M-18 -7 v14 M0 -9 v18 M18 -7 v14" stroke="#E8C77A" stroke-width=".8" opacity=".7"/><rect x="-12" y="9" width="24" height="7" rx="2" fill="#1a1430" stroke="#E8C77A" stroke-width="1"/><circle cx="-38" cy="0" r="3.5" fill="#9FF3FF" class="hexglow"/><circle cx="38" cy="2" r="2" fill="#9FF3FF" class="hexglow"/><path d="M-34 -2 l-6 -6 M-34 2 l-6 6" stroke="#E8C77A" stroke-width="1.2"/></g>`;
 // arcane: rooftop fight (silhouettes)
 o+=`<g class="fight" transform="translate(470,128)"><rect class="roof" x="-62" y="0" width="44" height="100"/><rect class="roof" x="18" y="6" width="46" height="100"/><path class="roofl" d="M-62 0 h44 M18 6 h46"/><g class="tagz" fill="none" stroke-linecap="round"><path d="M-48 24 l14 18 M-34 24 l-14 18" stroke="#FF3E8A" stroke-width="3"/><circle cx="41" cy="34" r="8" stroke="#3BE6D6" stroke-width="2"/><path d="M37 32 h.1 M45 32 h.1" stroke="#3BE6D6" stroke-width="2.4"/><path d="M36 37 q5 4 10 0" stroke="#3BE6D6" stroke-width="1.6"/><path d="M24 58 c5 -8 11 5 16 -3 s10 3 14 -3" stroke="#FF3E8A" stroke-width="2.2"/><path d="M-56 56 h20" stroke="#FCEE0A" stroke-width="2"/></g><g class="fa"><g class="fz fz-b"><circle cx="0" cy="-15" r="2.6"/><path d="M0 -12 L0 -4 M0 -10 L4 -7 M0 -10 L5 -12 M0 -4 L-3 2 M0 -4 L3 2" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="6" cy="-12" r="1.6" class="hx"/></g></g><g class="fb"><g class="fz fz-p"><circle cx="0" cy="-15" r="2.6"/><path d="M0 -12 L0 -4 M0 -10 L-4 -7 M0 -10 L-5 -12 M0 -4 L-3 2 M0 -4 L3 2" stroke-width="1.8" stroke-linecap="round" fill="none"/><rect x="-8" y="-13" width="4" height="4" rx="1" class="gl"/></g></g><g class="clash"><circle cx="0" cy="-12" r="5"/><path d="M-9 -12 h18 M0 -21 v18 M-6 -18 l12 12 M6 -18 l-12 12"/></g></g>`;
-// blade runner: spinner landing on a rooftop pad, two people get out
-o+=`<g class="pad"><rect class="roof" x="296" y="134" width="78" height="100"/><path class="roofl" d="M296 134 h78"/><rect class="roof" x="356" y="123" width="14" height="11"/><rect class="hut" x="361" y="126" width="5" height="8"/><ellipse class="padm" cx="326" cy="134" rx="17" ry="2.2"/><circle class="padl" cx="300" cy="133" r="1.2"/><circle class="padl b" cx="352" cy="133" r="1.2"/></g>`;
-o+=`<g class="spn" transform="translate(326,134)"><path class="cone" d="M-8 -6 L-26 0 L26 0 L8 -6z"/><path class="sb" d="M-22 -3 L-18 -8 L-6 -12 L8 -12 L18 -8 L23 -4 L22 -1 L-21 -1z"/><path class="sw" d="M-5 -12 L-1 -16 L8 -16 L11 -12z"/><path class="sd" d="M-1 -12 L-5 -20 L5 -18 L8 -12z"/><rect class="sb" x="-14" y="-1" width="6" height="1.2"/><rect class="sb" x="8" y="-1" width="6" height="1.2"/><circle class="sl" cx="23" cy="-4" r="1"/><circle class="sl r" cx="-21" cy="-3" r=".9"/><path class="sedge" d="M-18 -8 L-6 -12 L8 -12 L18 -8"/></g>`;
-o+=`<g class="pw1" transform="translate(340,134)"><g class="pp a"><circle cx="0" cy="-14" r="2.3"/><path d="M-3 -11.4 Q0 -12.4 3 -11.4 L3.8 -5 L4.6 0 L.8 0 L.4 -4 L-.4 -4 L-.8 0 L-4.6 0 L-3.8 -5z"/></g></g><g class="pw2" transform="translate(333,134) scale(.94)"><g class="pp b"><circle cx="0" cy="-14" r="2.3"/><path d="M-3 -11.4 Q0 -12.4 3 -11.4 L3.8 -5 L4.6 0 L.8 0 L.4 -4 L-.4 -4 L-.8 0 L-4.6 0 L-3.8 -5z"/></g></g>`;
 // flying cars
 for(let i=0;i<5;i++) o+=`<rect class="car${i%2?" r":""}" x="0" y="${30+rnd()*70}" width="10" height="2" rx="1" style="--t:${(12+rnd()*12).toFixed(1)}s;--o:-${(rnd()*10).toFixed(1)}s"/>`;
 sv.innerHTML=`<g transform="scale(1,.68)">${o}</g>`;
 const H=["서울 · 2026","JOI · EVERYTHING YOU WANT TO SEE","PILTOVER ⇅ ZAUN","HEXTECH INSIDE","WAKE UP, SAMURAI","소주 4.500₩","MICHI × CHRISTOPH","福岡 BONUSLEVEL","GLÜCKWUNSCH, CHOOM"],C=["","c","y"]; let i=0; const hb=document.getElementById("holo");
 if(!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(()=>{i=(i+1)%H.length; hb.textContent=H[i]; hb.className="holo sw "+C[i%3]; setTimeout(()=>hb.classList.remove("sw"),550);},4800);
+})();
+
+// ---------- Landeszene: Gleiter, zwei Passagiere ----------
+(function(){
+const sky=document.getElementById("sky"); if(!sky) return;
+const NS="http://www.w3.org/2000/svg";
+const svg=document.createElementNS(NS,"svg"); svg.setAttribute("class","land"); svg.setAttribute("viewBox","0 0 160 100"); svg.setAttribute("aria-hidden","true");
+let w="";
+const person=(id,cls,sc,hair)=>`<g id="${id}" class="${cls}" transform="translate(0 0)"><g class="sc" transform="scale(${sc})"><g class="lB"><path d="M0 -8 L-.3 -.4" stroke="#0b0a1a" stroke-width="1.7" stroke-linecap="round" fill="none"/><path d="M-.4 -.2 h2" stroke="#0b0a1a" stroke-width="1.1" stroke-linecap="round"/></g><g class="aB"><path d="M0 -14.6 L.3 -9.4" stroke="#0b0a1a" stroke-width="1.5" stroke-linecap="round" fill="none"/></g><g class="bd"><path d="M-3 -15.2 Q0 -16.4 3 -15.2 L3.6 -8.2 L-3.8 -8.2Z" fill="#0b0a1a"/><path d="M-3.8 -8.2 L-5.4 -3.6 L1.6 -6Z" fill="#0b0a1a"/>${hair}</g><g class="lF"><path d="M0 -8 L.3 -.4" stroke="#0b0a1a" stroke-width="1.7" stroke-linecap="round" fill="none"/><path d="M.2 -.2 h2" stroke="#0b0a1a" stroke-width="1.1" stroke-linecap="round"/></g><g class="aF"><path d="M0 -14.6 L.3 -9.4" stroke="#0b0a1a" stroke-width="1.5" stroke-linecap="round" fill="none"/></g></g></g>`;
+w+=`<defs><linearGradient id="lnRoof" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2042"/><stop offset="1" stop-color="#0a0818"/></linearGradient><linearGradient id="lnHull" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5088"/><stop offset=".5" stop-color="#1a1d3e"/><stop offset="1" stop-color="#0a0919"/></linearGradient><linearGradient id="lnGl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9FF3FF"/><stop offset="1" stop-color="#1d5fa8"/></linearGradient><radialGradient id="lnGlow"><stop offset="0" stop-color="#9FF3FF" stop-opacity=".9"/><stop offset="1" stop-color="#3BB8FF" stop-opacity="0"/></radialGradient><linearGradient id="lnBeam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8fbff" stop-opacity=".6"/><stop offset="1" stop-color="#3BE6D6" stop-opacity="0"/></linearGradient><filter id="lnBl" x="-30%" y="-80%" width="160%" height="260%"><feGaussianBlur stdDeviation="1.1"/></filter></defs>`;
+/* großes Dach */
+w+=`<rect x="-4" y="72" width="136" height="40" fill="url(#lnRoof)"/><rect x="-4" y="70.6" width="136" height="1.8" fill="#0f1230"/><path d="M-4 70.7 H132" stroke="#3BE6D6" stroke-width=".55" opacity=".95"/><path d="M-4 73.4 H132" stroke="#FF3E8A" stroke-width=".35" opacity=".7"/>`;
+for(let y=78;y<96;y+=6)for(let x=3;x<128;x+=7){ if(((x*7+y*13)%5)<2) continue; w+=`<rect class="lwin ${["","c","c"][(x+y)%3]}" x="${x}" y="${y}" width="2.2" height="2.6" style="opacity:${(.22+((x*y)%7)/22).toFixed(2)}"/>`; }
+w+=`<path d="M126 70.6 V52" stroke="#3BE6D6" stroke-width=".5"/><path d="M123 58 h6 M124 62 h4" stroke="#3BE6D6" stroke-width=".4"/><circle class="beacon" cx="126" cy="51.5" r="1.1"/><rect x="22" y="66" width="7" height="4.6" fill="#0d0b20" stroke="#3BB8FF" stroke-width=".3"/><rect x="31" y="67.5" width="5" height="3.1" fill="#0d0b20" stroke="#3BB8FF" stroke-width=".3"/><rect x="86" y="67.2" width="6" height="3.4" fill="#0d0b20" stroke="#3BB8FF" stroke-width=".3"/>`;
+w+=`<rect x="102" y="61" width="19" height="9.6" fill="#0d0b20" stroke="#3BB8FF" stroke-width=".35"/><rect x="100.5" y="59.6" width="22" height="1.8" fill="#12142c" stroke="#3BE6D6" stroke-width=".3"/><rect id="lnDoorG" x="107" y="62.8" width="6.6" height="7.8" fill="#FFE27A" opacity=".55"/><path d="M107 62.8 h6.6 v7.8 h-6.6z" fill="none" stroke="#FFE27A" stroke-width=".35"/><path d="M104.5 64 h1.5 M116 64 h1.5 M116 67 h1.5" stroke="#3BE6D6" stroke-width=".5"/>`;
+/* Pad */
+w+=`<ellipse id="lnGlow" cx="56" cy="71.2" rx="30" ry="5.5" fill="url(#lnGlow)" opacity="0"/><ellipse cx="56" cy="71.4" rx="25" ry="2.5" fill="rgba(59,230,214,.07)" stroke="#3BE6D6" stroke-width=".5" opacity=".9"/><path d="M45 71.4 l4.5 -1.1 h13 l4.5 1.1 l-4.5 1.1 h-13z" fill="none" stroke="#FF3E8A" stroke-width=".45"/><path d="M52.5 71.4 h7 M56 70.4 v2" stroke="#FF3E8A" stroke-width=".5"/><circle class="padl" cx="33" cy="70.9" r="1"/><circle class="padl b" cx="79" cy="70.9" r="1"/><circle class="padl b" cx="40" cy="73" r=".7"/><circle class="padl" cx="72" cy="73" r=".7"/>`;
+w+=`<g id="lnRings"><ellipse class="rg" cx="56" cy="71.3" rx="10" ry="1.4" fill="none" stroke="#9FF3FF" stroke-width=".5"/><ellipse class="rg" cx="56" cy="71.3" rx="10" ry="1.4" fill="none" stroke="#9FF3FF" stroke-width=".5"/><ellipse class="rg" cx="56" cy="71.3" rx="10" ry="1.4" fill="none" stroke="#9FF3FF" stroke-width=".5"/></g><g id="lnDust" filter="url(#lnBl)">`;
+for(let k=0;k<8;k++) w+=`<ellipse class="du" cx="56" cy="70.6" rx="4" ry="1.5" fill="#dff6ff"/>`;
+w+=`</g>`;
+w+=`<path id="lnBeam" d="" fill="url(#lnBeam)" opacity="0"/>`;
+/* Gleiter */
+w+=`<g id="lnShip"><g class="lsh"><g class="bodyf"><g id="lnGear"><path d="M-12 4.5 L-14 9 M12 4.5 L14 9" stroke="#8a8fb8" stroke-width=".9" stroke-linecap="round"/><path d="M-16 9 h4 M12 9 h4" stroke="#E8C77A" stroke-width=".9" stroke-linecap="round"/></g>
+<g id="lnFl"><path d="M-12.5 5.6 L-10 15 L-7.5 5.6Z" fill="#9FF3FF"/><path d="M-11.6 5.6 L-10 11 L-8.4 5.6Z" fill="#fff"/><path d="M7.5 5.6 L10 15 L12.5 5.6Z" fill="#9FF3FF"/><path d="M8.4 5.6 L10 11 L11.6 5.6Z" fill="#fff"/></g>
+<rect x="-13" y="4" width="6" height="2.2" rx="1" fill="#0c0a1c" stroke="#E8C77A" stroke-width=".3"/><rect x="7" y="4" width="6" height="2.2" rx="1" fill="#0c0a1c" stroke="#E8C77A" stroke-width=".3"/>
+<g transform="scale(-1 1)"><path d="M-20 1 C-18 -4 -8 -7 2 -7 C12 -7 18 -4 22 0 C20 3.4 14 5.2 4 5.2 H-14 C-18 5.2 -20 3.4 -20 1Z" fill="url(#lnHull)" stroke="#3BB8FF" stroke-width=".45"/><path d="M-20 .6 L-27 -6.4 L-15 -3.6Z" fill="#12142c" stroke="#3BB8FF" stroke-width=".35"/><path d="M2.6 -6.6 C9 -6.6 14 -3.8 17 -.4 L3 -.4Z" fill="url(#lnGl)" opacity=".85"/><path d="M5 -5.6 C9 -5.2 12 -3.8 14.4 -1.6" stroke="#fff" stroke-width=".35" fill="none" opacity=".75"/><path d="M-17 2.2 H18" stroke="#FF3E8A" stroke-width=".55"/><path d="M-14 .2 H-4 M-2 .2 H3" stroke="#E8C77A" stroke-width=".35" opacity=".8"/><circle cx="21" cy="-.2" r="1" fill="#FCEE0A"/><circle cx="-20" cy="1" r="1" fill="#FF3E8A"/></g>
+<rect id="lnDG" x="-4.6" y="-4.6" width="9.2" height="6.2" rx=".8" fill="#FFE27A" opacity="0"/><path id="lnDoor" d="M-5.2 -4.8 H5.2 L7.2 -9.4 H-3.2Z" fill="#12142c" stroke="#3BB8FF" stroke-width=".35" opacity="0"/><path id="lnRamp" d="M-1.6 1.6 L1.6 1.6 L10.4 9.2 L6 9.2Z" fill="#FFE27A" opacity="0"/></g></g></g>`;
+/* Personen */
+w+=person("lnP1","lp1",1.3,'<circle cx=".5" cy="-17.6" r="2.1" fill="#0b0a1a"/><path d="M-1.6 -18.8 Q.4 -21 2.8 -18.8 L2.8 -18 L-1.6 -18Z" fill="#0b0a1a"/><rect x="-4.6" y="-14.8" width="2.4" height="5.4" rx=".8" fill="#0b0a1a"/>');
+w+=person("lnP2","lp2",1.18,'<circle cx=".5" cy="-17.6" r="2.1" fill="#0b0a1a"/><path d="M-1.8 -18 Q-3.6 -17 -3.6 -14.4" stroke="#0b0a1a" stroke-width="1" fill="none" stroke-linecap="round"/>');
+svg.innerHTML=w; sky.insertBefore(svg,sky.querySelector(".floor"));
+const q=id=>svg.querySelector("#"+id);
+const el={ship:q("lnShip"),gear:q("lnGear"),fl:q("lnFl"),dg:q("lnDG"),door:q("lnDoor"),ramp:q("lnRamp"),beam:q("lnBeam"),glow:q("lnGlow"),doorG:q("lnDoorG"),rings:[...svg.querySelectorAll(".rg")],dust:[...svg.querySelectorAll(".du")]};
+const mkP=(id)=>{const g=q(id); return {g,sc:g.querySelector(".sc"),lB:g.querySelector(".lB"),lF:g.querySelector(".lF"),aB:g.querySelector(".aB"),aF:g.querySelector(".aF"),bd:g.querySelector(".bd"),ph:0}};
+const P1=mkP("lnP1"),P2=mkP("lnP2");
+const C=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), SM=(a,b,t)=>{const x=C((t-a)/(b-a));return x*x*(3-2*x);}, EO=x=>1-Math.pow(1-x,3), EI=x=>x*x*x, EIO=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const T=48, PX=56, GY=62.4, DX=108.5;
+/* Person: ts Start, xt Ruheplatz, pt Zeigen ab, tin Eintritt */
+const place=(P,t,dt,o)=>{
+ const u=t-o.ts; let x=PX+1,y=63.9,walk=0,vis=0,arm=0;
+ if(u>=0){
+  vis=SM(0,.35,u);
+  if(u<1.6){ const s=u/1.6; x=PX+1+9*s; y=63.9+7.5*s; walk=.8; }
+  else{
+   const dist=o.xt-(PX+10), wt=dist/5, p=C((u-1.6)/wt), e=p*p*(3-2*p); x=PX+10+dist*e; y=71.4; walk=C(dist*6*p*(1-p)/wt/5.2);
+   if(t>=o.tin){ const v=(t-o.tin)/1.5, e2=SM(0,1,v); x=o.xt+(DX-o.xt)*e2; walk=C((DX-o.xt)*6*C(v)*(1-C(v))/1.5/5.2+.1); vis=1-SM(.88,1.2,v); if(v>1.2) vis=0; }
+  }
+  if(t>=o.pt&&t<o.pt+3.2) arm=SM(o.pt,o.pt+.6,t)*(1-SM(o.pt+2.6,o.pt+3.2,t));
+ }
+ P.ph+=walk*dt*9.2; const s=Math.sin(P.ph), a=26*walk*s, bob=-.32*walk*Math.abs(Math.cos(P.ph));
+ P.g.setAttribute("transform",`translate(${x.toFixed(2)} ${(y+bob).toFixed(2)})`); P.g.style.opacity=vis.toFixed(2);
+ P.lF.setAttribute("transform",`rotate(${a.toFixed(1)} 0 -8)`); P.lB.setAttribute("transform",`rotate(${(-a).toFixed(1)} 0 -8)`);
+ P.aF.setAttribute("transform",`rotate(${(arm?-(30+85*arm):(-a*.8)).toFixed(1)} 0 -14.6)`); P.aB.setAttribute("transform",`rotate(${(a*.8).toFixed(1)} 0 -14.6)`);
+ P.bd.setAttribute("transform",`rotate(${(3*walk).toFixed(1)} 0 -8)`);
+};
+const o1={ts:17.3,xt:98,pt:26.6,tin:30.2}, o2={ts:19.4,xt:87,pt:99,tin:31.0};
+let last=0, run=true;
+function draw(t,dt){
+ let x,y,rot=0,gear=0,fl=0,beam=0,door=0;
+ if(t<7.5){ const e=EO(t/7.5); x=PX+139*(1-e); y=10+18*e; rot=-6*(1-e)+2.5*Math.sin(Math.PI*e); fl=.15; beam=SM(2,7.5,t)*.4; }
+ else if(t<14.6){ const e=EIO((t-7.5)/7.1); x=PX+Math.sin(t*1.3)*.5*(1-e); y=28+(GY-28)*e+Math.sin(t*2.1)*.35*(1-e); fl=1; gear=SM(11,13,t); beam=.4+.4*e; rot=Math.sin(t*1.7)*.8*(1-e); }
+ else if(t<34){ x=PX; const k=t-14.6; y=GY+(k<1.6?.9*Math.exp(-k*3.2)*Math.sin(k*13):0); gear=1; fl=1-SM(14.6,15.6,t); beam=.8*(1-SM(14.6,15.6,t)); door=SM(15.2,16.9,t)*(1-SM(32.8,33.9,t)); }
+ else { gear=1-SM(34.6,36,t); fl=SM(33.8,34.4,t); door=0;
+  if(t<39.5){ const e=EI(C((t-34.4)/5.1)); x=PX; y=GY-(GY-16)*e; rot=Math.sin(t*1.6)*.7; beam=(1-e)*.7*SM(34,35,t); }
+  else { const e=EI(C((t-39.5)/4)); x=PX-(PX+75)*e; y=16-6*e; rot=3*e; beam=0; } }
+ el.ship.setAttribute("transform",`translate(${x.toFixed(2)} ${y.toFixed(2)}) rotate(${rot.toFixed(2)})`);
+ el.gear.setAttribute("transform",`translate(0 4.5) scale(1 ${Math.max(.01,gear).toFixed(2)}) translate(0 -4.5)`);
+ el.fl.style.opacity=(fl*(.75+.25*Math.sin(t*60))).toFixed(2); el.fl.setAttribute("transform",`translate(0 5.6) scale(1 ${(.75+.35*Math.sin(t*47)).toFixed(2)}) translate(0 -5.6)`);
+ el.dg.setAttribute("opacity",(door*.95).toFixed(2)); el.door.setAttribute("opacity",door.toFixed(2)); el.door.setAttribute("transform",`translate(0 ${(4*(1-door)).toFixed(2)})`); el.ramp.setAttribute("opacity",(door*.6*(t<33?1:0)).toFixed(2));
+ const gh=Math.max(0,71.4-(y+(gear>0?9:5)));
+ const k=C(1-gh/28)*(fl>.05?1:0)*(y>20?1:0);
+ el.glow.setAttribute("opacity",(k*.9).toFixed(2));
+ el.beam.setAttribute("opacity",beam.toFixed(2)); el.beam.setAttribute("d",beam>.01?`M${(x-5).toFixed(1)} ${(y+6).toFixed(1)} L${(x-22-gh*.35).toFixed(1)} 71.4 L${(x+22+gh*.35).toFixed(1)} 71.4 L${(x+5).toFixed(1)} ${(y+6).toFixed(1)}Z`:"");
+ el.rings.forEach((r,i)=>{ const ph=(t*1.1+i/3)%1; r.setAttribute("rx",(8+ph*26).toFixed(1)); r.setAttribute("ry",(1+ph*2.7).toFixed(2)); r.setAttribute("opacity",(k*(1-ph)*.85).toFixed(2)); });
+ el.dust.forEach((d,i)=>{ const ph=((t*.8+i*.125)%1), side=i%2?1:-1, dx=side*(6+ph*(22+(i%3)*5)); d.setAttribute("cx",(PX+dx).toFixed(1)); d.setAttribute("cy",(70.8-ph*2.2).toFixed(1)); d.setAttribute("rx",(3+ph*5).toFixed(1)); d.setAttribute("ry",(1.2+ph*1.6).toFixed(1)); d.setAttribute("opacity",(Math.max(0,k-.35)*(1-ph)*.55).toFixed(2)); });
+ el.doorG.setAttribute("opacity",(.45+.5*(t>=o1.tin+1&&t<o1.tin+2.2?1:0)+.1*Math.sin(t*3)).toFixed(2));
+ place(P1,t,dt,o1); place(P2,t,dt,o2);
+}
+sky.__land={draw:t=>draw(t,.016)};
+if(matchMedia("(prefers-reduced-motion: reduce)").matches){ P1.ph=P2.ph=0; draw(26,.016); return; }
+let t0=performance.now(), vis=true;
+if("IntersectionObserver" in window) new IntersectionObserver(es=>{ vis=es[0].isIntersecting; if(vis){ last=0; requestAnimationFrame(loop);} }).observe(sky);
+function loop(now){ if(!vis||document.hidden||!run) return; const dt=last?Math.min(.05,(now-last)/1000):.016; last=now; draw(((now-t0)/1000)%T,dt); requestAnimationFrame(loop); }
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden){ last=0; requestAnimationFrame(loop);} });
+requestAnimationFrame(loop);
 })();
 // ---------- matrix strips ----------
 (function(){
@@ -3736,7 +3808,7 @@ const d=document.createElement("i"); d.className="gdrip"; d.style.left=(30+((i*3
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const sky=document.getElementById("sky");
 if(sky){ const n=document.createElement("div"); n.className="neons"; n.setAttribute("aria-hidden","true");
- n.innerHTML='<b class="p" style="--l:6%;--s:15px;--b:30%;--fo:-1s">호텔</b><b class="c h" style="--l:17%;--s:11px;--b:50%;--fo:-4s">24H</b><b class="y" style="--l:40%;--s:13px;--b:26%;--fo:-2s">소주</b><b class="c" style="--l:47%;--s:14px;--b:30%;--fo:-5s">ラーメン</b><b class="p h" style="--l:32%;--s:10px;--b:60%;--fo:-3s">포차</b><b class="y" style="--l:28%;--s:12px;--b:34%;--fo:-6s">치킨</b><div class="ad"><em>AD-7734</em><i></i></div>';
+ n.innerHTML='<b class="p" style="--l:3%;--s:17px;--b:42%;--fo:-1s">호텔</b><b class="c h" style="--l:84%;--s:13px;--b:68%;--fo:-4s">24H</b><b class="y" style="--l:61%;--s:15px;--b:14%;--fo:-2s">소주</b><b class="c" style="--l:68%;--s:16px;--b:12%;--fo:-5s">ラーメン</b><b class="p h" style="--l:50%;--s:12px;--b:57%;--fo:-3s">포차</b><b class="y" style="--l:76%;--s:15px;--b:16%;--fo:-6s">치킨</b><div class="ad"><em>AD-7734</em><i></i></div>';
  sky.appendChild(n); }
 const D={plan:["JONGNO","종로","BEZIRK 03","37.5704 N · 126.9822 E",[["NEON",.7],["HUNGER",.9],["LÄRM",.35]]],
  essen:["GWANGJANG","광장","BEZIRK 07","MARKTSTRASSE · 24H",[["NEON",.55],["HUNGER",1],["LÄRM",.8]]],
