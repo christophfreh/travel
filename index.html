@@ -1881,6 +1881,8 @@ body.mapfull .sfab{display:none}
 .tph figcaption a{color:inherit}
 .ext{color:var(--cyan);text-decoration:none;border-bottom:1px dotted var(--cyan)}
 .hl-off{font-size:12px;color:var(--muted);margin:8px 0 0}
+.lf-area{background:transparent!important;border:0!important;box-shadow:none!important;color:#fff;font:700 10px/1.1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;text-shadow:0 0 4px #000,0 0 8px #000;white-space:normal;text-align:center;pointer-events:none}
+.lf-area:before{display:none!important}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -2839,6 +2841,23 @@ MAPS.fuk.pins.push(
 ["w","Nakasu (Viertel)","Insel mit Yatai ab 18 Uhr",33.5907,130.408,"","","","v-nakasu"],
 ["w","Hakata & Tenjin (Viertel)","Bahnhof, Nintendo, Daimyo-Bars",33.5925,130.4015,"","","","v-hakata"]
 );
+
+const VCOL={"v-jongno":"#FCEE0A","v-palast":"#3BE6D6","v-euljiro":"#FF3E8A","v-myeongdong":"#B48CFF","v-jamsil":"#FF9F43","v-nakasu":"#FF3E8A","v-hakata":"#3BE6D6"};
+MAPS.viertel.fit=[[37.553,126.958],[37.592,127.012]];
+MAPS.viertel.box=[37.553,37.592,126.958,127.012];
+MAPS.viertel.polys=[
+["v-jongno","Jongno & Insadong",[[37.5775,126.9835],[37.5775,126.9915],[37.5715,126.9930],[37.5695,126.9860],[37.5705,126.9815]]],
+["v-palast","Gyeongbokgung & Seochon",[[37.5845,126.9660],[37.5845,126.9810],[37.5765,126.9815],[37.5740,126.9740],[37.5755,126.9660]]],
+["v-euljiro","Euljiro",[[37.5675,126.9890],[37.5680,127.0010],[37.5628,127.0015],[37.5625,126.9895]]],
+["v-myeongdong","Myeongdong",[[37.5660,126.9825],[37.5660,126.9880],[37.5610,126.9885],[37.5610,126.9820]]],
+["v-jamsil","Jamsil",[[37.5180,127.0900],[37.5180,127.1080],[37.5090,127.1090],[37.5085,127.0900]]]
+];
+MAPS.fuk.polys=[
+["v-nakasu","Nakasu",[[33.5950,130.4045],[33.5950,130.4085],[33.5865,130.4090],[33.5860,130.4055]]],
+["v-hakata","Tenjin",[[33.5945,130.3935],[33.5945,130.4025],[33.5890,130.4025],[33.5890,130.3935]]],
+["v-hakata","Hakata",[[33.5935,130.4140],[33.5935,130.4230],[33.5885,130.4230],[33.5885,130.4140]]]
+];
+
 const BL=id=>id.startsWith("t-")?"Zum Tipp":id==="top10g"?"Zur Liste":"Zum Viertel";
 function drawMap(m){
 const [la0,la1,lo0,lo1]=m.box, k=Math.cos((la0+la1)/2*Math.PI/180);
@@ -2851,6 +2870,7 @@ if(m.zone){const z=m.zone;s+=`<rect x="${X(z[2])}" y="${Y(z[1])}" width="${X(z[3
 m.roads.forEach(r=>s+=`<path class="mp-road" d="${line(r)}"/>`);
 m.water.forEach(w=>s+=`<path class="mp-water" stroke-width="${m.el==="mapCity"?9:5}" d="${line(w)}"/>`);
 if(m.island) s+=`<path d="${line(m.island)}Z" fill="#1B1840" stroke="#3BE6D6" stroke-opacity=".35"/>`;
+(m.polys||[]).forEach(q=>{ const c=VCOL[q[0]]||"#FCEE0A"; const cx=q[2].reduce((a,t)=>a+t[1],0)/q[2].length, cy=q[2].reduce((a,t)=>a+t[0],0)/q[2].length; s+=`<path d="${line(q[2])}Z" fill="${c}" fill-opacity=".14" stroke="${c}" stroke-width="1.6" stroke-dasharray="5 3"/><text class="mp-lbl" x="${X(cx)}" y="${Y(cy)+20}" text-anchor="middle" fill="${c}">${q[1].split(" & ")[0].toUpperCase()}</text>`; });
 m.labels.forEach(l=>s+=`<text class="mp-lbl" x="${X(l[1])}" y="${Y(l[0])}" text-anchor="${l[2].startsWith("NAKASU")?"middle":"start"}">${l[2]}</text>`);
 const col={c:"#3BE6D6",y:"#FFD23F",p:"#FF3E8A",w:"#F4F1FF",s:"#B48CFF"};
 const OUT=m.pins.map(p=>p[3]>la1||p[3]<la0||p[4]>lo1||p[4]<lo0);
@@ -2871,11 +2891,12 @@ const map=L.map(el.querySelector(".lf-map"),{scrollWheelZoom:false,tap:true});
 map.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'}).addTo(map);
 if(m.zone){const z=m.zone;L.rectangle([[z[0],z[2]],[z[1],z[3]]],{color:"#FCEE0A",weight:1.5,dashArray:"6 4",fillColor:"#FCEE0A",fillOpacity:.05,className:"lf-zone"}).addTo(map).bindTooltip("Jongno · Euljiro, unsere Basis");}
+(m.polys||[]).forEach(q=>{ const c=VCOL[q[0]]||"#FCEE0A"; L.polygon(q[2],{color:c,weight:2.2,dashArray:"6 4",fillColor:c,fillOpacity:.14}).addTo(map).bindTooltip(q[1],{permanent:true,direction:"center",className:"lf-area"}).bindPopup(`<b>${q[1]}</b><small>Viertel</small><a href="#${q[0]}" data-go="${q[0]}">Zum Viertel ↓</a>`); });
 const base=m.zone?[(m.zone[0]+m.zone[1])/2,(m.zone[2]+m.zone[3])/2]:null;
 const dist=p=>{ if(!base) return ""; const t=Math.PI/180,dl=(p[3]-base[0])*t,dn=(p[4]-base[1])*t,x=Math.sin(dl/2)**2+Math.cos(base[0]*t)*Math.cos(p[3]*t)*Math.sin(dn/2)**2,km=12742*Math.asin(Math.sqrt(x)); return `<span class="pp-d">${km.toFixed(1).replace(".",",")} KM VON DER BASIS · ZU FUSS CA. ${Math.max(1,Math.round(km*1.25/5*60))} MIN</span>`; };
 const pts=m.pins.map((p,i)=>{L.marker([p[3],p[4]],{icon:L.divIcon({className:"lf-pin",html:`<span style="--c:${PCOL[p[0]]}"><i>${i+1}</i></span>`,iconSize:[26,26],iconAnchor:[13,13]}),title:p[1]}).addTo(map)
 .bindPopup(`${p[5]?`<img class="pth" src="${p[5]}" alt="${p[1]}" onerror="this.remove()">`:""}<span class="pp-k">&gt; ZIEL ${String(i+1).padStart(2,"0")}</span><b>${p[1]}</b><small>${p[2]}</small>${dist(p)}<a href="${GM(p[1])}" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>${p[8]?`<a href="#${p[8]}" data-go="${p[8]}">${BL(p[8])} ↓</a>`:""}${p[5]?`<small class="pcr">Foto: <a href="https://unsplash.com/@${p[7]}?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">${p[6]}</a> · Unsplash</small>`:""}`); return [p[3],p[4]];});
-map.fitBounds(pts,{padding:[28,28]}); el._lf=map;
+map.fitBounds(m.fit||pts,{padding:[28,28]}); el._lf=map;
 let route=null; map.on("popupopen",e=>{ if(!base) return; const ll=e.popup.getLatLng(); if(route) map.removeLayer(route); route=L.polyline([base,[ll.lat,ll.lng]],{color:"#FCEE0A",weight:2.5,dashArray:"3 9",opacity:.9,className:"lf-route"}).addTo(map); }); map.on("popupclose",()=>{ if(route){ map.removeLayer(route); route=null; } });
 const cmp=document.createElement("div"); cmp.className="lf-compass"; cmp.setAttribute("aria-hidden","true"); cmp.innerHTML="<i></i>"; el.querySelector(".lf-map").appendChild(cmp);
 const hud=document.createElement("div"); hud.className="lf-hud"; hud.setAttribute("aria-hidden","true"); el.querySelector(".lf-map").appendChild(hud);
