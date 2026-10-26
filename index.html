@@ -1868,6 +1868,9 @@ body.mapfull .sfab{display:none}
 .shit::after{content:"";position:absolute;left:-4px;right:-4px;height:36px;top:-36px;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(59,230,214,.35),transparent);animation:shsw 1.1s ease-out 1 both}
 @keyframes shsw{to{top:100%}}
 @media (prefers-reduced-motion:reduce){.sfab,.sovl::after,.sovl .sit,.sovl.on .shead,.sovl.on .srow{animation:none}.shit::after{display:none}}
+.pth{display:block;width:100%;height:120px;object-fit:cover;margin:6px 0 2px;border:1px solid var(--line)}
+.leaflet-popup-content .pth{width:100%;height:110px;margin:0 0 8px;border:0}
+.pcr{display:block;font-size:10px!important;opacity:.7;margin-top:4px}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -2302,6 +2305,8 @@ pflichtprogramm: <span class="n">null</span>,
 <ol class="plist" id="listCore"></ol>
 <div class="map" id="mapCity"></div>
 <ol class="plist" id="listCity"></ol>
+<div class="map" id="mapTop"></div>
+<ol class="plist" id="listTop"></ol>
 <div class="map" id="mapFuk"></div>
 <ol class="plist" id="listFuk"></ol>
 <div class="label" style="display:block;margin-top:8px">U-Bahn · die Linien, die ihr braucht</div>
@@ -2784,6 +2789,19 @@ pins:[
 ["s","UNIQLO Tenjin","UT-Druckstudio",33.59281,130.39843]
 ]}
 };
+MAPS.top10={el:"mapTop",list:"listTop",title:"Reiseführer Top 10",sub:"die zehn großen Ziele",box:[37.505,37.595,126.955,127.135],link:GM,areas:[],water:MAPS.city.water,island:MAPS.city.island,roads:MAPS.city.roads,labels:[[37.5585,126.9440,"JONGNO"],[37.5235,127.0300,"GANGNAM"],[37.5150,127.0900,"JAMSIL"]],
+pins:[
+["w","Gyeongbokgung","Größter Palast, Wachablösung am Haupttor",37.5796,126.977,"https://images.unsplash.com/photo-1638964663550-e2123ac8900b?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","Daniel Bernard","nardly"],
+["w","Jogye-sa","Größte Tempelhalle der Stadt, Insadong",37.5717,126.9825,"https://images.unsplash.com/photo-1704177095608-55c44fe29ab6?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","William Warby","wwarby"],
+["w","Namdaemun-Markt","Markt rund um die Uhr, Linie 4",37.5593,126.977],
+["w","Deoksugung","Abends beleuchtet, ruhiger",37.5658,126.9751,"https://images.unsplash.com/photo-1669865602156-64134ecb063a?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","INHYEOK PARK","travelershigh"],
+["w","Changdeokgung","UNESCO, Geheimgarten Huwon, Tickets früh",37.5794,126.991,"https://images.unsplash.com/photo-1609527166729-9a37af65114d?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","leannk.","leannk_official"],
+["w","Gwangjang-Markt","Tagsüber Stoffe, abends Streetfood",37.57,126.9996,"https://images.unsplash.com/photo-1742734704375-af03a327e8b9?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","Luo Jin Hong","logichom"],
+["w","N Seoul Tower","Rundumblick, Sonnenuntergang",37.5512,126.9882,"https://images.unsplash.com/photo-1570191913384-7b4ff11716e7?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","Robson Hatsukami Morgan","robsonhmorgan"],
+["w","Nationalmuseum von Korea","Kulturschätze, Eintritt meist frei (ca.)",37.5239,126.9803,"https://images.unsplash.com/photo-1662808643554-26c2e566afa2?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","yeojin yun","seoul_lover_lily"],
+["w","War Memorial of Korea","Kriegsgeschichte Koreas, Samgakji",37.5367,126.9772],
+["w","Olympiapark","Park von 1988, Skulpturen, ruhiger Tag",37.5209,127.1214,"https://images.unsplash.com/photo-1736861212170-5d9f9fba5932?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","Eun Jun Kim","joneeee"]
+]};
 function drawMap(m){
 const [la0,la1,lo0,lo1]=m.box, k=Math.cos((la0+la1)/2*Math.PI/180);
 const W=400, H=Math.round(W*((la1-la0)/((lo1-lo0)*k)));
@@ -2804,7 +2822,7 @@ for(let it=0;it<40;it++)for(let a=0;a<P.length;a++)for(let b=a+1;b<P.length;b++)
 m.pins.forEach((p,i)=>{const x=P[i].x,y=P[i].y;s+=`<a href="${m.link(p[1])}" target="_blank" rel="noopener"><g class="mp-pin"><title>${p[1]} · ${p[2]}</title><circle cx="${x}" cy="${y}" r="10" fill="${col[p[0]]}" filter="url(#glow${m.el})" opacity=".6"/><circle class="ring" cx="${x}" cy="${y}" r="9" fill="none" stroke="${col[p[0]]}" stroke-width="1.5"/><circle cx="${x}" cy="${y}" r="8.5" fill="${col[p[0]]}" stroke="#110F27" stroke-width="1.2"/><text x="${x}" y="${y+3.2}" text-anchor="middle">${i+1}</text></g></a>`;});
 s+=`</svg>`;
 $(m.el).innerHTML=`<div class="ttl">${m.title}<small>${m.sub}</small></div><div class="map-tools"><button type="button" class="loupe-btn" aria-pressed="false" aria-label="Lupe ein- oder ausschalten"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button><button type="button" class="zoom-btn" aria-label="Karte vergrößern" title="Vergrößern">⤢</button></div>`+s;
-$(m.list).innerHTML=m.pins.map((p,i)=>`<li><a href="${m.link(p[1])}" target="_blank" rel="noopener"><span class="num" style="background:${col[p[0]]}">${i+1}</span><span>${p[1]}<small>${p[2]}</small></span></a></li>`).join("");
+$(m.list).innerHTML=m.pins.map((p,i)=>`<li><a href="${m.link(p[1])}" target="_blank" rel="noopener"><span class="num" style="background:${col[p[0]]}">${i+1}</span><span>${p[1]}<small>${p[2]}</small>${p[5]?`<img class="pth" src="${p[5]}" alt="${p[1]}" loading="lazy" onerror="this.remove()"><small class="pcr">Foto: ${p[6]} · Unsplash</small>`:""}</span></a></li>`).join("");
 }
 Object.values(MAPS).forEach(drawMap);
 const PCOL={c:"#3BE6D6",y:"#FFD23F",p:"#FF3E8A",w:"#F4F1FF",s:"#B48CFF"};
@@ -2818,7 +2836,7 @@ if(m.zone){const z=m.zone;L.rectangle([[z[0],z[2]],[z[1],z[3]]],{color:"#FCEE0A"
 const base=m.zone?[(m.zone[0]+m.zone[1])/2,(m.zone[2]+m.zone[3])/2]:null;
 const dist=p=>{ if(!base) return ""; const t=Math.PI/180,dl=(p[3]-base[0])*t,dn=(p[4]-base[1])*t,x=Math.sin(dl/2)**2+Math.cos(base[0]*t)*Math.cos(p[3]*t)*Math.sin(dn/2)**2,km=12742*Math.asin(Math.sqrt(x)); return `<span class="pp-d">${km.toFixed(1).replace(".",",")} KM VON DER BASIS · ZU FUSS CA. ${Math.max(1,Math.round(km*1.25/5*60))} MIN</span>`; };
 const pts=m.pins.map((p,i)=>{L.marker([p[3],p[4]],{icon:L.divIcon({className:"lf-pin",html:`<span style="--c:${PCOL[p[0]]}"><i>${i+1}</i></span>`,iconSize:[26,26],iconAnchor:[13,13]}),title:p[1]}).addTo(map)
-.bindPopup(`<span class="pp-k">&gt; ZIEL ${String(i+1).padStart(2,"0")}</span><b>${p[1]}</b><small>${p[2]}</small>${dist(p)}<a href="${GM(p[1])}" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>`); return [p[3],p[4]];});
+.bindPopup(`${p[5]?`<img class="pth" src="${p[5]}" alt="${p[1]}" onerror="this.remove()">`:""}<span class="pp-k">&gt; ZIEL ${String(i+1).padStart(2,"0")}</span><b>${p[1]}</b><small>${p[2]}</small>${dist(p)}<a href="${GM(p[1])}" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>${p[5]?`<small class="pcr">Foto: <a href="https://unsplash.com/@${p[7]}?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">${p[6]}</a> · Unsplash</small>`:""}`); return [p[3],p[4]];});
 map.fitBounds(pts,{padding:[28,28]}); el._lf=map;
 let route=null; map.on("popupopen",e=>{ if(!base) return; const ll=e.popup.getLatLng(); if(route) map.removeLayer(route); route=L.polyline([base,[ll.lat,ll.lng]],{color:"#FCEE0A",weight:2.5,dashArray:"3 9",opacity:.9,className:"lf-route"}).addTo(map); }); map.on("popupclose",()=>{ if(route){ map.removeLayer(route); route=null; } });
 const cmp=document.createElement("div"); cmp.className="lf-compass"; cmp.setAttribute("aria-hidden","true"); cmp.innerHTML="<i></i>"; el.querySelector(".lf-map").appendChild(cmp);
