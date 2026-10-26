@@ -1875,6 +1875,10 @@ body.mapfull .sfab{display:none}
 .vgo{display:inline-block;margin-top:10px;font:600 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);text-decoration:none;border:1px solid var(--cyan);padding:9px 12px}
 .vgo:active{background:var(--cyan);color:#110F27}
 .leaflet-popup-content a[data-go]{display:block;margin-top:6px}
+.tph{margin:8px 0;padding:0}
+.tph img{display:block;width:100%;height:130px;object-fit:cover;border:1px solid var(--line)}
+.tph figcaption{font-size:10px;opacity:.7;margin-top:4px}
+.tph figcaption a{color:inherit}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -2309,6 +2313,8 @@ pflichtprogramm: <span class="n">null</span>,
 <ol class="plist" id="listCore"></ol>
 <div class="map" id="mapCity"></div>
 <ol class="plist" id="listCity"></ol>
+<div class="map" id="mapTipps"></div>
+<ol class="plist" id="listTipps"></ol>
 <div class="map" id="mapViertel"></div>
 <ol class="plist" id="listViertel"></ol>
 <div class="map" id="mapTop"></div>
@@ -2399,14 +2405,14 @@ pflichtprogramm: <span class="n">null</span>,
 <section id="tipps">
 <div class="sh"><span class="n">18</span><h2>Lokaltipps</h2><span class="ko">꿀팁</span></div>
 <div class="tips">
-<div class="box"><h3>Seochon statt Bukchon</h3><p>Westlich vom Gyeongbokgung, ruhiger, mehr Einheimische. Im Tongin-Markt kauft man Messing-Münzen und stellt sich sein Mittagessen an den Ständen zusammen.</p></div>
-<div class="box"><h3>Bars hinter Türen</h3><p>In Euljiro sind die besten Bars oft nicht beschildert: zweiter Stock, alte Druckerei, unscheinbares Treppenhaus. Instagram hilft beim Finden.</p></div>
+<div class="box" id="t-seochon"><h3>Seochon statt Bukchon</h3><p>Westlich vom Gyeongbokgung, ruhiger, mehr Einheimische. Im Tongin-Markt kauft man Messing-Münzen und stellt sich sein Mittagessen an den Ständen zusammen.</p><a class="vgo" href="#mapTipps" data-go="mapTipps">Auf der Karte ↗</a></div>
+<div class="box" id="t-bars"><h3>Bars hinter Türen</h3><figure class="tph"><img src="https://images.unsplash.com/photo-1683132603709-adbd52d7590d?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360" alt="Bars hinter Türen" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>Foto: <a href="https://unsplash.com/@travelershigh?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">INHYEOK PARK</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure><p>In Euljiro sind die besten Bars oft nicht beschildert: zweiter Stock, alte Druckerei, unscheinbares Treppenhaus. Instagram hilft beim Finden.</p><a class="vgo" href="#mapTipps" data-go="mapTipps">Auf der Karte ↗</a></div>
 <div class="box"><h3>Convenience Store</h3><p>GS25 und CU haben fast alles. Ramyeon an der Kochstation, dazu Bananenmilch. Perfekt für den Hunger um Mitternacht.</p></div>
-<div class="box"><h3>Nachtspaziergang</h3><p>Am Cheonggyecheon entlang, dann rauf zur Stadtmauer im Naksan-Park. Flach am Bach, kurzer Anstieg, Blick über die Lichter.</p></div>
+<div class="box" id="t-walk"><h3>Nachtspaziergang</h3><figure class="tph"><img src="https://images.unsplash.com/photo-1777113310407-251c72227184?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360" alt="Nachtspaziergang" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>Foto: <a href="https://unsplash.com/@notethanun?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">note thanun</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure><p>Am Cheonggyecheon entlang, dann rauf zur Stadtmauer im Naksan-Park. Flach am Bach, kurzer Anstieg, Blick über die Lichter.</p><a class="vgo" href="#mapTipps" data-go="mapTipps">Auf der Karte ↗</a></div>
 <div class="box"><h3>Bestellen & Zahlen</h3><p>Viele Lokale haben Tablets am Tisch oder einen Klingelknopf. Wasser ist gratis, Beilagen werden nachgefüllt. Bezahlt wird vorne an der Kasse.</p></div>
 <div class="box"><h3>Soju-Regeln</h3><p>Nie selbst einschenken, immer dem anderen. Beim Anstoßen mit Älteren das Glas etwas tiefer halten.</p></div>
 <div class="box jp"><h3>Yatai-Etikette</h3><p>Die Straßenstände in Fukuoka sind winzig. Jeder bestellt ein Getränk und ein Gericht, nach etwa einer Stunde macht man Platz.</p></div>
-<div class="box jp"><h3>Yanagibashi-Markt</h3><p>Die „Küche von Hakata“: kleiner Markt für frischen Fisch, morgens am besten, ideal fürs Frühstück.</p></div>
+<div class="box jp" id="t-yanagi"><h3>Yanagibashi-Markt</h3><p>Die „Küche von Hakata“: kleiner Markt für frischen Fisch, morgens am besten, ideal fürs Frühstück.</p><a class="vgo" href="#mapFuk" data-go="mapFuk">Auf der Karte ↗</a></div>
 </div>
 </section>
 <section id="preise">
@@ -2807,6 +2813,13 @@ pins:[
 ["w","War Memorial of Korea","Kriegsgeschichte Koreas, Samgakji",37.5367,126.9772,"","","","top10g"],
 ["w","Olympiapark","Park von 1988, Skulpturen, ruhiger Tag",37.5209,127.1214,"https://images.unsplash.com/photo-1736861212170-5d9f9fba5932?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","Eun Jun Kim","joneeee","top10g"]
 ]};
+MAPS.tipps={el:"mapTipps",list:"listTipps",title:"Lokaltipps",sub:"Seochon · Euljiro · Cheonggyecheon · Naksan",box:[37.555,37.595,126.955,127.02],link:GM,areas:[],water:[],roads:[],labels:[],
+pins:[
+["y","Tongin-Markt (Seochon)","Messing-Münzen, Mittagessen zusammenstellen",37.5811,126.9696,"","","","t-seochon"],
+["p","Euljiro Bargassen","Bars ohne Schild, 2. Stock, alte Druckerei",37.5663,126.9915,"https://images.unsplash.com/photo-1683132603709-adbd52d7590d?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","INHYEOK PARK","travelershigh","t-bars"],
+["w","Cheonggyecheon (Start)","Nachtspaziergang am Bach",37.569,126.9785,"https://images.unsplash.com/photo-1777113310407-251c72227184?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","note thanun","notethanun","t-walk"],
+["w","Naksan-Park Stadtmauer","Aufstieg mit Blick über die Lichter",37.5808,127.0073,"","","","t-walk"]
+]};
 MAPS.viertel={el:"mapViertel",list:"listViertel",title:"Viertel",sub:"Jongno · Palast · Euljiro · Myeongdong · Jamsil",box:[37.505,37.595,126.955,127.135],link:GM,areas:[],water:MAPS.city.water,island:MAPS.city.island,roads:MAPS.city.roads,labels:[[37.5235,127.0300,"GANGNAM"]],
 pins:[
 ["w","Jongno & Insadong","Unsere Basis: Teehäuser, Galerien, Ikseon-dong",37.5744,126.9886,"","","","v-jongno"],
@@ -2816,9 +2829,12 @@ pins:[
 ["w","Jamsil","Lotte World Tower, Seokchon-See",37.5133,127.1,"","","","v-jamsil"]
 ]};
 MAPS.fuk.pins.push(
+["y","Yanagibashi-Markt","Küche von Hakata, morgens am besten",33.5866,130.4016,"","","","t-yanagi"],
+
 ["w","Nakasu (Viertel)","Insel mit Yatai ab 18 Uhr",33.5907,130.408,"","","","v-nakasu"],
 ["w","Hakata & Tenjin (Viertel)","Bahnhof, Nintendo, Daimyo-Bars",33.5925,130.4015,"","","","v-hakata"]
 );
+const BL=id=>id.startsWith("t-")?"Zum Tipp":id==="top10g"?"Zur Liste":"Zum Viertel";
 function drawMap(m){
 const [la0,la1,lo0,lo1]=m.box, k=Math.cos((la0+la1)/2*Math.PI/180);
 const W=400, H=Math.round(W*((la1-la0)/((lo1-lo0)*k)));
@@ -2839,7 +2855,7 @@ for(let it=0;it<40;it++)for(let a=0;a<P.length;a++)for(let b=a+1;b<P.length;b++)
 m.pins.forEach((p,i)=>{const x=P[i].x,y=P[i].y;s+=`<a href="${m.link(p[1])}" target="_blank" rel="noopener"><g class="mp-pin"><title>${p[1]} · ${p[2]}</title><circle cx="${x}" cy="${y}" r="10" fill="${col[p[0]]}" filter="url(#glow${m.el})" opacity=".6"/><circle class="ring" cx="${x}" cy="${y}" r="9" fill="none" stroke="${col[p[0]]}" stroke-width="1.5"/><circle cx="${x}" cy="${y}" r="8.5" fill="${col[p[0]]}" stroke="#110F27" stroke-width="1.2"/><text x="${x}" y="${y+3.2}" text-anchor="middle">${i+1}</text></g></a>`;});
 s+=`</svg>`;
 $(m.el).innerHTML=`<div class="ttl">${m.title}<small>${m.sub}</small></div><div class="map-tools"><button type="button" class="loupe-btn" aria-pressed="false" aria-label="Lupe ein- oder ausschalten"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button><button type="button" class="zoom-btn" aria-label="Karte vergrößern" title="Vergrößern">⤢</button></div>`+s;
-$(m.list).innerHTML=m.pins.map((p,i)=>`<li><a href="${m.link(p[1])}" target="_blank" rel="noopener"><span class="num" style="background:${col[p[0]]}">${i+1}</span><span>${p[1]}<small>${p[2]}</small>${p[5]?`<img class="pth" src="${p[5]}" alt="${p[1]}" loading="lazy" onerror="this.remove()"><small class="pcr">Foto: ${p[6]} · Unsplash</small>`:""}</span></a>${p[8]?`<a class="vback" href="#${p[8]}" data-go="${p[8]}">Zum Viertel ↓</a>`:""}</li>`).join("");
+$(m.list).innerHTML=m.pins.map((p,i)=>`<li><a href="${m.link(p[1])}" target="_blank" rel="noopener"><span class="num" style="background:${col[p[0]]}">${i+1}</span><span>${p[1]}<small>${p[2]}</small>${p[5]?`<img class="pth" src="${p[5]}" alt="${p[1]}" loading="lazy" onerror="this.remove()"><small class="pcr">Foto: ${p[6]} · Unsplash</small>`:""}</span></a>${p[8]?`<a class="vback" href="#${p[8]}" data-go="${p[8]}">${BL(p[8])} ↓</a>`:""}</li>`).join("");
 }
 Object.values(MAPS).forEach(drawMap);
 const PCOL={c:"#3BE6D6",y:"#FFD23F",p:"#FF3E8A",w:"#F4F1FF",s:"#B48CFF"};
@@ -2853,7 +2869,7 @@ if(m.zone){const z=m.zone;L.rectangle([[z[0],z[2]],[z[1],z[3]]],{color:"#FCEE0A"
 const base=m.zone?[(m.zone[0]+m.zone[1])/2,(m.zone[2]+m.zone[3])/2]:null;
 const dist=p=>{ if(!base) return ""; const t=Math.PI/180,dl=(p[3]-base[0])*t,dn=(p[4]-base[1])*t,x=Math.sin(dl/2)**2+Math.cos(base[0]*t)*Math.cos(p[3]*t)*Math.sin(dn/2)**2,km=12742*Math.asin(Math.sqrt(x)); return `<span class="pp-d">${km.toFixed(1).replace(".",",")} KM VON DER BASIS · ZU FUSS CA. ${Math.max(1,Math.round(km*1.25/5*60))} MIN</span>`; };
 const pts=m.pins.map((p,i)=>{L.marker([p[3],p[4]],{icon:L.divIcon({className:"lf-pin",html:`<span style="--c:${PCOL[p[0]]}"><i>${i+1}</i></span>`,iconSize:[26,26],iconAnchor:[13,13]}),title:p[1]}).addTo(map)
-.bindPopup(`${p[5]?`<img class="pth" src="${p[5]}" alt="${p[1]}" onerror="this.remove()">`:""}<span class="pp-k">&gt; ZIEL ${String(i+1).padStart(2,"0")}</span><b>${p[1]}</b><small>${p[2]}</small>${dist(p)}<a href="${GM(p[1])}" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>${p[8]?`<a href="#${p[8]}" data-go="${p[8]}">Zum Viertel ↓</a>`:""}${p[5]?`<small class="pcr">Foto: <a href="https://unsplash.com/@${p[7]}?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">${p[6]}</a> · Unsplash</small>`:""}`); return [p[3],p[4]];});
+.bindPopup(`${p[5]?`<img class="pth" src="${p[5]}" alt="${p[1]}" onerror="this.remove()">`:""}<span class="pp-k">&gt; ZIEL ${String(i+1).padStart(2,"0")}</span><b>${p[1]}</b><small>${p[2]}</small>${dist(p)}<a href="${GM(p[1])}" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>${p[8]?`<a href="#${p[8]}" data-go="${p[8]}">${BL(p[8])} ↓</a>`:""}${p[5]?`<small class="pcr">Foto: <a href="https://unsplash.com/@${p[7]}?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">${p[6]}</a> · Unsplash</small>`:""}`); return [p[3],p[4]];});
 map.fitBounds(pts,{padding:[28,28]}); el._lf=map;
 let route=null; map.on("popupopen",e=>{ if(!base) return; const ll=e.popup.getLatLng(); if(route) map.removeLayer(route); route=L.polyline([base,[ll.lat,ll.lng]],{color:"#FCEE0A",weight:2.5,dashArray:"3 9",opacity:.9,className:"lf-route"}).addTo(map); }); map.on("popupclose",()=>{ if(route){ map.removeLayer(route); route=null; } });
 const cmp=document.createElement("div"); cmp.className="lf-compass"; cmp.setAttribute("aria-hidden","true"); cmp.innerHTML="<i></i>"; el.querySelector(".lf-map").appendChild(cmp);
