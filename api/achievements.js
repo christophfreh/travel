@@ -1,10 +1,6 @@
-import { put, list } from "@vercel/blob";
+import { readJson, writeJson } from "./_store.js";
 const KEY = "meta/achievements.json";
-async function read() {
-  const r = await list({ prefix: KEY, limit: 1 });
-  if (!r.blobs.length) return {};
-  try { return await (await fetch(r.blobs[0].url + "?t=" + Date.now(), { cache: "no-store" })).json(); } catch (e) { return {}; }
-}
+async function read() { return (await readJson(KEY)) ?? {}; }
 export default async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
   try {
@@ -16,7 +12,7 @@ export default async function handler(req, res) {
     if (!undo && !["Christoph", "Michi"].includes(by)) { res.status(400).json({ error: "Wer?" }); return; }
     const all = await read();
     if (undo) delete all[id]; else if (!all[id]) all[id] = { by, ts: Date.now() };
-    await put(KEY, JSON.stringify(all), { access: "public", contentType: "application/json", addRandomSuffix: false, allowOverwrite: true, cacheControlMaxAge: 0 });
+    await writeJson(KEY, all);
     res.status(200).json(all);
   } catch (e) { res.status(500).json({ error: "Speichern fehlgeschlagen" }); }
 }

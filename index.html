@@ -3200,7 +3200,7 @@ if(ok) setTimeout(()=>$("lb").hidden=true,500);});
 g.addEventListener("click",e=>{const b=e.target.closest(".g-it"); if(!b) return; $("lbImg").src=b.dataset.src; $("lbCap").textContent=b.dataset.cap; const d=$("lbDel"); d.hidden=false; d.dataset.url=b.dataset.del; d.classList.remove("sure"); d.textContent="Foto löschen"; $("lb").hidden=false;});
 $("polas").addEventListener("click",e=>{const im=e.target.closest(".pola img"); if(!im) return; const fg=im.closest("figure"), d=$("lbDel"), ub=fg.querySelector(".del[data-url]"); d.hidden=false; d.classList.remove("sure"); d.textContent="Foto löschen"; d.dataset.id=fg.dataset.id||""; d.dataset.url=ub?ub.dataset.url:""; if(!d.dataset.id) delete d.dataset.id; $("lbImg").src=im.src; $("lbCap").textContent=im.closest("figure").querySelector("figcaption").textContent; $("lb").hidden=false;});
 $("lbX").addEventListener("click",()=>$("lb").hidden=true); $("lb").addEventListener("click",e=>{if(e.target.id==="lb")$("lb").hidden=true;});
-load(); setInterval(load,60000);
+load(); setInterval(()=>{ if(!document.hidden) load(); },300000);
 })();
 // ---------- Lupe ----------
 (function(){
@@ -3688,7 +3688,7 @@ grid.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) re
 if(!data[id]){ save(id,false); return; }
 if(b.classList.contains("sure")){ save(id,true); return; }
 b.classList.add("sure"); b.querySelector("small").textContent="nochmal tippen = zurücknehmen"; setTimeout(()=>{ if(b.isConnected) draw(); },2600); });
-load(true); if(LIVE) setInterval(()=>{ if(!document.hidden) load(false); },60000);
+load(true); if(LIVE) setInterval(()=>{ if(!document.hidden) load(false); },180000);
 })();
 // ---------- Wetter in der Skyline ----------
 (function(){

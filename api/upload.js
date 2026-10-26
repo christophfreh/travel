@@ -1,4 +1,5 @@
 import { put } from "@vercel/blob";
+import { addPhoto } from "./_store.js";
 export const config = { api: { bodyParser: false } };
 const who = v => (v === "Michi" ? "Michi" : v === "Christoph" ? "Christoph" : "Wir");
 export default async function handler(req, res) {
@@ -13,6 +14,7 @@ export default async function handler(req, res) {
     const day = (u.searchParams.get("day") || "").replace(/[^0-9-]/g, "").slice(0, 10) || new Date().toISOString().slice(0, 10);
     const name = who(u.searchParams.get("who"));
     const blob = await put(`fotos/${day}/${Date.now()}-${name}.jpg`, buf, { access: "public", contentType: type, addRandomSuffix: true });
+    try { await addPhoto({ url: blob.url, pathname: blob.pathname, uploadedAt: new Date().toISOString(), size: buf.length }); } catch (e) {}
     res.status(200).json({ url: blob.url, pathname: blob.pathname });
   } catch (e) { res.status(500).json({ error: "Upload fehlgeschlagen" }); }
 }
