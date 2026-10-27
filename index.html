@@ -188,6 +188,9 @@ footer span:first-child{font:400 14px var(--f-sign);color:var(--neon)}
 .dock a:focus-visible{outline:2px solid var(--sign);outline-offset:-2px}
 .wrap{padding-bottom:calc(130px + env(safe-area-inset-bottom,0px))}
 section{scroll-margin-top:44px}
+section.zz *,section.zz *::before,section.zz *::after,section.zz::before,section.zz::after{animation-play-state:paused!important}
+section.cv{content-visibility:auto}
+
 figure.ph-fail img{visibility:hidden}figure.ph-fail{background:linear-gradient(135deg,rgba(59,230,214,.08),rgba(255,62,138,.08)),var(--panel)}
 html.scrolling *,html.scrolling *::before,html.scrolling *::after{animation-play-state:paused!important}
 html.scrolling #rain{visibility:hidden}
@@ -340,7 +343,7 @@ h2{font-size:30px}
 .area-b li::marker{color:var(--sign)}
 @media (max-width:520px){.ph{aspect-ratio:16/9}.ph .ph-l{font-size:17px}}
 @media (prefers-reduced-motion:no-preference){.ph img{transition:transform 6s ease}.ph:hover img{transform:scale(1.06)}}
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;background:repeating-linear-gradient(0deg,rgba(0,0,0,.07) 0 1px,transparent 1px 3px);mix-blend-mode:multiply}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;background:repeating-linear-gradient(0deg,rgba(0,0,0,.07) 0 1px,transparent 1px 3px)}
 .hangul{text-shadow:-2px 0 rgba(59,230,214,.55),2px 0 rgba(255,62,138,.6),0 0 18px rgba(255,62,138,.55),0 0 46px rgba(255,62,138,.35)}
 .hud{font:400 11px/1.4 var(--f-mono);letter-spacing:.08em;color:var(--cyan);display:flex;flex-wrap:wrap;gap:4px 14px;opacity:.9}
 .hud b{color:var(--neon);font-weight:400}
@@ -4476,4 +4479,16 @@ document.addEventListener("click",e=>{ const a=e.target.closest&&e.target.closes
  const mb=document.getElementById("metroBar"); if(mb){ const show=id=>{ ["metroSeoul","metroFuk"].forEach(x=>{ const el=document.getElementById(x); if(el) el.style.display=x===id?"":"none"; }); mb.querySelectorAll(".lay").forEach(b=>b.classList.toggle("on",b.dataset.met===id)); }; mb.addEventListener("click",e=>{ const b=e.target.closest(".lay"); if(b) show(b.dataset.met); }); show("metroSeoul"); } })();
 </script>
 <script>(function(){const cs=[...document.querySelectorAll(".ck-ok input")];const n=()=>{const e=document.getElementById("ckN");if(e)e.textContent=cs.filter(c=>c.checked).length;};cs.forEach(c=>{try{c.checked=localStorage.getItem(c.id)==="1";}catch(e){}c.addEventListener("change",()=>{try{localStorage.setItem(c.id,c.checked?"1":"0");}catch(e){}n();});});n();})();</script>
+<script>
+/* Flüssiger: Bereiche außerhalb des Bildschirms schlafen lassen */
+(function(){
+const secs=[...document.querySelectorAll("section[id]")];
+if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle("zz",!e.isIntersecting)),{rootMargin:"300px 0px"}); secs.forEach(s=>io.observe(s)); }
+const NOCV=new Set(["highlights","karten","hacks"]);
+function cv(){ if(!CSS.supports||!CSS.supports("content-visibility","auto")) return; secs.forEach(s=>{ if(NOCV.has(s.id)||s.querySelector(".dist,.dtick,.map,canvas,iframe")) return; const h=Math.round(s.getBoundingClientRect().height); if(h<200) return; s.style.containIntrinsicSize="auto "+h+"px"; s.classList.add("cv"); }); }
+const go=()=>setTimeout(()=>(window.requestIdleCallback||(f=>f()))(cv),1800);
+document.readyState==="complete"?go():addEventListener("load",go);
+document.querySelectorAll("img").forEach(i=>{ if(!i.decoding||i.decoding==="auto") i.decoding="async"; });
+})();
+</script>
 </body></html>
