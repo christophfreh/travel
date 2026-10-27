@@ -12,6 +12,10 @@ self.addEventListener("fetch",e=>{
       .catch(()=>caches.match(PAGE).then(m=>m||new Response("Offline",{status:503}))));
     return;
   }
+  if(u.origin===location.origin && u.pathname==="/api/photo"){
+    e.respondWith(caches.open(V).then(c=>c.match(r).then(m=>m||fetch(r).then(res=>{ if(res.ok) c.put(r,res.clone()); return res; }))));
+    return;
+  }
   if(u.origin===location.origin && u.pathname.startsWith("/api/")){
     if(u.pathname==="/api/photos"||u.pathname==="/api/rates"||u.pathname==="/api/achievements"||u.pathname==="/api/hidden"){
       e.respondWith(fetch(r).then(res=>{ if(res.ok){const cp=res.clone(); caches.open(V).then(c=>c.put(r,cp));} return res; }).catch(()=>caches.match(r).then(m=>m||Response.json({offline:true},{status:503}))));
