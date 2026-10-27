@@ -39,6 +39,9 @@
 (function(){ let t=0; const H=document.documentElement; addEventListener("scroll",()=>{ if(!H.classList.contains("scrolling")) H.classList.add("scrolling"); clearTimeout(t); t=setTimeout(()=>H.classList.remove("scrolling"),220); },{passive:true}); })();
 </script>
 <script>
+/* Arbeit, die die Seite vermessen muss, erst nach dem Persona-Intro */
+window.__bootQ=[]; window.__afterBoot=fn=>{ if(document.querySelector(".boot")) window.__bootQ.push(fn); else fn(); };
+window.__bootFlush=()=>{ const q=window.__bootQ.splice(0); requestAnimationFrame(()=>q.forEach(f=>{ try{f();}catch(e){} })); };
 /* Ruhiges Scrollen: Sprünge mit Nachkorrektur, Inhalt über dem Bildschirm verschiebt nichts */
 (function(){
 const RM=()=>matchMedia("(prefers-reduced-motion: reduce)").matches; let busy=0, tok=0;
@@ -225,6 +228,7 @@ footer span:first-child{font:400 14px var(--f-sign);color:var(--neon)}
 .dock a:focus-visible{outline:2px solid var(--sign);outline-offset:-2px}
 .wrap{padding-bottom:calc(130px + env(safe-area-inset-bottom,0px))}
 section{scroll-margin-top:44px}
+html.booting .wrap,html.booting .dock,html.booting .totop,html.booting .sfab{content-visibility:hidden}
 .zz,.zz *,.zz *::before,.zz *::after,.zz::before,.zz::after{animation-play-state:paused!important}
 html.booting body>*:not(.boot):not(.p5x) *,html.booting body>*:not(.boot):not(.p5x) *::before,html.booting body>*:not(.boot):not(.p5x) *::after{animation-play-state:paused!important}
 section.cv{content-visibility:auto}
@@ -3498,7 +3502,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 if(!reduce){
 const L=["&gt; VERBINDE MIT <b>SEOUL.NET</b> …","&gt; LADE TEAM: <b>MICHI</b> + <b>CHRISTOPH</b>","&gt; ZIEL ICN · 21.11.2026 · 14:30 KST","&gt; HUNGER: <b>KRITISCH</b> · DURST: <b>HOCH</b>","&gt; BONUSLEVEL FUKUOKA FREIGESCHALTET","&gt; BASELINE-TEST: <b>INTERLINKED</b>","&gt; WAKE UP, SAMURAI."];
 const o=document.createElement("div"); o.className="boot"; o.setAttribute("aria-hidden","true");
-o.innerHTML=L.map(t=>`<p>${t}</p>`).join("")+"<small>TIPPEN ZUM ÜBERSPRINGEN</small>"; document.body.appendChild(o);
+o.innerHTML=L.map(t=>`<p>${t}</p>`).join("")+"<small>TIPPEN ZUM ÜBERSPRINGEN</small>"; document.body.appendChild(o); document.documentElement.classList.add("booting");
 const ps=[...o.querySelectorAll("p")]; let i=0, done=false, off=null;
 const end=()=>{if(done)return;done=true; if(off) off();
  const w=document.createElement("div"); w.className="p5x"; w.setAttribute("aria-hidden","true"); w.innerHTML="<i class=\"b\"></i><i class=\"r\"></i>"; document.body.appendChild(w);
@@ -3943,7 +3947,7 @@ function check(){ window.__keep(()=>secs.forEach(s=>{ const b=s.nextElementSibli
 if(s.classList.contains("open")) return; s.classList.remove("fold"); const long=s.scrollHeight>TH; s.classList.toggle("fold",long);
 if(b){ b.textContent=label(s); b.setAttribute("aria-expanded","false"); } })); }
 window.__unfold=el=>{ const s=el&&el.closest("section.fold"); if(s&&!s.classList.contains("open")){ s.classList.add("open"); const b=s.nextElementSibling; if(b) b.textContent=label(s); } };
-check(); addEventListener("load",check); setTimeout(check,3000); mq.addEventListener?mq.addEventListener("change",check):0;
+const fold0=()=>{ check(); setTimeout(check,1500); }; window.__afterBoot(fold0); addEventListener("load",()=>{ if(!document.querySelector(".boot")) check(); }); setTimeout(()=>{ if(!document.querySelector(".boot")) check(); },3000); mq.addEventListener?mq.addEventListener("change",check):0;
 let t, lw=innerWidth; addEventListener("resize",()=>{ if(innerWidth===lw) return; lw=innerWidth; clearTimeout(t); t=setTimeout(check,300); });
 })();
 // ---------- neon trail + tap sparks, holo reveal ----------
@@ -4553,14 +4557,15 @@ const secs=[...document.querySelectorAll("section[id]")];
 if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle("zz",!e.isIntersecting)),{rootMargin:"300px 0px"}); secs.forEach(s=>io.observe(s)); document.querySelectorAll("header.hero,footer,aside.q").forEach(s=>io.observe(s)); }
 const NOCV=new Set(["highlights","karten","hacks"]);
 function cv(){ if(!CSS.supports||!CSS.supports("content-visibility","auto")) return; secs.forEach(s=>{ if(NOCV.has(s.id)||s.querySelector(".dist,.dtick,.map,canvas,iframe")) return; const h=Math.round(s.getBoundingClientRect().height); if(h<200) return; s.style.containIntrinsicSize="auto "+h+"px"; s.classList.add("cv"); }); }
-const go=()=>setTimeout(()=>(window.requestIdleCallback||(f=>f()))(cv),1800);
+const go=()=>window.__afterBoot(()=>setTimeout(()=>(window.requestIdleCallback||(f=>f()))(cv),1200));
 document.readyState==="complete"?go():addEventListener("load",go);
 document.querySelectorAll("img").forEach(i=>{ if(!i.decoding||i.decoding==="auto") i.decoding="async"; });
 if("IntersectionObserver" in window){ const gs=[...document.querySelectorAll("svg.gd2")]; const gio=new IntersectionObserver(es=>es.forEach(e=>{ try{ e.isIntersecting?e.target.unpauseAnimations():e.target.pauseAnimations(); }catch(x){} })); gs.forEach(g=>{ try{g.pauseAnimations();}catch(x){} gio.observe(g); }); }
 document.addEventListener("animationend",e=>{ const t=e.target; if(t.classList&&(t.classList.contains("gbar")||t.classList.contains("riftfx"))) t.classList.remove("go"); });
 /* Persona-Intro: Seite dahinter steht still, solange es läuft */
-(function(){ const H=document.documentElement; const on=()=>!!document.querySelector(".boot"); if(!on()) return; H.classList.add("booting");
- const mo=new MutationObserver(()=>{ if(!on()){ H.classList.remove("booting"); mo.disconnect(); } }); mo.observe(document.body,{childList:true}); setTimeout(()=>{ H.classList.remove("booting"); mo.disconnect(); },30000); })();
+(function(){ const H=document.documentElement; const on=()=>!!document.querySelector(".boot"); if(!on()){ H.classList.remove("booting"); window.__bootFlush(); return; } H.classList.add("booting");
+ const done=()=>{ H.classList.remove("booting"); mo.disconnect(); window.__bootFlush(); };
+ const mo=new MutationObserver(()=>{ if(!on()) done(); }); mo.observe(document.body,{childList:true}); setTimeout(()=>{ if(H.classList.contains("booting")) done(); },30000); })();
 })();
 </script>
 </body></html>
