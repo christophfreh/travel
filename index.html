@@ -279,7 +279,7 @@ h2{font-size:30px}
 .g-it span{position:absolute;left:6px;bottom:6px;font:700 9px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;background:rgba(17,15,39,.75);color:var(--ink);padding:3px 6px;border-radius:999px}
 .g-it span:empty{display:none}
 .lb{position:fixed;inset:0;z-index:40;background:rgba(10,8,24,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
-.lb img{max-width:100%;max-height:80vh;border-radius:12px;box-shadow:0 0 40px rgba(255,62,138,.35)}
+.lb img{max-width:100%;max-height:calc(100dvh - 150px);border-radius:12px;box-shadow:0 0 40px rgba(255,62,138,.35)}
 .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:64px;border:1px solid var(--line);background:rgba(17,15,39,.7);color:var(--cyan,#3BE6D6);font:400 30px/1 var(--f-mono);cursor:pointer;z-index:2;clip-path:polygon(0 0,100% 12%,100% 88%,0 100%)}
 .lb-nav.prev{left:max(8px,env(safe-area-inset-left,0px));clip-path:polygon(0 12%,100% 0,100% 100%,0 88%)}.lb-nav.next{right:max(8px,env(safe-area-inset-right,0px))}
 .lb-nav[hidden]{display:none}.lb-n{font-size:10px;letter-spacing:.2em;color:var(--muted)}
@@ -288,6 +288,7 @@ h2{font-size:30px}
 @keyframes lbl{from{opacity:0;transform:translateX(-40px)}}@keyframes lbr{from{opacity:0;transform:translateX(40px)}}}
 @media (max-width:600px){.lb-nav{width:36px;height:52px;font-size:24px;opacity:.75}}
 .lb p{font:400 12px var(--f-mono);color:var(--muted);letter-spacing:.08em}
+#lbDel{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));left:calc(14px + env(safe-area-inset-left,0px));z-index:2;margin:0;height:40px;padding:0 14px;border-radius:20px}
 .lb-x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:calc(14px + env(safe-area-inset-right,0px));width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:16px;cursor:pointer}
 .zoom-btn{position:absolute;right:12px;top:12px;z-index:2;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(17,15,39,.8);color:var(--ink);font:700 11px var(--f-mono);letter-spacing:.06em;cursor:pointer}
 .zoom-btn:hover{border-color:var(--cyan);color:var(--cyan)}
@@ -4482,6 +4483,8 @@ document.addEventListener("click",e=>{ const a=e.target.closest&&e.target.closes
 <script>
 /* Flüssiger: Bereiche außerhalb des Bildschirms schlafen lassen */
 (function(){
+/* Vollbild-Ebenen (Bildansicht, Zoom) aus den Kapiteln lösen, sonst hängen sie an ihrem Kapitel */
+["lb","zm"].forEach(id=>{ const el=document.getElementById(id); if(el&&el.parentElement!==document.body) document.body.appendChild(el); });
 const secs=[...document.querySelectorAll("section[id]")];
 if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle("zz",!e.isIntersecting)),{rootMargin:"300px 0px"}); secs.forEach(s=>io.observe(s)); }
 const NOCV=new Set(["highlights","karten","hacks"]);
