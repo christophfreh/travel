@@ -51,10 +51,11 @@ function page(err, out) { return `<!doctype html><html lang="de"><head><meta cha
 body::before{content:"";position:fixed;inset:0;background:radial-gradient(60% 50% at 20% 30%,rgba(255,62,138,.22),transparent 70%),radial-gradient(60% 50% at 85% 70%,rgba(59,230,214,.16),transparent 70%);pointer-events:none}
 body::after{content:"";position:fixed;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 1px,transparent 1px 3px);pointer-events:none;z-index:5}
 canvas{position:fixed;inset:0;width:100%;height:100%;opacity:.35}
-.floor{position:fixed;left:-50%;right:-50%;bottom:0;height:34vh;transform:perspective(220px) rotateX(60deg);transform-origin:bottom;background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 26px,linear-gradient(90deg,rgba(59,230,214,.5) 1px,transparent 1px) 0 0/46px 100%;opacity:.55;animation:fl 2.6s linear infinite}
-@keyframes fl{to{background-position:0 26px,0 0}}
+.floor{position:fixed;left:-50%;right:-50%;bottom:0;height:34vh;transform:perspective(220px) rotateX(60deg);transform-origin:bottom;overflow:hidden;opacity:.55}
+.floor::before{content:"";position:absolute;left:0;right:0;top:-26px;bottom:0;background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 26px,linear-gradient(90deg,rgba(59,230,214,.5) 1px,transparent 1px) 0 0/46px 100%;animation:fl 2.6s linear infinite;will-change:transform}
+@keyframes fl{to{transform:translateY(26px)}}
 main{position:relative;z-index:2;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:90px max(18px,env(safe-area-inset-left)) 24px}
-.term{width:min(440px,100%);padding:26px 22px 22px;background:rgba(17,15,39,.82);border:1px solid rgba(59,230,214,.5);clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%);box-shadow:0 0 40px rgba(59,230,214,.15),inset 0 0 30px rgba(59,230,214,.06);backdrop-filter:blur(6px);position:relative}
+.term{width:min(440px,100%);padding:26px 22px 22px;background:rgba(17,15,39,.9);border:1px solid rgba(59,230,214,.5);clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%);box-shadow:0 0 40px rgba(59,230,214,.15),inset 0 0 30px rgba(59,230,214,.06);position:relative}
 .term::before{content:"";position:absolute;inset:8px;pointer-events:none;background:linear-gradient(var(--y),var(--y)) left top/22px 2px no-repeat,linear-gradient(var(--y),var(--y)) left top/2px 22px no-repeat,linear-gradient(var(--n),var(--n)) right bottom/22px 2px no-repeat,linear-gradient(var(--n),var(--n)) right bottom/2px 22px no-repeat}
 .k{font-size:10px;letter-spacing:.2em;color:var(--mu)}
 .k b{color:var(--c);font-weight:400}

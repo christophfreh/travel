@@ -188,7 +188,8 @@ footer span:first-child{font:400 14px var(--f-sign);color:var(--neon)}
 .dock a:focus-visible{outline:2px solid var(--sign);outline-offset:-2px}
 .wrap{padding-bottom:calc(130px + env(safe-area-inset-bottom,0px))}
 section{scroll-margin-top:44px}
-section.zz *,section.zz *::before,section.zz *::after,section.zz::before,section.zz::after{animation-play-state:paused!important}
+.zz,.zz *,.zz *::before,.zz *::after,.zz::before,.zz::after{animation-play-state:paused!important}
+html.booting body>*:not(.boot):not(.p5x) *,html.booting body>*:not(.boot):not(.p5x) *::before,html.booting body>*:not(.boot):not(.p5x) *::after{animation-play-state:paused!important}
 section.cv{content-visibility:auto}
 
 figure.ph-fail img{visibility:hidden}figure.ph-fail{background:linear-gradient(135deg,rgba(59,230,214,.08),rgba(255,62,138,.08)),var(--panel)}
@@ -567,7 +568,7 @@ h2{text-shadow:-2px 0 rgba(59,230,214,.55),2px 0 rgba(255,62,138,.55),0 0 18px r
 .ph,.flash{position:relative}
 .ph::after{box-shadow:inset 0 -40px 60px -30px rgba(255,62,138,.35)}
 @media (prefers-reduced-motion:no-preference){
-body::before{animation:ambient 38.4s ease-in-out infinite alternate}
+body::before{will-change:auto}
 @keyframes ambient{0%{transform:translate(0,0)}50%{transform:translate(4vmax,-3vmax)}100%{transform:translate(-3vmax,4vmax)}}
 .sh .ko{animation:kobuzz 14.4s infinite}
 @keyframes kobuzz{0%,95%,100%{opacity:1}96%{opacity:.4}97%{opacity:1}98%{opacity:.6}}
@@ -592,6 +593,7 @@ body::before{animation:ambient 38.4s ease-in-out infinite alternate}
 .gl-h::after{color:var(--neon);animation:hslice 11.2s 0.13s infinite steps(1)}
 @keyframes hslice{0%,93%,100%{opacity:0;transform:none;clip-path:inset(0)}94%{opacity:.85;transform:translate(-4px,0);clip-path:inset(10% 0 55% 0)}95%{opacity:.85;transform:translate(5px,0);clip-path:inset(60% 0 8% 0)}96%{opacity:.7;transform:translate(-2px,0);clip-path:inset(35% 0 35% 0)}97%{opacity:0}}
 .gbar.go{animation:gsweep 0.88s linear 1}
+.gbar:not(.go),.riftfx:not(.go){display:none}
 @keyframes gsweep{0%{top:-20px;opacity:.9}100%{top:100vh;opacity:.6}}
 .hl-card{position:relative;overflow:hidden}
 .hl-card::after{content:"";position:absolute;inset:-50%;background:linear-gradient(115deg,transparent 40%,rgba(252,238,10,.16) 48%,rgba(59,230,214,.18) 52%,transparent 60%);transform:translateX(-60%);transition:transform .7s ease;pointer-events:none}
@@ -629,7 +631,7 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 @media (prefers-reduced-motion:no-preference){
 .sky .floor{animation:floor 2.24s linear infinite}
 @keyframes floor{to{background-position:0 18px,0 0}}
-.sky .win{animation:winf var(--d,9.6s) var(--o,0s) infinite steps(1)}
+.sky .win.fl{animation:winf var(--d,9.6s) var(--o,0s) infinite steps(1)}
 @keyframes winf{0%,100%{opacity:.75}50%{opacity:.08}}
 .sky .beacon{animation:beac 2.56s infinite}
 @keyframes beac{50%{opacity:.15}}
@@ -3213,16 +3215,17 @@ const chars="서울종로을지로소주라면게임福岡博多天神ラーメ�
 let W,H,cols,drops,dpr=Math.min(2,devicePixelRatio||1);
 function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;g.setTransform(dpr,0,0,dpr,0,0);cols=Math.ceil(W/22);drops=Array.from({length:cols},()=>Math.random()*-40);}
 size(); addEventListener("resize",size);
-let last=0,vis=true; new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(c);
+let last=0,vis=true,run=false; const kick=()=>{ if(!run&&vis){ run=true; requestAnimationFrame(frame); } };
+new IntersectionObserver(e=>{ vis=e[0].isIntersecting; kick(); }).observe(c);
 function frame(ts){
-requestAnimationFrame(frame); if(!vis||ts-last<170||document.documentElement.classList.contains("scrolling")) return; last=ts;
+if(!vis||document.hidden){ run=false; return; } requestAnimationFrame(frame); if(ts-last<170||document.documentElement.classList.contains("scrolling")||document.documentElement.classList.contains("booting")) return; last=ts;
 g.fillStyle="rgba(17,15,39,.18)"; g.fillRect(0,0,W,H);
 g.font="15px 'Black Han Sans', sans-serif";
 for(let i=0;i<cols;i++){const y=drops[i]*22; const ch=chars[(Math.random()*chars.length)|0];
 g.fillStyle=i%5===0?"rgba(59,230,214,.55)":i%3===0?"rgba(255,210,63,.35)":"rgba(255,62,138,.45)";
 g.fillText(ch,i*22,y); if(y>H&&Math.random()>.96) drops[i]=Math.random()*-10; drops[i]+=.32+(i%4)*.08;}
 }
-requestAnimationFrame(frame);
+kick(); document.addEventListener("visibilitychange",kick);
 })();
 // ---------- Metro diagrams ----------
 function metro(el,title,sub,W,H,lines,st,notes){
@@ -3536,7 +3539,7 @@ for(const [cx,cy] of [[262,102],[420,118],[556,92]]) o+=`<path class="cross" d="
 const cols=["","c","p"];
 for(let x=-4;x<800;){const w=30+rnd()*46,h=40+rnd()*70; if(x>620&&x<700){x+=8;continue;}
 o+=`<rect class="bld" x="${x}" y="${220-h}" width="${w}" height="${h}"/>`;
-for(let wy=220-h+8;wy<214;wy+=10)for(let wx=x+5;wx<x+w-6;wx+=9){ if(rnd()>.62) o+=`<rect class="win ${cols[(rnd()*3)|0]}" x="${wx.toFixed(1)}" y="${wy.toFixed(1)}" width="4" height="5" style="--d:${(5+rnd()*14).toFixed(1)}s;--o:-${(rnd()*9).toFixed(1)}s"/>`; }
+for(let wy=220-h+8;wy<214;wy+=10)for(let wx=x+5;wx<x+w-6;wx+=9){ if(rnd()>.62) o+=`<rect class="win ${cols[(rnd()*3)|0]}${rnd()<.17?" fl":""}" x="${wx.toFixed(1)}" y="${wy.toFixed(1)}" width="4" height="5" style="--d:${(5+rnd()*14).toFixed(1)}s;--o:-${(rnd()*9).toFixed(1)}s"/>`; }
 x+=w+3;}
 // arcane: piltover airship + zaun graffiti
 o+=`<g class="ship"><ellipse cx="0" cy="0" rx="34" ry="9" fill="#2a2040" stroke="#E8C77A" stroke-width="1.4"/><path d="M-26 0 h52 M-18 -7 v14 M0 -9 v18 M18 -7 v14" stroke="#E8C77A" stroke-width=".8" opacity=".7"/><rect x="-12" y="9" width="24" height="7" rx="2" fill="#1a1430" stroke="#E8C77A" stroke-width="1"/><circle cx="-38" cy="0" r="3.5" fill="#9FF3FF" class="hexglow"/><circle cx="38" cy="2" r="2" fill="#9FF3FF" class="hexglow"/><path d="M-34 -2 l-6 -6 M-34 2 l-6 6" stroke="#E8C77A" stroke-width="1.2"/></g>`;
@@ -3655,9 +3658,10 @@ c.y+=c.v; if(Math.random()<.015) c.ch[(Math.random()*30)|0]=rc();
 if((c.y-c.len)*FS>o.H){c.y=-Math.random()*8;c.v=.06+Math.random()*.12;c.len=6+((Math.random()*10)|0);c.on=Math.random()>.3;} });
 g.shadowBlur=0;}
 if(reduce){st.forEach(o=>{o.cols.forEach(c=>c.y=Math.random()*(o.H/FS+6));draw(o);});return;}
-const io=new IntersectionObserver(es=>es.forEach(e=>{const o=st.find(x=>x.c===e.target); if(o) o.vis=e.isIntersecting;}));
-st.forEach(o=>io.observe(o.c));
-(function f(){requestAnimationFrame(f); st.forEach(o=>{if(o.vis) draw(o);});})();
+let run=false; function f(){ const any=st.some(o=>o.vis); if(!any||document.hidden){ run=false; return; } requestAnimationFrame(f); st.forEach(o=>{if(o.vis) draw(o);}); }
+const kick=()=>{ if(!run&&st.some(o=>o.vis)){ run=true; requestAnimationFrame(f); } };
+const io=new IntersectionObserver(es=>{ es.forEach(e=>{const o=st.find(x=>x.c===e.target); if(o) o.vis=e.isIntersecting;}); kick(); });
+st.forEach(o=>io.observe(o.c)); document.addEventListener("visibilitychange",kick);
 })();
 // ---------- eigene Fotos überall vergrößerbar ----------
 document.addEventListener("click",e=>{const im=e.target.closest(".flash img, .pola img"); if(!im) return;
@@ -3905,13 +3909,14 @@ const fine=matchMedia("(hover:hover) and (pointer:fine)").matches;
 let mv=0; if(fine) addEventListener("pointermove",e=>{ if(++mv%4) return; P.push({x:e.clientX,y:e.clientY,vx:0,vy:.15,l:.45,c:"#3BE6D6",s:1}); if(P.length>30) P.splice(0,P.length-30); },{passive:true});
 addEventListener("pointerdown",e=>{ R.push({x:e.clientX,y:e.clientY,r:3,l:.5});
 for(let k=0;k<6;k++){const a=Math.random()*Math.PI*2,v=1+Math.random()*1.6; P.push({x:e.clientX,y:e.clientY,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,c:COL[(Math.random()*3)|0],s:1.2,sq:1,l:.7});} },{passive:true});
-(function f(){ requestAnimationFrame(f); if(!P.length&&!R.length){ g.clearRect(0,0,W,H); return; }
+let fxRun=false; const fxKick=()=>{ if(!fxRun){ fxRun=true; requestAnimationFrame(f); } }; addEventListener("pointerdown",fxKick,{passive:true}); if(fine) addEventListener("pointermove",fxKick,{passive:true});
+function f(){ if(!P.length&&!R.length){ g.clearRect(0,0,W,H); fxRun=false; return; } requestAnimationFrame(f);
 g.clearRect(0,0,W,H); g.globalCompositeOperation="lighter";
 for(let i=P.length-1;i>=0;i--){const p=P[i]; p.x+=p.vx; p.y+=p.vy; p.vx*=.94; p.vy*=.94; p.l-=p.sq?.035:.045; if(p.l<=0){P.splice(i,1);continue;}
 g.globalAlpha=p.l; g.fillStyle=p.c; g.shadowBlur=0; if(p.sq) g.fillRect(p.x,p.y,p.s,p.s); else {g.beginPath(); g.arc(p.x,p.y,p.s,0,7); g.fill();}}
 for(let i=R.length-1;i>=0;i--){const r=R[i]; r.r+=1.6; r.l-=.04; if(r.l<=0){R.splice(i,1);continue;}
 g.globalAlpha=r.l; g.strokeStyle="#3BE6D6"; g.shadowBlur=0; g.lineWidth=1; g.strokeRect(r.x-r.r,r.y-r.r,r.r*2,r.r*2);}
-g.globalAlpha=1; g.shadowBlur=0; g.globalCompositeOperation="source-over"; })();
+g.globalAlpha=1; g.shadowBlur=0; g.globalCompositeOperation="source-over"; }
 })();
 // ---------- hero weather icon ----------
 (function(){
@@ -4486,12 +4491,16 @@ document.addEventListener("click",e=>{ const a=e.target.closest&&e.target.closes
 /* Vollbild-Ebenen (Bildansicht, Zoom) aus den Kapiteln lösen, sonst hängen sie an ihrem Kapitel */
 ["lb","zm"].forEach(id=>{ const el=document.getElementById(id); if(el&&el.parentElement!==document.body) document.body.appendChild(el); });
 const secs=[...document.querySelectorAll("section[id]")];
-if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle("zz",!e.isIntersecting)),{rootMargin:"300px 0px"}); secs.forEach(s=>io.observe(s)); }
+if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle("zz",!e.isIntersecting)),{rootMargin:"300px 0px"}); secs.forEach(s=>io.observe(s)); document.querySelectorAll("header.hero,footer,aside.q").forEach(s=>io.observe(s)); }
 const NOCV=new Set(["highlights","karten","hacks"]);
 function cv(){ if(!CSS.supports||!CSS.supports("content-visibility","auto")) return; secs.forEach(s=>{ if(NOCV.has(s.id)||s.querySelector(".dist,.dtick,.map,canvas,iframe")) return; const h=Math.round(s.getBoundingClientRect().height); if(h<200) return; s.style.containIntrinsicSize="auto "+h+"px"; s.classList.add("cv"); }); }
 const go=()=>setTimeout(()=>(window.requestIdleCallback||(f=>f()))(cv),1800);
 document.readyState==="complete"?go():addEventListener("load",go);
 document.querySelectorAll("img").forEach(i=>{ if(!i.decoding||i.decoding==="auto") i.decoding="async"; });
+document.addEventListener("animationend",e=>{ const t=e.target; if(t.classList&&(t.classList.contains("gbar")||t.classList.contains("riftfx"))) t.classList.remove("go"); });
+/* Persona-Intro: Seite dahinter steht still, solange es läuft */
+(function(){ const H=document.documentElement; const on=()=>!!document.querySelector(".boot"); if(!on()) return; H.classList.add("booting");
+ const mo=new MutationObserver(()=>{ if(!on()){ H.classList.remove("booting"); mo.disconnect(); } }); mo.observe(document.body,{childList:true}); setTimeout(()=>{ H.classList.remove("booting"); mo.disconnect(); },30000); })();
 })();
 </script>
 </body></html>
