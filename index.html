@@ -2217,6 +2217,18 @@ h1{font-size:clamp(72px,5.4vw,100px)}
 #praktisch>#esim{grid-column:2}
 #praktisch>#fx .fx-row{flex-wrap:wrap}
 #praktisch>.facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+footer{display:grid;grid-template-columns:1fr auto 1fr;grid-template-rows:auto auto;align-items:center;gap:14px 24px;padding:26px 0 calc(150px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
+footer>.pxfoot{grid-column:2;grid-row:1;margin:0;transform:scale(1.6);transform-origin:50% 100%;opacity:.9}
+footer>.pxcount{grid-column:3;grid-row:1;justify-self:end}
+footer>.fhex{display:none}
+footer>.brand-l{grid-column:1/-1;grid-row:2;justify-self:center;font-size:13px}
+footer>#updated{grid-column:3;grid-row:2;justify-self:end}
+footer>.logout{grid-column:1;grid-row:1;justify-self:start;margin:0}
+.dock .prog,.dock-in{max-width:900px}
+.dock-in{padding:8px;border-radius:24px}
+.dock a{flex:1 0 82px;padding:10px 8px 8px;gap:4px;border-radius:16px}
+.dock a b{font-size:21px}
+.dock a span{font-size:11px}
 .gifts{grid-template-columns:repeat(3,minmax(0,1fr))}
 .gift-love,.gift-glit{grid-column:auto}
 .gift-love .gl-cols,.gift-glit .gl-cols{grid-template-columns:1fr;padding-right:0}
