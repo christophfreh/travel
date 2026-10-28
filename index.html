@@ -4730,7 +4730,7 @@ const kids=[...sec.children].filter(c=>c!==sh&&c.tagName!=="SCRIPT");const pick=
 kids.forEach(c=>{const cl=c.classList;if(cl.contains("rel")||(c.tagName==="PRE"&&cl.contains("code"))){pick.push(c);return;}
 if(c.tagName==="FIGURE"&&cl.contains("ph")&&!ph){ph=1;pick.push(c);return;}
 if(c.tagName==="FIGURE"&&cl.contains("flash")&&!fl){fl=1;pick.push(c);return;}
-if(c.tagName==="P"&&cl.contains("sub")&&!sub&&!cl.contains("status")){sub=1;pick.push(c);return;}});
+if(c.tagName==="P"&&cl.contains("sub")&&!sub&&!cl.contains("status")){sub=1;pick.push(c);return;}if(sec.id==="plan"&&cl.contains("box")&&!sub){sub=1;pick.push(c);return;}});
 if(!pick.some(c=>c.tagName==="FIGURE"||c.tagName==="PRE"||c.classList.contains("sub")))return;
 const g=document.createElement("div");g.className="secg";const r=document.createElement("div");r.className="rail";const m=document.createElement("div");m.className="smain";
 sh.after(g);g.append(r,m);kids.forEach(c=>{(pick.includes(c)?r:m).appendChild(c);});});
