@@ -2118,6 +2118,18 @@ box-shadow:inset 0 0 0 3px rgba(10,8,22,.9),inset 0 0 0 4px rgba(232,199,122,.28
 .sky .land .padl{fill:#FF3E8A}.sky .land .padl.b{fill:#3BE6D6}
 .sky .land .lwin{fill:#FCEE0A;opacity:.7}.sky .land .lwin.c{fill:#3BE6D6}.sky .land .lwin.p{fill:#FF3E8A}
 .sky .fight{filter:drop-shadow(0 0 2px #3BE6D6) drop-shadow(0 0 5px rgba(255,62,138,.55))}
+
+.mia{margin-top:22px;border:1px solid rgba(140,255,90,.45);border-radius:4px 4px 18px 4px;padding:16px;background:linear-gradient(180deg,rgba(140,255,90,.06),transparent 140px)}
+.mia-h h3{margin:8px 0 4px}.mia-h p{margin:0 0 14px;color:var(--muted)}
+.mia-tag{display:inline-block;align-self:flex-start;font:600 10px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:#0b0a1a;background:#8CFF5A;padding:5px 7px 4px;border-radius:3px;box-shadow:0 0 10px rgba(140,255,90,.35)}
+.mia-tag.big{font-size:12px;padding:7px 9px 6px}
+.mia-c{border-left-color:#8CFF5A}
+.mia-c .list a.ext{color:inherit;text-decoration:underline;text-decoration-color:rgba(140,255,90,.6);text-underline-offset:3px}
+.mia-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.mia-note{font-size:14px;color:var(--muted);margin:4px 0 0}
+@media(min-width:700px){.mia-wide{grid-column:1/-1}}
+.lay.lay-mia.on{background:#8CFF5A;border-color:#8CFF5A;color:#0b0a1a}
+.pp-mia{display:inline-block;margin:2px 0 4px;font:600 10px/1 monospace;letter-spacing:.12em;text-transform:uppercase;color:#0b0a1a;background:#8CFF5A;padding:4px 6px 3px;border-radius:3px}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -2462,6 +2474,37 @@ pflichtprogramm: <span class="n">null</span>,
 <div class="box jp"><h3>Yatai-Etikette</h3><p>Die Straßenstände in Fukuoka sind winzig. Jeder bestellt ein Getränk und ein Gericht, nach etwa einer Stunde macht man Platz.</p></div>
 <div class="box jp" id="t-yanagi"><h3>Yanagibashi-Markt</h3><p>Die „Küche von Hakata“: kleiner Markt für frischen Fisch, morgens am besten, ideal fürs Frühstück.</p><a class="vgo" href="#mapFuk" data-go="mapFuk">Auf der Karte ↗</a></div>
 </div>
+<div class="mia" id="mia"><div class="mia-h"><span class="mia-tag big">MiA Insider-Tipp</span><h3>Von MiA aus Seoul</h3><p>Ihre Liste für uns, nach Gegend sortiert. Die Links öffnen genau ihre Google-Maps-Pins. Auf der Karte unter „MiA-Tipps“.</p></div><div class="tips mia-grid">
+<div class="box mia-c mia-wide" id="m-kultur"><span class="mia-tag">MiA Insider-Tipp</span><h3>Koreanische Kultur</h3><div class="duo"><figure class="ph sq"><img src="https://images.unsplash.com/photo-1704177095608-55c44fe29ab6?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=800&h=500" alt="Bunter Tempel Jogyesa mit Laternen" loading="lazy" onerror="this.closest('figure').classList.add('ph-fail')"><span class="ph-l">조계사 · Jogyesa</span><figcaption>Foto: <a href="https://unsplash.com/@wwarby?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">William Warby</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure><figure class="ph sq"><img src="https://images.unsplash.com/photo-1742734703252-25ef2a605d33?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=800&h=500" alt="Schmale Gasse mit traditionellen Häusern" loading="lazy" onerror="this.closest('figure').classList.add('ph-fail')"><span class="ph-l">인사동 · Insadong</span><figcaption>Foto: <a href="https://unsplash.com/@logichom?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Luo Jin Hong</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure></div><ul class="list">
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/9oDVdbFkuJWAsuaZ9" target="_blank" rel="noopener">Gyeongbokgung ↗</a></b> · der große Palast, Eingang über das Gwanghwamun-Tor</span><span>Mo 23.11.</span></li>
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/5a6vrunrfwvhrBLS6" target="_blank" rel="noopener">Ikseon-dong ↗</a></b> · Hanok-Viertel mit Höfen, kleinen Läden und Cafés</span><span>Jongno</span></li>
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/4Q6Nvgb3DfEpk2Kg8" target="_blank" rel="noopener">Jogyesa ↗</a></b> · bunter buddhistischer Tempel, so wie man sich Korea vorstellt</span><span>Jongno</span></li>
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/GRZWRRrzHBc2EfyWA" target="_blank" rel="noopener">Insadong-gil ↗</a></b> · früher die Straße der Kalligrafie-Läden, Ssamziegil mittendrin</span><span>Insadong</span></li>
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/5SUjj9b1BVEjW9Jg7" target="_blank" rel="noopener">KCDF Gallery &amp; Shop ↗</a></b> · Galerie und richtig guter Laden des Kunsthandwerker-Verbands</span><span>Insadong</span></li>
+</ul><p class="mia-note">Jogyesa, Insadong-gil und KCDF liegen ein paar Minuten voneinander entfernt. Gut als eine Runde, KCDF auch für <a class="xref" data-go="mitbringsel" href="#mitbringsel">Geschenke</a>.</p><a class="vgo" href="#mapSeoul" data-go="mapSeoul" data-layer="mia">Auf der Karte ↗</a></div>
+<div class="box mia-c" id="m-hongdae"><span class="mia-tag">MiA Insider-Tipp</span><h3>Hongdae</h3><figure class="tph"><img src="https://images.unsplash.com/photo-1693430073576-751709f24e81?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360" alt="Hongdae bei Nacht" loading="lazy" onerror="this.closest('figure').classList.add('ph-fail')"><figcaption>Foto: <a href="https://unsplash.com/@intospaces?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Joe Lewandowski</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure><p>Studenten- und Einkaufsviertel, abends am vollsten.</p><ul class="list">
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/URVTmfo1TjNSnqYQA" target="_blank" rel="noopener">Hongdae Street ↗</a></b> · Hauptstraße zum Treibenlassen</span><span>Hongik Univ.</span></li>
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/m8ADsLFxPBHWzJxM9" target="_blank" rel="noopener">ADER error ↗</a></b> · Store der Seouler Modemarke</span><span>Hongdae</span></li>
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/BxBQ35U9am7rHCj67" target="_blank" rel="noopener">MMLG ↗</a></b> · Streetwear</span><span>Hongdae</span></li>
+</ul><a class="vgo" href="#mapSeoul" data-go="mapSeoul" data-layer="mia">Auf der Karte ↗</a></div>
+<div class="box mia-c" id="m-ddp"><span class="mia-tag">MiA Insider-Tipp</span><h3>Dongdaemun</h3><figure class="tph"><img src="https://images.unsplash.com/photo-1597259309583-aaa2584e2085?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360" alt="Geschwungene Fassade des Dongdaemun Design Plaza" loading="lazy" onerror="this.closest('figure').classList.add('ph-fail')"><figcaption>Foto: <a href="https://unsplash.com/@grimstad?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Håkon Grimstad</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure><p>Das Osttor der alten Stadtmauer.</p><ul class="list">
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/mgxtiTgN6JrCLzkx7" target="_blank" rel="noopener">DDP ↗</a></b> · Dongdaemun Design Plaza, das Gebäude von Zaha Hadid</span><span>DDP</span></li>
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/1fimN5N2N2Aoh7fx7" target="_blank" rel="noopener">Naksan-Mauerweg ↗</a></b> · Start am Heunginjimun-Park, dann die Stadtmauer hinauf</span><span>Dongdaemun</span></li>
+</ul><p class="mia-note">Vom DDP kommt man zu Fuß an den <a class="xref" data-go="t-walk" href="#t-walk">Cheonggyecheon</a>.</p><figure class="tph"><img src="https://images.unsplash.com/photo-1750511232573-cfe588101df5?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360" alt="Seouler Stadtmauer unter blauem Himmel" loading="lazy" onerror="this.closest('figure').classList.add('ph-fail')"><figcaption>Foto: <a href="https://unsplash.com/@simonwiedensohler?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Simon Wiedensohler</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure><a class="vgo" href="#mapSeoul" data-go="mapSeoul" data-layer="mia">Auf der Karte ↗</a></div>
+<div class="box mia-c" id="m-seongsu"><span class="mia-tag">MiA Insider-Tipp</span><h3>Seongsu-dong</h3><p>Altes Arbeiterviertel mit Fabrikhallen, das in den letzten Jahren zur Shopping-Gegend geworden ist. Am besten einfach die Yeonmujang-gil entlanggehen.</p><ul class="list">
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/bjkW7mYoWJeexVXq7" target="_blank" rel="noopener">Point of View ↗</a></b> · schönes Schreibwarengeschäft direkt an der Yeonmujang-gil</span><span>Seongsu</span></li>
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/RduB6gDEPZ7oB4b66" target="_blank" rel="noopener">Tamburins Seongsu ↗</a></b> · cooler Kosmetikladen in einer Nebenstraße</span><span>Seongsu</span></li>
+</ul><p class="mia-note">Gegenüber von Tamburins steht ein auffälliger Dior-Shop. Von außen anschauen reicht.</p><a class="vgo" href="#mapSeoul" data-go="mapSeoul" data-layer="mia">Auf der Karte ↗</a></div>
+<div class="box mia-c" id="m-gangnam"><span class="mia-tag">MiA Insider-Tipp</span><h3>Gangnam</h3><figure class="tph"><img src="https://images.unsplash.com/photo-1523180003485-e6e7d62c938b?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360" alt="Riesige Bücherregale in einem Seouler Einkaufszentrum" loading="lazy" onerror="this.closest('figure').classList.add('ph-fail')"><figcaption>Foto: <a href="https://unsplash.com/@piak?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Josip Ivanković</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure><ul class="list">
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/YJzGgmFaVgr6PYJb7" target="_blank" rel="noopener">Gentle Monster Haus Dosan ↗</a></b> · Brillenladen als Kunstinstallation</span><span>Dosan</span></li>
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/EA4xQ92PMTfvgPqr8" target="_blank" rel="noopener">Galleria Luxury Hall ↗</a></b> · Luxus-Kaufhaus in Apgujeong</span><span>Apgujeong</span></li>
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/GMGLKkwFNiueT3Cx9" target="_blank" rel="noopener">Starfield COEX ↗</a></b> · riesige Mall, drinnen die Bücherwand der Starfield Library</span><span>Samseong</span></li>
+</ul><p class="mia-note">COEX steht auch unter <a class="xref" data-go="regen" href="#regen">Wenn's regnet</a>.</p><a class="vgo" href="#mapSeoul" data-go="mapSeoul" data-layer="mia">Auf der Karte ↗</a></div>
+<div class="box mia-c" id="m-weitere"><span class="mia-tag">MiA Insider-Tipp</span><h3>Weitere</h3><figure class="tph"><img src="https://images.unsplash.com/photo-1577419487232-abeef63c0f8a?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360" alt="Waldweg mit Blick auf die Hochhäuser" loading="lazy" onerror="this.closest('figure').classList.add('ph-fail')"><figcaption>Foto: <a href="https://unsplash.com/@jztna?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">jztna</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure><ul class="list">
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/tBKPZEJegeuWPAmu8" target="_blank" rel="noopener">Leeum Museum of Art ↗</a></b> · Kunstmuseum von Samsung in Hannam</span><span>Hannam</span></li>
+<li><span><b><a class="ext" href="https://maps.app.goo.gl/YgrB4oGJhQMjMKDa6" target="_blank" rel="noopener">The Forest Choso ↗</a></b> · Café mit Büchern am Waldrand, oberhalb von Seochon</span><span>Seochon</span></li>
+</ul><a class="vgo" href="#mapSeoul" data-go="mapSeoul" data-layer="mia">Auf der Karte ↗</a></div>
+</div></div>
 </section>
 <section id="guide">
 <div class="sh"><span class="n">★</span><h2>Reiseführer-Check</h2><span class="ko">가이드</span></div>
@@ -2711,7 +2754,7 @@ pflichtprogramm: <span class="n">null</span>,
 <section id="karten">
 <div class="sh"><span class="n">17</span><h2>Karten</h2><span class="ko">지도</span></div>
 <div class="legend"><span><i class="dot c"></i>Wohnen</span><span><i class="dot y"></i>Essen</span><span><i class="dot p"></i>Bars</span><span><i class="dot w"></i>Sehen & Games</span><span><i class="dot s"></i>Shopping</span></div>
-<div class="laybar" id="layBar" role="group" aria-label="Karte filtern"><button type="button" class="lay on" data-lay="jongno">Jongno</button><button type="button" class="lay" data-lay="seoul">Ganz Seoul</button><button type="button" class="lay" data-lay="viertel">Viertel</button><button type="button" class="lay" data-lay="tipps">Lokaltipps</button><button type="button" class="lay" data-lay="top">Top 10</button><button type="button" class="lay" data-lay="alle">Alles</button></div>
+<div class="laybar" id="layBar" role="group" aria-label="Karte filtern"><button type="button" class="lay on" data-lay="jongno">Jongno</button><button type="button" class="lay" data-lay="seoul">Ganz Seoul</button><button type="button" class="lay" data-lay="viertel">Viertel</button><button type="button" class="lay" data-lay="tipps">Lokaltipps</button><button type="button" class="lay lay-mia" data-lay="mia">MiA-Tipps</button><button type="button" class="lay" data-lay="top">Top 10</button><button type="button" class="lay" data-lay="alle">Alles</button></div>
 <div class="map" id="mapSeoul"></div>
 <ol class="plist" id="listSeoul"></ol>
 <div class="map" id="mapFuk"></div>
@@ -3179,8 +3222,28 @@ MAPS.fuk.polys=[
 ["v-hakata","Hakata",[[33.5935,130.4140],[33.5935,130.4230],[33.5885,130.4230],[33.5885,130.4140]]]
 ];
 
+MAPS.mia={el:"mapMia",title:"MiA-Tipps",sub:"Insider-Tipps",box:[37.488,37.600,126.895,127.125],link:GM,areas:[],water:[],roads:[],labels:[],
+pins:[
+["m","Gyeongbokgung (Gwanghwamun)","MiA: der große Palast",37.5760111,126.9768611,"","","","m-kultur",null,"https://maps.app.goo.gl/9oDVdbFkuJWAsuaZ9"],
+["m","Ikseon-dong Hanok-Viertel","MiA: Hofhäuser, Shops, Cafés",37.5737132,126.9901271,"","","","m-kultur",null,"https://maps.app.goo.gl/5a6vrunrfwvhrBLS6"],
+["m","Jogyesa-Tempel","MiA: bunter buddhistischer Tempel",37.5738369,126.982202,"https://images.unsplash.com/photo-1704177095608-55c44fe29ab6?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","William Warby","wwarby","m-kultur",null,"https://maps.app.goo.gl/4Q6Nvgb3DfEpk2Kg8"],
+["m","Insadong-gil (Ssamziegil)","MiA: alte Kalligrafie-Straße",37.5743024,126.9849036,"https://images.unsplash.com/photo-1742734703252-25ef2a605d33?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","Luo Jin Hong","logichom","m-kultur",null,"https://maps.app.goo.gl/GRZWRRrzHBc2EfyWA"],
+["m","KCDF Gallery & Shop","MiA: Kunsthandwerk, super Shop",37.5739867,126.9841086,"","","","m-kultur",null,"https://maps.app.goo.gl/5SUjj9b1BVEjW9Jg7"],
+["m","Hongdae Street","MiA: Studenten- und Einkaufsviertel",37.5561973,126.9250341,"https://images.unsplash.com/photo-1693430073576-751709f24e81?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","Joe Lewandowski","intospaces","m-hongdae",null,"https://maps.app.goo.gl/URVTmfo1TjNSnqYQA"],
+["m","ADER error Hongdae","MiA: Mode-Store",37.5516824,126.9224313,"","","","m-hongdae",null,"https://maps.app.goo.gl/m8ADsLFxPBHWzJxM9"],
+["m","MMLG Hongdae","MiA: Streetwear",37.5516113,126.9198371,"","","","m-hongdae",null,"https://maps.app.goo.gl/BxBQ35U9am7rHCj67"],
+["m","DDP (Zaha Hadid)","MiA: Design Plaza, weiter zum Cheonggyecheon",37.5665256,127.0092236,"https://images.unsplash.com/photo-1597259309583-aaa2584e2085?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","Håkon Grimstad","grimstad","m-ddp",null,"https://maps.app.goo.gl/mgxtiTgN6JrCLzkx7"],
+["m","Naksan-Mauerweg (Start)","MiA: Heunginjimun-Park",37.5719236,127.0090775,"https://images.unsplash.com/photo-1750511232573-cfe588101df5?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","Simon Wiedensohler","simonwiedensohler","m-ddp",null,"https://maps.app.goo.gl/1fimN5N2N2Aoh7fx7"],
+["m","Point of View (Seongsu)","MiA: Schreibwaren, Yeonmujang-gil",37.5434188,127.051374,"","","","m-seongsu",null,"https://maps.app.goo.gl/bjkW7mYoWJeexVXq7"],
+["m","Tamburins Seongsu","MiA: Kosmetik, Dior-Shop gegenüber",37.5437671,127.0526044,"","","","m-seongsu",null,"https://maps.app.goo.gl/RduB6gDEPZ7oB4b66"],
+["m","Gentle Monster Haus Dosan","MiA: Brillen als Installation",37.525382,127.0356949,"","","","m-gangnam",null,"https://maps.app.goo.gl/YJzGgmFaVgr6PYJb7"],
+["m","Galleria Luxury Hall","MiA: Luxus-Kaufhaus",37.528471,127.040079,"","","","m-gangnam",null,"https://maps.app.goo.gl/EA4xQ92PMTfvgPqr8"],
+["m","Starfield COEX Mall","MiA: riesige Mall mit Bibliothek",37.5118346,127.0597871,"https://images.unsplash.com/photo-1523180003485-e6e7d62c938b?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","Josip Ivanković","piak","m-gangnam",null,"https://maps.app.goo.gl/GMGLKkwFNiueT3Cx9"],
+["m","Leeum Museum of Art","MiA: Kunstmuseum in Hannam",37.5379389,126.9992749,"","","","m-weitere",null,"https://maps.app.goo.gl/tBKPZEJegeuWPAmu8"],
+["m","The Forest Choso","MiA: Café am Waldrand",37.5858972,126.9642305,"https://images.unsplash.com/photo-1577419487232-abeef63c0f8a?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","jztna","jztna","m-weitere",null,"https://maps.app.goo.gl/YgrB4oGJhQMjMKDa6"]
+]};
 const SEO_ALL=[];
-[["jongno",MAPS.core],["seoul",MAPS.city],["tipps",MAPS.tipps],["viertel",MAPS.viertel],["top",MAPS.top10]].forEach(([ly,m])=>m.pins.forEach(p=>{
+[["jongno",MAPS.core],["seoul",MAPS.city],["tipps",MAPS.tipps],["viertel",MAPS.viertel],["top",MAPS.top10],["mia",MAPS.mia]].forEach(([ly,m])=>m.pins.forEach(p=>{
  const ex=SEO_ALL.find(q=>q[1]===p[1]); if(ex){ if(!ex[9].includes(ly)) ex[9].push(ly); if(!ex[5]&&p[5]){ex[5]=p[5];ex[6]=p[6];ex[7]=p[7];} if(!ex[8]&&p[8]) ex[8]=p[8]; return; }
  const q=p.slice(); while(q.length<9) q.push(""); q[9]=[ly]; SEO_ALL.push(q); }));
 const SEO_POLYS=MAPS.viertel.polys;
@@ -3190,15 +3253,16 @@ const LAYCFG={
  seoul:{box:MAPS.city.box,roads:MAPS.city.roads,water:MAPS.city.water,areas:MAPS.city.areas,fit:null,polys:[],zone:null},
  viertel:{box:MAPS.viertel.box,roads:MAPS.city.roads,water:MAPS.city.water,areas:[],fit:MAPS.viertel.fit,polys:SEO_POLYS,zone:null},
  tipps:{box:MAPS.tipps.box,roads:[],water:[],areas:[],fit:null,polys:[],zone:null},
- top:{box:MAPS.top10.box,roads:MAPS.city.roads,water:MAPS.city.water,areas:[],fit:null,polys:[],zone:null}};
+ top:{box:MAPS.top10.box,roads:MAPS.city.roads,water:MAPS.city.water,areas:[],fit:null,polys:[],zone:null},
+ mia:{box:[37.505,37.595,126.91,127.07],roads:MAPS.city.roads,water:MAPS.city.water,areas:[],fit:null,polys:[],zone:null}};
 const SEO_ISLAND=MAPS.city.island, SEO_LABELS=MAPS.top10.labels;
 MAPS.seoul={el:"mapSeoul",list:"listSeoul",title:"Seoul",sub:"alles auf einer Karte",link:GM,island:SEO_ISLAND,labels:SEO_LABELS,pins:[]};
-["core","city","tipps","viertel","top10"].forEach(k=>delete MAPS[k]);
-window.__mapLayer=ly=>{ const m=MAPS.seoul, c=LAYCFG[ly]||LAYCFG.alle; Object.assign(m,c); m.pins=SEO_ALL.filter(p=>ly==="alle"||p[9].includes(ly)); m.island=(ly==="jongno"||ly==="tipps")?null:SEO_ISLAND; m.labels=(ly==="jongno"||ly==="tipps"||ly==="viertel")?[]:SEO_LABELS; m.zone=c.zone; const el=$(m.el); if(el&&el._lf){ try{el._lf.remove();}catch(e){} el._lf=null; el.classList.remove("lf"); }
+["core","city","tipps","viertel","top10","mia"].forEach(k=>delete MAPS[k]);
+window.__mapLayer=ly=>{ const m=MAPS.seoul, c=LAYCFG[ly]||LAYCFG.alle; Object.assign(m,c); m.pins=SEO_ALL.filter(p=>ly==="alle"||p[9].includes(ly)); m.island=(ly==="jongno"||ly==="tipps")?null:SEO_ISLAND; m.labels=(ly==="jongno"||ly==="tipps"||ly==="viertel"||ly==="mia")?[]:SEO_LABELS; m.zone=c.zone; const el=$(m.el); if(el&&el._lf){ try{el._lf.remove();}catch(e){} el._lf=null; el.classList.remove("lf"); }
  if(el) { drawMap(m); if(LIVE&&window.L) { try{ leaf(m); }catch(e){} } }
  document.querySelectorAll("#layBar .lay").forEach(b=>{ const on=b.dataset.lay===ly; b.classList.toggle("on",on); b.setAttribute("aria-pressed",on); }); };
 window.__mapLayer("jongno");
-const BL=id=>(id==="ut-prep"||id==="sw2-japan")?"Zur Anleitung":id.startsWith("t-")?"Zum Tipp":(id==="top10g"||id==="fuk-sehen"||id==="fuk-alt")?"Zur Liste":"Zum Viertel";
+const BL=id=>(id==="ut-prep"||id==="sw2-japan")?"Zur Anleitung":(id.startsWith("t-")||id.startsWith("m-"))?"Zum Tipp":(id==="top10g"||id==="fuk-sehen"||id==="fuk-alt")?"Zur Liste":"Zum Viertel";
 function drawMap(m){
 const [la0,la1,lo0,lo1]=m.box, k=Math.cos((la0+la1)/2*Math.PI/180);
 const W=400, H=Math.round(W*((la1-la0)/((lo1-lo0)*k)));
@@ -3212,18 +3276,18 @@ m.water.forEach(w=>s+=`<path class="mp-water" stroke-width="${m.el==="mapSeoul"?
 if(m.island) s+=`<path d="${line(m.island)}Z" fill="#1B1840" stroke="#3BE6D6" stroke-opacity=".35"/>`;
 (m.polys||[]).forEach(q=>{ const c=VCOL[q[0]]||"#FCEE0A"; const cx=q[2].reduce((a,t)=>a+t[1],0)/q[2].length, cy=q[2].reduce((a,t)=>a+t[0],0)/q[2].length; s+=`<path d="${line(q[2])}Z" fill="${c}" fill-opacity=".14" stroke="${c}" stroke-width="1.6" stroke-dasharray="5 3"/><text class="mp-lbl" x="${X(cx)}" y="${Y(cy)+20}" text-anchor="middle" fill="${c}">${q[1].split(" & ")[0].toUpperCase()}</text>`; });
 m.labels.forEach(l=>s+=`<text class="mp-lbl" x="${X(l[1])}" y="${Y(l[0])}" text-anchor="${l[2].startsWith("NAKASU")?"middle":"start"}">${l[2]}</text>`);
-const col={c:"#3BE6D6",y:"#FFD23F",p:"#FF3E8A",w:"#F4F1FF",s:"#B48CFF"};
+const col={c:"#3BE6D6",y:"#FFD23F",p:"#FF3E8A",w:"#F4F1FF",s:"#B48CFF",m:"#8CFF5A"};
 const OUT=m.pins.map(p=>p[3]>la1||p[3]<la0||p[4]>lo1||p[4]<lo0);
 const P=m.pins.map((p,i)=>OUT[i]?{x:Math.min(W-16,Math.max(16,X(p[4]))),y:Math.min(H-16,Math.max(30,Y(p[3])))}:{x:X(p[4]),y:Y(p[3])});
 m.pins.forEach((p,i)=>{if(OUT[i]){const up=p[3]>la1;s+=`<text class="mp-lbl" x="${P[i].x+14}" y="${P[i].y+3}" fill="#F4F1FF">${up?"↑ ":"↓ "}${p[2].split(",")[0].toUpperCase()} · CA. ${Math.round(Math.hypot((p[3]-Math.min(la1,Math.max(la0,p[3])))*111,(p[4]-Math.min(lo1,Math.max(lo0,p[4])))*88))+3} KM</text>`;}});
 for(let it=0;it<40;it++)for(let a=0;a<P.length;a++)for(let b=a+1;b<P.length;b++){const dx=P[b].x-P[a].x,dy=P[b].y-P[a].y,d=Math.hypot(dx,dy)||.01;if(d<18){const f=(18-d)/2,ux=dx/d,uy=dy/d;P[a].x-=ux*f;P[a].y-=uy*f;P[b].x+=ux*f;P[b].y+=uy*f;}}
-m.pins.forEach((p,i)=>{const x=P[i].x,y=P[i].y;s+=`<a href="${m.link(p[1])}" target="_blank" rel="noopener"><g class="mp-pin"><title>${p[1]} · ${p[2]}</title><circle cx="${x}" cy="${y}" r="10" fill="${col[p[0]]}" filter="url(#glow${m.el})" opacity=".6"/><circle class="ring" cx="${x}" cy="${y}" r="9" fill="none" stroke="${col[p[0]]}" stroke-width="1.5"/><circle cx="${x}" cy="${y}" r="8.5" fill="${col[p[0]]}" stroke="#110F27" stroke-width="1.2"/><text x="${x}" y="${y+3.2}" text-anchor="middle">${i+1}</text></g></a>`;});
+m.pins.forEach((p,i)=>{const x=P[i].x,y=P[i].y;s+=`<a href="${p[10]||m.link(p[1])}" target="_blank" rel="noopener"><g class="mp-pin"><title>${p[1]} · ${p[2]}</title><circle cx="${x}" cy="${y}" r="10" fill="${col[p[0]]}" filter="url(#glow${m.el})" opacity=".6"/><circle class="ring" cx="${x}" cy="${y}" r="9" fill="none" stroke="${col[p[0]]}" stroke-width="1.5"/><circle cx="${x}" cy="${y}" r="8.5" fill="${col[p[0]]}" stroke="#110F27" stroke-width="1.2"/><text x="${x}" y="${y+3.2}" text-anchor="middle">${i+1}</text></g></a>`;});
 s+=`</svg>`;
 $(m.el).innerHTML=`<div class="ttl">${m.title}<small>${m.sub}</small></div><div class="map-tools"><button type="button" class="loupe-btn" aria-pressed="false" aria-label="Lupe ein- oder ausschalten"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button><button type="button" class="zoom-btn" aria-label="Karte vergrößern" title="Vergrößern">⤢</button></div>`+s;
-$(m.list).innerHTML=m.pins.map((p,i)=>`<li><a href="${m.link(p[1])}" target="_blank" rel="noopener"><span class="num" style="background:${col[p[0]]}">${i+1}</span><span>${p[1]}<small>${p[2]}</small>${p[5]?`<img class="pth" src="${p[5]}" alt="${p[1]}" loading="lazy" onerror="this.style.visibility='hidden'"><small class="pcr">Foto: ${p[6]} · Unsplash</small>`:""}</span></a>${p[8]?`<a class="vback" href="#${p[8]}" data-go="${p[8]}">${BL(p[8])} ↓</a>`:""}</li>`).join("");
+$(m.list).innerHTML=m.pins.map((p,i)=>`<li><a href="${p[10]||m.link(p[1])}" target="_blank" rel="noopener"><span class="num" style="background:${col[p[0]]}">${i+1}</span><span>${p[1]}<small>${p[2]}</small>${p[5]?`<img class="pth" src="${p[5]}" alt="${p[1]}" loading="lazy" onerror="this.style.visibility='hidden'"><small class="pcr">Foto: ${p[6]} · Unsplash</small>`:""}</span></a>${p[8]?`<a class="vback" href="#${p[8]}" data-go="${p[8]}">${BL(p[8])} ↓</a>`:""}</li>`).join("");
 }
 Object.values(MAPS).forEach(drawMap);
-const PCOL={c:"#3BE6D6",y:"#FFD23F",p:"#FF3E8A",w:"#F4F1FF",s:"#B48CFF"};
+const PCOL={c:"#3BE6D6",y:"#FFD23F",p:"#FF3E8A",w:"#F4F1FF",s:"#B48CFF",m:"#8CFF5A"};
 function leaf(m){
 const el=$(m.el); el.classList.add("lf");
 el.innerHTML=`<div class="ttl">${m.title}<small>${m.sub} · antippen für Infos</small></div><div class="map-tools"><button type="button" class="zoom-btn" aria-label="Karte vergrößern" title="Vergrößern">⤢</button></div><div class="lf-map"></div>`;
@@ -3235,7 +3299,7 @@ if(m.zone){const z=m.zone;L.rectangle([[z[0],z[2]],[z[1],z[3]]],{color:"#FCEE0A"
 const base=m.zone?[(m.zone[0]+m.zone[1])/2,(m.zone[2]+m.zone[3])/2]:null;
 const dist=p=>{ if(!base) return ""; const t=Math.PI/180,dl=(p[3]-base[0])*t,dn=(p[4]-base[1])*t,x=Math.sin(dl/2)**2+Math.cos(base[0]*t)*Math.cos(p[3]*t)*Math.sin(dn/2)**2,km=12742*Math.asin(Math.sqrt(x)); return `<span class="pp-d">${km.toFixed(1).replace(".",",")} KM VON DER BASIS · ZU FUSS CA. ${Math.max(1,Math.round(km*1.25/5*60))} MIN</span>`; };
 const pts=m.pins.map((p,i)=>{L.marker([p[3],p[4]],{icon:L.divIcon({className:"lf-pin",html:`<span style="--c:${PCOL[p[0]]}"><i>${i+1}</i></span>`,iconSize:[26,26],iconAnchor:[13,13]}),title:p[1]}).addTo(map)
-.bindPopup(`${p[5]?`<img class="pth" src="${p[5]}" alt="${p[1]}" onerror="this.style.visibility='hidden'">`:""}<span class="pp-k">&gt; ZIEL ${String(i+1).padStart(2,"0")}</span><b>${p[1]}</b><small>${p[2]}</small>${dist(p)}<a href="${GM(p[1])}" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>${p[8]?`<a href="#${p[8]}" data-go="${p[8]}">${BL(p[8])} ↓</a>`:""}${p[5]?`<small class="pcr">Foto: <a href="https://unsplash.com/@${p[7]}?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">${p[6]}</a> · Unsplash</small>`:""}`); return [p[3],p[4]];});
+.bindPopup(`${p[5]?`<img class="pth" src="${p[5]}" alt="${p[1]}" onerror="this.style.visibility='hidden'">`:""}<span class="pp-k">&gt; ZIEL ${String(i+1).padStart(2,"0")}</span>${p[0]==="m"?'<span class="pp-mia">MiA Insider-Tipp</span>':""}<b>${p[1]}</b><small>${p[2]}</small>${dist(p)}<a href="${p[10]||GM(p[1])}" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>${p[8]?`<a href="#${p[8]}" data-go="${p[8]}">${BL(p[8])} ↓</a>`:""}${p[5]?`<small class="pcr">Foto: <a href="https://unsplash.com/@${p[7]}?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">${p[6]}</a> · Unsplash</small>`:""}`); return [p[3],p[4]];});
 map.fitBounds(m.fit||pts,{padding:[28,28]}); el._lf=map;
 let route=null; map.on("popupopen",e=>{ if(!base) return; const ll=e.popup.getLatLng(); if(route) map.removeLayer(route); route=L.polyline([base,[ll.lat,ll.lng]],{color:"#FCEE0A",weight:2.5,dashArray:"3 9",opacity:.9,className:"lf-route"}).addTo(map); }); map.on("popupclose",()=>{ if(route){ map.removeLayer(route); route=null; } });
 const cmp=document.createElement("div"); cmp.className="lf-compass"; cmp.setAttribute("aria-hidden","true"); cmp.innerHTML="<i></i>"; el.querySelector(".lf-map").appendChild(cmp);
