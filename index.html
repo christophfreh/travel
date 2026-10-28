@@ -2204,6 +2204,19 @@ h1{font-size:clamp(72px,5.4vw,100px)}
 .rail .code{font-size:12px;white-space:pre-wrap}
 .rail .dmz2049{min-height:300px}
 .rail .dz-txt{max-width:100%}
+#preise{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);column-gap:24px;align-items:start}
+#preise>*{grid-column:1/-1}
+#preise>.box.hot{grid-column:1;grid-row:3}
+#preise>#konto{grid-column:2;grid-row:3;position:sticky;top:76px}
+#preise .box.hot .pt{max-width:none}
+#praktisch{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:24px;align-items:start}
+#praktisch>*{grid-column:1/-1}
+#praktisch>.box.net{grid-column:1;display:flex}
+#praktisch>#fx{grid-column:2}
+#praktisch>#offBox{grid-column:1}
+#praktisch>#esim{grid-column:2}
+#praktisch>#fx .fx-row{flex-wrap:wrap}
+#praktisch>.facts{grid-template-columns:repeat(3,minmax(0,1fr))}
 .gifts{grid-template-columns:repeat(3,minmax(0,1fr))}
 .gift-love,.gift-glit{grid-column:auto}
 .gift-love .gl-cols,.gift-glit .gl-cols{grid-template-columns:1fr;padding-right:0}
