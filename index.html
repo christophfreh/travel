@@ -2213,8 +2213,9 @@ h1{font-size:clamp(72px,5.4vw,100px)}
 #preise{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);column-gap:24px;align-items:start}
 #preise>*{grid-column:1/-1}
 #preise>.box.hot{grid-column:1;grid-row:3}
-#preise>#konto{grid-column:2;grid-row:3;position:sticky;top:76px}
+#preise>#konto{grid-column:2;grid-row:3}
 #preise .box.hot .pt{max-width:none}
+#preise>.grid2{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}
 #praktisch{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:24px;align-items:start}
 #praktisch>*{grid-column:1/-1}
 #praktisch>.box.net{grid-column:1;display:flex}
@@ -4794,4 +4795,5 @@ const g=document.createElement("div");g.className="secg";const r=document.create
 sh.after(g);g.append(r,m);kids.forEach(c=>{(pick.includes(c)?r:m).appendChild(c);});});
 const st=()=>document.querySelectorAll(".rail").forEach(r=>r.classList.toggle("stick",innerWidth>=1280&&r.offsetHeight<innerHeight-120));
 addEventListener("load",()=>{st();setTimeout(st,2000)});addEventListener("resize",st);st();})();</script>
+<script>(()=>{const g=document.querySelector("#preise>.grid2");if(!g)return;const n=g.nextElementSibling;if(n&&n.classList.contains("box")&&/UNTERWEGS/i.test(n.textContent.slice(0,80)))g.appendChild(n);})();</script>
 </body></html>
