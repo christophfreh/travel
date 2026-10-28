@@ -2153,6 +2153,19 @@ box-shadow:inset 0 0 0 3px rgba(10,8,22,.9),inset 0 0 0 4px rgba(232,199,122,.28
 .mia.mia-glow::before{animation:miaholo 12s ease-in-out infinite alternate}
 .mia{border-color:transparent;box-shadow:0 0 26px -10px rgba(140,255,90,.6),0 0 40px -18px rgba(255,62,138,.6)}
 @media(prefers-reduced-motion:reduce){.mia-on .mia-tag,.mia.mia-glow::before{animation:none}.mia-tag{transform:none;transition:none}}
+
+/* Notebook/Desktop: Platz nutzen */
+@media(min-width:1100px){
+.wrap{max-width:min(1600px,calc(100vw - 160px))}
+.dist .d-slab{max-width:min(1600px,calc(100vw - 160px))}
+section>p,section>.sub{max-width:80ch}
+.ph{max-height:440px}
+.map.lf .lf-map{height:620px}
+.map:not(.lf) svg{max-height:720px}
+.map.metro{max-width:1000px;margin-inline:auto;width:100%}
+.hangul{font-size:clamp(250px,18vw,330px)}
+h1{font-size:clamp(72px,5.4vw,100px)}
+}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
