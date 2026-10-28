@@ -2242,6 +2242,17 @@ footer>.logout{grid-column:1;grid-row:1;justify-self:start;margin:0}
 #hacks>.lab{grid-column:2;margin-top:0;align-content:start}
 #hacks>.cps .ms{grid-template-columns:1fr;max-width:none;width:100%;margin:16px 0 12px;gap:14px}
 #hacks>.cps .m i{height:8px}
+.map.lf .lf-map{height:540px}
+#karten{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(0,1fr);column-gap:20px;row-gap:16px;align-items:start}
+#karten>*{grid-column:1/-1}
+#karten>#mapSeoul,#karten>#mapFuk{grid-column:1}
+#karten>#listSeoul,#karten>#listFuk{grid-column:2;max-height:600px;overflow:auto;grid-template-columns:1fr 1fr;margin:0;scrollbar-width:thin}
+#karten>.sh{grid-row:1}#karten>.rel{grid-row:2}#karten>.legend{grid-row:3}#karten>#layBar{grid-row:4}
+#karten>#mapSeoul,#karten>#listSeoul{grid-row:5}
+#karten>#mapFuk,#karten>#listFuk{grid-row:6}
+#karten>.label{grid-row:7}#karten>#metroBar{grid-row:8}#karten>#metroSeoul,#karten>#metroFuk{grid-row:9}#karten>.status{grid-row:10}
+#karten>#listSeoul,#karten>#listFuk{max-height:590px}
+.map.metro{max-width:820px}
 .gifts{grid-template-columns:repeat(3,minmax(0,1fr))}
 .gift-love,.gift-glit{grid-column:auto}
 .gift-love .gl-cols,.gift-glit .gl-cols{grid-template-columns:1fr;padding-right:0}
