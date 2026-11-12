@@ -1699,6 +1699,14 @@ section.fold:not(.open)>*{flex-shrink:0}
 .lf-compass i{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:17px solid var(--y);transform:translateY(2px);filter:drop-shadow(0 0 4px var(--y))}
 .lf-compass i::after{content:"";position:absolute;left:50%;top:50%;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:12px solid rgba(255,255,255,.5);transform:translate(-50%,0)}
 .lf-pin span{border-radius:0;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);width:28px;height:28px;border:0;box-shadow:none;background:var(--c);filter:drop-shadow(0 0 6px var(--c))}
+.lf-hotel{position:relative;width:36px;height:36px;display:grid;place-items:center;background:var(--c);clip-path:polygon(50% 0,95% 25%,95% 75%,50% 100%,5% 75%,5% 25%);filter:drop-shadow(0 0 8px var(--c))}
+.lf-hotel::before{content:"";position:absolute;inset:2px;background:#110F27;clip-path:polygon(50% 0,95% 25%,95% 75%,50% 100%,5% 75%,5% 25%)}
+.lf-hotel svg{position:relative;width:20px;height:20px;fill:none;stroke:var(--c);stroke-width:2;stroke-linejoin:round;stroke-linecap:round;filter:drop-shadow(0 0 4px var(--c))}
+.lf-hotel svg path:nth-child(3){stroke:#FCEE0A}
+.lf-pin-h::after{content:"";position:absolute;}
+@keyframes hotelglow{0%,100%{filter:drop-shadow(0 0 6px #B48CFF)}50%{filter:drop-shadow(0 0 14px #B48CFF)}}
+.lf-hotel{animation:hotelglow 2.6s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.lf-hotel{animation:none}}
 .lf-route{animation:lfdash 1.2s linear infinite}
 @keyframes lfdash{to{stroke-dashoffset:-20}}
 @media (prefers-reduced-motion:reduce){.lf-route{animation:none}}
@@ -3291,6 +3299,7 @@ water:[],
 roads:[[[37.5572,126.9245],[37.5477,126.9229]],[[37.5560,126.9055],[37.5572,126.9245]]],
 labels:[[37.5640,126.9020,"YEONNAM 연남"],[37.5450,126.9020,"SANGSU 상수"],[37.5600,126.9060,"MANGWON 망원"]],
 pins:[
+["h","Slowon Hongdae · UNSER HOTEL","5F, 118 Yanghwa-ro · Booking bestätigt · Lage ca.",37.5524,126.9228,"","","","",null,"https://www.google.com/maps/search/?api=1&query=Slowon+Hongdae+5F+118+Yanghwa-ro+Mapo-gu+Seoul"],
 ["c","Hongik Univ. Station","Linie 2 · AREX · Gyeongui-Jungang",37.5572,126.9245],
 ["y","Hongdae-Gasse (Eoulmadang-ro)","Essen & Bars bis spät",37.5560,126.9230],
 ["y","Yeonnam-dong","Cafés & Restaurants, ruhiger",37.5622,126.9248],
@@ -3479,7 +3488,7 @@ $(m.el).innerHTML=`<div class="ttl">${m.title}<small>${m.sub}</small></div><div 
 $(m.list).innerHTML=m.pins.map((p,i)=>`<li><a href="${p[10]||m.link(p[1])}" target="_blank" rel="noopener"><span class="num" style="background:${col[p[0]]}">${i+1}</span><span>${p[1]}<small>${p[2]}</small>${p[5]?`<img class="pth" src="${p[5]}" alt="${p[1]}" loading="lazy" onerror="this.style.visibility='hidden'"><small class="pcr">Foto: ${p[6]} · Unsplash</small>`:""}</span></a>${p[8]?`<a class="vback" href="#${p[8]}" data-go="${p[8]}">${BL(p[8])} ↓</a>`:""}</li>`).join("");
 }
 Object.values(MAPS).forEach(drawMap);
-const PCOL={c:"#3BE6D6",y:"#FFD23F",p:"#FF3E8A",w:"#F4F1FF",s:"#B48CFF",m:"#8CFF5A",n:"#FFB13B"};
+const PCOL={c:"#3BE6D6",y:"#FFD23F",p:"#FF3E8A",w:"#F4F1FF",s:"#B48CFF",m:"#8CFF5A",n:"#FFB13B",h:"#B48CFF"};
 function leaf(m){
 const el=$(m.el); el.classList.add("lf");
 el.innerHTML=`<div class="ttl">${m.title}<small>${m.sub} · antippen für Infos</small></div><div class="map-tools"><button type="button" class="zoom-btn" aria-label="Karte vergrößern" title="Vergrößern">⤢</button></div><div class="lf-map"></div>`;
@@ -3490,7 +3499,8 @@ if(m.zone){const z=m.zone;L.rectangle([[z[0],z[2]],[z[1],z[3]]],{color:"#FCEE0A"
 (m.polys||[]).forEach(q=>{ const c=VCOL[q[0]]||"#FCEE0A"; L.polygon(q[2],{color:c,weight:2.2,dashArray:"6 4",fillColor:c,fillOpacity:.14}).addTo(map).bindTooltip(q[1],{permanent:true,direction:"center",className:"lf-area"}).bindPopup(`<b>${q[1]}</b><small>Viertel</small><a href="#${q[0]}" data-go="${q[0]}">Zum Viertel ↓</a>`); });
 const base=m.zone?[(m.zone[0]+m.zone[1])/2,(m.zone[2]+m.zone[3])/2]:null;
 const dist=p=>{ if(!base) return ""; const t=Math.PI/180,dl=(p[3]-base[0])*t,dn=(p[4]-base[1])*t,x=Math.sin(dl/2)**2+Math.cos(base[0]*t)*Math.cos(p[3]*t)*Math.sin(dn/2)**2,km=12742*Math.asin(Math.sqrt(x)); return `<span class="pp-d">${km.toFixed(1).replace(".",",")} KM VON DER BASIS · ZU FUSS CA. ${Math.max(1,Math.round(km*1.25/5*60))} MIN</span>`; };
-const pts=m.pins.map((p,i)=>{L.marker([p[3],p[4]],{icon:L.divIcon({className:"lf-pin",html:`<span style="--c:${PCOL[p[0]]}"><i>${i+1}</i></span>`,iconSize:[26,26],iconAnchor:[13,13]}),title:p[1]}).addTo(map)
+const HOTEL_ICON=`<div class="lf-hotel" style="--c:#B48CFF"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12z"/><path d="M9 21v-5h6v5"/><path d="M8 12h2M14 12h2"/></svg></div>`;
+const pts=m.pins.map((p,i)=>{const isH=p[0]==="h";L.marker([p[3],p[4]],{icon:isH?L.divIcon({className:"lf-pin lf-pin-h",html:HOTEL_ICON,iconSize:[36,36],iconAnchor:[18,18]}):L.divIcon({className:"lf-pin",html:`<span style="--c:${PCOL[p[0]]}"><i>${i+1}</i></span>`,iconSize:[26,26],iconAnchor:[13,13]}),title:p[1]}).addTo(map)
 .bindPopup(`${p[5]?`<img class="pth" src="${p[5]}" alt="${p[1]}" onerror="this.style.visibility='hidden'">`:""}<span class="pp-k">&gt; ZIEL ${String(i+1).padStart(2,"0")}</span>${p[0]==="m"?'<span class="pp-mia">미아 추천 · Mias Tipp</span>':p[0]==="n"?'<span class="pp-nad">나딘 추천 · Nadines Tipp</span>':""}<b>${p[1]}</b><small>${p[2]}</small>${dist(p)}<a href="${p[10]||GM(p[1])}" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>${p[8]?`<a href="#${p[8]}" data-go="${p[8]}">${BL(p[8])} ↓</a>`:""}${p[5]?`<small class="pcr">Foto: <a href="https://unsplash.com/@${p[7]}?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">${p[6]}</a> · Unsplash</small>`:""}`); return [p[3],p[4]];});
 map.fitBounds(m.fit||pts,{padding:[28,28]}); el._lf=map;
 let route=null; map.on("popupopen",e=>{ if(!base) return; const ll=e.popup.getLatLng(); if(route) map.removeLayer(route); route=L.polyline([base,[ll.lat,ll.lng]],{color:"#FCEE0A",weight:2.5,dashArray:"3 9",opacity:.9,className:"lf-route"}).addTo(map); }); map.on("popupclose",()=>{ if(route){ map.removeLayer(route); route=null; } });
