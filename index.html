@@ -3459,7 +3459,7 @@ const LAYCFG={
  mia:{box:[37.505,37.595,126.91,127.07],roads:MAPS.city.roads,water:MAPS.city.water,areas:[],fit:null,polys:[],zone:null},
  nadine:{box:[37.478,37.585,126.912,127.05],roads:MAPS.city.roads,water:MAPS.city.water,areas:[],fit:null,polys:[],zone:null}};
 const SEO_ISLAND=MAPS.city.island, SEO_LABELS=MAPS.top10.labels;
-MAPS.seoul={el:"mapSeoul",list:"listSeoul",title:"Seoul",sub:"alles auf einer Karte",link:GM,island:SEO_ISLAND,labels:SEO_LABELS,pins:[]};
+MAPS.seoul={el:"mapSeoul",list:"listSeoul",title:"Seoul",sub:"alles auf einer Karte",link:GM,island:SEO_ISLAND,labels:SEO_LABELS,pins:[["h","Slowon Hongdae · UNSER HOTEL","5F, 118 Yanghwa-ro · Booking bestätigt",37.553805,126.920239,"","","","",null,"https://www.google.com/maps/search/?api=1&query=Slowon+Hongdae+5F+118+Yanghwa-ro+Mapo-gu+Seoul"]]};
 ["core","city","tipps","viertel","top10","mia","nadine"].forEach(k=>delete MAPS[k]);
 window.__mapLayer=ly=>{ const m=MAPS.seoul, c=LAYCFG[ly]||LAYCFG.alle; Object.assign(m,c); m.pins=SEO_ALL.filter(p=>ly==="alle"||p[9].includes(ly)); m.island=(ly==="jongno"||ly==="tipps")?null:SEO_ISLAND; m.labels=(ly==="jongno"||ly==="tipps"||ly==="viertel"||ly==="mia"||ly==="nadine")?[]:SEO_LABELS; m.zone=c.zone; const el=$(m.el); if(el&&el._lf){ try{el._lf.remove();}catch(e){} el._lf=null; el.classList.remove("lf"); }
  if(el) { drawMap(m); if(LIVE&&window.L) { try{ leaf(m); }catch(e){} } }
