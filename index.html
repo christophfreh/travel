@@ -36,6 +36,10 @@
 @keyframes plhop{40%{translate:0 -14px}100%{translate:0 0}}
 }
 .box.h .hph{margin:-18px -16px 12px;aspect-ratio:16/9;border-radius:16px 16px 0 0;border:0}.box.h{overflow:hidden}.box.h .pin{z-index:2}
+.hot-row{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:18px;align-items:center}
+.wrap .hot-ph{height:auto;aspect-ratio:4/3;max-height:none}
+.hot-ph .ph-l{font-size:14px}
+@media (max-width:620px){.hot-row{grid-template-columns:minmax(0,1fr)}}
 </style><script>
 (function(){ let t=0; const H=document.documentElement; addEventListener("scroll",()=>{ if(!H.classList.contains("scrolling")) H.classList.add("scrolling"); clearTimeout(t); t=setTimeout(()=>H.classList.remove("scrolling"),220); },{passive:true}); })();
 </script>
@@ -2362,7 +2366,7 @@ footer>.logout{grid-column:1;grid-row:1;justify-self:start;margin:0}
 <div class="pass"><div class="main"><span class="label">Korean Air · direkt · 13 Std.</span><div class="route">ICN<i></i>VIE</div><p>So 29.11. 12:05 → 17:10</p></div><div class="stub"><span class="label">Flug</span><b>KE937</b></div></div>
 </div>
 <div class="pass alt"><div class="main"><span class="label">Abstecher · gebucht ✓</span><div class="route">ICN<i></i>FUK</div><p><b>Jin Air</b>, nonstop · Hin: Di 24.11., LJ461, 17:25 → 18:50 · Zurück: Do 26.11., LJ448, 11:20 → 12:55 · 457,99 € für 2, gebucht über Booking.com. Gepäck inklusive, pro Person und Strecke: 1 kleine Tasche unter dem Sitz, 1 Handgepäck bis 10 kg (20 × 40 × 55 cm), 1 Koffer bis 15 kg.</p></div><div class="stub"><span class="label">2 Nächte</span><b>JAPAN</b></div></div><div class="stub"><span class="label">2 Nächte</span><b>JAPAN</b></div></div>
-<div class="box hot ok"><figure class="ph hph"><img src="fotos/hotel-slowon.png" alt="Außenansicht Slowon Hongdae" loading="lazy" style="object-position:50% 40%" onerror="this.closest('figure').classList.add('ph-fail')"><span class="ph-l">Hotel · außen</span></figure><span class="stamp">gebucht ✓</span><span class="label">Hotel · unsere Basis</span><p><b>Slowon Hongdae</b>, Sa 21.11. bis So 29.11., 8 Nächte, Doppel- oder Zweibettzimmer. Gesamt ca. 1.446,07 €, bezahlt (Booking.com, Stand 12.11.).</p></div>
+<div class="box hot ok hot-row"><figure class="ph hot-ph"><img src="fotos/hotel-slowon.png" alt="Außenansicht Slowon Hongdae" loading="lazy" style="object-position:50% 40%" onerror="this.closest('figure').classList.add('ph-fail')"><span class="ph-l">Hotel · außen</span></figure><div class="hot-txt"><span class="stamp">gebucht ✓</span><span class="label">Hotel · unsere Basis</span><p><b>Slowon Hongdae</b>, Sa 21.11. bis So 29.11., 8 Nächte, Doppel- oder Zweibettzimmer. Gesamt ca. 1.446,07 €, bezahlt (Booking.com, Stand 12.11.).</p></div></div>
 <details class="more-hotels"><summary>Andere Optionen (nicht mehr aktuell)</summary><ul class="list"><li><span><b>Orakai Insadong Suites</b> · Apartments, Insadong</span><span>ca. 230–320 €</span></li><li><span><b>Somerset Palace Seoul</b> · Residenz, Anguk</span><span>ca. 190–270 €</span></li><li><span><b>Nine Tree by Parnas Insadong</b> · Twin, Frühstück</span><span>ca. 130–180 €</span></li><li><span><b>L7 Myeongdong</b> · modern, Myeongdong</span><span>ca. 130–190 €</span></li></ul><p class="status">Preise sind grobe Schätzungen, nicht geprüft.</p></details>
 <div class="label" style="display:block;margin-top:14px">Basis · Hongdae</div>
 <div class="box alt-base" id="hongdae">
