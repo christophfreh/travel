@@ -3096,16 +3096,16 @@ else { $("countdown").textContent = "✓"; $("countdownSub").textContent = "Reis
 }
 function renderPlan(){
 const today = seoulDate();
-const PKW=[["Cheonggyecheon","t-walk"],["UNIQLO Tenjin","ut-prep"],["Switch-2-Spiele","sw2-japan"],["MUJI YeongPoong","shopping"],["UNIQLO Myeongdong","shopping"],["Gyeongbokgung","v-palast"],["Gwangjang Market","essen"],["Nogari-Gasse","bier"],["MicroVinylHouse","bier"],["LoL Park","games"],["Seoul Robot & AI Museum","mapSeoul","seoul"],["Hanok-Bars","abends"],["Ikseon-dong","v-jongno"],["Samgyeopsal","essen"],["Orbitals","games"],["Jjimjilbang","regen"],["Shin Shin","essen"],["Nintendo FUKUOKA","games"],["Yatai in Nakasu","v-nakasu"],["Ohori-Park","mapFuk"],["Unfold X","los"],["Cocktails in Hannam","abends"],["Lotte World Tower","v-jamsil"],["Hanwoo","essen"],["Superplex","abends"],["Halbtagestour DMZ","dmz"],["Samsung Innovation Museum","highlights"],["Suwon-Galbi","essen"],["AREX","praktisch"],["Euljiro","v-euljiro"],["Insadong","v-jongno"]];
+const PKW=[["Jogyesa","mia"],["KCDF-Shop","mia"],["Hong's Makgeolli Brewery","nadine"],["Musinsa Garage","nadine"],["강남 돼지상회","nadine"],["Cheonggyecheon","t-walk"],["UNIQLO Tenjin","ut-prep"],["Switch-2-Spiele","sw2-japan"],["MUJI YeongPoong","shopping"],["UNIQLO Myeongdong","shopping"],["Gyeongbokgung","v-palast"],["Gwangjang Market","essen"],["Nogari-Gasse","bier"],["MicroVinylHouse","bier"],["LoL Park","games"],["Seoul Robot & AI Museum","mapSeoul","seoul"],["Hanok-Bars","abends"],["Ikseon-dong","v-jongno"],["Samgyeopsal","essen"],["Orbitals","games"],["Jjimjilbang","regen"],["Shin Shin","essen"],["Nintendo FUKUOKA","games"],["Yatai in Nakasu","v-nakasu"],["Ohori-Park","mapFuk"],["Unfold X","los"],["Cocktails in Hannam","abends"],["Lotte World Tower","v-jamsil"],["Hanwoo","essen"],["Superplex","abends"],["Halbtagestour DMZ","dmz"],["Samsung Innovation Museum","highlights"],["Suwon-Galbi","essen"],["AREX","praktisch"],["Euljiro","v-euljiro"],["Insadong","v-jongno"]];
 const PLINK=t=>{ const done=[]; let out=t; PKW.forEach(([k,id,ly])=>{ const i=out.indexOf(k); if(i<0) return; out=out.slice(0,i)+`\u0001${id}\u0002${ly||""}\u0003${k}\u0004`+out.slice(i+k.length); }); return out.replace(/\u0001([^\u0002]*)\u0002([^\u0003]*)\u0003([^\u0004]*)\u0004/g,(m,id,ly,k)=>`<a class="xref" data-go="${id}"${ly?` data-layer="${ly}"`:""} href="#${id}">${k}</a>`); };
-const PDAY={"2026-11-21":[["v-euljiro","Euljiro"],["t-walk","Spaziergang"],["bier","Bier"],["games","Games"]],
-"2026-11-22":[["mapSeoul","Robot-Museum","seoul"],["abends","Hanok-Bars"],["regen","Wenn's regnet"]],
-"2026-11-23":[["highlights","Highlights"],["v-palast","Palast"],["shopping","Shopping"],["essen","Essen"],["bier","Trinken"],["mapSeoul","Karte","top"]],
-"2026-11-24":[["fukuoka","Fukuoka"],["reise","Flug"],["mapFuk","Karte"]],
+const PDAY={"2026-11-21":[["v-euljiro","Euljiro"],["t-walk","Spaziergang"],["bier","Bier"],["games","Games"],["nadine","Nadines Tipps"]],
+"2026-11-22":[["mapSeoul","Robot-Museum","seoul"],["abends","Hanok-Bars"],["regen","Wenn's regnet"],["nadine","Nadines Tipps"]],
+"2026-11-23":[["highlights","Highlights"],["v-palast","Palast"],["shopping","Shopping"],["essen","Essen"],["bier","Trinken"],["mapSeoul","Karte","top"],["mia","Mias Tipps"]],
+"2026-11-24":[["fukuoka","Fukuoka"],["reise","Flug"],["mapFuk","Karte"],["mia","Mias Tipps"]],
 "2026-11-25":[["fukuoka","Fukuoka"],["games","Games"],["sw2-japan","Switch-2-Spiele"],["ut-prep","T-Shirt"],["bier","Trinken"],["mapFuk","Karte"]],
-"2026-11-26":[["los","Unfold X"],["abends","Bars"],["mapSeoul","Karte","seoul"]],
+"2026-11-26":[["los","Unfold X"],["abends","Bars"],["mapSeoul","Karte","seoul"],["mia","Mias Tipps"]],
 "2026-11-27":[["dmz","DMZ"],["v-jamsil","Jamsil"],["abends","Kino"],["essen","Essen"]],
-"2026-11-28":[["highlights","Highlights"],["essen","Essen"],["bier","Trinken"],["shopping","Shopping"]],
+"2026-11-28":[["highlights","Highlights"],["essen","Essen"],["bier","Trinken"],["shopping","Shopping"],["nadine","Nadines Tipps"]],
 "2026-11-29":[["reise","Flug"],["praktisch","Praktisch"],["beachten","To-do"]]};
 const PCHIPS=d=>PDAY[d]?`<div class="rel"><span>Dazu</span>${PDAY[d].map(([id,l,ly])=>`<a href="#${id}" data-go="${id}"${ly?` data-layer="${ly}"`:""}>${l}<i>›</i></a>`).join("")}</div>`:"";
 $("planList").innerHTML = PLAN.map(([d,wd,title,items,note,book]) => {
