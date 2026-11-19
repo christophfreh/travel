@@ -967,6 +967,7 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 @media (prefers-reduced-motion:no-preference){.credits.run .cr-roll{animation:roll var(--dur,60s) linear forwards}@keyframes roll{to{transform:translateY(calc(-100% - 100vh))}}}
 @media (prefers-reduced-motion:reduce){.credits{overflow:auto}.cr-roll{position:static;padding-top:80px}}
 .clk{display:flex;gap:18px;flex-wrap:wrap;margin:6px 0}.clk span{font:600 11px var(--f-mono);letter-spacing:.12em;color:var(--muted)}.clk i{display:block;font:700 22px/1.2 var(--f-mono);font-style:normal;color:var(--y)}.taxi-ko{background:#fff;color:#0b0a1a;padding:12px 14px;border-radius:4px;font:700 17px/1.45 system-ui,"Noto Sans KR",sans-serif;margin:8px 0}.tip-share{display:inline-block;margin:6px 0 10px;font:700 10px/1 var(--f-mono);letter-spacing:.12em;color:var(--cyan);background:none;border:1px solid var(--cyan);padding:7px 10px;cursor:pointer}
+.today-chip{position:fixed;top:10px;left:50%;transform:translate(-50%,-160%);z-index:70;font:700 11px/1 var(--f-mono);letter-spacing:.12em;color:#0b0a1a;background:var(--sign);padding:8px 12px 7px;border-radius:3px;text-decoration:none;box-shadow:0 0 14px rgba(255,210,63,.5);transition:transform .3s}.today-chip.on{transform:translate(-50%,0)}.jump{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:none}.jump::-webkit-scrollbar{display:none}.jump a{flex:none;font:700 10px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);border:1px solid var(--line);background:var(--panel);padding:7px 9px;text-decoration:none;white-space:nowrap}.wx-warn{margin:8px 0;padding:10px 12px;border:1px solid var(--neon);background:rgba(255,62,138,.1);font:600 12px/1.45 var(--f-mono);color:var(--ink)}.wx-warn a{color:var(--cyan)}.theme-btn{position:fixed;top:10px;right:10px;z-index:70;width:36px;height:36px;font:700 15px/1 system-ui,sans-serif;color:var(--cyan);background:var(--panel);border:1px solid var(--cyan);border-radius:3px;cursor:pointer}html.light{--night:#F3F0FB;--panel:#FFFFFF;--panel2:#ECE8F8;--ink:#15122E;--muted:#5A5580;--line:#CFC8EE}html.light body{background:var(--night);color:var(--ink)}html.light h1,html.light h2,html.light h3,html.light h4,html.light p,html.light li,html.light b,html.light summary{color:var(--ink)}html.light .status,html.light small,html.light .sub{color:var(--muted)}html.light .box,html.light section{background-color:transparent}html.light .flash,html.light .flashback,html.light .box.alt-base{background:var(--panel)}
 .wx-det{margin-top:6px}.wx-det>summary{cursor:pointer;list-style:none;font:700 11px var(--f-mono);letter-spacing:.16em;color:var(--cyan);padding:8px 0;border-top:1px dashed var(--line)}
 .wx-det>summary::-webkit-details-marker{display:none}
 .wx-det>summary::after{content:" ▾";}
@@ -3174,6 +3175,7 @@ const trip = key >= TRIP_START && key <= TRIP_END;
 return `<div class="day${trip?" trip":""}" title="${d.day?.longPhrase||""}"><span class="label">${d.dayOfWeek||""} ${d.displayDate||""}</span>${iconFor(d.day?.icon)}<span class="hi">${Math.round(hi)}°</span><span class="lo">${Math.round(lo)}°</span><span class="rain">${rain}%</span></div>`;
 }).join("");
 renderPlan();
+window.renderWxWarn&&renderWxWarn();
 }
 function renderNow(p, cache){
 const c = p && p.currentConditions;
@@ -3818,14 +3820,15 @@ let t=0;addEventListener("scroll",()=>{if(t)return;t=requestAnimationFrame(()=>{
 // ---------- boot sequence (every page load) + glitch sweep ----------
 (function(){
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-if(!reduce){
+const introRecent=()=>{try{return Date.now()-(+localStorage.getItem("introAt")||0)<12*3600e3;}catch(e){return false;}};
+if(!reduce&&!introRecent()){
 const L=["&gt; VERBINDE MIT <b>SEOUL.NET</b> …","&gt; LADE TEAM: <b>MICHI</b> + <b>CHRISTOPH</b>","&gt; ZIEL ICN · 21.11.2026 · 14:30 KST","&gt; HUNGER: <b>KRITISCH</b> · DURST: <b>HOCH</b>","&gt; BONUSLEVEL FUKUOKA FREIGESCHALTET","&gt; BASELINE-TEST: <b>INTERLINKED</b>","&gt; WAKE UP, SAMURAI."];
 const o=document.createElement("div"); o.className="boot"; o.setAttribute("aria-hidden","true");
 o.innerHTML=L.map(t=>`<p>${t}</p>`).join("")+"<small>TIPPEN ZUM ÜBERSPRINGEN</small>"; document.body.appendChild(o); document.documentElement.classList.add("booting");
 const ps=[...o.querySelectorAll("p")]; let i=0, done=false, off=null;
 const end=()=>{if(done)return;done=true; if(off) off();
  const w=document.createElement("div"); w.className="p5x"; w.setAttribute("aria-hidden","true"); w.innerHTML="<i class=\"b\"></i><i class=\"r\"></i>"; document.body.appendChild(w);
- try{sessionStorage.setItem("p5seen","1");}catch(e){}
+ try{sessionStorage.setItem("p5seen","1");localStorage.setItem("introAt",String(Date.now()));}catch(e){}
  o.style.pointerEvents="none"; setTimeout(()=>o.remove(),430); setTimeout(()=>w.remove(),1050);};
 const fr=[]; (function samp(t){ if(done||fr.length>400) return; fr.push(t); requestAnimationFrame(samp); })(performance.now());
 const slow=()=>{ const n=fr.length; if(n<12) return (navigator.hardwareConcurrency||8)<=4; const a=fr.slice(-30); return (a[a.length-1]-a[0])/(a.length-1)>26 || (navigator.hardwareConcurrency||8)<=4; };
@@ -4903,4 +4906,38 @@ addEventListener("load",()=>{st();setTimeout(st,2000)});addEventListener("resize
 <script>(()=>{const g=document.querySelector("#preise>.grid2");if(!g)return;const n=g.nextElementSibling;if(n&&n.classList.contains("box")&&/UNTERWEGS/i.test(n.textContent.slice(0,80)))g.appendChild(n);})();</script>
 <script>(function(){const q=()=>document.querySelectorAll('.wx-det');const mq=matchMedia('(min-width:701px)');const set=()=>q().forEach(d=>d.open=mq.matches);set();if(mq.addEventListener)mq.addEventListener('change',set);let prev=null;addEventListener('beforeprint',()=>{prev=[...q()].map(d=>d.open);q().forEach(d=>d.open=true);});addEventListener('afterprint',()=>{q().forEach((d,i)=>d.open=prev?prev[i]:mq.matches);});})();</script>
 <script>(function(){const fmt=tz=>new Intl.DateTimeFormat('de-AT',{timeZone:tz,hour:'2-digit',minute:'2-digit'}).format(new Date());const sh=tz=>new Date(new Date().toLocaleString('en-US',{timeZone:tz}));const upd=()=>{const j=document.getElementById('clkJP'),a=document.getElementById('clkAT'),dd=document.getElementById('clkDiff');if(!j||!a||!dd)return;j.textContent=fmt('Asia/Seoul')+' Uhr';a.textContent=fmt('Europe/Vienna')+' Uhr';const d=Math.round((sh('Asia/Seoul')-sh('Europe/Vienna'))/3600000);dd.textContent=`Seoul ist ${Math.abs(d)} Std. ${d>=0?'vor':'hinter'} Wien. Fukuoka hat die gleiche Zeit wie Seoul.`;};upd();setInterval(upd,30000);const ids=['t-issou','mia','nadine'];ids.forEach(id=>{const el=document.getElementById(id);if(!el)return;const b=document.createElement('button');b.type='button';b.className='tip-share';b.textContent='Tipp teilen ↗';b.addEventListener('click',async()=>{const url=location.origin+location.pathname+'#'+id;try{if(navigator.share){await navigator.share({title:document.title,url});}else{await navigator.clipboard.writeText(url);b.textContent='Link kopiert ✓';setTimeout(()=>b.textContent='Tipp teilen ↗',2000);}}catch(e){}});const ref=el.querySelector('.mia-h')||el.querySelector('.label')||el.firstElementChild;ref.insertAdjacentElement('afterend',b);});})();</script>
+<script>(function(){
+const TRIP=["2026-11-21","2026-11-22","2026-11-23","2026-11-24","2026-11-25","2026-11-26","2026-11-27","2026-11-28","2026-11-29"];
+const de=d=>d.slice(8)+".11.";
+/* 1: Heute-Chip */
+const chip=document.createElement("a");chip.className="today-chip";chip.href="#plan";chip.setAttribute("aria-hidden","true");document.body.appendChild(chip);
+const chipUpd=()=>{const i=TRIP.indexOf(seoulDate());const on=i>=0&&scrollY>innerHeight*0.8;chip.textContent=i>=0?`HEUTE · TAG ${i+1} / 9 ›`:"";chip.classList.toggle("on",on);chip.setAttribute("aria-hidden",String(!on));};
+let ct=0;addEventListener("scroll",()=>{if(ct)return;ct=requestAnimationFrame(()=>{ct=0;chipUpd();});},{passive:true});chipUpd();
+/* 4: Sprungleiste in langen Kapiteln */
+document.querySelectorAll("section[id]").forEach(sec=>{
+ const boxes=[...sec.querySelectorAll(".box")].filter(b=>b.closest("section")===sec&&b.querySelector(":scope > .label"));
+ const sh=sec.querySelector(":scope > .sh");
+ if(boxes.length<5||!sh) return;
+ const nav=document.createElement("nav");nav.className="jump";nav.setAttribute("aria-label","Abschnitte in diesem Kapitel");
+ boxes.slice(0,12).forEach((b,i)=>{ if(!b.id) b.id=sec.id+"-b"+i; const a=document.createElement("a");a.href="#"+b.id;const t=b.querySelector(":scope > .label").textContent.trim();a.textContent=t.length>22?t.slice(0,21)+"…":t;nav.appendChild(a); });
+ sh.insertAdjacentElement("afterend",nav);
+});
+/* 7: Hell/Dunkel */
+const tb=document.createElement("button");tb.type="button";tb.className="theme-btn";tb.setAttribute("aria-label","Hell oder dunkel");
+const setTheme=l=>{document.documentElement.classList.toggle("light",l);tb.textContent=l?"☾":"☀";try{localStorage.setItem("theme",l?"light":"dark");}catch(e){}};
+tb.addEventListener("click",()=>setTheme(!document.documentElement.classList.contains("light")));
+document.body.appendChild(tb);
+let saved="";try{saved=localStorage.getItem("theme")||"";}catch(e){}
+setTheme(saved==="light");
+/* 3: Wetter-Hinweis aus der Live-Prognose */
+window.renderWxWarn=()=>{
+ const wx=document.getElementById("wetter"); if(!wx||typeof fcByDate==="undefined") return;
+ wx.querySelectorAll(".wx-warn").forEach(e=>e.remove());
+ const bad=TRIP.filter(d=>fcByDate[d]).map(d=>{const f=fcByDate[d];const w=[];if(f.rain>=50)w.push(`${f.rain} % Regen`);if(f.lo<=0)w.push(`Tief ${Math.round(f.lo)}°`);return w.length?`${de(d)} ${w.join(", ")}`:null;}).filter(Boolean);
+ if(!bad.length) return;
+ const box=document.createElement("div");box.className="wx-warn";box.innerHTML=`<b>Wetter-Hinweis</b> ${bad.join(" · ")}. Indoor-Ideen stehen in <a href="#regen">Wenn’s regnet</a>.`;
+ wx.querySelector(":scope > .sh").insertAdjacentElement("afterend",box);
+};
+window.renderWxWarn&&renderWxWarn();
+})();</script>
 </body></html>
