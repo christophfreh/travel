@@ -2167,6 +2167,7 @@ box-shadow:inset 0 0 0 3px rgba(10,8,22,.9),inset 0 0 0 4px rgba(232,199,122,.28
 .mia-note{font-size:14px;color:var(--muted);margin:4px 0 0}
 @media(min-width:700px){.mia-wide{grid-column:1/-1}}
 .lay.lay-mia.on{background:#8CFF5A;border-color:#8CFF5A;color:#0b0a1a}
+.marker-cluster-small,.marker-cluster-medium,.marker-cluster-large{background:rgba(252,238,10,.28)!important}.marker-cluster-small div,.marker-cluster-medium div,.marker-cluster-large div{background:var(--sign)!important;color:#0b0a1a!important;font:700 12px/1 var(--f-mono)!important;box-shadow:0 0 12px rgba(252,238,10,.6)}
 .lf-lbl{background:#0b0a1a;color:#FCEE0A;border:1px solid #FCEE0A;border-radius:0;font:700 10px/1 var(--f-mono,monospace);letter-spacing:.06em;padding:4px 6px 3px;box-shadow:0 0 10px rgba(252,238,10,.35);white-space:nowrap}
 .lf-lbl::before{display:none}
 .pp-iss{display:inline-flex;align-items:center;gap:6px;margin:2px 0 4px;font:700 10px/1 var(--f-mono,monospace);letter-spacing:.08em;color:#0b0a1a;background:#FCEE0A;padding:5px 7px 4px;border-radius:2px;box-shadow:0 0 12px rgba(252,238,10,.5);animation:iss-flicker 3.6s infinite steps(1,end)}
@@ -3539,7 +3540,8 @@ if(m.zone){const z=m.zone;L.rectangle([[z[0],z[2]],[z[1],z[3]]],{color:"#FCEE0A"
 const base=m.zone?[(m.zone[0]+m.zone[1])/2,(m.zone[2]+m.zone[3])/2]:null;
 const dist=p=>{ if(!base) return ""; const t=Math.PI/180,dl=(p[3]-base[0])*t,dn=(p[4]-base[1])*t,x=Math.sin(dl/2)**2+Math.cos(base[0]*t)*Math.cos(p[3]*t)*Math.sin(dn/2)**2,km=12742*Math.asin(Math.sqrt(x)); return `<span class="pp-d">${km.toFixed(1).replace(".",",")} KM VON DER BASIS · ZU FUSS CA. ${Math.max(1,Math.round(km*1.25/5*60))} MIN</span>`; };
 const HOTEL_ICON=`<div class="lf-hotel" style="--c:#B48CFF"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12z"/><path d="M9 21v-5h6v5"/><path d="M8 12h2M14 12h2"/></svg></div>`;
-const pts=m.pins.map((p,i)=>{const isH=p[0]==="h";L.marker([p[3],p[4]],{icon:isH?L.divIcon({className:"lf-pin lf-pin-h",html:HOTEL_ICON,iconSize:[36,36],iconAnchor:[18,18]}):L.divIcon({className:"lf-pin",html:`<span style="--c:${PCOL[p[0]]}"><i>${i+1}</i></span>`,iconSize:[26,26],iconAnchor:[13,13]}),title:p[1]}).addTo(map)
+const CG=(L.markerClusterGroup?L.markerClusterGroup({showCoverageOnHover:false,maxClusterRadius:38,spiderfyOnMaxZoom:true}):L.featureGroup()); CG.addTo(map);
+const pts=m.pins.map((p,i)=>{const isH=p[0]==="h";L.marker([p[3],p[4]],{icon:isH?L.divIcon({className:"lf-pin lf-pin-h",html:HOTEL_ICON,iconSize:[36,36],iconAnchor:[18,18]}):L.divIcon({className:"lf-pin",html:`<span style="--c:${PCOL[p[0]]}"><i>${i+1}</i></span>`,iconSize:[26,26],iconAnchor:[13,13]}),title:p[1]}).addTo(CG)
 .bindTooltip(p[1],{direction:"top",offset:[0,-14],className:"lf-lbl"})
 .bindPopup(`${p[5]?`<img class="pth" src="${p[5]}" alt="${p[1]}" onerror="this.style.visibility='hidden'">`:""}<span class="pp-k">&gt; ZIEL ${String(i+1).padStart(2,"0")}</span>${p[0]==="m"?'<span class="pp-mia">미아 추천 · Mias Tipp</span>':p[0]==="n"?'<span class="pp-nad">나딘 추천 · Nadines Tipp</span>':""}${p[8]==="t-issou"?'<span class="pp-iss" aria-label="Michis Special Tipp"><i class="pp-iss-k">博多一双</i> Michis Special Tipp</span>':""}<b>${p[1]}</b><small>${p[2]}</small>${dist(p)}<a href="${p[10]||GM(p[1])}" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>${p[8]?`<a href="#${p[8]}" data-go="${p[8]}">${BL(p[8])} ↓</a>`:""}${p[5]?`<small class="pcr">Foto: <a href="https://unsplash.com/@${p[7]}?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">${p[6]}</a> · Unsplash</small>`:""}`); return [p[3],p[4]];});
 map.fitBounds(m.fit||pts,{padding:[28,28]}); el._lf=map;
@@ -3553,7 +3555,9 @@ const ch=document.createElement("div"); ch.className="lf-cross"; ch.setAttribute
 if(LIVE){
 const css=document.createElement("link"); css.rel="stylesheet"; css.href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"; document.head.appendChild(css);
 const js=document.createElement("script"); js.src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js";
-js.onload=()=>{ try{ Object.values(MAPS).forEach(leaf); }catch(e){ Object.values(MAPS).forEach(drawMap); } };
+const runMaps=()=>{ try{ Object.values(MAPS).forEach(leaf); }catch(e){ Object.values(MAPS).forEach(drawMap); } };
+const mcCss=[ "https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css","https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css" ].map(u=>{const l=document.createElement("link");l.rel="stylesheet";l.href=u;document.head.appendChild(l);return l;});
+js.onload=()=>{ const mc=document.createElement("script"); mc.src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"; mc.onload=runMaps; mc.onerror=runMaps; document.head.appendChild(mc); };
 document.head.appendChild(js);
 }
 // ---------- Navigation ----------
