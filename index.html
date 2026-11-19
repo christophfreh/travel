@@ -2186,6 +2186,23 @@ box-shadow:inset 0 0 0 3px rgba(10,8,22,.9),inset 0 0 0 4px rgba(232,199,122,.28
 .nad{border-color:transparent;box-shadow:0 0 26px -10px rgba(255,177,59,.6),0 0 40px -18px rgba(255,62,138,.5);background:linear-gradient(180deg,rgba(255,177,59,.07),transparent 140px)}.nad::before{background:linear-gradient(115deg,#FFB13B,#FF7A59,#FF3E8A,#B48CFF,#FFD23F,#FFB13B);background-size:300% 100%}.nad .mia-tag{background:linear-gradient(115deg,#FFB13B 0%,#FFD23F 22%,#FF7A59 40%,#FF3E8A 55%,#B48CFF 72%,#FFB13B 100%);background-size:300% 100%}.nad .mia-c{border-left-color:#FFB13B}.nad .mia-c .list a.ext{text-decoration-color:rgba(255,177,59,.7)}.lay.lay-nadine.on{background:#FFB13B;border-color:#FFB13B;color:#0b0a1a}@media(min-width:1100px){#nadine .mia-grid{grid-template-columns:1fr 1fr}}
 .pp-nad{display:inline-block;margin:2px 0 4px;font:600 10px/1 monospace;letter-spacing:.06em;color:#0b0a1a;background:#FFB13B;padding:4px 6px 3px;border-radius:3px}
 
+.iss-tip{position:relative;overflow:hidden;border:1px solid rgba(255,62,138,.55);background:radial-gradient(120% 90% at 50% 0%,rgba(255,62,138,.14),transparent 60%),#0b0a1a;box-shadow:0 0 30px -12px rgba(255,62,138,.7)}
+.iss-logo{display:flex;justify-content:center;margin:6px 0 18px}
+.iss-frame{position:relative;overflow:hidden;min-width:min(100%,300px);padding:18px 22px 16px;text-align:center;border:2px solid #FF3E8A;border-radius:4px;background:#0b0a1a;box-shadow:0 0 0 1px rgba(59,230,214,.5) inset,0 0 18px rgba(255,62,138,.6),0 0 40px -10px rgba(59,230,214,.5)}
+.iss-frame::before{content:"";position:absolute;top:0;bottom:0;left:-40%;width:30%;background:linear-gradient(90deg,transparent,rgba(59,230,214,.35),transparent);animation:iss-sweep 4.5s ease-in-out infinite;pointer-events:none}
+.iss-frame::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 1px,transparent 1px 3px);pointer-events:none}
+.iss-kanji{position:relative;display:block;font:900 52px/1.05 system-ui,"Hiragino Sans","Noto Sans CJK JP",sans-serif;letter-spacing:.08em;color:#FFF4F8;text-shadow:0 0 4px #FF3E8A,0 0 12px #FF3E8A,0 0 28px rgba(255,62,138,.8);animation:iss-flicker 3.6s infinite steps(1,end)}
+.iss-kanji::before,.iss-kanji::after{content:attr(data-t);position:absolute;left:0;right:0;top:0;pointer-events:none}
+.iss-kanji::before{color:#3BE6D6;opacity:.8;clip-path:inset(0 0 60% 0);animation:iss-glitchA 3.2s infinite steps(1,end)}
+.iss-kanji::after{color:#FCEE0A;opacity:.8;clip-path:inset(55% 0 0 0);animation:iss-glitchB 3.2s infinite steps(1,end)}
+.iss-latin{display:block;margin-top:8px;font:700 13px/1 var(--f-mono,monospace);letter-spacing:.32em;color:#3BE6D6;text-shadow:0 0 8px rgba(59,230,214,.8)}
+.iss-tag{display:inline-block;margin-top:10px;font:600 10px/1 var(--f-mono,monospace);letter-spacing:.14em;color:#0b0a1a;background:#FCEE0A;padding:5px 7px 4px;border-radius:2px;box-shadow:0 0 12px rgba(252,238,10,.5)}
+@keyframes iss-flicker{0%,18%,22%,62%,64%,100%{opacity:1}19%,21%{opacity:.35}63%{opacity:.5}}
+@keyframes iss-glitchA{0%,90%,100%{transform:translate(0)}92%{transform:translate(-3px,0)}94%{transform:translate(3px,-1px)}96%{transform:translate(0)}}
+@keyframes iss-glitchB{0%,88%,100%{transform:translate(0)}90%{transform:translate(3px,0)}93%{transform:translate(-2px,1px)}95%{transform:translate(0)}}
+@keyframes iss-sweep{0%{left:-40%}60%,100%{left:120%}}
+@media(prefers-reduced-motion:reduce){.iss-kanji,.iss-frame::before{animation:none}.iss-kanji::before,.iss-kanji::after{display:none}}
+
 /* Notebook/Desktop: Platz nutzen */
 @media(min-width:1100px){
 .wrap{max-width:min(1600px,calc(100vw - 160px))}
@@ -2928,6 +2945,7 @@ pflichtprogramm: <span class="n">null</span>,
 <li><span><b>Wenn Zeit bleibt</b> · <a class="ext" href="https://www.hakatamachiya.com" target="_blank" rel="noopener">Hakata Machiya Furusato-kan ↗</a> (kleines Volksmuseum), Kushida-Schrein, Tōchō-ji mit dem größten Holz-Buddha Japans, Shōfuku-ji, Fukuoka City Museum</span><span>Kultur · Hakata</span></li>
 </ul><a class="vgo" data-go="mapFuk" href="#mapFuk">Auf der Karte ↗</a>
 <p class="status">Eintritte und Zeiten stammen aus einer älteren Auflage des Reiseführers und sind Richtwerte, die Webadressen sind noch nicht alle geöffnet worden.</p></div>
+<div class="box iss-tip" id="t-issou"><span class="label">Unser Tipp · Ramen</span><div class="iss-logo" role="img" aria-label="博多一双 Hakata Issou"><div class="iss-frame"><span class="iss-kanji" data-t="博多一双">博多一双</span><span class="iss-latin">HAKATA ISSOU</span><span class="iss-tag">TONKOTSU · 博多</span></div></div><h3>Hakata Issou Honten</h3><p>Tonkotsu-Ramen im Stadtteil Hakataekihigashi, östlich vom Bahnhof Hakata. Die Brühe ist sehr reichhaltig und hat feinen Schaum obenauf, den viele „Tonkotsu-Cappuccino“ nennen. Dazu Gyoza, die laut Bewertungen gut sind.</p><ul class="list"><li><span><b>Automat am Eingang</b> · Erst bestellen und bezahlen, dann bekommt man einen Platz.</span><span>Eingang</span></li><li><span><b>Früh kommen</b> · Die Schlange ist oft lang. Laut Bewertungen lohnt es sich, kurz vor 11 Uhr da zu sein.</span><span>11 Uhr</span></li><li><span><b>Nudelhärte wählen</b> · Bei der Bestellung kann man die Nudeln weich oder hart nehmen.</span><span>Bestellung</span></li></ul><p class="status">Öffnungszeiten laut Google täglich 11 bis 24 Uhr. Vor Ort kurz prüfen.</p><a class="vgo" href="#mapFuk" data-go="mapFuk">Auf der Karte ↗</a></div>
 <div class="box alt-base" id="fuk-alt"><span class="stamp">代案</span><h3>Alternative: Neon- und Lichter-Abend</h3><p>Plan B für Mi 25.11., falls uns nach Skyline, Leuchtschrift und Bars ist statt nach Park und Museum. Stand 26.10. laut Veranstalterseiten, Termine kurz vor der Reise prüfen.</p><div class="duo"><figure class="ph sq"><img src="https://images.unsplash.com/photo-1574678505748-99e73cc7ee41?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=800&h=500" alt="Fukuoka Tower" loading="lazy" onerror="this.closest('figure').classList.add('ph-fail')"><figcaption>Foto: <a href="https://unsplash.com/@drewbae0505?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Drew Bae</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure><figure class="ph sq"><img src="https://images.unsplash.com/photo-1785591355665-cb922c43ef13?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=800&h=500" alt="Fukuoka zur blauen Stunde, Blick vom Fukuoka Tower" loading="lazy" onerror="this.closest('figure').classList.add('ph-fail')"><figcaption>Foto: <a href="https://unsplash.com/@jcs_chen?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Zion C</a> / <a href="https://unsplash.com/?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></figcaption></figure></div>
 <ul class="list">
 <li><span><b>Ab ca. 16 Uhr Fukuoka Tower</b> · zur Dämmerung hochfahren, dann geht die Stadt an. Danach mit Bus oder Taxi zurück Richtung Tenjin</span><span>Skyline · Momochi</span></li>
@@ -3393,6 +3411,7 @@ pins:[
 ]};
 MAPS.fuk.pins.push(
 ["y","Yanagibashi-Markt","Küche von Hakata, morgens am besten",33.5866,130.4016,"","","","t-yanagi"],
+["y","Hakata Issou Honten","Tonkotsu-Ramen, täglich 11–24 Uhr (laut Google)",33.586378,130.425100,"","","","t-issou",null,"https://www.google.com/maps/search/?api=1&query=Hakata+Issou+Honten+Fukuoka"],
 
 ["w","Nakasu (Viertel)","Insel mit Yatai ab 18 Uhr",33.5907,130.408,"https://images.unsplash.com/photo-1605088298038-2876387a80c1?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","Alexander Schimmeck","alschim","v-nakasu"],
 ["w","Hakata & Tenjin (Viertel)","Bahnhof, Nintendo, Daimyo-Bars",33.5925,130.4015,"https://images.unsplash.com/photo-1776855326563-611e86aaaf2a?ixlib=rb-4.1.0&auto=format&fit=crop&crop=entropy&q=70&w=640&h=360","WS Chae","wwonnssikk","v-hakata"]
