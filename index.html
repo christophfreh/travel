@@ -967,6 +967,7 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 @media (prefers-reduced-motion:no-preference){.credits.run .cr-roll{animation:roll var(--dur,60s) linear forwards}@keyframes roll{to{transform:translateY(calc(-100% - 100vh))}}}
 @media (prefers-reduced-motion:reduce){.credits{overflow:auto}.cr-roll{position:static;padding-top:80px}}
 .clk{display:flex;gap:18px;flex-wrap:wrap;margin:6px 0}.clk span{font:600 11px var(--f-mono);letter-spacing:.12em;color:var(--muted)}.clk i{display:block;font:700 22px/1.2 var(--f-mono);font-style:normal;color:var(--y)}.taxi-ko{background:#fff;color:#0b0a1a;padding:12px 14px;border-radius:4px;font:700 17px/1.45 system-ui,"Noto Sans KR",sans-serif;margin:8px 0}.tip-share{display:inline-block;margin:6px 0 10px;font:700 10px/1 var(--f-mono);letter-spacing:.12em;color:var(--cyan);background:none;border:1px solid var(--cyan);padding:7px 10px;cursor:pointer}
+.today-chip{position:fixed;top:10px;left:50%;transform:translate(-50%,-160%);z-index:70;font:700 11px/1 var(--f-mono);letter-spacing:.12em;color:#0b0a1a;background:var(--sign);padding:8px 12px 7px;border-radius:3px;text-decoration:none;box-shadow:0 0 14px rgba(255,210,63,.5);transition:transform .3s}.today-chip.on{transform:translate(-50%,0)}.jump{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:none}.jump::-webkit-scrollbar{display:none}.jump a{flex:none;font:700 10px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);border:1px solid var(--line);background:var(--panel);padding:7px 9px;text-decoration:none;white-space:nowrap}.wx-warn{margin:8px 0;padding:10px 12px;border:1px solid var(--neon);background:rgba(255,62,138,.1);font:600 12px/1.45 var(--f-mono);color:var(--ink)}.wx-warn a{color:var(--cyan)}.theme-btn{position:fixed;top:10px;right:10px;z-index:70;width:36px;height:36px;font:700 15px/1 system-ui,sans-serif;color:var(--cyan);background:var(--panel);border:1px solid var(--cyan);border-radius:3px;cursor:pointer}html.light{--night:#F3F0FB;--panel:#FFFFFF;--panel2:#ECE8F8;--ink:#15122E;--muted:#5A5580;--line:#CFC8EE}html.light body{background:var(--night);color:var(--ink)}html.light h1,html.light h2,html.light h3,html.light h4,html.light p,html.light li,html.light b,html.light summary{color:var(--ink)}html.light .status,html.light small,html.light .sub{color:var(--muted)}html.light .box,html.light section{background-color:transparent}html.light .flash,html.light .flashback,html.light .box.alt-base{background:var(--panel)}
 .wx-det{margin-top:6px}.wx-det>summary{cursor:pointer;list-style:none;font:700 11px var(--f-mono);letter-spacing:.16em;color:var(--cyan);padding:8px 0;border-top:1px dashed var(--line)}
 .wx-det>summary::-webkit-details-marker{display:none}
 .wx-det>summary::after{content:" ▾";}
@@ -2166,6 +2167,7 @@ box-shadow:inset 0 0 0 3px rgba(10,8,22,.9),inset 0 0 0 4px rgba(232,199,122,.28
 .mia-note{font-size:14px;color:var(--muted);margin:4px 0 0}
 @media(min-width:700px){.mia-wide{grid-column:1/-1}}
 .lay.lay-mia.on{background:#8CFF5A;border-color:#8CFF5A;color:#0b0a1a}
+.marker-cluster-small,.marker-cluster-medium,.marker-cluster-large{background:rgba(252,238,10,.28)!important}.marker-cluster-small div,.marker-cluster-medium div,.marker-cluster-large div{background:var(--sign)!important;color:#0b0a1a!important;font:700 12px/1 var(--f-mono)!important;box-shadow:0 0 12px rgba(252,238,10,.6)}
 .lf-lbl{background:#0b0a1a;color:#FCEE0A;border:1px solid #FCEE0A;border-radius:0;font:700 10px/1 var(--f-mono,monospace);letter-spacing:.06em;padding:4px 6px 3px;box-shadow:0 0 10px rgba(252,238,10,.35);white-space:nowrap}
 .lf-lbl::before{display:none}
 .pp-iss{display:inline-flex;align-items:center;gap:6px;margin:2px 0 4px;font:700 10px/1 var(--f-mono,monospace);letter-spacing:.08em;color:#0b0a1a;background:#FCEE0A;padding:5px 7px 4px;border-radius:2px;box-shadow:0 0 12px rgba(252,238,10,.5);animation:iss-flicker 3.6s infinite steps(1,end)}
@@ -3174,6 +3176,7 @@ const trip = key >= TRIP_START && key <= TRIP_END;
 return `<div class="day${trip?" trip":""}" title="${d.day?.longPhrase||""}"><span class="label">${d.dayOfWeek||""} ${d.displayDate||""}</span>${iconFor(d.day?.icon)}<span class="hi">${Math.round(hi)}°</span><span class="lo">${Math.round(lo)}°</span><span class="rain">${rain}%</span></div>`;
 }).join("");
 renderPlan();
+window.renderWxWarn&&renderWxWarn();
 }
 function renderNow(p, cache){
 const c = p && p.currentConditions;
@@ -3537,7 +3540,8 @@ if(m.zone){const z=m.zone;L.rectangle([[z[0],z[2]],[z[1],z[3]]],{color:"#FCEE0A"
 const base=m.zone?[(m.zone[0]+m.zone[1])/2,(m.zone[2]+m.zone[3])/2]:null;
 const dist=p=>{ if(!base) return ""; const t=Math.PI/180,dl=(p[3]-base[0])*t,dn=(p[4]-base[1])*t,x=Math.sin(dl/2)**2+Math.cos(base[0]*t)*Math.cos(p[3]*t)*Math.sin(dn/2)**2,km=12742*Math.asin(Math.sqrt(x)); return `<span class="pp-d">${km.toFixed(1).replace(".",",")} KM VON DER BASIS · ZU FUSS CA. ${Math.max(1,Math.round(km*1.25/5*60))} MIN</span>`; };
 const HOTEL_ICON=`<div class="lf-hotel" style="--c:#B48CFF"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12z"/><path d="M9 21v-5h6v5"/><path d="M8 12h2M14 12h2"/></svg></div>`;
-const pts=m.pins.map((p,i)=>{const isH=p[0]==="h";L.marker([p[3],p[4]],{icon:isH?L.divIcon({className:"lf-pin lf-pin-h",html:HOTEL_ICON,iconSize:[36,36],iconAnchor:[18,18]}):L.divIcon({className:"lf-pin",html:`<span style="--c:${PCOL[p[0]]}"><i>${i+1}</i></span>`,iconSize:[26,26],iconAnchor:[13,13]}),title:p[1]}).addTo(map)
+const CG=(L.markerClusterGroup?L.markerClusterGroup({showCoverageOnHover:false,maxClusterRadius:38,spiderfyOnMaxZoom:true}):L.featureGroup()); CG.addTo(map);
+const pts=m.pins.map((p,i)=>{const isH=p[0]==="h";L.marker([p[3],p[4]],{icon:isH?L.divIcon({className:"lf-pin lf-pin-h",html:HOTEL_ICON,iconSize:[36,36],iconAnchor:[18,18]}):L.divIcon({className:"lf-pin",html:`<span style="--c:${PCOL[p[0]]}"><i>${i+1}</i></span>`,iconSize:[26,26],iconAnchor:[13,13]}),title:p[1]}).addTo(CG)
 .bindTooltip(p[1],{direction:"top",offset:[0,-14],className:"lf-lbl"})
 .bindPopup(`${p[5]?`<img class="pth" src="${p[5]}" alt="${p[1]}" onerror="this.style.visibility='hidden'">`:""}<span class="pp-k">&gt; ZIEL ${String(i+1).padStart(2,"0")}</span>${p[0]==="m"?'<span class="pp-mia">미아 추천 · Mias Tipp</span>':p[0]==="n"?'<span class="pp-nad">나딘 추천 · Nadines Tipp</span>':""}${p[8]==="t-issou"?'<span class="pp-iss" aria-label="Michis Special Tipp"><i class="pp-iss-k">博多一双</i> Michis Special Tipp</span>':""}<b>${p[1]}</b><small>${p[2]}</small>${dist(p)}<a href="${p[10]||GM(p[1])}" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>${p[8]?`<a href="#${p[8]}" data-go="${p[8]}">${BL(p[8])} ↓</a>`:""}${p[5]?`<small class="pcr">Foto: <a href="https://unsplash.com/@${p[7]}?utm_source=seoul_november&utm_medium=referral" target="_blank" rel="noopener">${p[6]}</a> · Unsplash</small>`:""}`); return [p[3],p[4]];});
 map.fitBounds(m.fit||pts,{padding:[28,28]}); el._lf=map;
@@ -3551,7 +3555,9 @@ const ch=document.createElement("div"); ch.className="lf-cross"; ch.setAttribute
 if(LIVE){
 const css=document.createElement("link"); css.rel="stylesheet"; css.href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"; document.head.appendChild(css);
 const js=document.createElement("script"); js.src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js";
-js.onload=()=>{ try{ Object.values(MAPS).forEach(leaf); }catch(e){ Object.values(MAPS).forEach(drawMap); } };
+const runMaps=()=>{ try{ Object.values(MAPS).forEach(leaf); }catch(e){ Object.values(MAPS).forEach(drawMap); } };
+const mcCss=[ "https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css","https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css" ].map(u=>{const l=document.createElement("link");l.rel="stylesheet";l.href=u;document.head.appendChild(l);return l;});
+js.onload=()=>{ const mc=document.createElement("script"); mc.src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"; mc.onload=runMaps; mc.onerror=runMaps; document.head.appendChild(mc); };
 document.head.appendChild(js);
 }
 // ---------- Navigation ----------
@@ -3818,14 +3824,15 @@ let t=0;addEventListener("scroll",()=>{if(t)return;t=requestAnimationFrame(()=>{
 // ---------- boot sequence (every page load) + glitch sweep ----------
 (function(){
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-if(!reduce){
+const introRecent=()=>{try{return Date.now()-(+localStorage.getItem("introAt")||0)<12*3600e3;}catch(e){return false;}};
+if(!reduce&&!introRecent()){
 const L=["&gt; VERBINDE MIT <b>SEOUL.NET</b> …","&gt; LADE TEAM: <b>MICHI</b> + <b>CHRISTOPH</b>","&gt; ZIEL ICN · 21.11.2026 · 14:30 KST","&gt; HUNGER: <b>KRITISCH</b> · DURST: <b>HOCH</b>","&gt; BONUSLEVEL FUKUOKA FREIGESCHALTET","&gt; BASELINE-TEST: <b>INTERLINKED</b>","&gt; WAKE UP, SAMURAI."];
 const o=document.createElement("div"); o.className="boot"; o.setAttribute("aria-hidden","true");
 o.innerHTML=L.map(t=>`<p>${t}</p>`).join("")+"<small>TIPPEN ZUM ÜBERSPRINGEN</small>"; document.body.appendChild(o); document.documentElement.classList.add("booting");
 const ps=[...o.querySelectorAll("p")]; let i=0, done=false, off=null;
 const end=()=>{if(done)return;done=true; if(off) off();
  const w=document.createElement("div"); w.className="p5x"; w.setAttribute("aria-hidden","true"); w.innerHTML="<i class=\"b\"></i><i class=\"r\"></i>"; document.body.appendChild(w);
- try{sessionStorage.setItem("p5seen","1");}catch(e){}
+ try{sessionStorage.setItem("p5seen","1");localStorage.setItem("introAt",String(Date.now()));}catch(e){}
  o.style.pointerEvents="none"; setTimeout(()=>o.remove(),430); setTimeout(()=>w.remove(),1050);};
 const fr=[]; (function samp(t){ if(done||fr.length>400) return; fr.push(t); requestAnimationFrame(samp); })(performance.now());
 const slow=()=>{ const n=fr.length; if(n<12) return (navigator.hardwareConcurrency||8)<=4; const a=fr.slice(-30); return (a[a.length-1]-a[0])/(a.length-1)>26 || (navigator.hardwareConcurrency||8)<=4; };
@@ -4903,4 +4910,38 @@ addEventListener("load",()=>{st();setTimeout(st,2000)});addEventListener("resize
 <script>(()=>{const g=document.querySelector("#preise>.grid2");if(!g)return;const n=g.nextElementSibling;if(n&&n.classList.contains("box")&&/UNTERWEGS/i.test(n.textContent.slice(0,80)))g.appendChild(n);})();</script>
 <script>(function(){const q=()=>document.querySelectorAll('.wx-det');const mq=matchMedia('(min-width:701px)');const set=()=>q().forEach(d=>d.open=mq.matches);set();if(mq.addEventListener)mq.addEventListener('change',set);let prev=null;addEventListener('beforeprint',()=>{prev=[...q()].map(d=>d.open);q().forEach(d=>d.open=true);});addEventListener('afterprint',()=>{q().forEach((d,i)=>d.open=prev?prev[i]:mq.matches);});})();</script>
 <script>(function(){const fmt=tz=>new Intl.DateTimeFormat('de-AT',{timeZone:tz,hour:'2-digit',minute:'2-digit'}).format(new Date());const sh=tz=>new Date(new Date().toLocaleString('en-US',{timeZone:tz}));const upd=()=>{const j=document.getElementById('clkJP'),a=document.getElementById('clkAT'),dd=document.getElementById('clkDiff');if(!j||!a||!dd)return;j.textContent=fmt('Asia/Seoul')+' Uhr';a.textContent=fmt('Europe/Vienna')+' Uhr';const d=Math.round((sh('Asia/Seoul')-sh('Europe/Vienna'))/3600000);dd.textContent=`Seoul ist ${Math.abs(d)} Std. ${d>=0?'vor':'hinter'} Wien. Fukuoka hat die gleiche Zeit wie Seoul.`;};upd();setInterval(upd,30000);const ids=['t-issou','mia','nadine'];ids.forEach(id=>{const el=document.getElementById(id);if(!el)return;const b=document.createElement('button');b.type='button';b.className='tip-share';b.textContent='Tipp teilen ↗';b.addEventListener('click',async()=>{const url=location.origin+location.pathname+'#'+id;try{if(navigator.share){await navigator.share({title:document.title,url});}else{await navigator.clipboard.writeText(url);b.textContent='Link kopiert ✓';setTimeout(()=>b.textContent='Tipp teilen ↗',2000);}}catch(e){}});const ref=el.querySelector('.mia-h')||el.querySelector('.label')||el.firstElementChild;ref.insertAdjacentElement('afterend',b);});})();</script>
+<script>(function(){
+const TRIP=["2026-11-21","2026-11-22","2026-11-23","2026-11-24","2026-11-25","2026-11-26","2026-11-27","2026-11-28","2026-11-29"];
+const de=d=>d.slice(8)+".11.";
+/* 1: Heute-Chip */
+const chip=document.createElement("a");chip.className="today-chip";chip.href="#plan";chip.setAttribute("aria-hidden","true");document.body.appendChild(chip);
+const chipUpd=()=>{const i=TRIP.indexOf(seoulDate());const on=i>=0&&scrollY>innerHeight*0.8;chip.textContent=i>=0?`HEUTE · TAG ${i+1} / 9 ›`:"";chip.classList.toggle("on",on);chip.setAttribute("aria-hidden",String(!on));};
+let ct=0;addEventListener("scroll",()=>{if(ct)return;ct=requestAnimationFrame(()=>{ct=0;chipUpd();});},{passive:true});chipUpd();
+/* 4: Sprungleiste in langen Kapiteln */
+document.querySelectorAll("section[id]").forEach(sec=>{
+ const boxes=[...sec.querySelectorAll(".box")].filter(b=>b.closest("section")===sec&&b.querySelector(":scope > .label"));
+ const sh=sec.querySelector(":scope > .sh");
+ if(boxes.length<5||!sh) return;
+ const nav=document.createElement("nav");nav.className="jump";nav.setAttribute("aria-label","Abschnitte in diesem Kapitel");
+ boxes.slice(0,12).forEach((b,i)=>{ if(!b.id) b.id=sec.id+"-b"+i; const a=document.createElement("a");a.href="#"+b.id;const t=b.querySelector(":scope > .label").textContent.trim();a.textContent=t.length>22?t.slice(0,21)+"…":t;nav.appendChild(a); });
+ sh.insertAdjacentElement("afterend",nav);
+});
+/* 7: Hell/Dunkel */
+const tb=document.createElement("button");tb.type="button";tb.className="theme-btn";tb.setAttribute("aria-label","Hell oder dunkel");
+const setTheme=l=>{document.documentElement.classList.toggle("light",l);tb.textContent=l?"☾":"☀";try{localStorage.setItem("theme",l?"light":"dark");}catch(e){}};
+tb.addEventListener("click",()=>setTheme(!document.documentElement.classList.contains("light")));
+document.body.appendChild(tb);
+let saved="";try{saved=localStorage.getItem("theme")||"";}catch(e){}
+setTheme(saved==="light");
+/* 3: Wetter-Hinweis aus der Live-Prognose */
+window.renderWxWarn=()=>{
+ const wx=document.getElementById("wetter"); if(!wx||typeof fcByDate==="undefined") return;
+ wx.querySelectorAll(".wx-warn").forEach(e=>e.remove());
+ const bad=TRIP.filter(d=>fcByDate[d]).map(d=>{const f=fcByDate[d];const w=[];if(f.rain>=50)w.push(`${f.rain} % Regen`);if(f.lo<=0)w.push(`Tief ${Math.round(f.lo)}°`);return w.length?`${de(d)} ${w.join(", ")}`:null;}).filter(Boolean);
+ if(!bad.length) return;
+ const box=document.createElement("div");box.className="wx-warn";box.innerHTML=`<b>Wetter-Hinweis</b> ${bad.join(" · ")}. Indoor-Ideen stehen in <a href="#regen">Wenn’s regnet</a>.`;
+ wx.querySelector(":scope > .sh").insertAdjacentElement("afterend",box);
+};
+window.renderWxWarn&&renderWxWarn();
+})();</script>
 </body></html>
