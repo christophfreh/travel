@@ -1804,6 +1804,9 @@ body.scan .list li.mk::after{content:"⌖ MARKIERT";position:absolute;right:0;to
 @media (prefers-reduced-motion:reduce){.bd .tm u{animation:none;left:30%}.flash.ec::after{animation:none}}
 /* Netzsprung */
 .jump{position:fixed;inset:0;z-index:36;pointer-events:none;overflow:hidden}
+.chjump{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.chjump a{font:600 11px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);text-decoration:none;border:1px solid rgba(59,230,214,.45);border-radius:999px;padding:7px 10px;white-space:nowrap}
+.chjump a:active{background:var(--cyan);color:#110F27}
 .jump i{position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--cyan),var(--neon),transparent);opacity:0;animation:jl .5s steps(6) forwards}
 @keyframes jl{0%{opacity:0;transform:translateX(-30%)}30%{opacity:.9}100%{opacity:0;transform:translateX(30%)}}
 .jump b{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font:700 11px/1 var(--f-mono);letter-spacing:.2em;color:#0a0818;background:var(--y);padding:7px 12px 6px;white-space:nowrap;box-shadow:4px 4px 0 var(--neon);animation:jt .55s steps(5) forwards}
@@ -4922,7 +4925,7 @@ document.querySelectorAll("section[id]").forEach(sec=>{
  const boxes=[...sec.querySelectorAll(".box")].filter(b=>b.closest("section")===sec&&b.querySelector(":scope > .label"));
  const sh=sec.querySelector(":scope > .sh");
  if(boxes.length<5||!sh) return;
- const nav=document.createElement("nav");nav.className="jump";nav.setAttribute("aria-label","Abschnitte in diesem Kapitel");
+ const nav=document.createElement("nav");nav.className="chjump";nav.setAttribute("aria-label","Abschnitte in diesem Kapitel");
  boxes.slice(0,12).forEach((b,i)=>{ if(!b.id) b.id=sec.id+"-b"+i; const a=document.createElement("a");a.href="#"+b.id;const t=b.querySelector(":scope > .label").textContent.trim();a.textContent=t.length>22?t.slice(0,21)+"…":t;nav.appendChild(a); });
  sh.insertAdjacentElement("afterend",nav);
 });
