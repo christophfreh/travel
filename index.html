@@ -2346,6 +2346,12 @@ footer>.logout{grid-column:1;grid-row:1;justify-self:start;margin:0}
 .gift-love .gl-cols,.gift-glit .gl-cols{grid-template-columns:1fr;padding-right:0}
 .gift-glit .gift-ok,.gift-glit .meta,.gift-love .gift-ok,.gift-love .meta{max-width:calc(100% - 70px)}
 }
+/* KEY VISUAL (Hero) */
+.kv{position:relative;width:100%;max-width:1040px;margin:4px auto 6px;box-sizing:border-box;aspect-ratio:16/10;max-height:58vh;overflow:hidden;border:1px solid var(--cyan);box-shadow:0 0 24px rgba(59,230,214,.28),0 0 60px rgba(255,43,214,.16);background:#000}
+.kv img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 28%;filter:contrast(1.2) saturate(1.4) hue-rotate(-14deg) brightness(.9)}
+.kv::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(118deg,rgba(255,43,214,.45),rgba(59,230,214,.22) 58%,rgba(255,214,0,.14));mix-blend-mode:color}
+.kv::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px),radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.62))}
+.kv figcaption{position:absolute;left:10px;bottom:10px;z-index:3;margin:0;padding:4px 8px;font:600 11px/1.2 monospace;letter-spacing:.08em;color:var(--cyan);background:rgba(0,0,0,.65);border-left:2px solid var(--pink,#ff2bd6)}
 </style>
 <div class="wrap">
 <header class="hero"><canvas id="rain" aria-hidden="true"></canvas>
@@ -2357,6 +2363,7 @@ footer>.logout{grid-column:1;grid-row:1;justify-self:start;margin:0}
 <h1 class="gl-h" data-text="seoul, november.">seoul, <em>november.</em></h1>
 <p class="sub">Neun Jahre nach dem letzten Einsatz in Tokyo ist das Team wieder vereint. Ziel: Seoul. Ausrüstung: Hunger, Durst, eine Switch 2. Bonuslevel: Fukuoka. <b>21. bis 29. November</b>, Basis in Hongdae (Slowon Hongdae).</p>
 <p class="status" style="margin-top:-4px">Zum Warten: <a class="xref" data-go="einstimmen" href="#einstimmen">Filme &amp; Serien zum Einstimmen</a></p>
+<figure class="kv"><img src="fotos/keyvisual.jpg" alt="Selfie von zwei Freunden, die lachend mit Bier anstoßen" width="1400" height="1050" fetchpriority="high"><figcaption>▶ KEY VISUAL · PROST</figcaption></figure>
 <div class="stats">
 <div class="stat st-sleep"><span class="label">Boarding in</span><b id="countdown">–</b><div class="moons" id="moons" aria-hidden="true"></div><small id="countdownSub">Nächte bis zum Abflug</small></div>
 <div class="stat st-wx"><span class="label">Jetzt in Seoul</span><div class="st-row"><b id="heroTemp">–</b><span class="wx-ico" id="heroIco" aria-hidden="true"></span></div><small id="heroPhrase">Wetter lädt</small></div>
