@@ -5050,8 +5050,9 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 </section>
 <section data-pane="ziele" hidden>
 <p id="qbLvl" class="qmuted"></p>
-<p class="qmuted">Heute: die ersten drei Punkte aus dem Plan.</p>
+<p class="qmuted">Was heute ansteht, laut Plan. Morgen steht darunter.</p>
 <ul id="qbZiele"></ul>
+<ul id="qbMorgen"></ul>
 <div id="qbDep" hidden>
 <p class="qmuted">Abreise, 29.11.</p>
 <ul><li>Tax-Free-Belege griffbereit halten, falls die Ausreisekontrolle sie sehen will</li><li>Gepäck nach dem Packen noch einmal prüfen</li><li>Flugzeit im Ticket prüfen (KE937, 12:05)</li><li>Anfahrt zum Flughafen einplanen</li></ul>
@@ -5245,7 +5246,7 @@ function renderZiele(){
   const p=(typeof PLAN!=="undefined")?PLAN.find(x=>x[0]===dayKey):null;
   const st=get("sn_ziele",{}); const done=st[dayKey]||{};
   if(p){
-    const items=p[3].map(s=>s.replace(/^★\s*/,"")).slice(0,3);
+    const items=p[3].map(s=>s.replace(/^★\s*/,""));
     items.forEach((txt,i)=>{
       const li=document.createElement("li"), lab=document.createElement("label"), cb=document.createElement("input"), sp=document.createElement("span");
       cb.type="checkbox"; cb.checked=!!done[i]; cb.style.width="auto"; cb.style.margin="0";
@@ -5253,6 +5254,9 @@ function renderZiele(){
       sp.textContent=txt; lab.append(cb,sp); li.appendChild(lab); ul.appendChild(li);
     });
   } else { ul.innerHTML="<li class='qmuted'>Heute steht kein Plan-Eintrag.</li>"; }
+  const idx=PLAN.findIndex(x=>x[0]===dayKey), nx=idx>=0&&PLAN[idx+1];
+  const mo=E("qbMorgen");
+  if(mo){ mo.innerHTML=""; if(nx){ const hd=document.createElement("li"); hd.className="qmuted"; hd.textContent="Morgen ("+nx[1]+" "+nx[0].slice(8)+".11.): "+nx[2]; mo.appendChild(hd); nx[3].slice(0,3).forEach(s=>{ const li=document.createElement("li"); li.textContent=s.replace(/^★\s*/,""); mo.appendChild(li); }); } }
   const dep=E("qbDep");
   dep.hidden = dayKey!=="2026-11-29";
 }
