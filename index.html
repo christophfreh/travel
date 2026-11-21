@@ -5014,6 +5014,8 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 <button type="button" id="qbAddrGo">Groß zeigen</button>
 <div class="qbig" id="qbBig" aria-live="polite">Tippe auf einen Satz oder trage eine Adresse ein.</div>
 <div id="qbPh"></div>
+<button type="button" id="qbQuizBtn">Quiz: Was heißt das auf Deutsch?</button>
+<div id="qbQuiz"></div>
 <div class="qbetik"><p class="qmuted">Etikette</p><ul><li>Kein Trinkgeld, weder im Restaurant noch im Taxi</li><li>Schuhe am Eingang ausziehen, wenn man das sieht</li><li>In der U-Bahn leise telefonieren, Sitzplätze für Ältere frei lassen</li></ul></div>
 <p><a id="qbNaver" target="_blank" rel="noopener" href="#">In Naver Map suchen</a> · <a id="qbGmap" target="_blank" rel="noopener" href="#">Google Maps</a></p>
 </section>
@@ -5055,12 +5057,15 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 <section data-pane="wetter" hidden>
 <p class="qmuted">Stündlich in Seoul, ab jetzt.</p>
 <ul id="qbWx"></ul>
+<button type="button" id="qbWxSeo">Seoul</button> <button type="button" id="qbWxFuk">Fukuoka</button>
 </section>
 <section data-pane="ziele" hidden>
 <p id="qbLvl" class="qmuted"></p>
 <p class="qmuted">Was heute ansteht, laut Plan. Morgen steht darunter.</p>
 <ul id="qbZiele"></ul>
 <ul id="qbMorgen"></ul>
+<div id="qbPack" hidden><p class="qmuted">Fukuoka-Packliste (23.–24.11.)</p><ul id="qbPackList"></ul></div>
+<div class="qbpoll"><p class="qmuted">Mittwoch 25.11.: teamLab oder Yatai?</p><button type="button" data-poll="teamLab">teamLab</button> <button type="button" data-poll="Yatai">Yatai</button> <span id="qbPollOut" class="qmuted"></span></div>
 <div id="qbDep" hidden>
 <p class="qmuted">Abreise, 29.11.</p>
 <ul><li>Tax-Free-Belege griffbereit halten, falls die Ausreisekontrolle sie sehen will</li><li>Gepäck nach dem Packen noch einmal prüfen</li><li>Flugzeit im Ticket prüfen (KE937, 12:05)</li><li>Anfahrt zum Flughafen einplanen</li></ul>
@@ -5290,6 +5295,70 @@ E("qbFehlerSave").addEventListener("click",()=>{
   E("qbFehler").value=""; renderF();
 });
 renderF();
+})();
+</script>
+<script>
+(function(){
+const E=id=>document.getElementById(id);
+const get=(k,def)=>{try{const v=localStorage.getItem(k);return v==null?def:JSON.parse(v);}catch(e){return def;}};
+const put=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}};
+const todayKey=new Intl.DateTimeFormat("sv-SE",{timeZone:"Asia/Seoul"}).format(new Date());
+const nowH=+new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Seoul",hour:"2-digit",hourCycle:"h23"}).format(new Date());
+
+/* Fotos-Erinnerung: verschwindet, sobald heute ein Foto hochgeladen ist */
+const nud=E("qbNudge");
+if(nud&&!nud.hidden){ fetch("/api/photos",{cache:"no-store"}).then(r=>r.ok?r.json():[]).then(L=>{ if(Array.isArray(L)&&L.some(p=>String(p.pathname||"").includes("/"+todayKey+"/"))) nud.hidden=true; }).catch(()=>{}); }
+
+/* Fukuoka-Packliste am 23. und 24.11. */
+const PACK=["Kleiner Koffer (max. 15 kg)","Handgepäck","Ladekabel und Powerbank","Switch 2 mit Controllern und Kabel","Tax-Free-Belege und Ware","Reisepass"];
+function renderPack(){
+  const box=E("qbPack"); if(!box) return;
+  const show=todayKey==="2026-11-23"||todayKey==="2026-11-24";
+  box.hidden=!show; if(!show) return;
+  const st=get("sn_pack",{}), ul=E("qbPackList"); ul.innerHTML="";
+  PACK.forEach((t,i)=>{ const li=document.createElement("li"), lab=document.createElement("label"), cb=document.createElement("input"), sp=document.createElement("span");
+    cb.type="checkbox"; cb.checked=!!st[i]; cb.style.width="auto"; cb.style.margin="0";
+    cb.addEventListener("change",()=>{ const s=get("sn_pack",{}); s[i]=cb.checked; put("sn_pack",s); });
+    sp.textContent=t; lab.append(cb,sp); li.appendChild(lab); ul.appendChild(li); });
+}
+renderPack();
+
+/* Umfrage für Mittwoch, eine Stimme pro Gerät */
+function renderPoll(){ const v=get("sn_poll_mine",""); E("qbPollOut").textContent=v?"Deine Wahl auf diesem Gerät: "+v:""; }
+document.querySelectorAll("[data-poll]").forEach(b=>b.addEventListener("click",()=>{ put("sn_poll_mine",b.dataset.poll); renderPoll(); }));
+renderPoll();
+
+/* Wetter für Seoul und Fukuoka */
+function wx(lat,lon,label){
+  const out=E("qbWx"); out.textContent="Lade Wetter …";
+  fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,precipitation_probability&timezone=Asia%2FSeoul&forecast_days=2`)
+  .then(r=>r.json()).then(j=>{
+    const t=j.hourly.time, T=j.hourly.temperature_2m, P=j.hourly.precipitation_probability;
+    let i=t.indexOf(todayKey+"T"+String(nowH).padStart(2,"0")+":00"); if(i<0) i=0;
+    out.innerHTML=""; const hd=document.createElement("li"); hd.className="qmuted"; hd.textContent=label; out.appendChild(hd);
+    for(let k=i;k<Math.min(i+4,t.length);k++){ const li=document.createElement("li"); const a=document.createElement("span"); a.textContent=t[k].slice(11,16); const b=document.createElement("span"); b.textContent=Math.round(T[k])+" °C · Regen "+P[k]+" %"; li.append(a,b); out.appendChild(li); }
+  }).catch(()=>{ out.textContent="Wetter gerade nicht verfügbar."; });
+}
+E("qbWxSeo").addEventListener("click",()=>wx(37.5665,126.978,"Seoul"));
+E("qbWxFuk").addEventListener("click",()=>wx(33.5902,130.4207,"Fukuoka"));
+
+/* Quiz: koreanischer Satz, drei Antworten auf Deutsch */
+const QS=[["이 주소로 가 주세요.","Bitte fahren Sie zu dieser Adresse."],["여기서 세워 주세요.","Bitte hier anhalten."],["카드 되나요?","Kann ich mit Karte zahlen?"],["영수증 주세요.","Quittung bitte."],["맵지 않게 해 주세요.","Bitte nicht scharf."],["병원에 가야 해요.","Ich muss ins Krankenhaus."],["약국이 어디예요?","Wo ist die Apotheke?"]];
+let qPts=0;
+function quizQ(){
+  const d=E("qbQuiz"); const q=QS[Math.floor(Math.random()*QS.length)];
+  const opts=[q[1]]; while(opts.length<3){ const o=QS[Math.floor(Math.random()*QS.length)][1]; if(!opts.includes(o)) opts.push(o); }
+  opts.sort(()=>Math.random()-0.5);
+  d.innerHTML=""; const big=document.createElement("div"); big.className="qbig"; big.textContent=q[0]; d.appendChild(big);
+  const row=document.createElement("div"); d.appendChild(row);
+  opts.forEach(o=>{ const b=document.createElement("button"); b.type="button"; b.textContent=o; b.addEventListener("click",()=>{
+    row.querySelectorAll("button").forEach(x=>x.disabled=true);
+    const ok=o===q[1]; if(ok) qPts++;
+    const f=document.createElement("p"); f.className="qmuted"; f.textContent=(ok?"Richtig! ":"Falsch, richtig ist: "+q[1]+" · ")+"Punkte: "+qPts; d.appendChild(f);
+    const nx=document.createElement("button"); nx.type="button"; nx.textContent="Weiter"; nx.addEventListener("click",quizQ); d.appendChild(nx);
+  }); row.appendChild(b); });
+}
+E("qbQuizBtn").addEventListener("click",()=>{ qPts=0; quizQ(); });
 })();
 </script>
 </body></html>
