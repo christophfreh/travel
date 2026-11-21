@@ -4130,6 +4130,9 @@ const urls=new Set([location.origin+"/", location.origin+"/api/photos", location
 document.querySelectorAll("img").forEach(i=>{ const s=i.currentSrc||i.src; if(s&&!s.startsWith("data:")) urls.add(s); });
 document.querySelectorAll("[style*='--bg']").forEach(el=>{ const m=el.getAttribute("style").match(/url\('([^']+)'\)/); if(m) urls.add(m[1]); });
 document.querySelectorAll(".g-it").forEach(b=>{ if(b.dataset.src) urls.add(b.dataset.src); });
+/* Kartenkacheln für Seoul und Fukuoka (Zoom 13 und 14) mit speichern */
+const tileUrls=(b,z)=>{ const n=Math.pow(2,z), xo=lon=>Math.floor((lon+180)/360*n), yo=lat=>{ const r=lat*Math.PI/180; return Math.floor((1-Math.log(Math.tan(r)+1/Math.cos(r))/Math.PI)/2*n); }; const out=[]; for(let x=xo(b[0]);x<=xo(b[1]);x++) for(let y=yo(b[3]);y<=yo(b[2]);y++) out.push(`https://tile.openstreetmap.org/${z}/${x}/${y}.png`); return out; };
+[[126.88,127.08,37.48,37.62],[130.36,130.46,33.56,33.62]].forEach(b=>[13,14].forEach(z=>tileUrls(b,z).forEach(u=>urls.add(u))));
 document.querySelectorAll('link[rel="stylesheet"]').forEach(l=>urls.add(l.href));
 document.querySelectorAll('link[rel="preload"][as="image"]').forEach(l=>urls.add(l.href));
 (reg.active||navigator.serviceWorker.controller).postMessage({type:"precache",urls:[...urls]});
