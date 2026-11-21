@@ -4985,6 +4985,10 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 .qnudge{position:fixed;left:8px;right:8px;bottom:calc(72px + env(safe-area-inset-bottom));z-index:55;background:#110f27;border:1px solid var(--neon);padding:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;color:#f4f1ff;font:13px/1.3 system-ui,sans-serif}
 .qnudge span{flex:1 1 180px}
 .qnudge button{min-height:36px;padding:0 10px;border:1px solid var(--neon);background:none;color:#f4f1ff;font:inherit;cursor:pointer}
+.leaflet-container .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(1.05)}
+.qbbanner{padding:14px 12px;margin:0 0 10px;color:#fff;font:700 16px/1.25 system-ui,sans-serif;letter-spacing:.04em;border:1px solid var(--neon);clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%)}
+.qbbanner small{display:block;font-size:11px;opacity:.85;letter-spacing:.12em;text-transform:uppercase}
+.qbfoto img{width:100%;max-height:200px;object-fit:cover;border:1px solid var(--cyan);margin:6px 0}
 </style>
 <nav class="qbar" id="qbar" aria-label="Schnellzugriff">
 <a href="#plan"><b>Heute</b>Plan</a>
@@ -5060,6 +5064,8 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 <button type="button" id="qbWxSeo">Seoul</button> <button type="button" id="qbWxFuk">Fukuoka</button>
 </section>
 <section data-pane="ziele" hidden>
+<div id="qbBanner" class="qbbanner"></div>
+<div id="qbFoto" class="qbfoto"></div>
 <p id="qbLvl" class="qmuted"></p>
 <p class="qmuted">Was heute ansteht, laut Plan. Morgen steht darunter.</p>
 <ul id="qbZiele"></ul>
@@ -5225,7 +5231,7 @@ document.querySelectorAll("h3,h4").forEach(h=>{
 const wxTab=document.querySelector('[data-tab="wetter"]');
 if(wxTab) wxTab.addEventListener("click",loadWx);
 async function loadWx(){
-  const out=E("qbWx"); out.textContent="Lade Wetter …";
+  const out=E("qbWx"); out.textContent="▮▮▯ lädt Wetter";
   try{
     const r=await fetch("https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.978&hourly=temperature_2m,precipitation_probability&timezone=Asia%2FSeoul&forecast_days=2");
     const j=await r.json(), t=j.hourly.time, T=j.hourly.temperature_2m, P=j.hourly.precipitation_probability;
@@ -5330,7 +5336,7 @@ renderPoll();
 
 /* Wetter für Seoul und Fukuoka */
 function wx(lat,lon,label){
-  const out=E("qbWx"); out.textContent="Lade Wetter …";
+  const out=E("qbWx"); out.textContent="▮▮▯ lädt Wetter";
   fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,precipitation_probability&timezone=Asia%2FSeoul&forecast_days=2`)
   .then(r=>r.json()).then(j=>{
     const t=j.hourly.time, T=j.hourly.temperature_2m, P=j.hourly.precipitation_probability;
@@ -5359,6 +5365,27 @@ function quizQ(){
   }); row.appendChild(b); });
 }
 E("qbQuizBtn").addEventListener("click",()=>{ qPts=0; quizQ(); });
+})();
+</script>
+<script>
+(function(){
+const E=id=>document.getElementById(id);
+const BG=["linear-gradient(120deg,#ff3e8a,#3bb8ff)","linear-gradient(120deg,#3bb8ff,#8cff5a)","linear-gradient(120deg,#ffb13b,#ff3e8a)","linear-gradient(120deg,#8cff5a,#3bb8ff)","linear-gradient(120deg,#ff3e8a,#ffb13b)","linear-gradient(120deg,#3bb8ff,#ff3e8a)","linear-gradient(120deg,#ffb13b,#8cff5a)","linear-gradient(120deg,#ff3e8a,#8cff5a)","linear-gradient(120deg,#3bb8ff,#ffb13b)"];
+const dayKey=new Intl.DateTimeFormat("sv-SE",{timeZone:"Asia/Seoul"}).format(new Date());
+const hr=+new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Seoul",hour:"2-digit",hourCycle:"h23"}).format(new Date());
+const TRIPD=["2026-11-21","2026-11-22","2026-11-23","2026-11-24","2026-11-25","2026-11-26","2026-11-27","2026-11-28","2026-11-29"];
+const idx=TRIPD.indexOf(dayKey);
+const bn=E("qbBanner");
+if(bn){
+  if(idx>=0 && typeof PLAN!=="undefined"){ const p=PLAN.find(x=>x[0]===dayKey); bn.style.background=BG[idx]; bn.innerHTML="<small>LEVEL "+(idx+1)+" / 9 · "+(p?p[1]:"")+"</small>"+(p?p[2]:"Reise"); }
+  else { bn.style.background=BG[0]; bn.innerHTML="<small>SEOUL · FUKUOKA</small>Nov 2026"; }
+}
+/* Foto der Stunde aus den hochgeladenen Fotos */
+fetch("/api/photos",{cache:"no-store"}).then(r=>r.ok?r.json():[]).then(L=>{
+  if(!Array.isArray(L)||!L.length) return;
+  const p=L[hr%L.length], box=E("qbFoto"); if(!box||!p) return;
+  box.innerHTML=""; const im=document.createElement("img"); im.src=p.thumb||p.url; im.alt="Foto aus der Reise"; im.loading="lazy"; box.appendChild(im);
+}).catch(()=>{});
 })();
 </script>
 </body></html>
