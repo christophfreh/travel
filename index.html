@@ -4999,6 +4999,16 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 .qlogo::after{color:#ff3e8a;clip-path:polygon(0 60%,100% 60%,100% 82%,0 82%);transform:translateX(2px)}
 @media (prefers-reduced-motion:no-preference){.qlogo::before,.qlogo::after{animation:qglitch 3.2s steps(1) infinite}.qlogo::after{animation-delay:-1.6s}@keyframes qglitch{0%,86%,100%{transform:translateX(0);opacity:0}88%{transform:translateX(-3px);opacity:1}92%{transform:translateX(3px);opacity:1}96%{opacity:0}}}
 @media (prefers-reduced-motion:reduce){.qlogo::before,.qlogo::after{display:none}}
+
+body.qb-light{background:#f4f1ff}
+body.qb-light .wrap{filter:invert(1) hue-rotate(180deg)}
+body.qb-light .wrap img,body.qb-light .wrap video,body.qb-light .wrap canvas,body.qb-light .wrap svg image{filter:invert(1) hue-rotate(180deg)}
+body.qb-light .leaflet-container .leaflet-tile-pane{filter:none}
+body.qb-light .wrap .leaflet-container{filter:invert(1) hue-rotate(180deg)}
+body.qb-light .wrap .leaflet-tile{filter:none!important}
+body.qb-light .qbar{filter:invert(1) hue-rotate(180deg)}
+body.qb-light .qpanel{filter:invert(1) hue-rotate(180deg)}
+body.qb-light .qnudge{filter:invert(1) hue-rotate(180deg)}
 </style>
 <nav class="qbar" id="qbar" aria-label="Schnellzugriff">
 <a href="#plan"><b>Heute</b>Plan</a>
@@ -5010,7 +5020,7 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 <div class="qnudge" id="qbNudge" hidden><span>Abend-Check: Was war heute? Schon ein Foto hochgeladen?</span><button type="button" id="qbNudgeOpen">Öffnen</button><button type="button" id="qbNudgeX" aria-label="Ausblenden">✕</button></div>
 <div class="qpanel" id="qbPanel" role="dialog" aria-modal="true" aria-label="Werkzeuge" hidden>
 <div class="qp-box">
-<div class="qp-head"><b class="qlogo" data-text="SEOUL // 2026" aria-label="Seoul 2026">SEOUL // 2026</b><span><button type="button" id="qbRead" aria-pressed="false">Kontrast</button><button type="button" id="qbClose" aria-label="Schließen">✕</button></span></div>
+<div class="qp-head"><b class="qlogo" data-text="SEOUL // 2026" aria-label="Seoul 2026">SEOUL // 2026</b><span><button type="button" id="qbLight" aria-pressed="false">Hell</button><button type="button" id="qbRead" aria-pressed="false">Kontrast</button><button type="button" id="qbClose" aria-label="Schließen">✕</button></span></div>
 <div class="qp-tabs" role="tablist">
 <button type="button" role="tab" data-tab="zeigen" aria-selected="true">Zeigen</button>
 <button type="button" role="tab" data-tab="liste" aria-selected="false">Liste</button>
@@ -5396,6 +5406,14 @@ fetch("/api/photos",{cache:"no-store"}).then(r=>r.ok?r.json():[]).then(L=>{
   const p=L[hr%L.length], box=E("qbFoto"); if(!box||!p) return;
   box.innerHTML=""; const im=document.createElement("img"); im.src=p.thumb||p.url; im.alt="Foto aus der Reise"; im.loading="lazy"; box.appendChild(im);
 }).catch(()=>{});
+})();
+</script>
+<script>
+(function(){
+const b=document.getElementById("qbLight"); if(!b) return;
+const apply=()=>{ const on=!!(JSON.parse(localStorage.getItem("sn_light")||"false")); document.body.classList.toggle("qb-light",on); b.setAttribute("aria-pressed",String(on)); b.textContent=on?"Dunkel":"Hell"; };
+b.addEventListener("click",()=>{ const on=!JSON.parse(localStorage.getItem("sn_light")||"false"); try{localStorage.setItem("sn_light",JSON.stringify(on));}catch(e){} apply(); });
+apply();
 })();
 </script>
 </body></html>
