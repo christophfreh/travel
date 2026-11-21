@@ -4989,6 +4989,12 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 .qbbanner{padding:14px 12px;margin:0 0 10px;color:#fff;font:700 16px/1.25 system-ui,sans-serif;letter-spacing:.04em;border:1px solid var(--neon);clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%)}
 .qbbanner small{display:block;font-size:11px;opacity:.85;letter-spacing:.12em;text-transform:uppercase}
 .qbfoto img{width:100%;max-height:200px;object-fit:cover;border:1px solid var(--cyan);margin:6px 0}
+.qlogo{position:relative;display:inline-block;font:900 18px/1 system-ui,sans-serif;letter-spacing:.14em;color:#fff;text-shadow:0 0 8px rgba(255,62,138,.8),0 0 18px rgba(59,184,255,.5)}
+.qlogo::before,.qlogo::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden;pointer-events:none}
+.qlogo::before{color:#3bb8ff;clip-path:polygon(0 10%,100% 10%,100% 42%,0 42%);transform:translateX(-2px)}
+.qlogo::after{color:#ff3e8a;clip-path:polygon(0 60%,100% 60%,100% 82%,0 82%);transform:translateX(2px)}
+@media (prefers-reduced-motion:no-preference){.qlogo::before,.qlogo::after{animation:qglitch 3.2s steps(1) infinite}.qlogo::after{animation-delay:-1.6s}@keyframes qglitch{0%,86%,100%{transform:translateX(0);opacity:0}88%{transform:translateX(-3px);opacity:1}92%{transform:translateX(3px);opacity:1}96%{opacity:0}}}
+@media (prefers-reduced-motion:reduce){.qlogo::before,.qlogo::after{display:none}}
 </style>
 <nav class="qbar" id="qbar" aria-label="Schnellzugriff">
 <a href="#plan"><b>Heute</b>Plan</a>
@@ -5000,7 +5006,7 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 <div class="qnudge" id="qbNudge" hidden><span>Abend-Check: Was war heute? Schon ein Foto hochgeladen?</span><button type="button" id="qbNudgeOpen">Öffnen</button><button type="button" id="qbNudgeX" aria-label="Ausblenden">✕</button></div>
 <div class="qpanel" id="qbPanel" role="dialog" aria-modal="true" aria-label="Werkzeuge" hidden>
 <div class="qp-box">
-<div class="qp-head"><b>Werkzeuge</b><span><button type="button" id="qbRead" aria-pressed="false">Kontrast</button><button type="button" id="qbClose" aria-label="Schließen">✕</button></span></div>
+<div class="qp-head"><b class="qlogo" data-text="SEOUL // 2026" aria-label="Seoul 2026">SEOUL // 2026</b><span><button type="button" id="qbRead" aria-pressed="false">Kontrast</button><button type="button" id="qbClose" aria-label="Schließen">✕</button></span></div>
 <div class="qp-tabs" role="tablist">
 <button type="button" role="tab" data-tab="zeigen" aria-selected="true">Zeigen</button>
 <button type="button" role="tab" data-tab="liste" aria-selected="false">Liste</button>
