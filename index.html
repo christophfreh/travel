@@ -4959,24 +4959,198 @@ window.renderWxWarn&&renderWxWarn();
 <style>
 .qbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:6px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:rgba(12,10,28,.94);border-top:1px solid var(--neon);box-shadow:0 -6px 18px rgba(255,62,138,.2)}
 .qbar.on{display:flex}
-.qbar a{flex:1 1 0;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--ink,#f4f1ff);text-decoration:none;font:600 12px/1.1 system-ui,sans-serif;border:1px solid rgba(255,62,138,.45);padding:4px 6px}
-.qbar a b{font-size:10px;letter-spacing:.08em;color:var(--neon);text-transform:uppercase}
-.qbar a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.qbar a,.qbar button{flex:1 1 0;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#f4f1ff;text-decoration:none;font:600 12px/1.1 system-ui,sans-serif;border:1px solid rgba(255,62,138,.45);background:none;padding:4px 4px;cursor:pointer}
+.qbar b{font-size:10px;letter-spacing:.08em;color:var(--neon);text-transform:uppercase}
+.qbar a:focus-visible,.qbar button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+.qkeep{background:none;border:0;color:var(--neon);font-size:16px;cursor:pointer;margin-left:6px;padding:0 4px;min-height:32px;vertical-align:middle}
+.qpanel{position:fixed;inset:0;z-index:80;background:rgba(5,4,15,.82);display:flex;align-items:flex-end;justify-content:center}
+.qpanel[hidden],[data-pane][hidden],.qnudge[hidden],#qbRain[hidden]{display:none!important}
+.qp-box{width:100%;max-width:640px;max-height:86vh;overflow:auto;background:#110f27;border:1px solid var(--neon);padding:14px;color:#f4f1ff;font:14px/1.45 system-ui,sans-serif}
+.qp-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:16px}
+.qp-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.qp-box button{min-height:40px;padding:0 12px;border:1px solid var(--neon);background:none;color:#f4f1ff;font:600 13px system-ui,sans-serif;cursor:pointer;margin:2px}
+.qp-box button[aria-selected=true]{background:var(--neon);color:#0b0a1a}
+.qp-box input,.qp-box textarea,.qp-box select{width:100%;box-sizing:border-box;background:#0b0a1a;color:#f4f1ff;border:1px solid var(--cyan);padding:8px;font:inherit;margin:4px 0}
+.qp-box ul{list-style:none;padding:0;margin:8px 0}
+.qp-box li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-bottom:1px dashed rgba(255,62,138,.3)}
+.qp-box label{display:flex;gap:8px;align-items:center;padding:6px 0}
+.qp-box a{color:var(--neon)}
+.qbig{font:700 26px/1.3 system-ui,sans-serif;color:#fff;background:#000;padding:16px;border:1px solid var(--cyan);margin:10px 0;min-height:70px;white-space:pre-wrap;word-break:keep-all}
+.qbig small{display:block;font-size:14px;color:var(--neon);margin-top:6px;font-weight:500}
+.qmuted{color:#b9b3d6;font-size:12px}
+.qnudge{position:fixed;left:8px;right:8px;bottom:calc(72px + env(safe-area-inset-bottom));z-index:55;background:#110f27;border:1px solid var(--neon);padding:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;color:#f4f1ff;font:13px/1.3 system-ui,sans-serif}
+.qnudge span{flex:1 1 180px}
+.qnudge button{min-height:36px;padding:0 10px;border:1px solid var(--neon);background:none;color:#f4f1ff;font:inherit;cursor:pointer}
 </style>
 <nav class="qbar" id="qbar" aria-label="Schnellzugriff">
-<a href="#plan"><b>Heute</b>Tagesplan</a>
+<a href="#plan"><b>Heute</b>Plan</a>
 <a href="#karten"><b>Karte</b>Pins</a>
-<a href="#praktisch"><b>Praktisch</b>Einreise, Strom</a>
+<a href="#praktisch"><b>Praktisch</b>Einreise</a>
 <a href="#beachten"><b>Notfall</b>Checkliste</a>
+<button type="button" id="qbTools"><b>Werkzeuge</b>Liste · Geld</button>
 </nav>
+<div class="qnudge" id="qbNudge" hidden><span>Abend-Check: Was war heute? Schon ein Foto hochgeladen?</span><button type="button" id="qbNudgeOpen">Öffnen</button><button type="button" id="qbNudgeX" aria-label="Ausblenden">✕</button></div>
+<div class="qpanel" id="qbPanel" role="dialog" aria-modal="true" aria-label="Werkzeuge" hidden>
+<div class="qp-box">
+<div class="qp-head"><b>Werkzeuge</b><button type="button" id="qbClose" aria-label="Schließen">✕</button></div>
+<div class="qp-tabs" role="tablist">
+<button type="button" role="tab" data-tab="zeigen" aria-selected="true">Zeigen</button>
+<button type="button" role="tab" data-tab="liste" aria-selected="false">Liste</button>
+<button type="button" role="tab" data-tab="geld" aria-selected="false">Geld</button>
+<button type="button" role="tab" data-tab="offen" aria-selected="false">Offen</button>
+<button type="button" role="tab" data-tab="abend" aria-selected="false">Abend</button>
+</div>
+<a id="qbRain" href="#regen" hidden>☔ Wetter-Warnung: zum Regen-Plan</a>
+
+<section data-pane="zeigen">
+<p class="qmuted">Adresse oder Ziel eintragen und groß zeigen, dann dem Taxifahrer das Handy hinhalten.</p>
+<textarea id="qbAddr" rows="2" placeholder="Adresse oder Ziel (Koreanisch)"></textarea>
+<button type="button" id="qbAddrGo">Groß zeigen</button>
+<div class="qbig" id="qbBig" aria-live="polite">Tippe auf einen Satz oder trage eine Adresse ein.</div>
+<div id="qbPh"></div>
+</section>
+
+<section data-pane="liste" hidden>
+<p class="qmuted">Mit ☆ bei Tipps und Essen merken.</p>
+<ul id="qbKeepList"></ul>
+</section>
+
+<section data-pane="geld" hidden>
+<label>Kurs: ₩ pro € <input id="qbRate" type="number" min="1" step="10" inputmode="numeric"></label>
+<p class="qmuted">Schätzung, bitte aktuellen Kurs eintragen.</p>
+<label>Betrag in ₩ <input id="qbAmt" type="number" min="0" step="100" inputmode="numeric" placeholder="z. B. 12000"></label>
+<label>Kategorie <select id="qbCat"><option>Essen</option><option>Bahn</option><option>Shopping</option><option>Sonstiges</option></select></label>
+<button type="button" id="qbAmtAdd">Hinzufügen</button>
+<p id="qbGeldToday"></p>
+<p id="qbGeldTrip"></p>
+<ul id="qbGeldList"></ul>
+</section>
+
+<section data-pane="offen" hidden>
+<p class="qmuted">Offene Punkte aus den Notizen. Häkchen setzen, wenn erledigt.</p>
+<ul id="qbOffenList"></ul>
+</section>
+
+<section data-pane="abend" hidden>
+<p class="qmuted">Heute kurz festhalten. Die Notiz bleibt auf diesem Gerät.</p>
+<textarea id="qbAbendTxt" rows="3" placeholder="Was war heute?"></textarea>
+<button type="button" id="qbAbendSave">Speichern</button>
+<p id="qbAbendOut" style="white-space:pre-wrap"></p>
+<p class="qmuted">Fotos hochladen geht über den Bereich Fotos.</p>
+</section>
+</div>
+</div>
 <script>
 (function(){
-const q=document.getElementById("qbar"); if(!q) return;
+const E=id=>document.getElementById(id);
+const get=(k,def)=>{try{const v=localStorage.getItem(k);return v==null?def:JSON.parse(v);}catch(e){return def;}};
+const put=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}};
 const sim=(new URLSearchParams(location.search).get("sim")||"").match(/^\d{4}-\d{2}-\d{2}$/)?.[0]||"";
-const d=sim||new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Seoul",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
-const inTrip=d>="2026-11-21"&&d<="2026-11-29";
-if(inTrip){ q.classList.add("on"); document.body.classList.add("qb-on"); }
+const now=(()=>{const p=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Seoul",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",hourCycle:"h23"}).formatToParts(new Date());const g=t=>p.find(x=>x.type===t).value;return {d:g("year")+"-"+g("month")+"-"+g("day"),h:+g("hour")};})();
+const today=sim||now.d, hour=sim?21:now.h;
+const inTrip=today>="2026-11-21"&&today<="2026-11-29";
+const fmt=n=>Math.round(n).toLocaleString("de-DE");
+
+if(inTrip){ E("qbar").classList.add("on"); document.body.classList.add("qb-on"); }
+
+/* Merken: ☆ an Überschriften der Tipp- und Essensbereiche */
+function renderKeep(){
+  const k=get("sn_keep",{}), ul=E("qbKeepList"); ul.innerHTML="";
+  const ks=Object.keys(k);
+  if(!ks.length){ ul.innerHTML="<li class='qmuted'>Noch nichts gemerkt. Tippe bei Tipps und Essen auf ☆.</li>"; return; }
+  ks.forEach(t=>{
+    const li=document.createElement("li"), s=document.createElement("span"), x=document.createElement("button");
+    s.textContent=t; x.type="button"; x.textContent="✕"; x.setAttribute("aria-label","Entfernen: "+t);
+    x.addEventListener("click",()=>{ const kk=get("sn_keep",{}); delete kk[t]; put("sn_keep",kk); renderKeep(); syncStars(); });
+    li.append(s,x); ul.appendChild(li);
+  });
+}
+function syncStars(){
+  const k=get("sn_keep",{});
+  document.querySelectorAll(".qkeep").forEach(b=>{ const t=b.dataset.t; b.textContent=k[t]?"★":"☆"; b.setAttribute("aria-pressed",!!k[t]); });
+}
+["essen","bier","abends","viertel","tipps","mia","nadine","kino","guide"].forEach(id=>{
+  const s=E(id); if(!s) return;
+  s.querySelectorAll("h3,h4").forEach(h=>{
+    const t=h.textContent.trim().slice(0,80); if(!t||h.querySelector(".qkeep")) return;
+    const b=document.createElement("button");
+    b.type="button"; b.className="qkeep"; b.dataset.t=t; b.title="Merken";
+    b.setAttribute("aria-label","Auf Unsere Liste merken: "+t);
+    b.addEventListener("click",e=>{ e.preventDefault(); e.stopPropagation(); const k=get("sn_keep",{}); if(k[t]) delete k[t]; else k[t]={sec:id}; put("sn_keep",k); syncStars(); renderKeep(); });
+    h.appendChild(b);
+  });
+});
+syncStars();
+
+/* Zeigen: große Sätze und eigene Adresse */
+const PH=[["이 주소로 가 주세요.","Bitte fahren Sie zu dieser Adresse."],["여기서 세워 주세요.","Bitte hier anhalten."],["홍대입구역으로 가 주세요.","Bitte zur Station Hongik Univ."],["카드 되나요?","Kann ich mit Karte zahlen?"],["영수증 주세요.","Quittung bitte."],["맵지 않게 해 주세요.","Bitte nicht scharf."]];
+const big=(t,de)=>{ const b=E("qbBig"); b.textContent=t; const s=document.createElement("small"); s.textContent=de||""; b.appendChild(s); };
+E("qbPh").innerHTML=PH.map((p,i)=>`<button type="button" data-ph="${i}">${p[1]}</button>`).join("");
+E("qbPh").addEventListener("click",e=>{ const b=e.target.closest("[data-ph]"); if(!b) return; const p=PH[+b.dataset.ph]; big(p[0],p[1]); });
+E("qbAddrGo").addEventListener("click",()=>{ const v=E("qbAddr").value.trim(); if(v) big(v,"Adresse zeigen"); });
+
+/* Geld: Beträge in ₩, Umrechnung mit eigenem Kurs */
+E("qbRate").value=get("sn_rate",1500);
+E("qbRate").addEventListener("change",()=>{ put("sn_rate",+E("qbRate").value||1500); renderGeld(); });
+function renderGeld(){
+  const rate=+get("sn_rate",1500)||1500, L=get("sn_geld",[]);
+  const tod=L.filter(x=>x.d===today), sum=a=>a.reduce((s,x)=>s+x.amt,0);
+  E("qbGeldToday").textContent=`Heute: ${fmt(sum(tod))} ₩ ≈ ${fmt(sum(tod)/rate)} €`;
+  E("qbGeldTrip").textContent=`Reise bisher: ${fmt(sum(L))} ₩ ≈ ${fmt(sum(L)/rate)} €`;
+  const ul=E("qbGeldList"); ul.innerHTML="";
+  tod.slice().reverse().forEach(x=>{ const li=document.createElement("li"); li.innerHTML=`<span>${x.cat}</span><span>${fmt(x.amt)} ₩</span>`; ul.appendChild(li); });
+}
+E("qbAmtAdd").addEventListener("click",()=>{
+  const amt=+E("qbAmt").value; if(!amt||amt<0) return;
+  const L=get("sn_geld",[]); L.push({d:today,amt,cat:E("qbCat").value}); put("sn_geld",L);
+  E("qbAmt").value=""; renderGeld();
+});
+
+/* Offen: Häkchenliste */
+const OFFEN=["Unfold X: Termine bestätigen","Bar Cham: Ruhetag und Zeiten prüfen","Contrast (Fukuoka): prüfen","SeMA: Eintritt und Zeiten","Seoul Lantern Festival: Termine prüfen","KE937: Landezeit im Ticket prüfen","Michis Level auf der Karte eintragen","Auf dem Handy testen: Ton, Fotos, Framerate"];
+function renderOffen(){
+  const st=get("sn_offen",{}), ul=E("qbOffenList"); ul.innerHTML="";
+  OFFEN.forEach((t,i)=>{
+    const li=document.createElement("li"), lab=document.createElement("label"), cb=document.createElement("input");
+    cb.type="checkbox"; cb.checked=!!st[i]; cb.style.width="auto"; cb.style.margin="0";
+    cb.addEventListener("change",()=>{ const s=get("sn_offen",{}); s[i]=cb.checked; put("sn_offen",s); });
+    const sp=document.createElement("span"); sp.textContent=t;
+    lab.append(cb,sp); li.appendChild(lab); ul.appendChild(li);
+  });
+}
+
+/* Abend-Notiz pro Tag */
+function renderAbend(){ const L=get("sn_abend",{}); E("qbAbendOut").textContent=L[today]||""; }
+E("qbAbendSave").addEventListener("click",()=>{
+  const t=E("qbAbendTxt").value.trim(); if(!t) return;
+  const L=get("sn_abend",{}); L[today]=L[today]?L[today]+"\n"+t:t; put("sn_abend",L);
+  E("qbAbendTxt").value=""; renderAbend(); E("qbNudge").hidden=true;
+});
+
+/* Panel */
+function showTab(t){
+  document.querySelectorAll("#qbPanel [data-pane]").forEach(s=>{ s.hidden=s.dataset.pane!==t; });
+  document.querySelectorAll("#qbPanel [data-tab]").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.tab===t)));
+}
+function openPanel(tab){
+  E("qbRain").hidden=!document.querySelector(".wx-warn");
+  renderKeep(); renderGeld(); renderOffen(); renderAbend();
+  E("qbPanel").hidden=false; showTab(tab||"zeigen");
+}
+function closePanel(){ E("qbPanel").hidden=true; }
+document.querySelectorAll("#qbPanel [data-tab]").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
+E("qbTools").addEventListener("click",()=>openPanel("zeigen"));
+E("qbClose").addEventListener("click",closePanel);
+E("qbPanel").addEventListener("click",e=>{ if(e.target===E("qbPanel")) closePanel(); });
+E("qbRain").addEventListener("click",closePanel);
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closePanel(); });
+
+/* Abend-Erinnerung: ab 21 Uhr Koreazeit während der Reise, einmal pro Tag wegklickbar */
+const nud=E("qbNudge");
+if(inTrip && (hour>=21 || hour<3) && get("sn_nud","")!==today && !get("sn_abend",{})[today]) nud.hidden=false;
+E("qbNudgeOpen").addEventListener("click",()=>{ nud.hidden=true; openPanel("abend"); });
+E("qbNudgeX").addEventListener("click",()=>{ put("sn_nud",today); nud.hidden=true; });
 })();
 </script>
 </body></html>
