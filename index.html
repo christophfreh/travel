@@ -4993,13 +4993,14 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 <div class="qnudge" id="qbNudge" hidden><span>Abend-Check: Was war heute? Schon ein Foto hochgeladen?</span><button type="button" id="qbNudgeOpen">Öffnen</button><button type="button" id="qbNudgeX" aria-label="Ausblenden">✕</button></div>
 <div class="qpanel" id="qbPanel" role="dialog" aria-modal="true" aria-label="Werkzeuge" hidden>
 <div class="qp-box">
-<div class="qp-head"><b>Werkzeuge</b><button type="button" id="qbClose" aria-label="Schließen">✕</button></div>
+<div class="qp-head"><b>Werkzeuge</b><span><button type="button" id="qbRead" aria-pressed="false">Kontrast</button><button type="button" id="qbClose" aria-label="Schließen">✕</button></span></div>
 <div class="qp-tabs" role="tablist">
 <button type="button" role="tab" data-tab="zeigen" aria-selected="true">Zeigen</button>
 <button type="button" role="tab" data-tab="liste" aria-selected="false">Liste</button>
 <button type="button" role="tab" data-tab="geld" aria-selected="false">Geld</button>
 <button type="button" role="tab" data-tab="offen" aria-selected="false">Offen</button>
 <button type="button" role="tab" data-tab="abend" aria-selected="false">Abend</button>
+<button type="button" role="tab" data-tab="wetter" aria-selected="false">Wetter</button>
 </div>
 <a id="qbRain" href="#regen" hidden>☔ Wetter-Warnung: zum Regen-Plan</a>
 
@@ -5009,11 +5010,13 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 <button type="button" id="qbAddrGo">Groß zeigen</button>
 <div class="qbig" id="qbBig" aria-live="polite">Tippe auf einen Satz oder trage eine Adresse ein.</div>
 <div id="qbPh"></div>
+<p><a id="qbNaver" target="_blank" rel="noopener" href="#">In Naver Map suchen</a> · <a id="qbGmap" target="_blank" rel="noopener" href="#">Google Maps</a></p>
 </section>
 
 <section data-pane="liste" hidden>
 <p class="qmuted">Mit ☆ bei Tipps und Essen merken.</p>
 <ul id="qbKeepList"></ul>
+<button type="button" id="qbShareList">Liste teilen</button>
 </section>
 
 <section data-pane="geld" hidden>
@@ -5037,7 +5040,12 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 <textarea id="qbAbendTxt" rows="3" placeholder="Was war heute?"></textarea>
 <button type="button" id="qbAbendSave">Speichern</button>
 <p id="qbAbendOut" style="white-space:pre-wrap"></p>
+<button type="button" id="qbShareAbend">Notiz teilen</button>
 <p class="qmuted">Fotos hochladen geht über den Bereich Fotos.</p>
+</section>
+<section data-pane="wetter" hidden>
+<p class="qmuted">Stündlich in Seoul, ab jetzt.</p>
+<ul id="qbWx"></ul>
 </section>
 </div>
 </div>
@@ -5153,4 +5161,64 @@ E("qbNudgeOpen").addEventListener("click",()=>{ nud.hidden=true; openPanel("aben
 E("qbNudgeX").addEventListener("click",()=>{ put("sn_nud",today); nud.hidden=true; });
 })();
 </script>
+<script>
+(function(){
+const E=id=>document.getElementById(id);
+const get=(k,def)=>{try{const v=localStorage.getItem(k);return v==null?def:JSON.parse(v);}catch(e){return def;}};
+const put=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}};
+const flash=(b,txt)=>{ const old=b.textContent; b.textContent=txt; setTimeout(()=>{b.textContent=old;},1600); };
+
+/* Teilen: Web Share, sonst Kopieren */
+async function shareText(text,btn){
+  if(navigator.share){ try{ await navigator.share({text}); return; }catch(e){ if(e&&e.name==="AbortError") return; } }
+  try{ await navigator.clipboard.writeText(text); flash(btn,"Kopiert ✓"); }catch(e){ flash(btn,"Nicht möglich"); }
+}
+E("qbShareList").addEventListener("click",function(){ const ks=Object.keys(get("sn_keep",{})); shareText(ks.length?"Unsere Liste:\n"+ks.join("\n"):"Unsere Liste ist leer.",this); });
+E("qbShareAbend").addEventListener("click",function(){ const t=get("sn_abend",{})[new Date().toLocaleDateString("sv-SE",{timeZone:"Asia/Seoul"})]||""; shareText(t?"Heute in Seoul:\n"+t:"Heute noch keine Notiz.",this); });
+
+/* Zeigen: Suchlinks für Naver Map und Google Maps */
+E("qbAddr").addEventListener("input",()=>{ const v=E("qbAddr").value.trim(); E("qbNaver").href=v?"https://map.naver.com/v5/search/"+encodeURIComponent(v):"#"; E("qbGmap").href=v?"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(v):"#"; });
+
+/* Kontrast und größere Schrift */
+const RB=E("qbRead");
+const applyRead=()=>{ const on=!!get("sn_read",false); document.body.classList.toggle("qb-read",on); RB.setAttribute("aria-pressed",String(on)); RB.textContent=on?"Kontrast aus":"Kontrast"; };
+RB.addEventListener("click",()=>{ put("sn_read",!get("sn_read",false)); applyRead(); });
+applyRead();
+
+/* Öffnungsbadge für Bar Cham: Mi–Mo 18–1 Uhr, dienstags zu */
+const WD={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+const seoulParts=()=>{ const p=new Intl.DateTimeFormat("en-US",{timeZone:"Asia/Seoul",weekday:"short",hour:"2-digit",hourCycle:"h23"}).formatToParts(new Date()); const g=t=>p.find(x=>x.type===t).value; return {d:WD[g("weekday")],h:+g("hour")}; };
+document.querySelectorAll("h3,h4").forEach(h=>{
+  if(!/Bar Cham/.test(h.textContent)) return;
+  const b=document.createElement("span"); b.className="qopen"; b.style.cssText="margin-left:8px;font:600 11px system-ui,sans-serif;letter-spacing:.06em;padding:2px 6px;border:1px solid currentColor;vertical-align:middle";
+  h.appendChild(b);
+  const upd=()=>{ const {d,h:hr}=seoulParts(); const open=(hr>=18&&d!==2)||(hr<1&&((d+6)%7)!==2); b.textContent=open?"● JETZT OFFEN":"○ JETZT ZU"; b.style.color=open?"#8CFF5A":"#b9b3d6"; };
+  upd(); setInterval(upd,60000);
+});
+
+/* Stundenweise Wetter (Open-Meteo, Seoul) */
+const wxTab=document.querySelector('[data-tab="wetter"]');
+if(wxTab) wxTab.addEventListener("click",loadWx);
+async function loadWx(){
+  const out=E("qbWx"); out.textContent="Lade Wetter …";
+  try{
+    const r=await fetch("https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.978&hourly=temperature_2m,precipitation_probability&timezone=Asia%2FSeoul&forecast_days=2");
+    const j=await r.json(), t=j.hourly.time, T=j.hourly.temperature_2m, P=j.hourly.precipitation_probability;
+    const {d:_, h}=seoulParts();
+    const dayKey=new Intl.DateTimeFormat("sv-SE",{timeZone:"Asia/Seoul"}).format(new Date());
+    let i=t.indexOf(dayKey+"T"+String(h).padStart(2,"0")+":00"); if(i<0) i=0;
+    out.innerHTML="";
+    for(let k=i;k<Math.min(i+4,t.length);k++){
+      const li=document.createElement("li");
+      const a=document.createElement("span"); a.textContent=t[k].slice(11,16);
+      const b=document.createElement("span"); b.textContent=Math.round(T[k])+" °C · Regen "+P[k]+" %";
+      li.append(a,b); out.appendChild(li);
+    }
+  }catch(e){ out.textContent="Wetter gerade nicht verfügbar."; }
+}
+})();
+</script>
+<style>
+body.qb-read p,body.qb-read li,body.qb-read .sub{color:#fff!important;font-size:1.08em!important}
+</style>
 </body></html>
