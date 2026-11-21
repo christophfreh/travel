@@ -5001,6 +5001,7 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 <button type="button" role="tab" data-tab="offen" aria-selected="false">Offen</button>
 <button type="button" role="tab" data-tab="abend" aria-selected="false">Abend</button>
 <button type="button" role="tab" data-tab="wetter" aria-selected="false">Wetter</button>
+<button type="button" role="tab" data-tab="ziele" aria-selected="false">Ziele</button>
 </div>
 <a id="qbRain" href="#regen" hidden>☔ Wetter-Warnung: zum Regen-Plan</a>
 
@@ -5047,6 +5048,16 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 <p class="qmuted">Stündlich in Seoul, ab jetzt.</p>
 <ul id="qbWx"></ul>
 </section>
+<section data-pane="ziele" hidden>
+<p id="qbLvl" class="qmuted"></p>
+<p class="qmuted">Heute: die ersten drei Punkte aus dem Plan.</p>
+<ul id="qbZiele"></ul>
+<div id="qbDep" hidden>
+<p class="qmuted">Abreise, 29.11.</p>
+<ul><li>Tax-Free-Belege griffbereit halten, falls die Ausreisekontrolle sie sehen will</li><li>Gepäck nach dem Packen noch einmal prüfen</li><li>Flugzeit im Ticket prüfen (KE937, 12:05)</li><li>Anfahrt zum Flughafen einplanen</li></ul>
+<p><a id="qbDepNaver" target="_blank" rel="noopener" href="#">Anfahrt zum Flughafen (Naver Map)</a></p>
+</div>
+</section>
 </div>
 </div>
 <script>
@@ -5092,7 +5103,7 @@ function syncStars(){
 syncStars();
 
 /* Zeigen: große Sätze und eigene Adresse */
-const PH=[["이 주소로 가 주세요.","Bitte fahren Sie zu dieser Adresse."],["여기서 세워 주세요.","Bitte hier anhalten."],["홍대입구역으로 가 주세요.","Bitte zur Station Hongik Univ."],["카드 되나요?","Kann ich mit Karte zahlen?"],["영수증 주세요.","Quittung bitte."],["맵지 않게 해 주세요.","Bitte nicht scharf."]];
+const PH=[["이 주소로 가 주세요.","Bitte fahren Sie zu dieser Adresse."],["여기서 세워 주세요.","Bitte hier anhalten."],["홍대입구역으로 가 주세요.","Bitte zur Station Hongik Univ."],["카드 되나요?","Kann ich mit Karte zahlen?"],["영수증 주세요.","Quittung bitte."],["맵지 않게 해 주세요.","Bitte nicht scharf."],["병원에 가야 해요.","Ich muss ins Krankenhaus."],["약국이 어디예요?","Wo ist die Apotheke?"]];
 const big=(t,de)=>{ const b=E("qbBig"); b.textContent=t; const s=document.createElement("small"); s.textContent=de||""; b.appendChild(s); };
 E("qbPh").innerHTML=PH.map((p,i)=>`<button type="button" data-ph="${i}">${p[1]}</button>`).join("");
 E("qbPh").addEventListener("click",e=>{ const b=e.target.closest("[data-ph]"); if(!b) return; const p=PH[+b.dataset.ph]; big(p[0],p[1]); });
@@ -5221,4 +5232,34 @@ async function loadWx(){
 <style>
 body.qb-read p,body.qb-read li,body.qb-read .sub{color:#fff!important;font-size:1.08em!important}
 </style>
+<script>
+(function(){
+const E=id=>document.getElementById(id);
+const get=(k,def)=>{try{const v=localStorage.getItem(k);return v==null?def:JSON.parse(v);}catch(e){return def;}};
+const put=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}};
+const dayKey=new Intl.DateTimeFormat("sv-SE",{timeZone:"Asia/Seoul"}).format(new Date());
+function renderZiele(){
+  const t=window.__tro?window.__tro():{n:0,t:0};
+  E("qbLvl").textContent=`Gruppen-Level ${Math.floor(t.n/2)+1} · ${t.n} Trophäen`;
+  const ul=E("qbZiele"); ul.innerHTML="";
+  const p=(typeof PLAN!=="undefined")?PLAN.find(x=>x[0]===dayKey):null;
+  const st=get("sn_ziele",{}); const done=st[dayKey]||{};
+  if(p){
+    const items=p[3].map(s=>s.replace(/^★\s*/,"")).slice(0,3);
+    items.forEach((txt,i)=>{
+      const li=document.createElement("li"), lab=document.createElement("label"), cb=document.createElement("input"), sp=document.createElement("span");
+      cb.type="checkbox"; cb.checked=!!done[i]; cb.style.width="auto"; cb.style.margin="0";
+      cb.addEventListener("change",()=>{ const s=get("sn_ziele",{}); s[dayKey]=s[dayKey]||{}; s[dayKey][i]=cb.checked; put("sn_ziele",s); renderZiele(); });
+      sp.textContent=txt; lab.append(cb,sp); li.appendChild(lab); ul.appendChild(li);
+    });
+  } else { ul.innerHTML="<li class='qmuted'>Heute steht kein Plan-Eintrag.</li>"; }
+  const dep=E("qbDep");
+  dep.hidden = dayKey!=="2026-11-29";
+}
+const zTab=document.querySelector('[data-tab="ziele"]');
+if(zTab) zTab.addEventListener("click",renderZiele);
+E("qbDepNaver").href="https://map.naver.com/v5/search/"+encodeURIComponent("인천국제공항");
+renderZiele();
+})();
+</script>
 </body></html>
