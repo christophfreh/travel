@@ -5006,6 +5006,13 @@ body.qb-light .wrap img,body.qb-light .wrap video,body.qb-light .wrap canvas,bod
 body.qb-light .leaflet-container .leaflet-tile-pane{filter:none}
 body.qb-light .wrap .leaflet-container{filter:invert(1) hue-rotate(180deg)}
 body.qb-light .wrap .leaflet-tile{filter:none!important}
+/* Laufband oben: eigene helle Farben, Umkehrung aufgehoben */
+body.qb-light .wrap .marquee{filter:invert(1) hue-rotate(180deg);background:#ffffff;color:#15122b;border-block-color:#c4006a}
+body.qb-light .wrap .marquee div{color:#15122b}
+body.qb-light .wrap .marquee span:nth-child(3n+1){color:#c4006a}
+body.qb-light .wrap .marquee span:nth-child(3n+2){color:#0077b6}
+/* Karten mit Bild: Umkehrung aufgehoben, Originalfarben bleiben lesbar */
+body.qb-light .wrap .hl-card{filter:invert(1) hue-rotate(180deg)}
 body.qb-light .qbar{background:#ffffff;border-top:2px solid #ff3e8a}
 body.qb-light .qbar a,body.qb-light .qbar button{color:#15122b;border:1px solid #ff3e8a}
 body.qb-light .qbar b{color:#c4006a}
