@@ -4966,6 +4966,7 @@ window.renderWxWarn&&renderWxWarn();
 .qbar b{font-size:10px;letter-spacing:.08em;color:var(--neon);text-transform:uppercase}
 .qbar a:focus-visible,.qbar button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+body.qb-on .dock{display:none}
 .qbar{overflow:hidden}
 .qbar::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,#3bb8ff,#ff3e8a,transparent);opacity:.8;pointer-events:none}
 @media (prefers-reduced-motion:no-preference){.qbar::before{animation:qscan 4.2s linear infinite}@keyframes qscan{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}}
