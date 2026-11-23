@@ -4895,7 +4895,7 @@ document.addEventListener("click",e=>{ const a=e.target.closest&&e.target.closes
 ["lb","zm"].forEach(id=>{ const el=document.getElementById(id); if(el&&el.parentElement!==document.body) document.body.appendChild(el); });
 const secs=[...document.querySelectorAll("section[id]")];
 if("IntersectionObserver" in window){ const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle("zz",!e.isIntersecting)),{rootMargin:"300px 0px"}); secs.forEach(s=>io.observe(s)); document.querySelectorAll("header.hero,footer,aside.q").forEach(s=>io.observe(s)); }
-const NOCV=new Set(["highlights","karten","hacks"]);
+const NOCV=new Set(["highlights","karten","hacks","plan"]);
 function cv(){ if(!CSS.supports||!CSS.supports("content-visibility","auto")) return; secs.forEach(s=>{ if(NOCV.has(s.id)||s.querySelector(".dist,.dtick,.map,canvas,iframe")) return; const h=Math.round(s.getBoundingClientRect().height); if(h<200) return; s.style.containIntrinsicSize="auto "+h+"px"; s.classList.add("cv"); }); }
 const go=()=>window.__afterBoot(()=>setTimeout(()=>(window.requestIdleCallback||(f=>f()))(cv),1200));
 document.readyState==="complete"?go():addEventListener("load",go);
