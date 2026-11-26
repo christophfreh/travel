@@ -1000,7 +1000,7 @@ section.fold.open+.foldbtn{border-color:var(--line);color:var(--muted);backgroun
 .wmap .nd{cursor:pointer}
 .wmap .nd polygon{fill:#110F27;stroke:rgba(255,255,255,.35);stroke-width:1.5;transition:fill .3s}
 .wmap .nd text{font:700 7.5px var(--f-mono);letter-spacing:.06em;fill:rgba(255,255,255,.55);text-anchor:middle;pointer-events:none}
-.wmap .nd .st{font:400 11px var(--f-sign);fill:#110F27;letter-spacing:0}
+
 .wmap .nd.ok polygon{fill:var(--cp);stroke:#fff8c2;filter:drop-shadow(0 0 5px rgba(252,238,10,.8))}
 .wmap .nd.ok text{fill:var(--ink)}
 .wmap .nd.ok .st{fill:#110F27}
@@ -4304,20 +4304,21 @@ if(d>TRIP_END||(d===TRIP_END&&h>=12&&!SIM)){ clr.hidden=false; }
   const hex=(x,y,r)=>[0,1,2,3,4,5].map(k=>{const a=Math.PI/3*k+Math.PI/6;return (x+r*Math.cos(a)).toFixed(1)+","+(y+r*Math.sin(a)).toFixed(1);}).join(" ");
   const P=Object.fromEntries(N.map(n=>[n[0],n]));
   let data={}, photos=[]; const today=(typeof seoulDate==="function")?seoulDate():"";
-  const isOk=id=>BASE.includes(id)||!!data[id]||(id==="home"&&today>"2026-11-29");
+  const isOk=id=>(BASE.includes(id)&&!data["x-"+id])||!!data[id]||(id==="home"&&today>"2026-11-29");
+  const ICO={arr:"M-6 1 L6 -1.5 L6.5 0.5 L1 1.5 L-1 5 L-2.5 5 L-1.5 1.8 L-5 2.3 L-6.5 3.5 L-7.5 3.5Z",palast:"M-7 -1 Q0 -6 7 -1 M-5 -1 L-5 5 M5 -1 L5 5 M-6 5 L6 5 M-2 5 L-2 1 L2 1 L2 5",bindae:"M-7 -3 L7 -3 L6 0 L-6 0Z M-5 0 L-5 5 M5 0 L5 5 M-6 5 L6 5",ddp:"M-7 3 Q-6 -5 0 -4 Q6 -5 7 3Z M-3 3 L-3 0 M3 3 L3 0",namsan:"M0 -7 L0 -4 M-3 -4 L3 -4 L2 -2 L-2 -2Z M-1 -2 L-1 6 M1 -2 L1 6 M-4 6 L4 6",unfold:"M-5 -5 L5 -5 L5 5 L-5 5Z M0 -2.5 L0.9 -0.9 L2.5 0 L0.9 0.9 L0 2.5 L-0.9 0.9 L-2.5 0 L-0.9 -0.9Z",namdaemun:"M-7 -2 Q0 -6 7 -2 M-6 -2 L-6 5 L6 5 L6 -2 M-2 5 Q-2 1 0 1 Q2 1 2 5",bukchon:"M-7 0 Q-3 -1 0 -5 Q3 -1 7 0 M-5 0 L-5 5 L5 5 L5 0 M-1 5 L-1 2 L1 2 L1 5",sky:"M0 -8 L3 6 L-3 6Z M-1 0 L1 0",samsung:"M-6 5 L-6 -3 L-4 -3 L-4 -5 L-2 -5 L-2 -3 L2 -3 L2 -5 L4 -5 L4 -3 L6 -3 L6 5Z M-1.5 5 L-1.5 1 L1.5 1 L1.5 5",home:"M-6 1 L6 -1.5 L6.5 0.5 L1 1.5 L-1 5 L-2.5 5 L-1.5 1.8 L-5 2.3 L-6.5 3.5 L-7.5 3.5Z",ramen:"M-7 0 L7 0 Q6 6 0 6 Q-6 6 -7 0Z M-3 -2 Q-2 -4 -3 -6 M0 -2 Q1 -4 0 -6 M3 -2 Q4 -4 3 -6",teamlab:"M-4 -4 L-3.9 -4 M0 -6 L0.1 -6 M4 -3 L4.1 -3 M-5 2 L-4.9 2 M2 1 L2.1 1 M-1 5 L-0.9 5 M5 4 L5.1 4",nintendo:"M-7 -3 Q-7 -4 -6 -4 L6 -4 Q7 -4 7 -3 L7 3 Q7 4 6 4 L-6 4 Q-7 4 -7 3Z M-4.5 -1.5 L-4.5 1.5 M-6 0 L-3 0 M3.5 -1 L3.6 -1 M5 1 L5.1 1"};
   function draw(){
     const ok=ORDER.filter(isOk), n=ok.length;
     const cur=ORDER.find(id=>!isOk(id)&&P[id][4]&&P[id][4]>=today&&P[id][4]<=today) || ORDER.find(id=>!isOk(id)&&P[id][4]>=today) || "";
     const seg=(a,b)=>{const A=P[a],B=P[b];return `<path class="road${isOk(a)&&isOk(b)?" done":""}" d="M${A[2]} ${A[3]} L${B[2]} ${B[3]}"/>`;};
     const roads=[["arr","palast"],["palast","bindae"],["bindae","ddp"],["ddp","namsan"],["namsan","unfold"],["unfold","namdaemun"],["namdaemun","bukchon"],["bukchon","sky"],["sky","samsung"],["samsung","home"],["ramen","teamlab"],["teamlab","nintendo"]].map(r=>seg(...r)).join("");
-    const nodes=N.map(([id,l,x,y])=>{const o=isOk(id),c=id===cur;return `<g class="nd${o?" ok":""}${c?" cur":""}" data-id="${id}" role="button" tabindex="0" aria-label="${l}${o?" geschafft":""}"><polygon points="${hex(x,y,11)}"/>${o?`<text class="st" x="${x}" y="${y+4}">★</text>`:""}<text x="${x}" y="${y+22}">${l}</text></g>`;}).join("");
+    const nodes=N.map(([id,l,x,y])=>{const o=isOk(id),c=id===cur;return `<g class="nd${o?" ok":""}${c?" cur":""}" data-id="${id}" role="button" tabindex="0" aria-label="${l}${o?" geschafft":""}"><polygon points="${hex(x,y,11)}"/>${ICO[id]?`<path class="ico" d="${ICO[id]}" transform="translate(${x} ${y}) scale(.95)"/>`:""}${o?`<text class="stb" x="${x+9}" y="${y-7}">★</text>`:""}<text x="${x}" y="${y+22}">${l}</text></g>`;}).join("");
     const me=cur?P[cur]:P[ok[ok.length-1]||"arr"];
     const byDay={}; photos.forEach(f=>{ const m=String(f.pathname||"").match(/(\d{4}-\d{2}-\d{2})/); if(m) (byDay[m[1]]=byDay[m[1]]||[]).push(f); });
     const used={}; const stamps=Object.entries(byDay).sort().map(([d,L],k)=>{ let cand=ORDER.filter(id=>P[id][4]===d); if(!cand.length){ const prev=N.filter(n=>n[4]&&n[4]<d).sort((a,b)=>a[4]<b[4]?1:-1)[0]; if(!prev) return ""; cand=[prev[0]]; } if(used[cand[0]]&&cand.length>1) cand=cand.slice(1); used[cand[0]]=1; const id=cand.find(isOk)||cand[0]; const [,,x,y]=P[id]; const f=L[L.length-1];
       return `<g class="wstamp" data-day="${d}" transform="translate(${x+9} ${y-30}) rotate(${k%2?7:-6})"><rect x="-1.5" y="-1.5" width="21" height="24" fill="#f4f1ea"/><image href="${f.thumb||f.url}" x="0" y="0" width="18" height="18" preserveAspectRatio="xMidYMid slice"/>${L.length>1?`<circle cx="19" cy="0" r="5.5" fill="#FF3E8A"/><text x="19" y="2.6" text-anchor="middle" class="sc">${L.length}</text>`:""}</g>`; }).join("");
     window.__wmapPhotos=photos; window.__wmapNodes=N.map(n=>({id:n[0],label:n[1],date:n[4],ok:isOk(n[0])}));
     window.__wmap={today:N.filter(n=>n[4]===today&&isOk(n[0])).length, photosToday:(byDay[today]||[]).length, ok:ok.length, total:ORDER.length};
-    box.innerHTML=`<div class="wmap-h"><b>Weltkarte · bisher gespielt</b><span>${n} / ${ORDER.length} LEVEL ★</span></div>
+    box.innerHTML=`<div class="wmap-h"><b>Weltkarte · bisher gespielt</b><span>${n} / ${ORDER.length} LEVEL ★</span><button type="button" class="wz-open" aria-label="Karte vergrößern">⤢ GROSS</button></div>
     <svg viewBox="0 0 360 236" aria-label="Karte der Reise mit geschafften Orten">
       <path class="isl" d="M14 22 Q90 4 196 26 Q214 90 200 160 Q190 222 110 226 Q20 228 12 150 Q4 80 14 22Z"/><text class="il" x="20" y="16">서울 SEOUL</text>
       <path class="isl jp" d="M226 104 Q300 88 340 112 Q352 170 330 216 Q270 230 230 206 Q214 160 226 104Z"/><text class="il" x="262" y="98">福岡 FUKUOKA</text>
@@ -4328,6 +4329,7 @@ if(d>TRIP_END||(d===TRIP_END&&h>=12&&!SIM)){ clr.hidden=false; }
     </svg>
     <p class="status">Antippen hakt einen Ort ab, beide sehen es. Nochmal zweimal tippen nimmt es zurück. N Seoul Tower, Dongdaemun, teamLab, Nintendo und Unfold X sind schon drin.</p>`;
   }
+  const _draw=draw; draw=function(){ _draw(); try{ zoomSync(); }catch(e){} };
   const ls=(k,v)=>{try{ if(v===undefined) return JSON.parse(localStorage.getItem(k)||"null"); localStorage.setItem(k,JSON.stringify(v)); }catch(e){ return null; }};
   const who=()=>{ const r=document.querySelector('input[name="trowho"]:checked'); if(r) return r.value; try{ return localStorage.getItem("who")||"Christoph"; }catch(e){ return "Christoph"; } };
   async function load(){ if(typeof LIVE!=="undefined"&&LIVE){ try{ const r=await fetch("/api/achievements",{cache:"no-store"}); if(r.ok){ const j=await r.json(); if(j&&!j.offline) data=j; } }catch(e){} try{ const r2=await fetch("/api/photos",{cache:"no-store"}); if(r2.ok){ const L=await r2.json(); if(Array.isArray(L)) photos=L; } }catch(e){} } else data=ls("ach")||{}; draw(); }
@@ -4342,10 +4344,17 @@ if(d>TRIP_END||(d===TRIP_END&&h>=12&&!SIM)){ clr.hidden=false; }
     o.addEventListener("touchstart",e=>{ x0=e.touches[0].clientX; },{passive:true}); o.addEventListener("touchend",e=>{ if(x0==null) return; const dx=e.changedTouches[0].clientX-x0; x0=null; if(Math.abs(dx)>45){ i=(i+(dx<0?1:-1)+L.length)%L.length; draw(); } },{passive:true});
     document.body.appendChild(o); }
   let sure="";
-  box.addEventListener("click",e=>{ const st=e.target.closest(".wstamp"); if(st){ dayPhotos(st.dataset.day); return; } const g=e.target.closest(".nd"); if(!g) return; const id=g.dataset.id; if(BASE.includes(id)||id==="arr") return;
-    if(!data[id]){ save(id,false); return; }
-    if(sure===id){ sure=""; save(id,true); return; }
-    sure=id; g.classList.add("sure"); setTimeout(()=>{ if(sure===id){ sure=""; draw(); } },2600); });
+  function onMap(e){ const zb=e.target.closest(".wz-open"); if(zb){ openZoom(); return; } const st=e.target.closest(".wstamp"); if(st){ dayPhotos(st.dataset.day); return; } const g=e.target.closest(".nd"); if(!g) return; const id=g.dataset.id; if(id==="arr") return; const base=BASE.includes(id);
+    if(!isOk(id)){ if(base) save("x-"+id,true); else save(id,false); return; }
+    if(sure===id){ sure=""; if(base) save("x-"+id,false); else save(id,true); return; }
+    sure=id; document.querySelectorAll('.nd[data-id="'+id+'"]').forEach(n=>n.classList.add("sure")); setTimeout(()=>{ if(sure===id){ sure=""; draw(); } },2600); }
+  box.addEventListener("click",onMap);
+  let zoomEl=null, zw=180;
+  function zoomSync(){ if(!zoomEl) return; const sv=box.querySelector("svg"); const inn=zoomEl.querySelector(".wz-in"); inn.innerHTML=sv?sv.outerHTML:""; const s2=inn.querySelector("svg"); if(s2){ s2.style.width=zw+"%"; s2.style.maxWidth="none"; s2.style.maxHeight="none"; } zoomEl.querySelector(".wz-k").textContent=box.querySelector(".wmap-h span")?.textContent||""; }
+  function openZoom(){ if(zoomEl) return; zoomEl=document.createElement("div"); zoomEl.className="wzoom"; zoomEl.setAttribute("role","dialog"); zoomEl.setAttribute("aria-label","Weltkarte groß");
+    zoomEl.innerHTML='<div class="wz-top"><b>Weltkarte</b><span class="wz-k"></span><button type="button" class="wz-m" aria-label="Kleiner">−</button><button type="button" class="wz-p" aria-label="Größer">+</button><button type="button" class="wz-x">SCHLIESSEN</button></div><div class="wz-in"></div><p class="wz-h">Wischen zum Verschieben · Antippen hakt ab · zweimal tippen nimmt zurück · Polaroid öffnet die Fotos</p>';
+    document.body.appendChild(zoomEl); zoomSync(); const inn=zoomEl.querySelector(".wz-in"); inn.scrollLeft=(inn.scrollWidth-inn.clientWidth)/3;
+    zoomEl.addEventListener("click",e=>{ if(e.target.closest(".wz-x")){ zoomEl.remove(); zoomEl=null; return; } if(e.target.closest(".wz-p")){ zw=Math.min(320,zw+40); zoomSync(); return; } if(e.target.closest(".wz-m")){ zw=Math.max(100,zw-40); zoomSync(); return; } onMap(e); }); }
   box.addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.closest(".nd")){ e.preventDefault(); e.target.closest(".nd").dispatchEvent(new MouseEvent("click",{bubbles:true})); } });
   draw(); load(); if(typeof LIVE!=="undefined"&&LIVE) setInterval(()=>{ if(!document.hidden) load(); },60000);
 })();
@@ -5303,6 +5312,26 @@ html.night *,html.night *::before,html.night *::after{animation-play-state:pause
 .tstat{display:flex;flex-wrap:wrap;gap:4px 12px;margin:2px 0 8px;font:700 10px var(--f-mono);letter-spacing:.1em;color:var(--muted)}
 .tstat b{color:var(--cyan);font-size:12px}
 .wxhint{margin:4px 0 8px;padding:7px 10px;border:1px dashed var(--cyan);font-size:13px;color:var(--ink)}
+.wmap .nd:focus{outline:none}.wmap .nd:focus-visible polygon{stroke:var(--neon);stroke-width:2.4}
+.wmap .nd .ico{fill:none;stroke:rgba(233,230,255,.6);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.wmap .nd.ok .ico{stroke:#110F27;stroke-width:1.5}
+.wmap .nd .stb{font:400 8px var(--f-sign);fill:#FCEE0A;text-anchor:middle;paint-order:stroke;stroke:#110F27;stroke-width:2px;pointer-events:none}
+.wmap .nd text.stb{letter-spacing:0}
+.wz-open{border:1px solid var(--cyan);background:none;color:var(--cyan);font:700 10px var(--f-mono);letter-spacing:.14em;padding:5px 8px;cursor:pointer}
+.wzoom{position:fixed;inset:0;z-index:81;background:#0a0818;display:flex;flex-direction:column}
+.wzoom .wz-top{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--cyan)}
+.wzoom .wz-top b{font:400 20px var(--f-sign);color:var(--cyan)}.wzoom .wz-k{flex:1;font:700 10px var(--f-mono);letter-spacing:.14em;color:var(--cp)}
+.wzoom .wz-top button{min-width:40px;min-height:40px;border:1px solid var(--line);background:none;color:var(--ink);font:700 14px var(--f-mono);cursor:pointer}.wzoom .wz-x{border-color:var(--cp)!important;color:var(--cp)!important;font-size:11px!important;letter-spacing:.12em;padding:0 10px}
+.wzoom .wz-in{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;display:flex;align-items:flex-start}
+.wzoom .wz-in svg{display:block;height:auto;flex:none}
+.wzoom .wz-h{margin:0;padding:8px 12px calc(10px + env(safe-area-inset-bottom));font:400 11px var(--f-mono);color:var(--muted)}
+.wzoom .nd{cursor:pointer}.wzoom .nd polygon{fill:#110F27;stroke:rgba(255,255,255,.35);stroke-width:1.5}.wzoom .nd.ok polygon{fill:var(--cp);stroke:#fff8c2}.wzoom .nd.cur polygon{stroke:var(--cyan);stroke-width:2.2}.wzoom .nd.sure polygon{stroke:var(--neon);stroke-width:2.4}
+.wzoom .nd text{font:700 7.5px var(--f-mono);fill:rgba(255,255,255,.6);text-anchor:middle;pointer-events:none}.wzoom .nd.ok text{fill:var(--ink)}
+.wzoom .nd .ico{fill:none;stroke:rgba(233,230,255,.6);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}.wzoom .nd.ok .ico{stroke:#110F27;stroke-width:1.5}
+.wzoom .nd .stb{font:400 8px var(--f-sign);fill:#FCEE0A;paint-order:stroke;stroke:#110F27;stroke-width:2px}
+.wzoom .isl{fill:rgba(59,230,214,.06);stroke:rgba(59,230,214,.35);stroke-dasharray:3 3}.wzoom .isl.jp{fill:rgba(255,62,138,.06);stroke:rgba(255,62,138,.4)}.wzoom .il{font:700 8px var(--f-mono);fill:rgba(255,255,255,.35);letter-spacing:.2em}
+.wzoom .road{fill:none;stroke:rgba(255,255,255,.22);stroke-width:2;stroke-dasharray:1 5;stroke-linecap:round}.wzoom .road.done{stroke:var(--cp);stroke-dasharray:1 4}.wzoom .fly{fill:none;stroke:rgba(255,62,138,.6);stroke-width:1.2;stroke-dasharray:4 4}.wzoom .plane{fill:var(--neon)}
+.wzoom .me circle{fill:var(--cyan)}.wzoom .me circle+circle{fill:var(--neon)}.wzoom .wstamp{cursor:pointer}.wzoom .wstamp .sc{font:700 6.5px var(--f-mono);fill:#fff}
 .qnudge span{flex:1 1 180px}
 @media (max-width:700px){.qnudge{right:72px;flex-wrap:nowrap}.qnudge span{flex:1 1 auto;min-width:0}}
 .qnudge button{min-height:36px;padding:0 10px;border:1px solid var(--neon);background:none;color:#f4f1ff;font:inherit;cursor:pointer}
@@ -5995,7 +6024,9 @@ const who=()=>{ const r=document.querySelector('input[name="trowho"]:checked'); 
 const api=async(u,b)=>{ if(!LIVE_) return null; try{ const r=await fetch(u,b?{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}:{cache:"no-store"}); if(r.ok){ const j=await r.json(); return j&&!j.offline?j:null; } }catch(e){} return null; };
 
 /* ---- Lauf-Log ---- */
-let runs=ls("sn_runs")||[];
+const SEED=[{id:"seed-fuk",day:"2026-11-26",by:"Christoph",km:4,min:0,note:"Fukuoka, Hotel → Park"}];
+const withSeed=L=>SEED.filter(x=>!L.some(r=>r.id===x.id)).concat(L);
+let runs=withSeed(ls("sn_runs")||[]);
 const box=document.createElement("div"); box.className="runlog"; box.id="runLog";
 const kmSum=()=>Math.round(runs.reduce((s,r)=>s+(+r.km||0),0)*10)/10;
 function drawRuns(){ box.innerHTML=`<span class="label">Lauf-Log · ${String(kmSum()).replace(".",",")} km gelaufen</span><h4>🏃 Gelaufen in Seoul</h4>
@@ -6003,10 +6034,10 @@ function drawRuns(){ box.innerHTML=`<span class="label">Lauf-Log · ${String(kmS
   ${TRIP.includes(today)?`<form><select name="by" aria-label="Wer"><option${who()==="Christoph"?" selected":""}>Christoph</option><option${who()==="Michi"?" selected":""}>Michi</option></select><input name="km" inputmode="decimal" placeholder="km, z. B. 6,1" aria-label="Kilometer"><input name="min" inputmode="numeric" placeholder="Minuten" aria-label="Minuten"><input name="note" maxlength="100" placeholder="Strecke, z. B. Seonyudo" aria-label="Notiz"><button type="submit">LAUF SPEICHERN</button></form>`:""}`;
   const f=box.querySelector("form"); if(f) f.addEventListener("submit",async e=>{ e.preventDefault(); const km=parseFloat(String(f.km.value).replace(",",".")); if(!km) return;
     const r={id:Date.now().toString(36),day:today,by:f.by.value,km,min:parseInt(f.min.value)||0,note:f.note.value.trim(),ts:Date.now()}; runs.push(r); drawRuns(); stats(); if(window.__sfx) window.__sfx("clear");
-    const j=await api("/api/runs",{day:r.day,by:r.by,km:r.km,min:r.min,note:r.note}); if(j){ runs=j; drawRuns(); stats(); } else ls("sn_runs",runs);
+    const j=await api("/api/runs",{day:r.day,by:r.by,km:r.km,min:r.min,note:r.note}); if(j){ runs=withSeed(j); drawRuns(); stats(); } else ls("sn_runs",runs.filter(x=>!String(x.id).startsWith("seed")));
     api("/api/achievements",{id:"lauf",by:r.by}); }); }
 { const hb=document.getElementById("howBox"); if(hb) hb.before(box); }
-drawRuns(); api("/api/runs").then(j=>{ if(Array.isArray(j)){ runs=j; drawRuns(); stats(); } });
+drawRuns(); api("/api/runs").then(j=>{ if(Array.isArray(j)){ runs=withSeed(j); drawRuns(); stats(); } });
 window.__runsKm=kmSum;
 
 /* ---- Essensliste ---- */
