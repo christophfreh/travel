@@ -17,7 +17,7 @@ self.addEventListener("fetch",e=>{
     return;
   }
   if(u.origin===location.origin && u.pathname.startsWith("/api/")){
-    if(u.pathname==="/api/photos"||u.pathname==="/api/rates"||u.pathname==="/api/achievements"||u.pathname==="/api/hidden"){
+    if(u.pathname==="/api/photos"||u.pathname==="/api/rates"||u.pathname==="/api/achievements"||u.pathname==="/api/hidden"||u.pathname==="/api/best"){
       e.respondWith(fetch(r).then(res=>{ if(res.ok){const cp=res.clone(); caches.open(V).then(c=>c.put(r,cp));} return res; }).catch(()=>caches.match(r).then(m=>m||Response.json({offline:true},{status:503}))));
     }
     return;

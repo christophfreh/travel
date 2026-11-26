@@ -4309,7 +4309,7 @@ o.innerHTML=`<button type="button" class="cr-x" aria-label="Schließen">✕</but
 <p class="cr-sub">EIN FILM VON CHRISTOPH & MICHI</p><h2>seoul, <em>november.</em></h2><p class="cr-sub">21. – 29. NOVEMBER 2026</p>
 <div class="cr-stats"><div><b>9</b><span>TAGE</span></div><div><b>2</b><span>LÄNDER</span></div><div><b>${nGal}</b><span>FOTOS HOCHGELADEN</span></div><div><b>${tro.n}/${tro.t}</b><span>TROPHÄEN</span></div></div>
 <dl class="cr-l"><dt>Hauptrolle</dt><dd>Christoph</dd><dt>Hauptrolle</dt><dd>Michi</dd><dt>Reiseleitung</dt><dd>Christoph</dd><dt>Verpflegung</dt><dd>Michi</dd><dt>Grimassen</dt><dd>Michi</dd><dt>Navigation</dt><dd>Naver Map & viel Gefühl</dd><dt>Spezialeffekte</dt><dd>Soju</dd><dt>Bonuslevel</dt><dd>Fukuoka</dd><dt>Kulisse</dt><dd>Seoul bei Nacht</dd><dt>Gastauftritt</dt><dd>der Namdaemun-Markt</dd><dt>Konsole</dt><dd>Switch 2</dd><dt>Vorgeschichte</dt><dd>Japan 2017 · ${n17} Fotos</dd></dl>
-<div class="cr-ph">${imgs}</div>
+${window.__bestHTML?window.__bestHTML():""}<div class="cr-ph">${imgs}</div>
 <p class="cr-sub">KEIN TIER UND KEIN FREUND WURDE BEI DIESER REISE ZURÜCKGELASSEN.</p>
 <div class="cr-fin"><p class="cr-end">Fortsetzung folgt …?</p><p class="cr-cont" id="crCont">CONTINUE? 9</p></div></div>`;
 document.body.appendChild(o); document.body.style.overflow="hidden";
@@ -5173,6 +5173,37 @@ html.night *,html.night *::before,html.night *::after{animation-play-state:pause
 .pc-wrap .hs-b button,.pc-wrap .hs-b a{flex:1;min-height:44px;display:flex;align-items:center;justify-content:center;border:1px solid var(--cp);background:var(--cp);color:#0a0818;font:700 11px var(--f-mono);letter-spacing:.12em;text-decoration:none;cursor:pointer}
 .pc-wrap .hs-b .ghost{background:none;color:var(--ink);border-color:var(--line)}
 .lvl .lvl-x{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+
+/* ===== Endspurt: Letzte Chance, Flughafen, Bestes vom Tag, Heimreise ===== */
+.endbox{margin:0 0 16px;padding:12px 14px;border:1px solid var(--neon);background:linear-gradient(160deg,rgba(255,62,138,.1),#110F27 60%);position:relative;z-index:8}
+.endbox h4{margin:2px 0 8px;font:400 clamp(18px,5vw,24px)/1.1 var(--f-sign);color:var(--cp)}
+.endbox ul{list-style:none;margin:0;padding:0;display:grid;gap:5px;font-size:14px}
+.endbox li{display:flex;gap:8px;align-items:flex-start}
+.endbox li::before{content:"▸";color:var(--cyan)}
+.endbox li.chk::before{content:none}
+.endbox label{display:flex;gap:8px;align-items:flex-start;cursor:pointer}
+.endbox input[type=checkbox]{accent-color:var(--cp);width:18px;height:18px;margin-top:1px}
+.endbox .sub{font:700 10px var(--f-mono);letter-spacing:.16em;color:var(--neon);margin:10px 0 4px}
+.endbox .warn{margin-top:8px;padding:8px 10px;border:1px dashed var(--cp);font-size:13px;color:var(--ink)}
+.homeday .hangul,.homeday .kata,.homeday h1.gl-h,.homeday .wrap > p.sub,.homeday figure.kv{display:none!important}
+.hr-cd{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0 10px;text-align:center}
+.hr-cd div{border:1px solid var(--line);padding:8px 4px}.hr-cd b{display:block;font:400 30px/1 var(--f-sign);color:var(--cyan)}.hr-cd span{font:700 8.5px var(--f-mono);letter-spacing:.14em;color:var(--muted)}
+.bestd{margin:0 0 16px;padding:12px 14px;border:1px solid var(--cp);background:linear-gradient(160deg,rgba(252,238,10,.08),#110F27 60%);position:relative;z-index:8}
+.bestd h4{margin:2px 0 6px;font:400 clamp(18px,5vw,24px)/1.1 var(--f-sign);color:var(--cp)}
+.bestd .bv{border-top:1px dashed var(--line);padding:6px 0;font-size:13.5px}
+.bestd .bv b{font:700 10px var(--f-mono);letter-spacing:.14em;color:var(--neon);display:block;margin-bottom:2px}
+.bestd .bv p{margin:0}.bestd .bv p i{font-style:normal;color:var(--cyan);font-family:var(--f-mono);font-size:11px;margin-right:6px}
+.bestd form{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.bestd input[type=text]{flex:1 1 200px;min-height:42px;padding:0 10px;border:1px solid var(--line);background:#0a0818;color:var(--ink);font:inherit}
+.bestd select{min-height:42px;background:#0a0818;color:var(--ink);border:1px solid var(--line);font:inherit;padding:0 6px}
+.bestd button{min-height:42px;padding:0 14px;border:1px solid var(--cp);background:var(--cp);color:#0a0818;font:700 11px var(--f-mono);letter-spacing:.12em;cursor:pointer}
+.fx-mini{margin:10px 0;padding:10px;border:1px solid var(--line)}
+.fx-mini label{display:block;font:700 10px var(--f-mono);letter-spacing:.16em;color:var(--muted);margin-bottom:4px}
+.fx-mini div{display:flex;gap:8px;align-items:center}
+.fx-mini input{flex:1;min-height:44px;padding:0 10px;font:700 18px var(--f-mono);background:#0a0818;color:var(--ink);border:1px solid var(--cyan)}
+.fx-mini output{font:700 20px var(--f-mono);color:var(--cp);min-width:7ch;text-align:right}
+.fx-mini small{display:block;margin-top:4px;color:var(--muted);font-size:11px}
+.cr-best{max-width:560px;width:100%;text-align:left;font-size:14px}.cr-best p{margin:0 0 6px}.cr-best b{color:var(--cp)}
 .qnudge span{flex:1 1 180px}
 @media (max-width:700px){.qnudge{right:72px;flex-wrap:nowrap}.qnudge span{flex:1 1 auto;min-width:0}}
 .qnudge button{min-height:36px;padding:0 10px;border:1px solid var(--neon);background:none;color:#f4f1ff;font:inherit;cursor:pointer}
@@ -5748,6 +5779,101 @@ const addPcBtn=()=>{ const l=document.getElementById("lvl"); if(!l||l.hidden||l.
   const b2=document.createElement("button"); b2.type="button"; b2.className="btn"; b2.textContent="Heimweg ▸"; b2.addEventListener("click",sheet); x.appendChild(b2); };
 addPcBtn();
 new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(n=>{ if(n.nodeType===1&&n.classList.contains("lvc")&&!n.querySelector(".pcb")){ const bb=n.querySelector(".lvc-b"); if(bb){ const b=document.createElement("button"); b.type="button"; b.className="pcb"; b.textContent="POSTKARTE"; b.addEventListener("click",postcard); bb.appendChild(b); } } }))).observe(document.body,{childList:true});
+})();
+</script>
+<script>
+// ===================== Endspurt =====================
+(function(){
+const TRIP=["2026-11-21","2026-11-22","2026-11-23","2026-11-24","2026-11-25","2026-11-26","2026-11-27","2026-11-28","2026-11-29"];
+const today=(typeof seoulDate==="function")?seoulDate():"";
+const qt=new URLSearchParams(location.search).get("t");
+const nowMin=(()=>{ if(qt&&/^\d{1,2}:\d{2}$/.test(qt)){const[a,b]=qt.split(":");return +a*60+ +b;} const p=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Seoul",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date()); return +p.find(x=>x.type==="hour").value*60+ +p.find(x=>x.type==="minute").value; })();
+const LIVE_=typeof LIVE!=="undefined"&&LIVE;
+const ls=(k,v)=>{try{ if(v===undefined) return JSON.parse(localStorage.getItem(k)||"null"); localStorage.setItem(k,JSON.stringify(v)); }catch(e){ return null; }};
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const who=()=>{ const r=document.querySelector('input[name="trowho"]:checked'); if(r) return r.value; try{ return localStorage.getItem("who")||"Christoph"; }catch(e){ return "Christoph"; } };
+const NAMES={palast:"Gyeongbokgung-Palast",bindae:"Gwangjang-Markt",ramen:"Yatai in Fukuoka",namdaemun:"Namdaemun-Markt",bukchon:"Bukchon Hanok Village",sky:"Lotte World Tower · Seoul Sky",samsung:"Samsung Museum & Suwon"};
+const anchor=()=>document.getElementById("howBox")||document.getElementById("wmap")||document.getElementById("lvl");
+
+/* ---- Wechselkurs (für Heimweg-Blatt) ---- */
+let KRW=null, krwSrc="";
+fetch("/api/rates").then(r=>r.ok?r.json():null).then(j=>{ if(j&&j.KRW>0){ KRW=j.KRW; krwSrc="Tageskurs"; } }).catch(()=>{});
+const rate=()=>KRW||1500;
+function fxMini(){ const d=document.createElement("div"); d.className="fx-mini"; d.innerHTML=`<label for="fxW">TAXI-PREIS IN WON</label><div><input id="fxW" inputmode="numeric" placeholder="z. B. 12000" autocomplete="off"><output id="fxE">– €</output></div><small></small>`;
+  const i=d.querySelector("input"), o=d.querySelector("output"), sm=d.querySelector("small");
+  const upd=()=>{ const v=+String(i.value).replace(/[^\d]/g,""); o.textContent=v?(v/rate()).toLocaleString("de-DE",{minimumFractionDigits:2,maximumFractionDigits:2})+" €":"– €"; sm.textContent=KRW?`Kurs: 1 € = ${Math.round(KRW).toLocaleString("de-DE")} ₩ (${krwSrc})`:"Kurs grob 1 € ≈ 1.500 ₩ (Schätzung, kein Netz)"; };
+  i.addEventListener("input",upd); upd(); return d; }
+new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(n=>{ if(n.nodeType===1&&n.classList.contains("hsheet")&&!n.querySelector(".fx-mini")){ const ul=n.querySelector("ul"); if(ul) ul.before(fxMini()); } }))).observe(document.body,{childList:true});
+
+/* ---- Flughafen & Mitbringsel (Liste) ---- */
+function giftList(){ const L=[...document.querySelectorAll(".gift-h b")].map(b=>{ const g=b.closest("[class*=gift]")?.parentElement?.querySelector('input[id^="g_"]')||null; return {name:b.textContent, cb:g}; });
+  // passende Checkbox je Karte
+  document.querySelectorAll('input[id^="g_"]').forEach((cb,k)=>{ if(L[k]) L[k].cb=cb; });
+  return L; }
+function airportBox(){ const box=document.createElement("div"); box.className="endbox"; box.id="airBox";
+  const L=giftList();
+  box.innerHTML=`<span class="label">Flughafen · Mitbringsel & Tax Free</span><h4>Vor dem Abflug abhaken</h4>
+   <div class="sub">MITBRINGSEL</div><ul>${L.map((g,k)=>`<li class="chk"><label><input type="checkbox" data-g="${k}" ${g.cb&&g.cb.checked?"checked":""}> ${esc(g.name)}</label></li>`).join("")}</ul>
+   <div class="sub">TAX FREE</div><ul>
+    <li class="chk"><label><input type="checkbox" data-k="tf1"> Alle Tax-Free-Belege und Kassenzettel an einem Ort</label></li>
+    <li class="chk"><label><input type="checkbox" data-k="tf2"> Ware griffbereit, falls der Zoll sie sehen will</label></li>
+    <li class="chk"><label><input type="checkbox" data-k="tf3"> Erstattung erledigt</label></li></ul>
+   <div class="warn"><b>Wichtig:</b> Tax-Free-Belege <b>vor dem Check-in</b> an den Erstattungs-Automaten im Abflugbereich einlösen, solange die Ware noch nicht im Koffer aufgegeben ist. Bei Sofort-Erstattung im Laden ist nichts mehr zu tun.</div>`;
+  const st=ls("sn_air")||{};
+  box.querySelectorAll("input[data-k]").forEach(i=>{ i.checked=!!st[i.dataset.k]; i.addEventListener("change",()=>{ st[i.dataset.k]=i.checked; ls("sn_air",st); }); });
+  box.querySelectorAll("input[data-g]").forEach(i=>i.addEventListener("change",()=>{ const g=L[+i.dataset.g]; if(g&&g.cb){ g.cb.checked=i.checked; g.cb.dispatchEvent(new Event("change",{bubbles:true})); } }));
+  return box; }
+
+/* ---- Letzte-Chance-Liste ab Sa 28.11. ---- */
+if(today>="2026-11-28"&&today<="2026-11-29"){
+  const N=window.__wmapNodes||[]; const open=N.filter(n=>!n.ok&&n.id!=="home");
+  const box=document.createElement("div"); box.className="endbox"; box.id="lastBox";
+  box.innerHTML=`<span class="label">Letzte Chance · Endspurt</span><h4>Was noch geht</h4>
+   ${open.length?`<div class="sub">NOCH NICHT ABGEHAKT · SCHON DORT? AUF DER WELTKARTE ANTIPPEN</div><ul>${open.map(n=>`<li>${esc(NAMES[n.id]||n.label)}</li>`).join("")}</ul>`:""}
+   <div class="sub">SONNTAG VOR DEM FLUG</div><ul>
+    <li>Letztes Frühstück in Hongdae, z. B. Gimbap und Kaffee aus dem 편의점, vor 8:30</li>
+    <li>Letzter Bananenmilch-Moment</li>
+    <li>Duty-free in Terminal 2 nach der Sicherheitskontrolle: Ginseng, Kosmetik, Soju</li>
+    <li>Restliche Won am Flughafen ausgeben oder auf die T-money-Karte laden lassen</li></ul>`;
+  const a=anchor(); if(a) a.after(box);
+}
+
+/* ---- Heimreise-Modus So 29.11. bis Abflug ---- */
+if(today==="2026-11-29"&&nowMin<12*60+5){
+  document.documentElement.classList.add("homeday");
+  const box=document.createElement("div"); box.className="endbox"; box.id="homeBox";
+  const T=nowMin<8*60+30?{t:8*60+30,l:"BIS ZUM TAXI"}:{t:12*60+5,l:"BIS ABFLUG"};
+  const left=T.t-nowMin, hh=Math.floor(left/60), mm=left%60;
+  box.innerHTML=`<span class="label">Heimreise · KE937 · ICN → VIE · 12:05</span><h4>Letzter Level: nach Hause</h4>
+   <div class="hr-cd"><div><b>${hh}</b><span>STD</span></div><div><b>${mm}</b><span>MIN</span></div><div><b>T2</b><span>TERMINAL</span></div></div>
+   <p style="margin:0 0 8px;font-size:13px">${T.l==="BIS ZUM TAXI"?"Taxi um 8:30 ab Hotel, ca. 60–70 Min. bis Incheon Terminal 2.":"Korean Air ab Terminal 2. Gate steht ca. 1 Std. vor Abflug auf den Anzeigen und in der Korean-Air-App."}</p>
+   <div class="sub">CHECKLISTE ZIMMER</div><ul>
+    ${[["h1","Reisepass (beide)"],["h2","Handy, Ladekabel, Powerbank ins Handgepäck"],["h3","Tax-Free-Belege"],["h4","Safe, Schubladen, Steckdosen und Bad kontrolliert"],["h5","Switch 2, Controller und Kabel"],["h6","Zimmerkarte an der Rezeption abgegeben"]].map(([k,t])=>`<li class="chk"><label><input type="checkbox" data-k="${k}"> ${t}</label></li>`).join("")}</ul>`;
+  const st=ls("sn_home")||{};
+  box.querySelectorAll("input[data-k]").forEach(i=>{ i.checked=!!st[i.dataset.k]; i.addEventListener("change",()=>{ st[i.dataset.k]=i.checked; ls("sn_home",st); }); });
+  const hud=document.querySelector(".hud"); if(hud) hud.after(box); else document.body.prepend(box);
+  box.after(airportBox());
+}
+/* Flughafen-Box auch im Kapitel Mitbringsel */
+(function(){ const g=document.querySelector(".gifts"); if(g&&!document.getElementById("airBox")) g.after(airportBox()); })();
+
+/* ---- Bestes vom Tag (gemeinsam) ---- */
+let best={};
+const bestBox=document.createElement("div"); bestBox.className="bestd"; bestBox.id="bestBox";
+function drawBest(){ const days=TRIP.filter(d=>d<=today||!today);
+  const n=Object.values(best).reduce((s,o)=>s+Object.keys(o||{}).length,0);
+  bestBox.innerHTML=`<span class="label">Bestes vom Tag · ${n} / 18 Highlights</span><h4>Was war heute das Beste?</h4>
+   ${days.slice().reverse().map(d=>{ const o=best[d]||{}; if(!o.Christoph&&!o.Michi&&d!==today) return ""; return `<div class="bv"><b>${+d.slice(8)}.11.</b>${["Christoph","Michi"].map(w=>o[w]?`<p><i>${w[0]}</i>${esc(o[w].t)}</p>`:"").join("")||'<p style="color:var(--muted)">noch nichts eingetragen</p>'}</div>`; }).join("")}
+   ${TRIP.includes(today)?`<form><select aria-label="Wer"><option${who()==="Christoph"?" selected":""}>Christoph</option><option${who()==="Michi"?" selected":""}>Michi</option></select><input type="text" maxlength="140" placeholder="Ein Satz: das Beste heute …" aria-label="Bestes vom Tag"><button type="submit">SPEICHERN</button></form>`:""}`;
+  const f=bestBox.querySelector("form"); if(f) f.addEventListener("submit",async e=>{ e.preventDefault(); const by=f.querySelector("select").value, t=f.querySelector("input").value.trim(); if(!t) return;
+    best[today]=best[today]||{}; best[today][by]={t,ts:Date.now()}; drawBest(); if(window.__sfx) window.__sfx("coin");
+    if(LIVE_){ try{ const r=await fetch("/api/best",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({day:today,by,text:t})}); if(r.ok){ best=await r.json(); drawBest(); } }catch(err){} } else ls("sn_best",best); }); }
+window.__bestHTML=()=>{ const rows=TRIP.map(d=>{ const o=best[d]||{}; const a=["Christoph","Michi"].filter(w=>o[w]).map(w=>`<b>${w}:</b> ${esc(o[w].t)}`); return a.length?`<p>${+d.slice(8)}.11. · ${a.join(" · ")}</p>`:""; }).join(""); return rows?`<p class="cr-sub">9 TAGE · DIE HIGHLIGHTS</p><div class="cr-best">${rows}</div>`:""; };
+async function loadBest(){ if(LIVE_){ try{ const r=await fetch("/api/best",{cache:"no-store"}); if(r.ok){ const j=await r.json(); if(j&&!j.offline) best=j; } }catch(e){} } else best=ls("sn_best")||{}; drawBest(); }
+{ const lb=document.getElementById("logbuch"), a=anchor(); if(TRIP.includes(today)&&a){ (document.getElementById("lastBox")||a).after(bestBox); } else if(lb){ const sh=lb.querySelector(".sh"); (sh||lb).after(bestBox); } }
+drawBest(); loadBest();
+// Level-Clear-Karte: Knopf zum Eintragen
+new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(n=>{ if(n.nodeType===1&&n.classList.contains("lvc")&&!n.querySelector(".bst")){ const bb=n.querySelector(".lvc-b"); if(bb){ const b=document.createElement("button"); b.type="button"; b.className="bst"; b.textContent="BESTES VOM TAG"; b.addEventListener("click",()=>{ n.querySelector(".no")?.click(); bestBox.scrollIntoView({behavior:"smooth",block:"center"}); setTimeout(()=>bestBox.querySelector("input[type=text]")?.focus(),600); }); bb.appendChild(b); } } }))).observe(document.body,{childList:true});
 })();
 </script>
 </body></html>
