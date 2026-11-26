@@ -5332,6 +5332,15 @@ html.night *,html.night *::before,html.night *::after{animation-play-state:pause
 .wzoom .isl{fill:rgba(59,230,214,.06);stroke:rgba(59,230,214,.35);stroke-dasharray:3 3}.wzoom .isl.jp{fill:rgba(255,62,138,.06);stroke:rgba(255,62,138,.4)}.wzoom .il{font:700 8px var(--f-mono);fill:rgba(255,255,255,.35);letter-spacing:.2em}
 .wzoom .road{fill:none;stroke:rgba(255,255,255,.22);stroke-width:2;stroke-dasharray:1 5;stroke-linecap:round}.wzoom .road.done{stroke:var(--cp);stroke-dasharray:1 4}.wzoom .fly{fill:none;stroke:rgba(255,62,138,.6);stroke-width:1.2;stroke-dasharray:4 4}.wzoom .plane{fill:var(--neon)}
 .wzoom .me circle{fill:var(--cyan)}.wzoom .me circle+circle{fill:var(--neon)}.wzoom .wstamp{cursor:pointer}.wzoom .wstamp .sc{font:700 6.5px var(--f-mono);fill:#fff}
+
+/* ===== Highlights: erledigt markieren ===== */
+.hl-card>.hl-done,.hl-card.has-bg>.hl-done{position:absolute;top:10px;right:10px;left:auto;z-index:6;width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);background:rgba(10,8,24,.6);color:rgba(255,255,255,.8);font:700 16px/1 var(--f-mono);display:grid;place-items:center;cursor:pointer;padding:0}
+.hl-card.is-done>.hl-done{background:#FCEE0A;border-color:#fff8c2;color:#110F27;box-shadow:0 0 14px rgba(252,238,10,.7)}
+.hl-card.is-done{border-color:#FCEE0A!important;box-shadow:0 0 0 1px #FCEE0A,0 0 22px rgba(252,238,10,.35)!important}
+.hl-card>.hl-stamp,.hl-card.has-bg>.hl-stamp{position:absolute;left:50%;top:46%;z-index:5;transform:translate(-50%,-50%) rotate(-12deg);padding:6px 14px;border:3px solid #FCEE0A;color:#FCEE0A;font:700 20px/1 var(--f-mono);letter-spacing:.14em;background:rgba(10,8,24,.75);text-shadow:0 0 10px rgba(252,238,10,.7);box-shadow:0 0 18px rgba(252,238,10,.4);pointer-events:none;white-space:nowrap;display:none}
+.hl-card.is-done>.hl-stamp{display:block}
+.hl-card.is-done>b,.hl-card.is-done>small,.hl-card.is-done>i,.hl-card.is-done>svg{opacity:.6}
+.hl-sum{font:700 10px var(--f-mono);letter-spacing:.16em;color:var(--cp);margin:-4px 0 8px}
 .qnudge span{flex:1 1 180px}
 @media (max-width:700px){.qnudge{right:72px;flex-wrap:nowrap}.qnudge span{flex:1 1 auto;min-width:0}}
 .qnudge button{min-height:36px;padding:0 10px;border:1px solid var(--neon);background:none;color:#f4f1ff;font:inherit;cursor:pointer}
@@ -6074,6 +6083,30 @@ if(TRIP.includes(today)){ fetch("https://api.open-meteo.com/v1/forecast?latitude
 
 /* ---- Abspann: km + Favoriten ---- */
 const oldB=window.__bestHTML; window.__bestHTML=()=>{ const fav=window.__eatFav(), km=kmSum(); return (oldB?oldB():"")+(fav.length||km?`<p class="cr-sub">${km?`GELAUFEN: ${String(km).replace(".",",")} KM`:""}${km&&fav.length?" · ":""}${fav.length?"LIEBLINGSESSEN: "+fav.map(esc).join(", ").toUpperCase():""}</p>`:""); };
+})();
+</script>
+<script>
+// ---------- Highlights: erledigt markieren ----------
+(function(){
+  const MAP={"Nintendo FUKUOKA":"nintendo","teamLab Fukuoka-jō":"teamlab","Unfold X":"unfold","Yatai in Nakasu":"ramen","Seoul Sky + Kino":"sky","Gyeongbokgung":"palast","Samsung Museum":"samsung"};
+  const OWN={"Eigenes T-Shirt bei UNIQLO":"hl-uniqlo","Euljiro-Bar-Hopping":"hl-euljiro","LoL Park":"hl-lol","Geschenke für die Kids":"hl-gifts"};
+  const LIVE_=typeof LIVE!=="undefined"&&LIVE; let ach={};
+  const ls=(k,v)=>{try{ if(v===undefined) return JSON.parse(localStorage.getItem(k)||"null"); localStorage.setItem(k,JSON.stringify(v)); }catch(e){ return null; }};
+  const who=()=>{ const r=document.querySelector('input[name="trowho"]:checked'); if(r) return r.value; try{ return localStorage.getItem("who")||"Christoph"; }catch(e){ return "Christoph"; } };
+  const cards=[...document.querySelectorAll("a.hl-card")].map(c=>{ const t=(c.querySelector("b")||{}).textContent||""; return {c,t,map:MAP[t],own:OWN[t]}; }).filter(x=>x.map||x.own);
+  if(!cards.length) return;
+  cards.forEach(x=>{ const b=document.createElement("button"); b.type="button"; b.className="hl-done"; b.setAttribute("aria-label",x.t+" als erledigt markieren"); b.textContent="✓"; x.c.appendChild(b); const st=document.createElement("span"); st.className="hl-stamp"; st.setAttribute("aria-hidden","true"); st.textContent="ERLEDIGT ✓"; x.c.appendChild(st);
+    b.addEventListener("click",async e=>{ e.preventDefault(); e.stopPropagation(); const done=x.c.classList.contains("is-done");
+      if(x.map){ const n=document.querySelector('#wmap .nd[data-id="'+x.map+'"]'); if(n){ n.dispatchEvent(new MouseEvent("click",{bubbles:true})); if(done) setTimeout(()=>{ const n2=document.querySelector('#wmap .nd[data-id="'+x.map+'"]'); if(n2) n2.dispatchEvent(new MouseEvent("click",{bubbles:true})); },60); } setTimeout(paint,300); return; }
+      if(done) delete ach[x.own]; else ach[x.own]={by:who(),ts:Date.now()}; paint(); if(window.__sfx) window.__sfx(done?"undo":"coin");
+      if(LIVE_){ try{ const r=await fetch("/api/achievements",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:x.own,by:who(),undo:done})}); if(r.ok) ach=await r.json(); }catch(err){} } else ls("sn_hl",ach); paint(); }); });
+  const sec=document.getElementById("highlights"); let sum=null;
+  if(sec){ const sh=sec.querySelector(".sh"); sum=document.createElement("div"); sum.className="hl-sum"; if(sh) sh.after(sum); }
+  function paint(){ const N=window.__wmapNodes||[]; let n=0;
+    cards.forEach(x=>{ const d=x.map?!!(N.find(k=>k.id===x.map)||{}).ok:!!ach[x.own]; x.c.classList.toggle("is-done",d); if(d) n++; });
+    if(sum) sum.textContent=`${n} / ${cards.length} HIGHLIGHTS ERLEDIGT`; }
+  async function load(){ if(LIVE_){ try{ const r=await fetch("/api/achievements",{cache:"no-store"}); if(r.ok){ const j=await r.json(); if(j&&!j.offline) ach=j; } }catch(e){} } else ach=ls("sn_hl")||{}; paint(); }
+  load(); setInterval(paint,3000); setTimeout(paint,1500);
 })();
 </script>
 </body></html>
