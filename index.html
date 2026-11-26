@@ -5435,6 +5435,61 @@ section>.rel .label,section>.rel>span:first-child{color:var(--cyan)}
 .fm-q{font:italic 400 22px/1.35 var(--f-display);margin:0 0 18px}.fm-q small{display:block;font:700 11px var(--f-mono);font-style:normal;letter-spacing:.16em;color:var(--neon);margin-top:6px}
 .fm-best{text-align:left;font-size:15px;line-height:1.5}.fm-best p{margin:0 0 10px}
 .fm-end{font:400 34px var(--f-display);color:var(--cp);margin:90px 0 30vh}
+
+/* ===== Extras 2 ===== */
+.gn{position:fixed;inset:0;z-index:96;background:radial-gradient(ellipse at 50% 20%,#1d1446,#05040c 70%);display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto}
+.gn::before{content:"";position:absolute;inset:0;background-image:radial-gradient(1px 1px at 20% 30%,#fff8,transparent),radial-gradient(1px 1px at 70% 20%,#fff6,transparent),radial-gradient(1.5px 1.5px at 40% 70%,#3BE6D6aa,transparent),radial-gradient(1px 1px at 85% 60%,#fff5,transparent),radial-gradient(1px 1px at 10% 85%,#FF3E8Aaa,transparent);pointer-events:none}
+.gn-in{position:relative;width:min(100%,420px);text-align:center}
+.gn-k{font:700 11px var(--f-mono);letter-spacing:.26em;color:var(--cyan);margin:0}
+.gn h2{font:400 clamp(34px,10vw,48px)/1.05 var(--f-display);color:var(--cp);margin:10px 0 2px;text-shadow:0 0 22px rgba(252,238,10,.35)}
+.gn-d{font:700 12px var(--f-mono);letter-spacing:.2em;color:var(--muted);margin:0 0 20px}
+.gn-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.gn-g>div{padding:14px;border:1px solid rgba(59,230,214,.35);background:rgba(10,8,24,.6)}
+.gn-g small,.gn-f small{display:block;font:700 9px var(--f-mono);letter-spacing:.2em;color:var(--cyan);margin-bottom:6px}
+.gn-g b{display:block;font:700 34px var(--f-mono);color:var(--ink)}.gn-g i{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-top:4px}
+.gn-f{margin:14px 0 0;padding:12px 14px;border-left:3px solid var(--neon);background:rgba(255,62,138,.07);text-align:left;font-size:14px;color:var(--ink)}
+.gn-b{display:flex;gap:10px;margin-top:20px}.gn-b .btn{flex:1;justify-content:center}
+.gn-b .ghost{background:none!important;color:var(--ink)!important;border:1px solid var(--line)!important}
+.tx-b{margin-left:8px;padding:3px 8px;border:1px solid var(--cp);background:rgba(252,238,10,.1);color:var(--cp);font:700 10px var(--f-mono);letter-spacing:.1em;cursor:pointer;vertical-align:1px;white-space:nowrap}
+.tx-card{width:min(92vw,420px);padding:22px 20px;background:#f4f1e6;color:#110F27;text-align:center;box-shadow:0 0 30px rgba(252,238,10,.35)}
+.tx-card small{display:block;font:700 10px var(--f-mono);letter-spacing:.16em;color:#6a6680}
+.tx-ko{display:block;font:800 clamp(30px,9vw,42px)/1.2 "Noto Sans KR",var(--f-body);margin:12px 0 8px;cursor:copy}
+.tx-ad{display:block;font-size:17px;font-weight:600}.tx-de{display:block;font-size:13px;color:#6a6680;margin-top:6px}
+.tx-ph{margin:14px 0 0;padding-top:12px;border-top:1px dashed #b9b4c9;font-size:20px;font-weight:700}
+.tx-n{width:min(92vw,420px);margin:0;font-size:12.5px;color:var(--muted);text-align:center}
+.phr{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.phr button{position:relative;width:100%;text-align:left;padding:10px 40px 10px 12px;border:1px solid rgba(255,255,255,.14);background:rgba(10,8,24,.5);color:var(--ink);cursor:pointer}
+.phr b{display:block;font:700 18px/1.3 "Noto Sans KR",var(--f-body);color:var(--ink)}
+.phr i{display:block;font-size:12px;color:var(--cyan)}.phr span{display:block;font-size:13px;color:var(--muted)}
+.phr em{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-style:normal}
+.phr button.on{border-color:var(--cp);box-shadow:0 0 12px rgba(252,238,10,.3)}
+.tw{list-style:none;margin:0;padding:0;position:relative}
+.tw::before{content:"";position:absolute;left:52px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--cp),var(--neon),#3b2a7a)}
+.tw li{display:flex;gap:22px;align-items:flex-start;padding:7px 0}
+.tw time{flex:0 0 44px;font:700 14px var(--f-mono);color:var(--cp);text-align:right;padding-top:1px}
+.tw li div{position:relative}.tw li div::before{content:"";position:absolute;left:-15px;top:6px;width:8px;height:8px;background:var(--neon);box-shadow:0 0 8px var(--neon)}
+.tw b{display:block;font-size:14.5px;color:var(--ink)}.tw span{font-size:13px;color:var(--muted)}
+.du-h{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin:8px 0 12px}
+.du-p{padding:10px;clip-path:polygon(0 0,100% 0,92% 100%,0 100%);background:linear-gradient(135deg,rgba(59,230,214,.25),rgba(59,230,214,.05))}
+.du-p.m{clip-path:polygon(8% 0,100% 0,100% 100%,0 100%);background:linear-gradient(225deg,rgba(255,62,138,.3),rgba(255,62,138,.05));text-align:right}
+.du-p small{display:block;font:700 9px var(--f-mono);letter-spacing:.2em;color:var(--muted)}
+.du-p b{display:block;font:400 18px var(--f-sign,var(--f-display));color:var(--ink)}.du-p em{display:block;font:700 30px var(--f-mono);font-style:normal;color:var(--cp)}
+.du-vs{font:400 30px var(--f-sign,var(--f-display));color:var(--cp);text-shadow:2px 2px 0 var(--neon),-2px -2px 0 var(--cyan);transform:skew(-10deg)}
+.du-r{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;font:700 14px var(--f-mono);color:var(--ink)}
+.du-r b{font-size:10px;letter-spacing:.18em;color:var(--muted)}.du-r b i{font-style:normal;color:var(--cp)}
+.du-bar{display:flex;height:8px;background:rgba(255,255,255,.06);margin-top:4px}
+.du-bar i{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}.du-bar u{margin-left:auto;background:var(--neon);box-shadow:0 0 8px var(--neon)}
+.fl-g{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0}
+.fl-g img{width:100%;aspect-ratio:1;object-fit:cover;display:block;filter:saturate(1.2)}
+.fl-g a{transform:rotate(-1.5deg);border:3px solid #f4f1e6}.fl-g a:nth-child(2n){transform:rotate(1.5deg)}
+.fl-g.pick button{position:relative;padding:0;border:2px solid transparent;background:none;cursor:pointer}
+.fl-g.pick button i{position:absolute;right:4px;top:4px;font-style:normal;font-size:18px;opacity:0}
+.fl-g.pick button.on{border-color:var(--cp)}.fl-g.pick button.on i{opacity:1}.fl-g.pick button.on img{filter:sepia(.5) hue-rotate(-30deg)}
+.cp-o,.cp-s{padding:10px 12px;margin-bottom:8px;border:1px solid rgba(255,255,255,.14);background:rgba(10,8,24,.5)}
+.cp-o small,.cp-s small{display:block;font:700 9px var(--f-mono);letter-spacing:.18em;color:var(--cyan)}
+.cp-o p{margin:6px 0 0;font:italic 18px/1.4 var(--f-display);color:var(--ink)}.cp-s span{font-size:14px;color:var(--muted)}
+.cp-c{margin:8px 0;font:700 12px var(--f-mono);letter-spacing:.16em;color:var(--cp)}
+.fm-fl{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.fm-fl img{width:100%;aspect-ratio:1;object-fit:cover;border:3px solid #f4f1e6}
 /* ===== Reise-Deck: Tabs statt endloser Boxen ===== */
 .deck{position:relative;z-index:8;margin:0 0 18px;border:1px solid rgba(59,230,214,.55);background:linear-gradient(180deg,rgba(59,230,214,.07),rgba(17,15,39,.94) 70px);box-shadow:0 0 0 1px rgba(255,62,138,.18),0 0 28px rgba(59,230,214,.14),inset 0 0 40px rgba(59,230,214,.05);clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px))}
 .deck::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);z-index:0}
@@ -6394,7 +6449,7 @@ async function film(){ sfx("open"); await loadMiss();
     <p class="fm-k">EIN FILM VON CHRISTOPH & MICHI</p><h2>seoul, <em>november.</em></h2><p class="fm-k">21. – 29. NOVEMBER 2026 · SEOUL · FUKUOKA</p>
     <div class="fm-s"><div><b>9</b><span>TAGE</span></div><div><b>2</b><span>LÄNDER</span></div><div><b>${S.photos}</b><span>FOTOS</span></div><div><b>${String(S.km).replace(".",",")}</b><span>KM GELAUFEN</span></div><div><b>${S.dishes}</b><span>GERICHTE</span></div><div><b>${S.hl}/${S.hlT}</b><span>HIGHLIGHTS</span></div><div><b>${S.lv}/${S.lvT}</b><span>LEVEL</span></div><div><b>${S.tro}/${S.troT}</b><span>TROPHÄEN</span></div></div>
     <dl><dt>Hauptrolle</dt><dd>Christoph</dd><dt>Hauptrolle</dt><dd>Michi</dd><dt>Bonuslevel</dt><dd>Fukuoka</dd><dt>Kostüm</dt><dd>UT-Shirt, UNIQLO Tenjin</dd><dt>Spezialeffekte</dt><dd>Soju & Unfold X</dd><dt>Navigation</dt><dd>Kakao Map & Bauchgefühl</dd><dt>Kulisse</dt><dd>Seoul bei Nacht</dd></dl>
-    ${mq?`<p class="fm-k">WAS WIR VERMISSEN WERDEN</p>${mq}`:""}
+    ${mq?`<p class="fm-k">WAS WIR VERMISSEN WERDEN</p>${mq}`:""}${window.__duelLine?window.__duelLine():""}${(()=>{ const F=window.__fails?window.__fails():[]; return F.length?`<p class="fm-k">PANNEN DER REISE</p><div class="fm-fl">${F.slice(0,9).map(f=>`<img src="${esc(f.thumb||f.url)}" alt="">`).join("")}</div>`:""; })()}
     ${bestRows?`<p class="fm-k">DAS BESTE VOM TAG</p><div class="fm-best">${bestRows}</div>`:""}
     <p class="fm-k">KEIN FREUND WURDE BEI DIESER REISE ZURÜCKGELASSEN.</p>
     <p class="fm-end">Fortsetzung folgt …</p></div>`;
@@ -6455,10 +6510,177 @@ if(inTrip||Q.get("eg")==="1"){
 }
 })();
 </script>
+<script>// ---------- Extras 2: Gute Nacht, Taxi, Sätze, Tower-Timing, Duell, Pannen, Zeitkapsel ----------
+(function(){
+const TRIP=["2026-11-21","2026-11-22","2026-11-23","2026-11-24","2026-11-25","2026-11-26","2026-11-27","2026-11-28","2026-11-29"];
+const Q=new URLSearchParams(location.search);
+const today=(typeof seoulDate==="function")?seoulDate():"";
+const inTrip=TRIP.includes(today);
+const LIVE_=typeof LIVE!=="undefined"&&LIVE;
+const HM=(()=>{ const t=Q.get("t"); if(t&&/^\d{1,2}:\d{2}$/.test(t)){ const [h,m]=t.split(":"); return [+h,+m]; } const f=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Seoul",hour:"2-digit",minute:"2-digit",hour12:false}).format(new Date()).split(":"); return [+f[0]%24,+f[1]]; })();
+const H=HM[0];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ls=(k,v)=>{ try{ if(v===undefined) return JSON.parse(localStorage.getItem(k)||"null"); localStorage.setItem(k,JSON.stringify(v)); }catch(e){ return null; } };
+const who=()=>{ const r=document.querySelector('input[name="trowho"]:checked'); if(r) return r.value; try{ return localStorage.getItem("who")||"Christoph"; }catch(e){ return "Christoph"; } };
+const sfx=n=>{ if(window.__sfx) window.__sfx(n); };
+const plan=d=>(typeof PLAN!=="undefined")?PLAN.find(p=>p[0]===d):null;
+const addDay=(d,n)=>{ const x=new Date(d+"T12:00:00+09:00"); x.setUTCDate(x.getUTCDate()+n); return x.toISOString().slice(0,10); };
+const getJ=async u=>{ if(!LIVE_) return null; try{ const r=await fetch(u,{cache:"no-store"}); if(r.ok){ const j=await r.json(); return j&&!j.offline?j:null; } }catch(e){} return null; };
+const postJ=async(u,b)=>{ if(!LIVE_) return null; try{ const r=await fetch(u,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}); if(r.ok) return await r.json(); }catch(e){} return null; };
+const photos=()=>{ const P=(window.__wmapPhotos||[]).filter(f=>f&&f.url); return P.slice().sort((a,b)=>String(a.pathname).localeCompare(String(b.pathname))); };
+const hash=s=>{ let h=5381; for(const c of String(s)) h=((h*33)^c.charCodeAt(0))>>>0; return h.toString(36); };
+
+/* ===== Sonnenuntergang (NOAA, vereinfacht) ===== */
+function sunset(dateStr,lat,lng){ const d=new Date(dateStr+"T12:00:00Z"); const J=d/864e5+2440587.5, n=Math.round(J-2451545-.0009+lng/360);
+  const Js=2451545+.0009-lng/360+n, M=(357.5291+.98560028*(Js-2451545))%360, r=Math.PI/180;
+  const C=1.9148*Math.sin(M*r)+.02*Math.sin(2*M*r)+.0003*Math.sin(3*M*r), L=(M+102.9372+C+180)%360;
+  const Jt=Js+.0053*Math.sin(M*r)-.0069*Math.sin(2*L*r), dec=Math.asin(Math.sin(L*r)*Math.sin(23.44*r));
+  const w=Math.acos((Math.sin(-.833*r)-Math.sin(lat*r)*Math.sin(dec))/(Math.cos(lat*r)*Math.cos(dec)));
+  const Jset=Jt+w/(2*Math.PI); const ms=(Jset-2440587.5)*864e5; const k=new Date(ms+9*3600e3); return k.getUTCHours()*60+k.getUTCMinutes(); }
+const hm=m=>String(Math.floor(m/60)).padStart(2,"0")+":"+String(Math.round(m%60)).padStart(2,"0");
+
+/* ===== 1. Gute-Nacht-Screen ===== */
+const WX={0:"klar",1:"meist klar",2:"wolkig",3:"bedeckt",45:"Nebel",48:"Nebel",51:"Niesel",53:"Niesel",55:"Niesel",61:"Regen",63:"Regen",65:"starker Regen",71:"Schnee",73:"Schnee",80:"Schauer",81:"Schauer",95:"Gewitter"};
+function goodNight(){
+  const force=Q.get("gn")==="1";
+  if(!force&&!(inTrip&&(H>=23||H<5))) return;
+  const day=H>=23?addDay(today,1):today; const p=plan(day); if(!p&&!force) return;
+  const key="sn_gn_"+day; try{ if(!force&&sessionStorage.getItem(key)) return; sessionStorage.setItem(key,"1"); }catch(e){}
+  const items=(p&&p[3])||[]; const rx=/(\d{1,2}):(\d{2})/; const first=items.find(t=>rx.test(t))||items[0]||"";
+  const m=first.match(rx); let wake="", sleep=""; if(m){ const t=+m[1]*60+ +m[2]; wake=hm(Math.max(0,t-60)); const now=HM[0]*60+HM[1]; let left=(t-60)-now; if(left<0) left+=1440; sleep=(left/60).toFixed(1).replace(".",","); }
+  const o=document.createElement("div"); o.className="gn"; o.setAttribute("role","dialog"); o.setAttribute("aria-label","Gute Nacht");
+  o.innerHTML=`<div class="gn-in"><p class="gn-k">잘 자요 · GUTE NACHT</p><h2>${p?esc(p[2]):"Morgen"}</h2><p class="gn-d">${p?esc(p[1]):""} ${+day.slice(8)}.11.</p>
+    <div class="gn-g">${wake?`<div><small>WECKER</small><b>${wake}</b>${sleep?`<i>noch ${sleep} h Schlaf</i>`:""}</div>`:""}<div><small>WETTER</small><b class="gn-wx">…</b></div></div>
+    ${first?`<p class="gn-f"><small>ERSTER PUNKT</small>${esc(first.slice(0,110))}${first.length>110?" …":""}</p>`:""}
+    <div class="gn-b"><button type="button" class="btn gn-home">🏨 HEIMWEG</button><button type="button" class="btn ghost gn-x">ZUR SEITE</button></div></div>`;
+  document.body.appendChild(o);
+  const close=()=>o.remove();
+  o.querySelector(".gn-x").addEventListener("click",close);
+  o.querySelector(".gn-home").addEventListener("click",()=>{ close(); if(window.__home) window.__home(); });
+  fetch("https://api.open-meteo.com/v1/forecast?latitude=37.5547&longitude=126.9236&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weather_code&timezone=Asia%2FSeoul&forecast_days=4").then(r=>r.ok?r.json():null).then(j=>{ const el=o.querySelector(".gn-wx"); const i=j&&j.daily?j.daily.time.indexOf(day):-1; if(i<0){ el.textContent="offline"; return; } const D=j.daily; el.innerHTML=`${Math.round(D.temperature_2m_min[i])}–${Math.round(D.temperature_2m_max[i])}°<i>${WX[D.weather_code[i]]||""}${D.precipitation_probability_max[i]>=40?` · ☂ ${D.precipitation_probability_max[i]} %`:""}</i>`; }).catch(()=>{ o.querySelector(".gn-wx").textContent="offline"; });
+}
+
+/* ===== 2. Taxi-Knopf ===== */
+const DEST=[
+ [/Namdaemun/i,"Namdaemun-Markt","남대문시장","서울 중구 남대문시장4길 21",37.5592,126.9776],
+ [/Bukchon/i,"Bukchon Hanok Village","북촌한옥마을","서울 종로구 계동길 37",37.5826,126.9850],
+ [/Lotte|Seoul Sky|Jamsil/i,"Lotte World Tower","롯데월드타워","서울 송파구 올림픽로 300",37.5126,127.1025],
+ [/Samsung/i,"Samsung Innovation Museum","삼성이노베이션뮤지엄","경기 수원시 영통구 삼성로 129",37.2563,127.0530],
+ [/Suwon-Galbi|Galbi/i,"Bonsuwon Galbi","본수원갈비","경기 수원시 팔달구 중부대로223번길 41",37.2793,127.0247],
+ [/Hwaseong|Festungsmauer|Mauer/i,"Hwaseong, Paldalmun","수원화성 팔달문","경기 수원시 팔달구 정조로 727",37.2775,127.0170],
+ [/Incheon|Abflug|KE937/i,"Flughafen Incheon, Terminal 2","인천국제공항 제2여객터미널","인천 중구 제2터미널대로 446",37.4692,126.4505],
+ [/Hotel|Slowon/i,"Hotel Slowon Hongdae","슬로운 홍대","서울 마포구 양화로 118, 5층",37.5547,126.9236],
+ [/Gwangjang/i,"Gwangjang Market","광장시장","서울 종로구 창경궁로 88",37.5700,126.9996],
+ [/Myeongdong/i,"Myeongdong","명동","서울 중구 명동길",37.5636,126.9827]];
+function taxiSheet(d){
+  const o=document.createElement("div"); o.className="pc-wrap tx-wrap";
+  o.innerHTML=`<div class="tx-card"><small>BITTE HIERHIN · 여기로 가 주세요</small><b class="tx-ko">${esc(d[2])}</b><span class="tx-ad">${esc(d[3])}</span><span class="tx-de">${esc(d[1])}</span><p class="tx-ph">이 주소로 가 주세요</p></div>
+   <div class="hs-b"><a href="kakaot://taxi" class="tx-t">KAKAO T</a><a href="https://map.kakao.com/link/to/${encodeURIComponent(d[2])},${d[4]},${d[5]}" target="_blank" rel="noopener">ROUTE</a><button type="button" class="ghost x">ZU</button></div>
+   <p class="tx-n">Karte dem Fahrer zeigen. „KAKAO T“ öffnet die App, dort Ziel eintippen oder hier kopieren.</p>`;
+  o.addEventListener("click",e=>{ if(e.target===o||e.target.closest(".x")) o.remove(); });
+  o.querySelector(".tx-ko").addEventListener("click",()=>{ try{ navigator.clipboard.writeText(d[3]); o.querySelector(".tx-n").textContent="Adresse kopiert, in Kakao T einfügen."; }catch(e){} });
+  document.body.appendChild(o); sfx("open"); }
+function taxiDecorate(){
+  const lvl=document.getElementById("lvl"); if(!lvl||lvl.hidden) return;
+  lvl.querySelectorAll("li").forEach(li=>{ if(li.querySelector(".tx-b")||li.dataset.tx==="0") return; const t=li.textContent; const d=DEST.find(x=>x[0].test(t));
+    if(!d){ li.dataset.tx="0"; return; } const b=document.createElement("button"); b.type="button"; b.className="tx-b"; b.textContent="🚕 TAXI"; b.setAttribute("aria-label","Taxi-Karte für "+d[1]);
+    b.addEventListener("click",e=>{ e.preventDefault(); e.stopPropagation(); taxiSheet(d); }); li.appendChild(b); });
+}
+
+/* ===== 3. Sprachführer für morgen ===== */
+const PH={
+ "2026-11-27":["Namdaemun & Tower",[["이거 얼마예요?","Igeo eolmayeyo?","Wie viel kostet das?"],["좀 깎아 주세요","Jom kkakka juseyo","Geht es etwas billiger?"],["그냥 구경하는 거예요, 감사합니다","Geunyang gugyeong-haneun geoyeyo, gamsahamnida","Nur schauen, danke"],["카드 돼요?","Kadeu dwaeyo?","Geht Karte?"],["전망대 표 두 장 주세요","Jeonmangdae pyo du jang juseyo","Zwei Tickets für die Aussicht, bitte"]]],
+ "2026-11-28":["Samsung & Suwon",[["수원역 가는 표 두 장 주세요","Suwon-yeok ganeun pyo du jang juseyo","Zwei Tickets nach Suwon, bitte"],["갈비 2인분 주세요","Galbi i-inbun juseyo","Galbi für zwei, bitte"],["물 좀 주세요","Mul jom juseyo","Etwas Wasser, bitte"],["사진 좀 찍어 주시겠어요?","Sajin jom jjigeo jusigesseoyo?","Könnten Sie ein Foto machen?"],["화장실 어디예요?","Hwajangsil eodiyeyo?","Wo ist die Toilette?"]]],
+ "2026-11-29":["Abreise",[["인천공항 제2터미널로 가 주세요","Incheon gonghang je-i teomineollo ga juseyo","Zum Flughafen Incheon, Terminal 2"],["대한항공 체크인 어디예요?","Daehan hanggong chekeuin eodiyeyo?","Wo ist der Korean-Air-Check-in?"],["택스 리펀드 어디서 해요?","Taekseu ripeondeu eodiseo haeyo?","Wo ist die Tax-free-Rückerstattung?"],["영수증 주세요","Yeongsujeung juseyo","Die Quittung, bitte"],["정말 감사했습니다","Jeongmal gamsahaesseumnida","Vielen Dank für alles"]]]};
+const PH_DEF=["Für jeden Tag",[["감사합니다","Gamsahamnida","Danke"],["이거 주세요","Igeo juseyo","Das hier, bitte"],["계산해 주세요","Gyesanhae juseyo","Zahlen, bitte"],["맥주 두 병 주세요","Maekju du byeong juseyo","Zwei Flaschen Bier, bitte"],["화장실 어디예요?","Hwajangsil eodiyeyo?","Wo ist die Toilette?"]]];
+const speak=t=>{ try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t); u.lang="ko-KR"; u.rate=.82; const v=speechSynthesis.getVoices().find(v=>/^ko/i.test(v.lang)); if(v) u.voice=v; speechSynthesis.speak(u); }catch(e){} };
+function phraseBox(){
+  const day=H>=17?addDay(today,1):today; const [title,L]=PH[day]||PH_DEF;
+  const box=document.createElement("div"); box.className="endbox egb"; box.id="phraseBox";
+  box.innerHTML=`<span class="label">Sätze für ${day===today?"heute":"morgen"} · ${esc(title)}</span><h4>Antippen zum Vorlesen</h4>
+   <ul class="phr">${L.map(([ko,ro,de],k)=>`<li><button type="button" data-k="${k}"><b lang="ko">${esc(ko)}</b><i>${esc(ro)}</i><span>${esc(de)}</span><em aria-hidden="true">🔊</em></button></li>`).join("")}</ul>
+   <p class="status">Oder einfach das Handy hinhalten, die koreanische Zeile reicht.</p>`;
+  box.querySelectorAll(".phr button").forEach(b=>b.addEventListener("click",()=>{ speak(L[+b.dataset.k][0]); b.classList.add("on"); setTimeout(()=>b.classList.remove("on"),1200); }));
+  return box; }
+
+/* ===== 4. Lotte-Tower-Timing ===== */
+function towerBox(){
+  const day=today<"2026-11-27"?"2026-11-27":today; const ss=sunset(day,37.5126,127.1025);
+  const box=document.createElement("div"); box.className="endbox egb"; box.id="towerBox";
+  const rows=[[ss-40,"Ticket & Einlass","Kasse B1, Aufzug 1 Min. bis 117. Stock"],[ss-25,"Oben ankommen","Erst Westseite: Sonne über dem Han-Fluss"],[ss,"Sonnenuntergang","Glasboden im 118. Stock"],[ss+25,"Blaue Stunde","Licht geht in der Stadt an, beste Fotos"],[ss+50,"Nacht-Skyline","Café im 123. Stock, dann runter zum Lotte Mall"]];
+  box.innerHTML=`<span class="label">Seoul Sky · Timing · ${+day.slice(8)}.11.</span><h4>Sonnenuntergang um ${hm(ss)}</h4>
+   <ol class="tw">${rows.map(([m,a,b])=>`<li><time>${hm(m)}</time><div><b>${a}</b><span>${b}</span></div></li>`).join("")}</ol>
+   <p class="status">Freitags 10:30–22:30, letzter Einlass 22:00. Bei Wolken lieber direkt zur Nacht-Skyline kommen.</p>`;
+  return box; }
+
+/* ===== 5. Duell ===== */
+let ACH={}, RUNS=[];
+function duelData(){ const P=photos(); const D={Christoph:{f:0,a:0,e:0,k:0},Michi:{f:0,a:0,e:0,k:0}};
+  P.forEach(p=>{ const m=String(p.pathname||"").match(/-(Christoph|Michi)\./); if(m) D[m[1]].f++; });
+  Object.entries(ACH).forEach(([k,v])=>{ if(!v||!D[v.by]) return; if(/^eat-/.test(k)) D[v.by].e++; else if(!/^(x-|fav-|fail-)/.test(k)) D[v.by].a++; });
+  (RUNS||[]).forEach(r=>{ if(D[r.by]) D[r.by].k+= +r.km||0; });
+  const sc=w=>D[w].f+D[w].a*2+D[w].e*3+Math.round(D[w].k*2); return {D,sC:sc("Christoph"),sM:sc("Michi")}; }
+window.__duelLine=()=>{ const {sC,sM}=duelData(); if(!sC&&!sM) return ""; const w=sC===sM?"Unentschieden":sC>sM?"Christoph":"Michi"; return `<p class="fm-k">DUELL DER REISE</p><p class="fm-q">${sC} : ${sM}<small>${w==="Unentschieden"?"UNENTSCHIEDEN":"SIEGER: "+w.toUpperCase()}</small></p>`; };
+function duelBox(){
+  const box=document.createElement("div"); box.className="endbox egb"; box.id="duelBox";
+  const draw=()=>{ const {D,sC,sM}=duelData(); const rows=[["FOTOS","f",1],["ABGEHAKT","a",2],["GERICHTE","e",3],["KM","k",2]];
+    const bar=(c,m)=>{ const t=c+m||1; return `<div class="du-bar"><i style="width:${c/t*100}%"></i><u style="width:${m/t*100}%"></u></div>`; };
+    box.innerHTML=`<span class="label">Duell · Christoph vs. Michi</span>
+     <div class="du-h"><div class="du-p c"><small>P1</small><b>CHRISTOPH</b><em>${sC}</em></div><div class="du-vs">VS</div><div class="du-p m"><small>P2</small><b>MICHI</b><em>${sM}</em></div></div>
+     ${rows.map(([l,k,w])=>{ const c=Math.round(D.Christoph[k]*10)/10, m=Math.round(D.Michi[k]*10)/10; return `<div class="du-r"><span>${String(c).replace(".",",")}</span><b>${l} <i>×${w}</i></b><span>${String(m).replace(".",",")}</span></div>${bar(c,m)}`; }).join("")}
+     <p class="status">Punkte: Foto 1, Abgehakt 2, Gericht 3, Kilometer 2. Der Sieger kommt am Sonntag in den Abspann.</p>`; };
+  (async()=>{ const [a,r]=await Promise.all([getJ("/api/achievements"),getJ("/api/runs")]); if(a) ACH=a; if(Array.isArray(r)) RUNS=r; draw(); })();
+  setTimeout(draw,2500); draw(); return box; }
+
+/* ===== 6. Fehlversuche-Galerie ===== */
+let FA={};
+const failIds=()=>Object.keys(FA).filter(k=>/^fail-/.test(k));
+window.__fails=()=>{ const ids=new Set(failIds()); return photos().filter(p=>ids.has("fail-"+hash(p.pathname||p.url))); };
+function failBox(){
+  const box=document.createElement("div"); box.className="endbox egb"; box.id="failBox"; let pick=false;
+  const draw=()=>{ const P=photos(), F=window.__fails();
+    box.innerHTML=`<span class="label">Pannen der Reise</span><h4>${F.length?`${F.length} Fehlversuche`:"Noch keine Pannen gesammelt"}</h4>
+     ${F.length?`<div class="fl-g">${F.map(p=>`<a href="${esc(p.url)}" target="_blank" rel="noopener"><img src="${esc(p.thumb||p.url)}" alt="Panne" loading="lazy"></a>`).join("")}</div>`:`<p class="status">Verwackelt, Daumen im Bild, Augen zu? Genau die kommen hier rein und in den Abspann.</p>`}
+     <button type="button" class="btn fl-t">${pick?"FERTIG":"FOTOS AUSWÄHLEN"}</button>
+     ${pick?`<div class="fl-g pick">${P.length?P.map(p=>{ const id="fail-"+hash(p.pathname||p.url); return `<button type="button" data-id="${id}" class="${FA[id]?"on":""}" aria-pressed="${!!FA[id]}"><img src="${esc(p.thumb||p.url)}" alt="" loading="lazy"><i>😬</i></button>`; }).join(""):`<p class="status">Noch keine Fotos geladen.</p>`}</div>`:""}`;
+    box.querySelector(".fl-t").addEventListener("click",()=>{ pick=!pick; draw(); });
+    box.querySelectorAll(".fl-g.pick button").forEach(b=>b.addEventListener("click",async()=>{ const id=b.dataset.id, undo=!!FA[id]; if(undo) delete FA[id]; else FA[id]={by:who(),ts:Date.now()}; draw(); sfx(undo?"undo":"coin");
+      const j=await postJ("/api/achievements",{id,by:who(),undo}); if(j){ FA=j; draw(); } else if(!LIVE_) ls("sn_fail",FA); })); };
+  (async()=>{ const a=await getJ("/api/achievements"); if(a) FA=a; else if(!LIVE_) FA=ls("sn_fail")||{}; draw(); })();
+  setTimeout(draw,2500); draw(); return box; }
+
+/* ===== 7. Zeitkapsel ===== */
+const OPEN="2027-11-26", SEAL="2026-11-30";
+let CAP={};
+function capBox(){
+  const box=document.createElement("div"); box.className="endbox egb"; box.id="capBox";
+  const draw=()=>{ const open=today>=OPEN, sealed=today>=SEAL; const days=Math.ceil((new Date(OPEN+"T00:00:00+09:00")-new Date())/864e5);
+    box.innerHTML=`<span class="label">Zeitkapsel · öffnet am 26.11.2027</span><h4>${open?"Die Kapsel ist offen":`Ein Satz an dich in einem Jahr`}</h4>
+     ${["Christoph","Michi"].map(w=>{ const v=(CAP[w]||{}).t||""; if(open) return `<div class="cp-o"><small>${w.toUpperCase()} SCHRIEB 2026</small><p>${v?esc(v):"(leer)"}</p></div>`;
+       if(sealed) return `<div class="cp-s"><small>${w.toUpperCase()}</small><span>${v?"🔒 versiegelt":"leer geblieben"}</span></div>`;
+       return `<label class="ms"><small>${w.toUpperCase()}${v?" · 🔒 gespeichert":""}</small><input type="password" maxlength="140" data-w="${w}" placeholder="Wird erst 2027 wieder sichtbar …" value="${esc(v)}" autocomplete="off"></label>`; }).join("")}
+     ${open?"":`<div class="cp-c">⏳ NOCH ${days} TAGE${sealed?"":" · ÄNDERBAR BIS 29.11."}</div>`}
+     <button type="button" class="btn ghost cp-ics">ERINNERUNG IN DEN KALENDER</button>`;
+    box.querySelectorAll("input[data-w]").forEach(i=>{ let tm; i.addEventListener("input",()=>{ clearTimeout(tm); tm=setTimeout(async()=>{ const t=i.value.trim(); CAP[i.dataset.w]=t?{t}:undefined; if(!t) delete CAP[i.dataset.w];
+      const j=await postJ("/api/best",{day:"capsule",by:i.dataset.w,text:t}); if(j&&j.capsule) CAP=j.capsule; else if(!LIVE_) ls("sn_cap",CAP); const s=i.parentNode.querySelector("small"); s.textContent=i.dataset.w.toUpperCase()+(t?" · 🔒 gespeichert":""); },700); }); });
+    box.querySelector(".cp-ics").addEventListener("click",()=>{ const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//seoul-november//DE","BEGIN:VEVENT","UID:zeitkapsel-2027@seoul.staycurious.art","DTSTAMP:20261126T000000Z","DTSTART;VALUE=DATE:20271126","DTEND;VALUE=DATE:20271127","SUMMARY:Zeitkapsel Seoul öffnen","DESCRIPTION:Heute vor einem Jahr in Seoul. Kapsel öffnen: https://seoul.staycurious.art/?go=capBox","URL:https://seoul.staycurious.art/?go=capBox","BEGIN:VALARM","TRIGGER:PT9H","ACTION:DISPLAY","DESCRIPTION:Zeitkapsel Seoul","END:VALARM","END:VEVENT","END:VCALENDAR"].join("\r\n");
+      const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([ics],{type:"text/calendar"})); a.download="zeitkapsel-seoul.ics"; document.body.appendChild(a); a.click(); a.remove(); }); };
+  (async()=>{ const j=await getJ("/api/best"); if(j&&j.capsule) CAP=j.capsule; else if(!LIVE_) CAP=ls("sn_cap")||{}; draw(); })();
+  draw(); return box; }
+
+/* ===== Einhängen ===== */
+goodNight();
+taxiDecorate(); setInterval(taxiDecorate,4000);
+if(inTrip||Q.get("eg")==="1"){
+  const after=document.getElementById("endBox")||document.getElementById("bestBox");
+  if(after&&!after.closest("section")){ const L=[]; if(today<="2026-11-29") L.push(phraseBox()); if(today<="2026-11-27") L.push(towerBox()); L.push(duelBox(),failBox(),capBox()); let a=after; L.forEach(b=>{ a.after(b); a=b; }); }
+} else if(today>"2026-11-29"){ const lb=document.getElementById("logbuch"); if(lb){ const sh=lb.querySelector(".sh"); const c=capBox(); (sh||lb).after(c); c.after(failBox()); c.after(duelBox()); } }
+})();
+</script>
 <script>
 // ---------- Reise-Deck: Boxen in Tabs bündeln ----------
 (function(){
-  const DEF=[["wmap","Karte","◆"],["howBox","Anfahrt","➜"],["runLog","Laufen","🏃"],["lastBox","Letzte Chance","!"],["homeBox","Heimreise","✈"],["airBox","Flughafen","✓"],["bestBox","Bestes","★"],["wonBox","Won","₩"],["chBox","Challenge","📷"],["endBox","Abspann","▶"]];
+  const DEF=[["wmap","Karte","◆"],["howBox","Anfahrt","➜"],["phraseBox","Sätze","가"],["towerBox","Tower","▲"],["runLog","Laufen","🏃"],["lastBox","Letzte Chance","!"],["homeBox","Heimreise","✈"],["airBox","Flughafen","✓"],["bestBox","Bestes","★"],["wonBox","Won","₩"],["chBox","Challenge","📷"],["endBox","Abspann","▶"],["duelBox","Duell","⚔"],["failBox","Pannen","😬"],["capBox","Zeitkapsel","⏳"]];
   function build(){
     if(document.querySelector(".deck")) return;
     const items=DEF.map(([id,l,ic])=>({id,l,ic,el:document.getElementById(id)})).filter(x=>x.el&&x.el.parentNode&&!x.el.hidden&&!x.el.closest("section"));

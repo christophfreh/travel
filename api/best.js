@@ -9,7 +9,8 @@ export default async function handler(req, res) {
     if (req.method !== "POST") { res.status(405).json({ error: "Nur GET/POST" }); return; }
     const chunks = []; for await (const c of req) chunks.push(c);
     const { day, by, text } = JSON.parse(Buffer.concat(chunks).toString() || "{}");
-    if (!/^(2026-11-(2[1-9])|miss)$/.test(day || "")) { res.status(400).json({ error: "Tag?" }); return; }
+    if (!/^(2026-11-(2[1-9])|miss|capsule)$/.test(day || "")) { res.status(400).json({ error: "Tag?" }); return; }
+    if (day === "capsule" && Date.now() > Date.parse("2026-11-30T00:00:00+09:00")) { res.status(403).json({ error: "Versiegelt" }); return; }
     if (!["Christoph", "Michi"].includes(by)) { res.status(400).json({ error: "Wer?" }); return; }
     const t = String(text || "").replace(/\s+/g, " ").trim().slice(0, 140);
     const all = await read();
