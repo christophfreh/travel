@@ -985,6 +985,37 @@ section.fold.open+.foldbtn{border-color:var(--line);color:var(--muted);backgroun
 @media(max-width:700px){section.fold+.foldbtn{padding:7px 10px;margin:-4px 0 0;font-size:10px;letter-spacing:.12em;gap:6px}}
 @media print{section.fold:not(.open){max-height:none!important;overflow:visible!important;-webkit-mask-image:none!important;mask-image:none!important}section.cv{content-visibility:visible!important}.foldbtn,.dock,.totop,.sfab,#fxc,.mx,.cheat,.boot,nav,.bitjump{display:none!important}body{background:#fff!important;color:#000!important}}
 }
+/* ===== Weltkarte: bisher gespielt ===== */
+.wmap{margin:0 0 16px;padding:12px 12px 10px;border:1px solid var(--cyan);background:linear-gradient(160deg,rgba(59,230,214,.08),#110F27 60%);position:relative;z-index:8;clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%)}
+.wmap-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.wmap-h b{font:400 clamp(18px,5vw,24px)/1 var(--f-sign);color:var(--cyan);text-shadow:0 0 10px rgba(59,230,214,.5)}
+.wmap-h span{font:700 10px var(--f-mono);letter-spacing:.18em;color:var(--cp)}
+.wmap svg{display:block;width:100%;height:auto;max-width:640px;max-height:420px;margin:6px auto 0}
+.wmap .isl{fill:rgba(59,230,214,.06);stroke:rgba(59,230,214,.35);stroke-width:1;stroke-dasharray:3 3}
+.wmap .isl.jp{fill:rgba(255,62,138,.06);stroke:rgba(255,62,138,.4)}
+.wmap .il{font:700 8px var(--f-mono);letter-spacing:.2em;fill:rgba(255,255,255,.35)}
+.wmap .road{fill:none;stroke:rgba(255,255,255,.22);stroke-width:2;stroke-dasharray:1 5;stroke-linecap:round}
+.wmap .road.done{stroke:var(--cp);stroke-dasharray:1 4;filter:drop-shadow(0 0 2px rgba(252,238,10,.7))}
+.wmap .fly{fill:none;stroke:rgba(255,62,138,.6);stroke-width:1.2;stroke-dasharray:4 4}
+.wmap .nd{cursor:pointer}
+.wmap .nd polygon{fill:#110F27;stroke:rgba(255,255,255,.35);stroke-width:1.5;transition:fill .3s}
+.wmap .nd text{font:700 7.5px var(--f-mono);letter-spacing:.06em;fill:rgba(255,255,255,.55);text-anchor:middle;pointer-events:none}
+.wmap .nd .st{font:400 11px var(--f-sign);fill:#110F27;letter-spacing:0}
+.wmap .nd.ok polygon{fill:var(--cp);stroke:#fff8c2;filter:drop-shadow(0 0 5px rgba(252,238,10,.8))}
+.wmap .nd.ok text{fill:var(--ink)}
+.wmap .nd.ok .st{fill:#110F27}
+.wmap .nd.cur polygon{stroke:var(--cyan);stroke-width:2.2}
+.wmap .nd.sure polygon{stroke:var(--neon);stroke-width:2.4}
+.wmap .me circle{fill:var(--cyan)}.wmap .me circle+circle{fill:var(--neon)}
+.wmap .plane{fill:var(--neon)}
+.wmap p.status{margin:4px 0 0}
+@media (prefers-reduced-motion:no-preference){
+  .wmap .nd.cur polygon{animation:wpul 1.8s ease-in-out infinite}
+  @keyframes wpul{50%{stroke-opacity:.25}}
+  .wmap .me{animation:wbob 1.2s ease-in-out infinite alternate}
+  @keyframes wbob{to{transform:translateY(-2px)}}
+}
+
 .mx{height:84px;margin:-26px 0;opacity:.8}
 .mx canvas{opacity:1;mix-blend-mode:normal}
 .mx span{padding:4px 10px;background:rgba(17,15,39,.72);color:var(--cyan);letter-spacing:.14em;box-shadow:0 0 0 1px rgba(59,230,214,.25)}
@@ -2570,7 +2601,7 @@ pflichtprogramm: <span class="n">null</span>,
 <li><span><b>4</b> · Chang-dong Ausgang 1, dann ca. 330 m zu Fuß. Adresse: 56 Madeul-ro 13-gil, Dobong-gu</span><span>Fuß</span></li>
 <li><span><b>Taxi</b> · ca. 45–60 Min. je nach Verkehr, grob 25.000–35.000 ₩ (Schätzung). Adresse auf Koreanisch zeigen: 서울로봇인공지능과학관</span><span>Taxi</span></li>
 </ul>
-<p class="status">Di–So 9:30–17:30, montags zu. Eintritt frei, die Ausstellungen brauchen aber eine Reservierung über das Seoul Public Service Reservation System (nur Koreanisch, Hotel fragen). Heute geht es sich neben Unfold X nicht mehr aus. Möglich wäre Fr 27.11. nachmittags statt der Pause (Start spätestens ca. 15:30), vormittags ist der Namdaemun-Markt eingeplant.</p></div>
+<p class="status">Di–So 9:30–17:30, montags zu. Eintritt frei, die Ausstellungen brauchen aber eine Reservierung über das Seoul Public Service Reservation System (nur Koreanisch, Hotel fragen). Heute geht es sich neben Unfold X nicht mehr aus. Fr 27.11. ist mit Namdaemun und Bukchon schon voll, diesmal bleibt keine Lücke mehr.</p></div>
 
 </section>
 <section id="fotos">
@@ -3145,7 +3176,7 @@ const PLAN = [
 ["2026-11-24","Di","Nach Fukuoka",["Gemütlicher Vormittag: Jogyesa, Insadong-gil und KCDF-Shop (Mia), Kaffee in einem Hanok-Café","Großen Koffer an der Hotel-Rezeption lassen, nach Fukuoka nur kleiner Koffer (max. 15 kg) und Handgepäck","Ca. 13:30 Taxi nach Incheon (Terminal in der Buchung prüfen)","17:25 Flug LJ461 mit Jin Air, 18:50 Landung in Fukuoka","Check-in Hotel LAMP LIGHT BOOKS in Daimyo (Tenjin), 450 m zur Station Nishitetsu Fukuoka","Ramen bei Shin Shin in Tenjin (offen bis 3 Uhr, mittwochs und jeden 3. Dienstag zu, heute offen)"],"Flugtag",[]],
 ["2026-11-25","Mi","Fukuoka",["Vormittags Ohori-Park, dazu Burgruine und Kunstmuseum nebenan","★ Mittags Nintendo FUKUOKA und Pokémon Center am Bahnhof Hakata, dort Switch-2-Spiele mit Englisch prüfen","★ Nachmittags T-Shirt bei UNIQLO Tenjin gestalten (Druck dauert ca. 1 Std.), Abholung vor dem Abend","Idee: Godzilla Minus Zero im T·Joy Hakata, direkt im Bahnhof nach dem Nintendo-Store (auf Japanisch)","Pause im Hotel","Idee: Weihnachtsmarkt am Bahnhof Hakata, Glühwein und deutsches Bier (Markt laut Veranstalter 7.11.–25.12.)","★ Abends Yatai in Nakasu, Lichter an der Deai-Brücke, ein Drink in Daimyo","Danach Live-Jazz im Trombone Club in Nakasu, ab ca. 21 Uhr","Zurück im Hotel: Blade Runner 2099, Folge 1 (Prime Video, startet heute)","Alternative: Neon-Abend, vor allem teamLab in den Burgruinen (mögen wir beide, Wochentag ca. 2.300 ¥)"],"Japan",[["Weihnachtsmarkt Hakata","https://www.jrhakatacity.com/"]]],
 ["2026-11-26","Do","Zurück & Media Art",["Check-out im Hotel LAMP LIGHT BOOKS, dann ca. 9:00 zum Flughafen Fukuoka (U-Bahn ab Hakata, dann Shuttlebus zum internationalen Terminal)","11:20 Flug LJ448 mit Jin Air, 12:55 Landung in Incheon","15:00 im Hotel angekommen, kurz durchatmen","★ 15:15 los zu Unfold X (Taxi ca. 20 Min.): 15:45 Ausstellung, 16:45 Myriam Bleau, 17:15 Ryoichi Kurokawa live","Idee: Street Fighter im Kino, falls er noch läuft (auf Englisch, in der CGV-App nachsehen)","Ab ca. 18:00 direkt von Seoul Station mit dem Taxi nach Hannam: Essen und Cocktails","Alternative: Live-Jazz im Chunnyeon Dongan-do, Jongno 3-ga (U-Bahn, ca. 25 Min.)"],"Start laut Ankündigung 26.11."],
-["2026-11-27","Fr","Markt & Tower",["Ausschlafen, gemütliches Frühstück","★ Ca. 10:00 Namdaemun-Markt, werktags vormittags am ruhigsten: Hotteok, Stöbern, Mittagessen in der Kalguksu-Gasse oder Galchi-jorim (geschmorter Säbelfisch). Hin: AREX ab Hongik Univ. bis Seoul Station, dann 10 Min. zu Fuß, oder Linie 4 bis Hoehyeon Ausgang 5","Nachmittags Pause im Hotel","★ Abends Lotte World Tower: Seoul Sky, Hanwoo, Kino (Tipp: Street Fighter, auf Englisch, falls er noch läuft). Wo er spielt, entscheidet die CGV-App: am besten Wangsimni auf dem Heimweg (Linie 2) oder Piccadilly in Jongno 3-ga (U-Bahn vom Hotel)"],"Plan B: nur Lotte Tower & Kino",[["Seoul Sky Tickets","https://www.getyourguide.com/s/?q=Seoul%20Sky%20Lotte%20World%20Tower"]]],
+["2026-11-27","Fr","Markt, Hanok & Tower",["Ausschlafen, gemütliches Frühstück","★ Ca. 10:00 Namdaemun-Markt, werktags vormittags am ruhigsten: Hotteok, Stöbern, Mittagessen in der Kalguksu-Gasse oder Galchi-jorim (geschmorter Säbelfisch). Hin: AREX ab Hongik Univ. bis Seoul Station, dann 10 Min. zu Fuß, oder Linie 4 bis Hoehyeon Ausgang 5","★ Ca. 13:30 Bukchon Hanok Village: Taxi ca. 15 Min. oder U-Bahn bis Anguk (Linie 3) Ausgang 2. Besucher nur 10–17 Uhr, leise sein, hier wohnen Leute. Danach Kaffee in einem Hanok-Café","Ca. 16:00 Pause im Hotel","★ Abends Lotte World Tower: Seoul Sky, Hanwoo, Kino (Tipp: Street Fighter, auf Englisch, falls er noch läuft). Wo er spielt, entscheidet die CGV-App: am besten Wangsimni auf dem Heimweg (Linie 2) oder Piccadilly in Jongno 3-ga (U-Bahn vom Hotel)"],"Plan B: nur Lotte Tower & Kino",[["Seoul Sky Tickets","https://www.getyourguide.com/s/?q=Seoul%20Sky%20Lotte%20World%20Tower"]]],
 ["2026-11-28","Sa","Samsung & Suwon",["KTX oder Taxi nach Suwon","★ Samsung Innovation Museum, samstags ohne Reservierung","Suwon-Galbi zu Mittag, kurzer Blick auf Hwaseong","Abends letzter Drink in Hongdae: Musinsa Garage (Live-Club, Programm vorher prüfen) oder unsere Lieblingsbar"],"Letzter Abend"],
 ["2026-11-29","So","Abreise",["Check-out Hotel Slowon Hongdae, ca. 8:30 Taxi nach Incheon","12:05 Abflug KE937, 17:10 in Wien"]]
 ];
@@ -3175,7 +3206,7 @@ const PDAY={"2026-11-21":[["v-euljiro","Euljiro"],["t-walk","Spaziergang"],["bie
 "2026-11-24":[["fukuoka","Fukuoka"],["reise","Flug"],["mapFuk","Karte"],["mia","Mias Tipps"]],
 "2026-11-25":[["fukuoka","Fukuoka"],["games","Games"],["sw2-japan","Switch-2-Spiele"],["ut-prep","T-Shirt"],["bier","Trinken"],["mapFuk","Karte"]],
 "2026-11-26":[["los","Unfold X"],["abends","Bars"],["mapSeoul","Karte","seoul"],["mia","Mias Tipps"]],
-"2026-11-27":[["top10g","Namdaemun"],["v-jamsil","Jamsil"],["abends","Kino"],["essen","Essen"]],
+"2026-11-27":[["top10g","Namdaemun"],["v-jongno","Bukchon"],["v-jamsil","Jamsil"],["abends","Kino"],["essen","Essen"]],
 "2026-11-28":[["highlights","Highlights"],["essen","Essen"],["bier","Trinken"],["shopping","Shopping"],["nadine","Nadines Tipps"]],
 "2026-11-29":[["reise","Flug"],["praktisch","Praktisch"],["beachten","To-do"]]};
 const PCHIPS=d=>PDAY[d]?`<div class="rel"><span>Dazu</span>${PDAY[d].map(([id,l,ly])=>`<a href="#${id}" data-go="${id}"${ly?` data-layer="${ly}"`:""}>${l}<i>›</i></a>`).join("")}</div>`:"";
@@ -4213,6 +4244,54 @@ $("lvlGo").addEventListener("click",e=>{ const r=document.querySelector("#planLi
 }
 const h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Seoul",hour:"2-digit",hourCycle:"h23"}).format(new Date());
 if(d>TRIP_END||(d===TRIP_END&&h>=12&&!SIM)){ clr.hidden=false; }
+})();
+
+// ---------- Weltkarte: was wir schon geschafft haben ----------
+(function(){
+  const N=[ // id, label, x, y, tag (yyyy-mm-dd), island
+    ["arr","ANKUNFT",36,58,"2026-11-21","ko"],["palast","PALAST",86,36,"2026-11-23","ko"],["bindae","GWANGJANG",140,56,"2026-11-23","ko"],
+    ["namsan","N SEOUL TOWER",104,100,"","ko"],["ddp","DONGDAEMUN",172,84,"","ko"],["bukchon","BUKCHON",130,18,"2026-11-27","ko"],["unfold","UNFOLD X",52,132,"2026-11-26","ko"],["namdaemun","NAMDAEMUN",108,156,"2026-11-27","ko"],
+    ["sky","LOTTE TOWER",170,122,"2026-11-27","ko"],["samsung","SUWON",160,196,"2026-11-28","ko"],["home","HEIMFLUG",50,204,"2026-11-29","ko"],
+    ["ramen","YATAI",250,150,"2026-11-24","jp"],["teamlab","TEAMLAB",302,128,"2026-11-25","jp"],["nintendo","NINTENDO",296,196,"2026-11-25","jp"]];
+  const BASE=["arr","namsan","ddp","teamlab","nintendo"]; // von uns bestätigt
+  const ORDER=["arr","palast","bindae","ddp","namsan","ramen","teamlab","nintendo","unfold","namdaemun","bukchon","sky","samsung","home"];
+  const box=document.createElement("div"); box.className="wmap"; box.id="wmap";
+  const lvl=document.getElementById("lvl"), lb=document.getElementById("logbuch");
+  if(lvl&&!lvl.hidden) lvl.after(box); else if(lb){ const sh=lb.querySelector(".sh"); (sh||lb).after(box); } else return;
+  const hex=(x,y,r)=>[0,1,2,3,4,5].map(k=>{const a=Math.PI/3*k+Math.PI/6;return (x+r*Math.cos(a)).toFixed(1)+","+(y+r*Math.sin(a)).toFixed(1);}).join(" ");
+  const P=Object.fromEntries(N.map(n=>[n[0],n]));
+  let data={}; const today=(typeof seoulDate==="function")?seoulDate():"";
+  const isOk=id=>BASE.includes(id)||!!data[id]||(id==="home"&&today>"2026-11-29");
+  function draw(){
+    const ok=ORDER.filter(isOk), n=ok.length;
+    const cur=ORDER.find(id=>!isOk(id)&&P[id][4]&&P[id][4]>=today&&P[id][4]<=today) || ORDER.find(id=>!isOk(id)&&P[id][4]>=today) || "";
+    const seg=(a,b)=>{const A=P[a],B=P[b];return `<path class="road${isOk(a)&&isOk(b)?" done":""}" d="M${A[2]} ${A[3]} L${B[2]} ${B[3]}"/>`;};
+    const roads=[["arr","palast"],["palast","bindae"],["bindae","ddp"],["ddp","namsan"],["namsan","unfold"],["unfold","namdaemun"],["namdaemun","bukchon"],["bukchon","sky"],["sky","samsung"],["samsung","home"],["ramen","teamlab"],["teamlab","nintendo"]].map(r=>seg(...r)).join("");
+    const nodes=N.map(([id,l,x,y])=>{const o=isOk(id),c=id===cur;return `<g class="nd${o?" ok":""}${c?" cur":""}" data-id="${id}" role="button" tabindex="0" aria-label="${l}${o?" geschafft":""}"><polygon points="${hex(x,y,11)}"/>${o?`<text class="st" x="${x}" y="${y+4}">★</text>`:""}<text x="${x}" y="${y+22}">${l}</text></g>`;}).join("");
+    const me=cur?P[cur]:P[ok[ok.length-1]||"arr"];
+    box.innerHTML=`<div class="wmap-h"><b>Weltkarte · bisher gespielt</b><span>${n} / ${ORDER.length} LEVEL ★</span></div>
+    <svg viewBox="0 0 360 236" aria-label="Karte der Reise mit geschafften Orten">
+      <path class="isl" d="M14 22 Q90 4 196 26 Q214 90 200 160 Q190 222 110 226 Q20 228 12 150 Q4 80 14 22Z"/><text class="il" x="20" y="16">서울 SEOUL</text>
+      <path class="isl jp" d="M226 104 Q300 88 340 112 Q352 170 330 216 Q270 230 230 206 Q214 160 226 104Z"/><text class="il" x="262" y="98">福岡 FUKUOKA</text>
+      <path class="fly" d="M150 60 Q252 18 250 132"/><path class="fly" d="M286 210 Q200 236 64 134"/>
+      <path class="plane" d="M0 -3 L8 0 L0 3 L2 0Z" transform="translate(222 34) rotate(25) scale(1.4)"/>
+      ${roads}${nodes}
+      <g class="me" aria-hidden="true"><circle cx="${me[2]-4}" cy="${me[3]-17}" r="3"/><circle cx="${me[2]+4}" cy="${me[3]-17}" r="3"/></g>
+    </svg>
+    <p class="status">Antippen hakt einen Ort ab, beide sehen es. Nochmal zweimal tippen nimmt es zurück. N Seoul Tower, Dongdaemun, teamLab und Nintendo sind schon drin.</p>`;
+  }
+  const ls=(k,v)=>{try{ if(v===undefined) return JSON.parse(localStorage.getItem(k)||"null"); localStorage.setItem(k,JSON.stringify(v)); }catch(e){ return null; }};
+  const who=()=>{ const r=document.querySelector('input[name="trowho"]:checked'); if(r) return r.value; try{ return localStorage.getItem("who")||"Christoph"; }catch(e){ return "Christoph"; } };
+  async function load(){ if(typeof LIVE!=="undefined"&&LIVE){ try{ const r=await fetch("/api/achievements",{cache:"no-store"}); if(r.ok){ const j=await r.json(); if(j&&!j.offline) data=j; } }catch(e){} } else data=ls("ach")||{}; draw(); }
+  async function save(id,undo){ if(undo) delete data[id]; else data[id]={by:who(),ts:Date.now()}; draw();
+    if(typeof LIVE!=="undefined"&&LIVE){ try{ const r=await fetch("/api/achievements",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id,by:who(),undo:!!undo})}); if(r.ok){ data=await r.json(); draw(); } }catch(e){} } else ls("ach",data); }
+  let sure="";
+  box.addEventListener("click",e=>{ const g=e.target.closest(".nd"); if(!g) return; const id=g.dataset.id; if(BASE.includes(id)||id==="arr") return;
+    if(!data[id]){ save(id,false); return; }
+    if(sure===id){ sure=""; save(id,true); return; }
+    sure=id; g.classList.add("sure"); setTimeout(()=>{ if(sure===id){ sure=""; draw(); } },2600); });
+  box.addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.closest(".nd")){ e.preventDefault(); e.target.closest(".nd").dispatchEvent(new MouseEvent("click",{bubbles:true})); } });
+  draw(); load(); if(typeof LIVE!=="undefined"&&LIVE) setInterval(()=>{ if(!document.hidden) load(); },60000);
 })();
 // ---------- Abspann ----------
 function credits(){
