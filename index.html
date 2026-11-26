@@ -5345,6 +5345,35 @@ html.night *,html.night *::before,html.night *::after{animation-play-state:pause
 .eat-ph img{width:96px;height:72px;object-fit:cover;flex:0 0 auto;transform:rotate(-2deg);border:3px solid #f4f1e6;box-shadow:0 4px 10px rgba(0,0,0,.5)}
 .eat-ph span{font-size:13px;line-height:1.4;color:var(--muted)}.eat-ph b{display:block;font:700 10px var(--f-mono);letter-spacing:.12em;color:var(--cp);margin-bottom:2px}
 
+
+/* ===== Terminal-Karten: einheitlicher Look für alle .box ===== */
+section .box{
+  --tc:var(--cyan);--tc2:var(--neon);
+  border-radius:2px 2px 14px 2px;border:1px solid rgba(59,230,214,.22);
+  background:
+    linear-gradient(var(--tc),var(--tc)) left top/16px 2px no-repeat,
+    linear-gradient(var(--tc),var(--tc)) left top/2px 16px no-repeat,
+    linear-gradient(var(--tc2),var(--tc2)) right bottom/16px 2px no-repeat,
+    linear-gradient(var(--tc2),var(--tc2)) right bottom/2px 16px no-repeat,
+    linear-gradient(90deg,rgba(59,230,214,.55),rgba(255,62,138,.35) 60%,transparent) left top/100% 1px no-repeat,
+    radial-gradient(260px 160px at var(--mx,50%) var(--my,-40%),rgba(59,230,214,.10),transparent 70%),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px),
+    linear-gradient(170deg,rgba(26,22,58,.96),rgba(14,12,32,.97));
+  box-shadow:0 10px 26px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.02);
+  transition:border-color .25s,box-shadow .25s}
+section .box:hover{border-color:rgba(59,230,214,.5);box-shadow:0 10px 26px rgba(0,0,0,.35),0 0 18px rgba(59,230,214,.14)}
+section .box:nth-of-type(3n+2){--tc:var(--neon);--tc2:var(--cp)}
+section .box:nth-of-type(3n){--tc:var(--cp);--tc2:var(--cyan)}
+section .box>.label:first-child{display:flex;align-items:center;gap:8px;color:var(--tc);padding-bottom:8px;margin-bottom:4px;border-bottom:1px dashed rgba(255,255,255,.12);text-shadow:0 0 8px color-mix(in srgb,var(--tc) 45%,transparent)}
+section .box>.label:first-child::before{content:"";flex:0 0 auto;width:6px;height:6px;background:var(--tc);box-shadow:0 0 6px var(--tc)}
+section .box>.label:first-child::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,color-mix(in srgb,var(--tc) 40%,transparent),transparent)}
+section .box .list>li{transition:background .2s}
+section .box .list>li:hover{background:linear-gradient(90deg,rgba(59,230,214,.07),transparent)}
+/* Abschnitts-Köpfe: Terminal-Zeile drunter */
+section>.sh{border-bottom:0}
+section>.sh::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,var(--cp) 0 18%,transparent 18% 20%,var(--neon) 20% 24%,transparent 24% 26%,rgba(59,230,214,.45) 26%);opacity:.85}
+section>.rel{margin-top:6px}
+section>.rel .label,section>.rel>span:first-child{color:var(--cyan)}
 /* ===== Reise-Deck: Tabs statt endloser Boxen ===== */
 .deck{position:relative;z-index:8;margin:0 0 18px;border:1px solid rgba(59,230,214,.55);background:linear-gradient(180deg,rgba(59,230,214,.07),rgba(17,15,39,.94) 70px);box-shadow:0 0 0 1px rgba(255,62,138,.18),0 0 28px rgba(59,230,214,.14),inset 0 0 40px rgba(59,230,214,.05);clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px))}
 .deck::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);z-index:0}
