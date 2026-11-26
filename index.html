@@ -2685,7 +2685,7 @@ pflichtprogramm: <span class="n">null</span>,
 <p class="status">Bestell-Tipp: Soju und Makgeolli kommen in der Flasche für den Tisch. In Japan hilft „Osusume wa?“ (Was empfehlen Sie?).</p>
 </section>
 <section id="abends">
-<div class="sh"><span class="n">09</span><h2>Kino & Bars</h2><svg class="doodle" viewBox="0 0 60 36" aria-hidden="true"><g filter="url(#spray)" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30 l8 -18 l8 18 l-20 -11 h24z" stroke="#FF3E8A"/><path d="M38 12 l14 16 M52 12 l-14 16" stroke="#3BE6D6"/></g></svg><span class="ko">밤</span></div>
+<div class="sh"><span class="n">09</span><h2>Kino & Bars</h2><svg class="doodle" viewBox="0 0 60 36" aria-hidden="true"><g filter="url(#spray)" fill="none" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30 l8 -18 l8 18 l-20 -11 h24z" stroke="#FF3E8A"/><path d="M38 12 l14 16 M52 12 l-14 16" stroke="#3BE6D6"/></g></svg><span class="ko">밤</span></div><div class="how" id="soloBox"><span class="label">Allein-Abend · in Gehweite vom Hotel</span><details><summary><b>Club Evans</b><i>WEG</i><small>Live-Jazz seit 1997, man schaut zur Bühne, gut allein</small></summary><div class="hw"><div class="ko" title="Antippen: groß zeigen">서울 마포구 와우산로 63</div><ol><li>Vom Hotel ca. 10–15 Min. zu Fuß Richtung Süden: Yanghwa-ro zur Kreuzung bei Hongik Univ., dann in die Wausan-ro Richtung Uni und Sangsu. Eingang im 2. Stock.</li></ol><div class="meta">2F, 63 Wausan-ro · ab 19:30 · Eintritt ca. 7.000–15.000 ₩ · Infos von 2017, Programm vorher online prüfen</div><a class="btn" target="_blank" rel="noopener" href="https://map.naver.com/p/search/서울 마포구 와우산로 63">Route in Naver Map ↗</a></div></details><details><summary><b>Man-pyung Vinyl & Music</b><i>WEG</i><small>LP-Bar in Hapjeong, Musikwünsche auf Post-its, Wein und Käseplatte</small></summary><div class="hw"><div class="ko" title="Antippen: groß zeigen">서울 마포구 토정로 27</div><ol><li>Vom Hotel ca. 15 Min. zu Fuß die Yanghwa-ro hinunter bis zur Station Hapjeong, dort Seite von Ausgang 4, dann in die Tojeong-ro. Oder eine Station mit Linie 2 bis Hapjeong, Ausgang 4.</li></ol><div class="meta">2F, 27 Tojeong-ro · 18–2 Uhr</div><a class="btn" target="_blank" rel="noopener" href="https://map.naver.com/p/search/서울 마포구 토정로 27">Route in Naver Map ↗</a></div></details><details><summary><b>Turtle Union</b><i>WEG</i><small>Drei kleine Bars unter einem Dach (Sashimi, Pocha, Cocktails), Ecksitze für Solo-Gäste</small></summary><div class="hw"><div class="ko" title="Antippen: groß zeigen">서울 마포구 동교로39길 9</div><ol><li>Vom Hotel ca. 15–20 Min.: zur Station Hongik Univ., Ausgang 3, dann durch den Gyeongui Line Forest Park nach Yeonnam-dong. Ab Ausgang 3 sind es ca. 7 Min.</li></ol><div class="meta">9 Donggyo-ro 39-gil, Yeonnam-dong · 19–3 Uhr · montags zu</div><a class="btn" target="_blank" rel="noopener" href="https://map.naver.com/p/search/서울 마포구 동교로39길 9">Route in Naver Map ↗</a></div></details><p class="status">Alle nah genug, um jederzeit schnell zurück im Hotel zu sein. Heimweg-Knopf unten links zeigt die Hoteladresse fürs Taxi.</p></div>
 <figure class="flash"><img src="fotos/10-onecup.jpg" alt="Erinnerungsfoto aus Japan 2017" loading="lazy"><figcaption><span class="fl-k">▶ FLASHBACK · <b>JAPAN 2017</b></span>One Cup Ozeki aus dem Konbini, getrunken auf dem Hotelsofa. Diesmal eine Stufe höher.</figcaption></figure>
 <div class="grid2">
 <ul class="list">
@@ -4273,6 +4273,7 @@ if(d>TRIP_END||(d===TRIP_END&&h>=12&&!SIM)){ clr.hidden=false; }
     const byDay={}; photos.forEach(f=>{ const m=String(f.pathname||"").match(/(\d{4}-\d{2}-\d{2})/); if(m) (byDay[m[1]]=byDay[m[1]]||[]).push(f); });
     const stamps=Object.entries(byDay).map(([d,L],k)=>{ const cand=ORDER.filter(id=>P[id][4]===d); if(!cand.length) return ""; const id=cand.find(isOk)||cand[0]; const [,,x,y]=P[id]; const f=L[L.length-1];
       return `<g class="stamp" data-go="fotos" transform="translate(${x+9} ${y-30}) rotate(${k%2?7:-6})"><rect x="-1.5" y="-1.5" width="21" height="24" fill="#f4f1ea"/><image href="${f.thumb||f.url}" x="0" y="0" width="18" height="18" preserveAspectRatio="xMidYMid slice"/>${L.length>1?`<circle cx="19" cy="0" r="5.5" fill="#FF3E8A"/><text x="19" y="2.6" text-anchor="middle" class="sc">${L.length}</text>`:""}</g>`; }).join("");
+    window.__wmapPhotos=photos; window.__wmapNodes=N.map(n=>({id:n[0],label:n[1],date:n[4],ok:isOk(n[0])}));
     window.__wmap={today:N.filter(n=>n[4]===today&&isOk(n[0])).length, photosToday:(byDay[today]||[]).length, ok:ok.length, total:ORDER.length};
     box.innerHTML=`<div class="wmap-h"><b>Weltkarte · bisher gespielt</b><span>${n} / ${ORDER.length} LEVEL ★</span></div>
     <svg viewBox="0 0 360 236" aria-label="Karte der Reise mit geschafften Orten">
@@ -5140,6 +5141,38 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 .how ol li{margin-bottom:3px}
 .how .meta{font:400 11px var(--f-mono);color:var(--muted);letter-spacing:.04em;margin-bottom:8px}
 .how .btn{margin-right:6px}
+
+/* ===== Heimweg-Sheet ===== */
+.home-fab{position:fixed;left:10px;bottom:calc(140px + env(safe-area-inset-bottom));z-index:54;display:flex;align-items:center;gap:6px;padding:9px 12px;border:1px solid var(--cyan);background:rgba(10,8,24,.92);color:var(--cyan);font:700 10px var(--f-mono);letter-spacing:.14em;cursor:pointer;box-shadow:0 0 14px rgba(59,230,214,.3)}
+.home-fab[hidden]{display:none}
+.hsheet{position:fixed;inset:0;z-index:75;background:rgba(5,4,12,.72);display:flex;align-items:flex-end;justify-content:center}
+.hsheet>div{width:min(100%,520px);max-height:92vh;overflow:auto;background:#0a0818;border-top:2px solid var(--cyan);padding:16px 16px calc(18px + env(safe-area-inset-bottom));color:var(--ink)}
+.hsheet h3{margin:0 0 2px;font:400 26px/1.1 var(--f-sign);color:var(--cyan)}
+.hsheet .hs-k{font:700 10px var(--f-mono);letter-spacing:.2em;color:var(--neon)}
+.hsheet .hs-ko{margin:10px 0 2px;padding:12px;border:1px solid var(--line);font:700 22px/1.3 var(--f-body);color:#fff;cursor:pointer}
+.hsheet .hs-ko small{display:block;font:400 12px var(--f-mono);color:var(--cyan);margin-top:4px}
+.hsheet ul{list-style:none;margin:10px 0;padding:0;display:grid;gap:6px;font-size:14px}
+.hsheet li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding-bottom:5px}
+.hsheet li a{color:var(--cp);font-family:var(--f-mono);text-decoration:none}
+.hsheet .hs-b{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.hsheet .hs-b a,.hsheet .hs-b button{flex:1 1 140px;min-height:44px;display:flex;align-items:center;justify-content:center;border:1px solid var(--cp);background:var(--cp);color:#0a0818;font:700 11px var(--f-mono);letter-spacing:.12em;text-decoration:none;cursor:pointer}
+.hsheet .hs-b .ghost{background:none;color:var(--ink);border-color:var(--line)}
+/* ===== Nachtmodus ===== */
+html.night .wrap{filter:saturate(.7) brightness(.88)}
+html.night .sky,html.night .hangul,html.night .kata,html.night .dtick{opacity:.55}
+html.night *,html.night *::before,html.night *::after{animation-play-state:paused!important}
+.nightbar{position:sticky;top:26px;z-index:23;margin:0 calc(50% - 50vw) 8px;padding:8px 14px;background:#1a1440;border-bottom:1px solid var(--cyan);display:flex;align-items:center;justify-content:space-between;gap:10px;font:700 10.5px var(--f-mono);letter-spacing:.14em;color:var(--cyan)}
+.nightbar button{border:1px solid var(--cyan);background:none;color:var(--cyan);font:inherit;padding:6px 10px;cursor:pointer}
+/* ===== Sound-Schalter ===== */
+.sfx-t{border:1px solid var(--line);background:none;color:var(--muted);font:700 10px var(--f-mono);letter-spacing:.14em;padding:5px 8px;cursor:pointer}
+.sfx-t[aria-pressed="true"]{color:var(--cp);border-color:var(--cp)}
+/* ===== Postkarte ===== */
+.pc-wrap{position:fixed;inset:0;z-index:80;background:rgba(5,4,12,.9);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px}
+.pc-wrap img{max-width:min(92vw,420px);max-height:72vh;box-shadow:0 0 30px rgba(255,62,138,.4)}
+.pc-wrap .hs-b{display:flex;gap:8px;width:min(92vw,420px)}
+.pc-wrap .hs-b button,.pc-wrap .hs-b a{flex:1;min-height:44px;display:flex;align-items:center;justify-content:center;border:1px solid var(--cp);background:var(--cp);color:#0a0818;font:700 11px var(--f-mono);letter-spacing:.12em;text-decoration:none;cursor:pointer}
+.pc-wrap .hs-b .ghost{background:none;color:var(--ink);border-color:var(--line)}
+.lvl .lvl-x{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
 .qnudge span{flex:1 1 180px}
 @media (max-width:700px){.qnudge{right:72px;flex-wrap:nowrap}.qnudge span{flex:1 1 auto;min-width:0}}
 .qnudge button{min-height:36px;padding:0 10px;border:1px solid var(--neon);background:none;color:#f4f1ff;font:inherit;cursor:pointer}
@@ -5626,7 +5659,95 @@ apply();
 </script>
 <script>
 // ---------- Anfahrt-Box unter die Weltkarte ----------
-(function(){ const b=document.getElementById("howBox"), m=document.getElementById("wmap"); if(b&&m) m.after(b);
+(function(){ const b=document.getElementById("howBox"), m=document.getElementById("wmap"); if(b&&m) m.after(b); const sb=document.getElementById("soloBox"); if(sb) sb.addEventListener("click",e=>{ const k=e.target.closest(".ko"); if(!k) return; const o=document.createElement("div"); o.className="say-big"; o.innerHTML=`<b lang="ko">${k.textContent}</b><span>Tippen zum Schließen</span>`; o.addEventListener("click",()=>o.remove()); document.body.appendChild(o); });
   if(b) b.addEventListener("click",e=>{ const k=e.target.closest(".ko"); if(!k) return; const o=document.createElement("div"); o.className="say-big"; o.innerHTML=`<b lang="ko">${k.textContent}</b><span>Tippen zum Schließen</span>`; o.addEventListener("click",()=>o.remove()); document.body.appendChild(o); }); })();
+</script>
+<script>
+// ===================== Heimweg · Nachtmodus · Sound · Postkarte =====================
+(function(){
+const SEOUL_H=()=>{const q=new URLSearchParams(location.search).get("t"); if(q&&/^\d{1,2}:\d{2}$/.test(q)) return +q.split(":")[0]; return +new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Seoul",hour:"2-digit",hourCycle:"h23"}).format(new Date());};
+const today=(typeof seoulDate==="function")?seoulDate():"";
+const TRIP=["2026-11-21","2026-11-22","2026-11-23","2026-11-24","2026-11-25","2026-11-26","2026-11-27","2026-11-28","2026-11-29"];
+const inTrip=TRIP.includes(today);
+const big=(t,sub)=>{const o=document.createElement("div"); o.className="say-big"; o.innerHTML=`<b lang="ko">${t}</b>${sub?`<small>${sub}</small>`:""}<span>Tippen zum Schließen</span>`; o.addEventListener("click",()=>o.remove()); document.body.appendChild(o);};
+
+/* ---- Sound (8-Bit, standardmäßig aus) ---- */
+let on=false; try{ on=localStorage.getItem("sn_sfx")==="1"; }catch(e){}
+let ac=null;
+function tone(seq){ if(!on) return; try{ ac=ac||new (window.AudioContext||window.webkitAudioContext)(); let t=ac.currentTime;
+  seq.forEach(([f,d])=>{ const o=ac.createOscillator(), g=ac.createGain(); o.type="square"; o.frequency.value=f; g.gain.setValueAtTime(.06,t); g.gain.exponentialRampToValueAtTime(.001,t+d); o.connect(g).connect(ac.destination); o.start(t); o.stop(t+d); t+=d*.9; }); }catch(e){} }
+const SFX={coin:[[988,.08],[1319,.25]],clear:[[523,.1],[659,.1],[784,.1],[1047,.35]],undo:[[392,.12],[262,.2]],open:[[660,.06],[880,.1]]};
+window.__sfx=n=>tone(SFX[n]||SFX.open);
+function sfxBtn(){ const b=document.createElement("button"); b.type="button"; b.className="sfx-t"; const u=()=>{b.textContent=on?"♪ TON AN":"♪ TON AUS"; b.setAttribute("aria-pressed",String(on));}; u();
+  b.addEventListener("click",()=>{ on=!on; try{localStorage.setItem("sn_sfx",on?"1":"0");}catch(e){} u(); if(on) window.__sfx("coin"); }); return b; }
+// Hooks: Weltkarte, Trophäen-Toast, Level-Clear
+document.addEventListener("click",e=>{ const nd=e.target.closest("#wmap .nd"); if(nd) setTimeout(()=>window.__sfx(nd.classList.contains("ok")?"coin":"undo"),60); },true);
+new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(n=>{ if(n.nodeType!==1) return; if(n.classList.contains("toast")) window.__sfx("coin"); if(n.classList.contains("lvc")) window.__sfx("clear"); }))).observe(document.body,{childList:true});
+const wmh=()=>{ const h=document.querySelector("#wmap .wmap-h"); if(h&&!h.querySelector(".sfx-t")) h.appendChild(sfxBtn()); };
+const wm=document.getElementById("wmap"); if(wm){ wmh(); new MutationObserver(wmh).observe(wm,{childList:true}); }
+
+/* ---- Heimweg-Sheet ---- */
+const ADDR_KO="서울 마포구 양화로 118, 5층";
+function sheet(){ window.__sfx("open");
+  const o=document.createElement("div"); o.className="hsheet"; o.setAttribute("role","dialog"); o.setAttribute("aria-label","Heimweg");
+  o.innerHTML=`<div><div class="hs-k">HEIMWEG · ALLEIN UNTERWEGS</div><h3>Zurück ins Hotel</h3>
+   <div class="hs-ko" data-big="1">${ADDR_KO}<small>Slowon Hongdae · 5F, 118 Yanghwa-ro, Mapo-gu · Antippen = groß fürs Taxi</small></div>
+   <div class="hs-ko" data-big="2" style="font-size:18px">이 주소로 가 주세요<small>„Bitte zu dieser Adresse“</small></div>
+   <ul><li><span>U-Bahn</span><span>Hongik Univ. (Linie 2, AREX) 700 m · Sangsu (6) 900 m</span></li>
+   <li><span>Hotel</span><a href="tel:+821080760823">+82 10-8076-0823</a></li>
+   <li><span>Taxi-App</span><span>Kakao T</span></li>
+   <li><span>Polizei · Rettung</span><span><a href="tel:112">112</a> · <a href="tel:119">119</a></span></li>
+   <li><span>Touristen-Hotline (Englisch)</span><a href="tel:1330">1330</a></li></ul>
+   <p class="status">Kein Netz oder Akku leer? Das Hotel ist unser Treffpunkt.</p>
+   <div class="hs-b"><a target="_blank" rel="noopener" href="https://map.naver.com/p/search/${encodeURIComponent("서울 마포구 양화로 118")}">ROUTE NAVER ↗</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&hl=en&destination=${encodeURIComponent("118 Yanghwa-ro, Mapo-gu, Seoul")}&travelmode=transit">GOOGLE MAPS ↗</a><button type="button" class="ghost x">SCHLIESSEN</button></div></div>`;
+  o.addEventListener("click",e=>{ if(e.target===o||e.target.closest(".x")) o.remove(); const k=e.target.closest("[data-big]"); if(k) big(k.dataset.big==="1"?ADDR_KO:"이 주소로 가 주세요",k.dataset.big==="1"?"Slowon Hongdae · 5층":"Bitte zu dieser Adresse"); });
+  document.body.appendChild(o); }
+window.__home=sheet;
+if(inTrip){ const f=document.createElement("button"); f.type="button"; f.className="home-fab"; f.innerHTML="🏨 HEIMWEG"; f.setAttribute("aria-label","Heimweg und Hoteladresse"); f.addEventListener("click",sheet); document.body.appendChild(f); }
+
+/* ---- Nachtmodus ab 23 Uhr Seoul-Zeit ---- */
+const qn=new URLSearchParams(location.search).get("night");
+const h=SEOUL_H();
+let off=false; try{ off=sessionStorage.getItem("sn_noNight")==="1"; }catch(e){}
+if(qn==="1"||(inTrip&&!off&&(h>=23||h<5))){ document.documentElement.classList.add("night");
+  const nb=document.createElement("div"); nb.className="nightbar"; nb.innerHTML=`<span>🌙 NACHTMODUS · ${String(h).padStart(2,"0")} UHR</span><span style="display:flex;gap:6px"><button type="button" class="hw">HEIMWEG</button><button type="button" class="nx">AUS</button></span>`;
+  const tk=document.querySelector(".dtick"); if(tk) tk.after(nb); else document.body.prepend(nb);
+  nb.querySelector(".hw").addEventListener("click",sheet);
+  nb.querySelector(".nx").addEventListener("click",()=>{ document.documentElement.classList.remove("night"); nb.remove(); try{sessionStorage.setItem("sn_noNight","1");}catch(e){} }); }
+
+/* ---- Postkarte vom Tag ---- */
+async function postcard(){ window.__sfx("open");
+  const i=TRIP.indexOf(today), day=(typeof PLAN!=="undefined")?PLAN.find(p=>p[0]===today):null;
+  const W=1080,H=1350, c=document.createElement("canvas"); c.width=W; c.height=H; const g=c.getContext("2d");
+  const grd=g.createLinearGradient(0,0,W,H); grd.addColorStop(0,"#1a0b3a"); grd.addColorStop(1,"#05040c"); g.fillStyle=grd; g.fillRect(0,0,W,H);
+  g.strokeStyle="rgba(59,230,214,.08)"; g.lineWidth=2; for(let x=0;x<W;x+=54){g.beginPath();g.moveTo(x,0);g.lineTo(x,H);g.stroke();} for(let y=0;y<H;y+=54){g.beginPath();g.moveTo(0,y);g.lineTo(W,y);g.stroke();}
+  // Foto
+  let img=null; const fl=window.__wmapPhotos||[]; const mine=fl.filter(f=>String(f.pathname||"").includes(today)); const f=mine[mine.length-1];
+  if(f){ img=await new Promise(r=>{ const im=new Image(); im.onload=()=>r(im); im.onerror=()=>r(null); im.src=f.url; }); }
+  const px=90,py=250,pw=900,ph=620; g.fillStyle="#f4f1ea"; g.fillRect(px-18,py-18,pw+36,ph+110);
+  if(img){ const s=Math.max(pw/img.width,ph/img.height), iw=img.width*s, ih=img.height*s; g.save(); g.beginPath(); g.rect(px,py,pw,ph); g.clip(); g.drawImage(img,px+(pw-iw)/2,py+(ph-ih)/2,iw,ih); g.restore(); }
+  else { g.fillStyle="#110F27"; g.fillRect(px,py,pw,ph); g.fillStyle="#FF3E8A"; g.font="bold 220px sans-serif"; g.textAlign="center"; g.fillText("서울",W/2,py+ph/2+80); }
+  g.fillStyle="#110F27"; g.font="600 40px sans-serif"; g.textAlign="left"; g.fillText(day?day[2]:"Seoul",px,py+ph+65);
+  // Kopf
+  g.textAlign="left"; g.fillStyle="#3BE6D6"; g.font="bold 34px monospace"; g.fillText(`SEOUL, NOVEMBER · LEVEL ${i+1} / 9`,90,120);
+  g.fillStyle="#FCEE0A"; g.shadowColor="#FF3E8A"; g.shadowBlur=24; g.font="bold 92px sans-serif"; const dd=today?`${+today.slice(8)}.11.2026`:""; g.fillText(dd,90,215); g.shadowBlur=0;
+  // Orte
+  const N=window.__wmapNodes||[]; const ok=N.filter(n=>n.date===today&&n.ok).map(n=>n.label);
+  g.fillStyle="#E9E6FF"; g.font="34px sans-serif"; let y=py+ph+170;
+  g.fillText(ok.length?"★ "+ok.join(" · "):"★ Heute unterwegs in Seoul",90,y);
+  g.fillStyle="#FF3E8A"; g.font="bold 30px monospace"; g.fillText("CHRISTOPH × MICHI",90,H-80); g.textAlign="right"; g.fillStyle="rgba(255,255,255,.5)"; g.fillText("seoul.staycurious.art",W-90,H-80);
+  const url=c.toDataURL("image/jpeg",.9);
+  const o=document.createElement("div"); o.className="pc-wrap"; o.innerHTML=`<img alt="Postkarte vom Tag" src="${url}"><div class="hs-b"><button type="button" class="sh">TEILEN</button><a download="seoul-${today}.jpg" href="${url}">SPEICHERN</a><button type="button" class="ghost x">ZU</button></div>`;
+  o.addEventListener("click",async e=>{ if(e.target===o||e.target.closest(".x")) o.remove();
+    if(e.target.closest(".sh")){ try{ const bl=await (await fetch(url)).blob(); const file=new File([bl],`seoul-${today}.jpg`,{type:"image/jpeg"}); if(navigator.canShare&&navigator.canShare({files:[file]})) await navigator.share({files:[file],title:"Seoul, November"}); else o.querySelector("a").click(); }catch(err){} } });
+  document.body.appendChild(o); }
+window.__postcard=postcard;
+const addPcBtn=()=>{ const l=document.getElementById("lvl"); if(!l||l.hidden||l.querySelector(".lvl-x")) return; const go=l.querySelector("#lvlGo"); if(!go) return;
+  const x=document.createElement("div"); x.className="lvl-x"; go.replaceWith(x); x.appendChild(go);
+  const b1=document.createElement("button"); b1.type="button"; b1.className="btn"; b1.textContent="Postkarte vom Tag ▸"; b1.addEventListener("click",postcard); x.appendChild(b1);
+  const b2=document.createElement("button"); b2.type="button"; b2.className="btn"; b2.textContent="Heimweg ▸"; b2.addEventListener("click",sheet); x.appendChild(b2); };
+addPcBtn();
+new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(n=>{ if(n.nodeType===1&&n.classList.contains("lvc")&&!n.querySelector(".pcb")){ const bb=n.querySelector(".lvc-b"); if(bb){ const b=document.createElement("button"); b.type="button"; b.className="pcb"; b.textContent="POSTKARTE"; b.addEventListener("click",postcard); bb.appendChild(b); } } }))).observe(document.body,{childList:true});
+})();
 </script>
 </body></html>
