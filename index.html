@@ -906,6 +906,11 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 .lvl-bar{height:5px;background:rgba(255,255,255,.08)}.lvl-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--neon));box-shadow:0 0 8px var(--neon)}
 .lvl ul{list-style:none;margin:2px 0 0;padding:0;display:grid;gap:3px;font-size:13.5px;color:var(--ink)}
 .lvl li::before{content:"▸ ";color:var(--cyan)}
+.lvl li.lv-done{opacity:.45}.lvl li.lv-sum::before{content:""}
+.lvl li.lv-now{color:var(--ink);font-weight:600}.lvl li.lv-next{color:var(--ink)}
+.lvl li em{font-style:normal;font:700 9.5px var(--f-mono);letter-spacing:.16em;padding:2px 6px 1px;margin-right:6px;vertical-align:1px;background:var(--neon);color:#110F27}
+.lvl li.lv-next em{background:var(--cyan)}
+.hud + .lvl{margin:10px 0 16px;position:relative;z-index:8;background-color:#110F27}
 .lvl .btn{justify-self:start;margin-top:4px}
 .say-l{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
 .say-l li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;padding:8px 10px;border:1px solid var(--line);background:rgba(17,15,39,.55)}
@@ -967,7 +972,7 @@ background:linear-gradient(rgba(255,62,138,.7) 1px,transparent 1px) 0 0/100% 18p
 @media (prefers-reduced-motion:no-preference){.credits.run .cr-roll{animation:roll var(--dur,60s) linear forwards}@keyframes roll{to{transform:translateY(calc(-100% - 100vh))}}}
 @media (prefers-reduced-motion:reduce){.credits{overflow:auto}.cr-roll{position:static;padding-top:80px}}
 .clk{display:flex;gap:18px;flex-wrap:wrap;margin:6px 0}.clk span{font:600 11px var(--f-mono);letter-spacing:.12em;color:var(--muted)}.clk i{display:block;font:700 22px/1.2 var(--f-mono);font-style:normal;color:var(--y)}.taxi-ko{background:#fff;color:#0b0a1a;padding:12px 14px;border-radius:4px;font:700 17px/1.45 system-ui,"Noto Sans KR",sans-serif;margin:8px 0}.tip-share{display:inline-block;margin:6px 0 10px;font:700 10px/1 var(--f-mono);letter-spacing:.12em;color:var(--cyan);background:none;border:1px solid var(--cyan);padding:7px 10px;cursor:pointer}
-.today-chip{position:fixed;top:10px;left:50%;transform:translate(-50%,-160%);z-index:70;font:700 11px/1 var(--f-mono);letter-spacing:.12em;color:#0b0a1a;background:var(--sign);padding:8px 12px 7px;border-radius:3px;text-decoration:none;box-shadow:0 0 14px rgba(255,210,63,.5);transition:transform .3s}.today-chip.on{transform:translate(-50%,0)}.jump{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:none}.jump::-webkit-scrollbar{display:none}.jump a{flex:none;font:700 10px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);border:1px solid var(--line);background:var(--panel);padding:7px 9px;text-decoration:none;white-space:nowrap}.wx-warn{margin:8px 0;padding:10px 12px;border:1px solid var(--neon);background:rgba(255,62,138,.1);font:600 12px/1.45 var(--f-mono);color:var(--ink)}.wx-warn a{color:var(--cyan)}.theme-btn{position:fixed;top:10px;right:10px;z-index:70;width:36px;height:36px;font:700 15px/1 system-ui,sans-serif;color:var(--cyan);background:var(--panel);border:1px solid var(--cyan);border-radius:3px;cursor:pointer}html.light{--night:#F3F0FB;--panel:#FFFFFF;--panel2:#ECE8F8;--ink:#15122E;--muted:#5A5580;--line:#CFC8EE;--cyan:#0A6B65;--neon:#B0145E;--sign:#7A5A00;--cp:#6B5000}html.light body{background:var(--night);color:var(--ink)}html.light h1,html.light h2,html.light h3,html.light h4,html.light p,html.light li,html.light b,html.light summary{color:var(--ink)}html.light .status,html.light small,html.light .sub{color:var(--muted)}html.light .box,html.light section{background-color:transparent}html.light .flash,html.light .flashback,html.light .box.alt-base{background:var(--panel)}
+.today-chip{position:fixed;top:34px;left:50%;transform:translate(-50%,-320%);z-index:70;font:700 11px/1 var(--f-mono);letter-spacing:.12em;color:#0b0a1a;background:var(--sign);padding:8px 12px 7px;border-radius:3px;text-decoration:none;box-shadow:0 0 14px rgba(255,210,63,.5);transition:transform .3s}.today-chip.on{transform:translate(-50%,0)}.jump{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:none}.jump::-webkit-scrollbar{display:none}.jump a{flex:none;font:700 10px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);border:1px solid var(--line);background:var(--panel);padding:7px 9px;text-decoration:none;white-space:nowrap}.wx-warn{margin:8px 0;padding:10px 12px;border:1px solid var(--neon);background:rgba(255,62,138,.1);font:600 12px/1.45 var(--f-mono);color:var(--ink)}.wx-warn a{color:var(--cyan)}.theme-btn{position:fixed;top:10px;right:10px;z-index:70;width:36px;height:36px;font:700 15px/1 system-ui,sans-serif;color:var(--cyan);background:var(--panel);border:1px solid var(--cyan);border-radius:3px;cursor:pointer}html.light{--night:#F3F0FB;--panel:#FFFFFF;--panel2:#ECE8F8;--ink:#15122E;--muted:#5A5580;--line:#CFC8EE;--cyan:#0A6B65;--neon:#B0145E;--sign:#7A5A00;--cp:#6B5000}html.light body{background:var(--night);color:var(--ink)}html.light h1,html.light h2,html.light h3,html.light h4,html.light p,html.light li,html.light b,html.light summary{color:var(--ink)}html.light .status,html.light small,html.light .sub{color:var(--muted)}html.light .box,html.light section{background-color:transparent}html.light .flash,html.light .flashback,html.light .box.alt-base{background:var(--panel)}
 .wx-det{margin-top:6px}.wx-det>summary{cursor:pointer;list-style:none;font:700 11px var(--f-mono);letter-spacing:.16em;color:var(--cyan);padding:8px 0;border-top:1px dashed var(--line)}
 .wx-det>summary::-webkit-details-marker{display:none}
 .wx-det>summary::after{content:" ▾";}
@@ -2371,7 +2376,7 @@ footer>.logout{grid-column:1;grid-row:1;justify-self:start;margin:0}
 </div>
 <div class="lvl" id="lvl" hidden></div>
 <div class="clear" id="clear" hidden><div><b>GAME CLEAR</b><small>9 Tage · Seoul & Fukuoka · alle Level geschafft</small></div><button type="button" class="btn" id="clearGo">Abspann ▶</button></div>
-<div class="cd" id="cd"><span class="label"><span>Boarding-Countdown · KE938 · VIE → ICN</span><span>Fr 20.11. · 19:30</span></span><div class="cd-grid"><div class="cd-u"><b class="flap" id="cdD"><span>-</span><span>-</span></b><i class="cd-bar" id="cdDb"></i><small>Tage</small></div><div class="cd-u"><b class="flap" id="cdH"><span>-</span><span>-</span></b><i class="cd-bar" id="cdHb"></i><small>Std</small></div><div class="cd-u"><b class="flap" id="cdM"><span>-</span><span>-</span></b><i class="cd-bar" id="cdMb"></i><small>Min</small></div><div class="cd-u"><b class="flap" id="cdS"><span>-</span><span>-</span></b><i class="cd-bar" id="cdSb"></i><small>Sek</small></div></div><div class="cd-msg" id="cdMsg">&gt; Abflug Wien-Schwechat, Terminal 3</div></div>
+<div class="cd" id="cd"><span class="label"><span id="cdL1">Boarding-Countdown · KE938 · VIE → ICN</span><span id="cdL2">Fr 20.11. · 19:30</span></span><div class="cd-grid"><div class="cd-u"><b class="flap" id="cdD"><span>-</span><span>-</span></b><i class="cd-bar" id="cdDb"></i><small>Tage</small></div><div class="cd-u"><b class="flap" id="cdH"><span>-</span><span>-</span></b><i class="cd-bar" id="cdHb"></i><small>Std</small></div><div class="cd-u"><b class="flap" id="cdM"><span>-</span><span>-</span></b><i class="cd-bar" id="cdMb"></i><small>Min</small></div><div class="cd-u"><b class="flap" id="cdS"><span>-</span><span>-</span></b><i class="cd-bar" id="cdSb"></i><small>Sek</small></div></div><div class="cd-msg" id="cdMsg">&gt; Abflug Wien-Schwechat, Terminal 3</div></div>
 <div class="bridge" aria-hidden="true">
 <div class="mon c"><svg viewBox="0 0 80 48"><circle cx="40" cy="24" r="18"/><circle cx="40" cy="24" r="9"/><path d="M22 24h36M40 6v36"/><g class="sweep"><path d="M40 24 L40 6 A18 18 0 0 1 55.6 15z" class="fill"/></g><circle cx="49" cy="17" r="2" class="dot"/></svg><span>SEL 37.5N</span></div>
 <div class="mon r"><svg viewBox="0 0 80 48"><path class="wave" d="M0 24 q5 -14 10 0 t10 0 t10 0 t10 0 t10 0 t10 0 t10 0 t10 0 t10 0 t10 0"/></svg><span>VIE→SEL +8H</span></div>
@@ -3805,10 +3810,13 @@ const p=n=>String(n).padStart(2,"0");
 function flap(id,v){const el=$(id); const sp=el.querySelectorAll("span"); if(sp.length!==v.length){el.innerHTML=[...v].map(c=>`<span>${c}</span>`).join("");return;}
 [...v].forEach((c,k)=>{ if(sp[k].textContent!==c){ const n=document.createElement("span"); n.textContent=c; n.className="fl"; sp[k].replaceWith(n); } });}
 function bar(id,f){const b=$(id+"b"); if(b) b.style.setProperty("--f",(f*100).toFixed(1)+"%");}
-function run(){const now=Date.now(), d=T-now;
+const B=Date.parse("2026-11-29T12:05:00+09:00");
+function run(){const now=Date.now(); const back=now>T; const tgt=back?B:T, d=tgt-now;
+if(back&&!run.sw){run.sw=1; const a=$("cdL1"),b=$("cdL2"); if(a) a.textContent="Rückflug-Countdown · KE937 · ICN → VIE"; if(b) b.textContent="So 29.11. · 12:05";}
+if(back&&d>0&&$("cdMsg")) $("cdMsg").textContent="> Taxi zum Flughafen am So ca. 8:30. Bis dahin: alles mitnehmen.";
 if(d>0){const s=Math.floor(d/1000), D=Math.floor(s/86400), H=Math.floor(s%86400/3600), M=Math.floor(s%3600/60), S=s%60;
 flap("cdD",p(D)); flap("cdH",p(H)); flap("cdM",p(M)); flap("cdS",p(S));
-bar("cdD",1-Math.min(1,D/60)); bar("cdH",1-H/24); bar("cdM",1-M/60); bar("cdS",1-S/60);}
+bar("cdD",1-Math.min(1,D/(back?9:60))); bar("cdH",1-H/24); bar("cdM",1-M/60); bar("cdS",1-S/60);}
 else{["cdD","cdH","cdM","cdS"].forEach(id=>{flap(id,"00");bar(id,1);}); $("cdMsg").textContent=now<R?"> Unterwegs. Gute Reise, ihr zwei.":"> Wieder daheim. Danke für die Woche.";}}
 run(); setInterval(run,1000);
 })();
@@ -4190,8 +4198,17 @@ const d=seoulDate(), lvl=$("lvl"), clr=$("clear"); if(!lvl||!clr) return;
 const i=PLAN.findIndex(p=>p[0]===d);
 if(d>=TRIP_START&&d<=TRIP_END&&i>=0){
 const [day,wd,title,items]=PLAN[i];
-lvl.innerHTML=`<div class="lvl-h"><span>LEVEL ${i+1} / ${PLAN.length}</span><b>${title}</b><span>${wd} ${+day.slice(8)}.11.</span></div><div class="lvl-bar"><i style="width:${Math.round((i+1)/PLAN.length*100)}%"></i></div><ul>${items.slice(0,4).map(t=>`<li>${t.replace(/^★\s*/,"")}</li>`).join("")}</ul><a class="btn" href="#plan" id="lvlGo">Zum Tagesplan ▸</a>`;
+const nowM=(()=>{const p=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Seoul",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date());const g=t=>+p.find(x=>x.type===t).value;const q=new URLSearchParams(location.search).get("t");if(q&&/^\d{1,2}:\d{2}$/.test(q)){const[a,b]=q.split(":");return +a*60+ +b;}return g("hour")*60+g("minute");})();
+const tm=items.map(t=>{const m=t.replace(/^★\s*/,"").match(/^(?:Ab\s+|Ca\.\s*|ca\.\s*)?(\d{1,2}):(\d{2})/);return m?+m[1]*60+ +m[2]:null;});
+const nextI=tm.findIndex(v=>v!=null&&v>nowM); let lastPast=-1; tm.forEach((v,k)=>{ if(v!=null&&v<=nowM&&(nextI<0||k<nextI)) lastPast=k; });
+const anyT=tm.some(v=>v!=null); const curEnd=nextI<0?items.length:nextI;
+const li=items.map((t,k)=>{const txt=t.replace(/^★\s*/,""); let cls="",tag="";
+ if(anyT){ if(k<lastPast) cls="lv-done"; else if(k<curEnd){ if(k===Math.max(lastPast,0)){cls="lv-now";tag="JETZT";} } else if(k===nextI){cls="lv-next";tag="ALS NÄCHSTES";} }
+ return {k,cls,html:`<li class="${cls}">${tag?`<em>${tag}</em>`:""}${txt}</li>`};});
+const done=li.filter(x=>x.cls==="lv-done"), rest=li.filter(x=>x.cls!=="lv-done");
+lvl.innerHTML=`<div class="lvl-h"><span>LEVEL ${i+1} / ${PLAN.length}</span><b>${title}</b><span>${wd} ${+day.slice(8)}.11.</span></div><div class="lvl-bar"><i style="width:${Math.round((i+1)/PLAN.length*100)}%"></i></div><ul>${done.length?`<li class="lv-done lv-sum">✓ ${done.length} erledigt</li>`:""}${rest.slice(0,5).map(x=>x.html).join("")}</ul><a class="btn" href="#plan" id="lvlGo">Zum Tagesplan ▸</a>`;
 lvl.hidden=false;
+const hud=document.querySelector(".hud"); if(hud){ hud.after(lvl); const ka=document.querySelector(".kata"); if(ka) ka.style.display="none"; }
 $("lvlGo").addEventListener("click",e=>{ const r=document.querySelector("#planList .row.today"); if(r){ e.preventDefault(); if(window.__unfold) window.__unfold(r); window.__goto(r,"center"); }});
 }
 const h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Seoul",hour:"2-digit",hourCycle:"h23"}).format(new Date());
@@ -5011,6 +5028,7 @@ body.qb-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 .qmuted{color:#b9b3d6;font-size:12px}
 .qnudge{position:fixed;left:8px;right:8px;bottom:calc(72px + env(safe-area-inset-bottom));z-index:55;background:#110f27;border:1px solid var(--neon);padding:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;color:#f4f1ff;font:13px/1.3 system-ui,sans-serif}
 .qnudge span{flex:1 1 180px}
+@media (max-width:700px){.qnudge{right:72px;flex-wrap:nowrap}.qnudge span{flex:1 1 auto;min-width:0}}
 .qnudge button{min-height:36px;padding:0 10px;border:1px solid var(--neon);background:none;color:#f4f1ff;font:inherit;cursor:pointer}
 .leaflet-container .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(1.05)}
 .qbbanner{padding:14px 12px;margin:0 0 10px;color:#fff;font:700 16px/1.25 system-ui,sans-serif;letter-spacing:.04em;border:1px solid var(--neon);clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%)}
