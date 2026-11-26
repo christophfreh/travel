@@ -5344,6 +5344,36 @@ html.night *,html.night *::before,html.night *::after{animation-play-state:pause
 .eat-ph{display:flex;gap:10px;align-items:center;margin:8px 0 6px;padding:6px;border:1px solid var(--cp);background:rgba(252,238,10,.06);text-decoration:none;color:var(--ink);clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%)}
 .eat-ph img{width:96px;height:72px;object-fit:cover;flex:0 0 auto;transform:rotate(-2deg);border:3px solid #f4f1e6;box-shadow:0 4px 10px rgba(0,0,0,.5)}
 .eat-ph span{font-size:13px;line-height:1.4;color:var(--muted)}.eat-ph b{display:block;font:700 10px var(--f-mono);letter-spacing:.12em;color:var(--cp);margin-bottom:2px}
+
+/* ===== Reise-Deck: Tabs statt endloser Boxen ===== */
+.deck{position:relative;z-index:8;margin:0 0 18px;border:1px solid rgba(59,230,214,.55);background:linear-gradient(180deg,rgba(59,230,214,.07),rgba(17,15,39,.94) 70px);box-shadow:0 0 0 1px rgba(255,62,138,.18),0 0 28px rgba(59,230,214,.14),inset 0 0 40px rgba(59,230,214,.05);clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px))}
+.deck::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);z-index:0}
+.dk-h{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 12px 0}
+.dk-h b{font:700 10px var(--f-mono);letter-spacing:.24em;color:var(--cyan);text-shadow:0 0 8px rgba(59,230,214,.6)}
+.dk-h b::before{content:"";display:inline-block;width:7px;height:7px;margin-right:7px;background:var(--neon);box-shadow:0 0 8px var(--neon);vertical-align:1px;animation:dkblink 1.6s steps(2) infinite}
+@keyframes dkblink{50%{opacity:.25}}
+.dk-h span{font:700 9px var(--f-mono);letter-spacing:.18em;color:rgba(255,255,255,.38)}
+.dk-t{position:relative;z-index:1;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 12px 10px;scroll-snap-type:x proximity;-webkit-mask:linear-gradient(90deg,#000 88%,transparent)}
+.dk-t::-webkit-scrollbar{display:none}
+.dk-t button{flex:0 0 auto;scroll-snap-align:start;display:flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid rgba(255,255,255,.2);background:rgba(10,8,24,.6);color:rgba(255,255,255,.7);font:700 10px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;clip-path:polygon(0 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%);transition:background .2s,color .2s}
+.dk-t button i{font-style:normal;font-size:12px}
+.dk-t button[aria-selected="true"]{background:var(--cp);border-color:var(--cp);color:#110F27;box-shadow:0 0 14px rgba(252,238,10,.5)}
+.dk-b{position:relative;z-index:1;padding:0 10px 10px}
+.dk-p[hidden]{display:none!important}
+.dk-p>.wmap,.dk-p>.runlog,.dk-p>.how,.dk-p>.bestd,.dk-p>.endbox{margin:0!important;border:0!important;box-shadow:none!important;clip-path:none!important;background:transparent!important}
+@media (prefers-reduced-motion:no-preference){.dk-p:not([hidden]){animation:dkin .28s ease-out}@keyframes dkin{from{opacity:0;transform:translateY(6px);filter:hue-rotate(60deg)}}}
+/* ruhigere Bedienelemente am Handy */
+@media (max-width:760px){
+  .totop{display:none!important}
+  .sfab{width:40px!important;height:40px!important;bottom:calc(88px + env(safe-area-inset-bottom,0px))!important}
+  .home-fab{bottom:calc(88px + env(safe-area-inset-bottom,0px))!important}
+  .foldbtn{padding-right:58px!important}
+}
+@media (max-width:760px){
+  html.ontrip .hero .hangul{font-size:clamp(70px,24vw,130px)!important;margin-top:4px}
+  html.ontrip .hero .gl-h{font-size:clamp(30px,9vw,44px)}
+  html.ontrip .hero .sub,html.ontrip .hero .kv{display:none}
+}
 .qnudge span{flex:1 1 180px}
 @media (max-width:700px){.qnudge{right:72px;flex-wrap:nowrap}.qnudge span{flex:1 1 auto;min-width:0}}
 .qnudge button{min-height:36px;padding:0 10px;border:1px solid var(--neon);background:none;color:#f4f1ff;font:inherit;cursor:pointer}
@@ -6113,4 +6143,35 @@ const oldB=window.__bestHTML; window.__bestHTML=()=>{ const fav=window.__eatFav(
   load(); setInterval(paint,3000); setTimeout(paint,1500);
 })();
 </script>
+<script>
+// ---------- Reise-Deck: Boxen in Tabs bündeln ----------
+(function(){
+  const DEF=[["wmap","Karte","◆"],["howBox","Anfahrt","➜"],["runLog","Laufen","🏃"],["lastBox","Letzte Chance","!"],["homeBox","Heimreise","✈"],["airBox","Flughafen","₩"],["bestBox","Bestes","★"]];
+  function build(){
+    if(document.querySelector(".deck")) return;
+    const items=DEF.map(([id,l,ic])=>({id,l,ic,el:document.getElementById(id)})).filter(x=>x.el&&x.el.offsetParent!==null||x.el&&x.el.parentNode&&!x.el.hidden);
+    if(items.length<2) return;
+    const first=items.map(x=>x.el).sort((a,b)=>a.compareDocumentPosition(b)&4?-1:1)[0];
+    const deck=document.createElement("div"); deck.className="deck"; deck.id="deck";
+    deck.innerHTML='<div class="dk-h"><b>REISE-TERMINAL</b><span>'+items.length+' MODULE</span></div><div class="dk-t" role="tablist" aria-label="Reise-Module"></div><div class="dk-b"></div>';
+    first.before(deck); const tl=deck.querySelector(".dk-t"), body=deck.querySelector(".dk-b");
+    items.forEach((x,i)=>{ const b=document.createElement("button"); b.type="button"; b.role="tab"; b.id="dkt-"+x.id; b.dataset.k=x.id; b.setAttribute("aria-controls","dkp-"+x.id); b.innerHTML='<i aria-hidden="true">'+x.ic+'</i>'+x.l; tl.appendChild(b);
+      const pn=document.createElement("div"); pn.className="dk-p"; pn.id="dkp-"+x.id; pn.dataset.k=x.id; pn.setAttribute("role","tabpanel"); pn.setAttribute("aria-labelledby",b.id); pn.appendChild(x.el); body.appendChild(pn); });
+    function act(k,save){ deck.querySelectorAll(".dk-t button").forEach(b=>{ const on=b.dataset.k===k; b.setAttribute("aria-selected",on); b.tabIndex=on?0:-1; if(on&&save) b.scrollIntoView({block:"nearest",inline:"nearest"}); });
+      deck.querySelectorAll(".dk-p").forEach(p=>p.hidden=p.dataset.k!==k); if(save){ try{ localStorage.setItem("deckTab",k); }catch(e){} } if(window.__sfx&&save) window.__sfx("tick"); }
+    tl.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) act(b.dataset.k,true); });
+    tl.addEventListener("keydown",e=>{ if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft") return; const bs=[...tl.children], i=bs.indexOf(document.activeElement); if(i<0) return; const n=bs[(i+(e.key==="ArrowRight"?1:bs.length-1))%bs.length]; n.focus(); act(n.dataset.k,true); });
+    let st=null; try{ st=localStorage.getItem("deckTab"); }catch(e){}
+    act(items.some(x=>x.id===st)?st:items[0].id,false);
+    window.__deck=act;
+    const show=el=>{ const p=el&&el.closest&&el.closest(".dk-p"); if(p&&p.hidden) act(p.dataset.k,false); };
+    const og=window.__goto; if(og) window.__goto=(el,b)=>{ show(el); return og(el,b); };
+    deck.addEventListener("toggle",e=>show(e.target),true);
+    const go=new URLSearchParams(location.search).get("go"); if(go) show(document.getElementById(go));
+  }
+  const run=()=>setTimeout(build,350);
+  if(document.readyState==="complete") run(); else addEventListener("load",run);
+})();
+</script>
+<script>(function(){ const d=(typeof seoulDate==="function")?seoulDate():""; if(d>="2026-11-21"&&d<="2026-11-29") document.documentElement.classList.add("ontrip"); })();</script>
 </body></html>
