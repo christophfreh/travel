@@ -4231,7 +4231,7 @@ const i=PLAN.findIndex(p=>p[0]===d);
 if(d>=TRIP_START&&d<=TRIP_END&&i>=0){
 const [day,wd,title,items]=PLAN[i];
 const nowM=(()=>{const p=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Seoul",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date());const g=t=>+p.find(x=>x.type===t).value;const q=new URLSearchParams(location.search).get("t");if(q&&/^\d{1,2}:\d{2}$/.test(q)){const[a,b]=q.split(":");return +a*60+ +b;}return g("hour")*60+g("minute");})();
-const tm=items.map(t=>{const m=t.replace(/^★\s*/,"").match(/^(?:Ab\s+|Ca\.\s*|ca\.\s*)?(\d{1,2}):(\d{2})/);return m?+m[1]*60+ +m[2]:null;});
+const tm=items.map(t=>{const m=t.replace(/^★\s*/,"").match(/^(?:(?:Ab|ab|Ca\.|ca\.)\s*)*(\d{1,2}):(\d{2})/);return m?+m[1]*60+ +m[2]:null;});
 const nextI=tm.findIndex(v=>v!=null&&v>nowM); let lastPast=-1; tm.forEach((v,k)=>{ if(v!=null&&v<=nowM&&(nextI<0||k<nextI)) lastPast=k; });
 const anyT=tm.some(v=>v!=null); const curEnd=nextI<0?items.length:nextI;
 const li=items.map((t,k)=>{const txt=t.replace(/^★\s*/,""); let cls="",tag="";
