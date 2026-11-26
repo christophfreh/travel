@@ -6178,7 +6178,7 @@ const oldB=window.__bestHTML; window.__bestHTML=()=>{ const fav=window.__eatFav(
   const DEF=[["wmap","Karte","◆"],["howBox","Anfahrt","➜"],["runLog","Laufen","🏃"],["lastBox","Letzte Chance","!"],["homeBox","Heimreise","✈"],["airBox","Flughafen","₩"],["bestBox","Bestes","★"]];
   function build(){
     if(document.querySelector(".deck")) return;
-    const items=DEF.map(([id,l,ic])=>({id,l,ic,el:document.getElementById(id)})).filter(x=>x.el&&x.el.offsetParent!==null||x.el&&x.el.parentNode&&!x.el.hidden);
+    const items=DEF.map(([id,l,ic])=>({id,l,ic,el:document.getElementById(id)})).filter(x=>x.el&&x.el.parentNode&&!x.el.hidden&&!x.el.closest("section"));
     if(items.length<2) return;
     const first=items.map(x=>x.el).sort((a,b)=>a.compareDocumentPosition(b)&4?-1:1)[0];
     const deck=document.createElement("div"); deck.className="deck"; deck.id="deck";
