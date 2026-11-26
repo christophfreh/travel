@@ -2690,7 +2690,7 @@ pflichtprogramm: <span class="n">null</span>,
 <li>In die Station <b>Hongik Univ.</b> hinunter und unterirdisch den Schildern zu <b>Ausgang 3</b> folgen (Richtung Gyeongui Line Forest Park / Yeonnam-dong)</li>
 <li>Oben beginnt gleich der lange, schmale Park <b>Gyeongui Line Forest Park</b> („Yeontral Park“). Am Park entlang Richtung Norden gehen</li>
 <li>Nach ca. 5–7 Min. in die kleinen Gassen von <b>Yeonnam-dong</b>. Für das letzte Stück die Adresse in Naver Map öffnen, die Gassen sind verwinkelt</li></ol>
-<div class="meta">Gesamt ca. 15–20 Min. zu Fuß · 19–3 Uhr, montags zu · Infos von 2016: vorher kurz anrufen oder in Naver Map schauen, ob offen</div><a class="btn" target="_blank" rel="noopener" href="https://map.naver.com/p/search/거북이조합 연남동">Route in Naver Map ↗</a></div></details><p class="status">Alle nah genug, um jederzeit schnell zurück im Hotel zu sein. Heimweg-Knopf unten links zeigt die Hoteladresse fürs Taxi.</p></div>
+<div class="meta">Gesamt ca. 15–20 Min. zu Fuß · 19–3 Uhr, montags zu · Infos von 2016: vorher kurz anrufen oder in Naver Map schauen, ob offen</div><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&hl=en&origin=118+Yanghwa-ro,+Mapo-gu,+Seoul&destination=9+Donggyo-ro+39-gil,+Mapo-gu,+Seoul&travelmode=walking">Zu Fuß hin · Google Maps ↗</a><a class="btn" target="_blank" rel="noopener" href="https://map.naver.com/p/search/거북이조합 연남동">Naver Map ↗</a></div></details><p class="status">Alle nah genug, um jederzeit schnell zurück im Hotel zu sein. Heimweg-Knopf unten links zeigt die Hoteladresse fürs Taxi.</p></div>
 <figure class="flash"><img src="fotos/10-onecup.jpg" alt="Erinnerungsfoto aus Japan 2017" loading="lazy"><figcaption><span class="fl-k">▶ FLASHBACK · <b>JAPAN 2017</b></span>One Cup Ozeki aus dem Konbini, getrunken auf dem Hotelsofa. Diesmal eine Stufe höher.</figcaption></figure>
 <div class="grid2">
 <ul class="list">
@@ -5781,7 +5781,7 @@ window.__postcard=postcard;
 const addPcBtn=()=>{ const l=document.getElementById("lvl"); if(!l||l.hidden||l.querySelector(".lvl-x")) return; const go=l.querySelector("#lvlGo"); if(!go) return;
   const x=document.createElement("div"); x.className="lvl-x"; go.replaceWith(x); x.appendChild(go);
   const b1=document.createElement("button"); b1.type="button"; b1.className="btn"; b1.textContent="Postkarte vom Tag ▸"; b1.addEventListener("click",postcard); x.appendChild(b1);
-  const b2=document.createElement("button"); b2.type="button"; b2.className="btn"; b2.textContent="Heimweg ▸"; b2.addEventListener("click",sheet); x.appendChild(b2); };
+  const b2=document.createElement("button"); b2.type="button"; b2.className="btn"; b2.textContent="Heimweg ▸"; b2.addEventListener("click",sheet); x.appendChild(b2); if(today==="2026-11-26"){ const b3=document.createElement("a"); b3.className="btn"; b3.href="https://www.google.com/maps/dir/?api=1&hl=en&origin=118+Yanghwa-ro,+Mapo-gu,+Seoul&destination=9+Donggyo-ro+39-gil,+Mapo-gu,+Seoul&travelmode=walking"; b3.target="_blank"; b3.rel="noopener"; b3.textContent="Turtle Union · Weg ↗"; x.appendChild(b3); } };
 addPcBtn();
 new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(n=>{ if(n.nodeType===1&&n.classList.contains("lvc")&&!n.querySelector(".pcb")){ const bb=n.querySelector(".lvc-b"); if(bb){ const b=document.createElement("button"); b.type="button"; b.className="pcb"; b.textContent="POSTKARTE"; b.addEventListener("click",postcard); bb.appendChild(b); } } }))).observe(document.body,{childList:true});
 })();
