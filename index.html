@@ -588,8 +588,8 @@ body.api .pola .del{display:block}
 @keyframes scan{0%{top:0;opacity:0}8%{opacity:.6}92%{opacity:.6}100%{top:100%;opacity:0}}
 .ph:hover img,.flash:hover img,.pola:hover img{animation:rgbglitch 0.8s steps(2) 1}
 @keyframes rgbglitch{0%{transform:translate(0);filter:saturate(1.2) hue-rotate(0)}25%{transform:translate(-3px,1px);filter:saturate(2) hue-rotate(40deg)}50%{transform:translate(3px,-1px);filter:saturate(1.6) hue-rotate(-40deg)}75%{transform:translate(-1px,0)}100%{transform:translate(0)}}
-.btn:hover{animation:btnglitch .35s steps(3) 1}
-@keyframes btnglitch{0%{clip-path:polygon(0 0,100% 0,100% 40%,0 40%,0 60%,100% 60%,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%);transform:translateX(2px)}50%{transform:translateX(-2px)}100%{transform:none}}
+@media (hover:hover) and (pointer:fine){.btn:hover{animation:btnglitch .35s steps(3) 1}}
+@keyframes btnglitch{0%{transform:translateX(2px);filter:hue-rotate(40deg)}50%{transform:translateX(-2px)}100%{transform:none}}
 .flash::before{animation:rec 2.56s steps(1) infinite}
 @keyframes rec{50%{opacity:.25}}
 .q{animation:qin 1.44s ease-out both;animation-timeline:view();animation-range:entry 0% cover 30%}
