@@ -5668,6 +5668,33 @@ body.mapfull .navpills,html.booting .navpills{display:none}
 .mbg-g button[aria-pressed="true"]::after{content:"✓";position:absolute;right:4px;top:2px;font:700 12px var(--f-mono)}
 .mbg-w{margin:8px 0 0;font:700 12px var(--f-mono);letter-spacing:.1em;color:#110F27;background:var(--cp);padding:8px;text-align:center;box-shadow:0 0 16px rgba(252,238,10,.6)}
 .gift-miss{display:block;margin-bottom:6px;padding:6px 8px;border-left:3px solid var(--cp);background:rgba(252,238,10,.08);color:var(--cp)}
+
+/* ===== UX 4 ===== */
+html:not(.tv-all) section.tv-off,html:not(.tv-all) .dock a.tv-off,html:not(.tv-all) .tv-off{display:none!important}
+.tv-more{margin:10px 0 24px}
+.tv-more button{width:100%;padding:16px;border:1px dashed var(--cyan);background:rgba(59,230,214,.06);color:var(--ink);cursor:pointer;text-align:center}
+.tv-more b{display:block;font:700 12px var(--f-mono);letter-spacing:.18em;color:var(--cyan)}.tv-more span{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+#planList .row.pd-past{opacity:.72;cursor:pointer}
+#planList .row.pd-past:not(.pd-open) .body>*:not(h3){display:none}
+#planList .row.pd-past:not(.pd-open) h3{margin:0}
+#planList .row.pd-past .pd-t{margin-left:8px;padding:2px 8px;border:1px solid var(--cp);background:none;color:var(--cp);font:700 10px var(--f-mono);cursor:pointer;vertical-align:middle}
+.lv-nav{display:flex;justify-content:space-between;gap:8px;margin:10px 0 8px}
+.lv-nav button{flex:1;min-height:36px;border:1px solid rgba(59,230,214,.5);background:rgba(10,8,24,.5);color:var(--cyan);font:700 10.5px var(--f-mono);letter-spacing:.14em;cursor:pointer}
+.lv-nav button[disabled]{opacity:.3}
+.dp{position:fixed;inset:0;z-index:93;background:rgba(5,4,12,.9);display:flex;align-items:flex-end;justify-content:center;padding:12px;overflow:auto}
+.dp-in{width:min(100%,460px);padding:14px;border:1px solid var(--cyan);background:linear-gradient(170deg,#1a1544,#0b0a1c);box-shadow:0 0 30px rgba(59,230,214,.25)}
+.dp-h{display:flex;align-items:center;gap:10px}.dp-h>div{flex:1;text-align:center}
+.dp-h small{display:block;font:700 9.5px var(--f-mono);letter-spacing:.18em;color:var(--cyan)}.dp-h b{display:block;font:400 19px/1.2 var(--f-display);color:var(--cp);margin-top:3px}
+.dp-h button{width:44px;height:44px;border:1px solid var(--line);background:none;color:var(--ink);font-size:18px;cursor:pointer}.dp-h button[disabled]{opacity:.25}
+.dp ul{margin:12px 0 0;padding-left:18px;display:grid;gap:7px;font-size:14.5px;line-height:1.45;color:var(--ink)}.dp li.hl{color:var(--cp)}
+.dp-n{margin:10px 0 0;font:700 11px var(--f-mono);letter-spacing:.12em;color:var(--neon)}
+.dp-b{display:flex;gap:8px;margin-top:14px}.dp-b .btn{flex:1;justify-content:center}
+.dp .ghost{background:none!important;color:var(--ink)!important;border:1px solid var(--line)!important}
+.dp-hint{margin:8px 0 0;text-align:center;font:700 9px var(--f-mono);letter-spacing:.14em;color:var(--muted)}
+.tc-net{display:flex;align-items:center;padding:0 8px;font:700 9.5px var(--f-mono);letter-spacing:.1em;color:#39FF14;border-left:1px solid rgba(255,255,255,.12)}
+html.offline .tc-net{color:#110F27;background:var(--neon)}
+html.offline .wxhint,html.offline .br-wx,html.offline .gn-wx,html.offline .ph-b,html.offline .dact-g ~ a[data-id="wetter"]{opacity:.4;filter:grayscale(1)}
+.ph-b{margin-left:6px;padding:1px 6px;border:1px solid rgba(255,255,255,.25);background:rgba(10,8,24,.5);font-size:12px;cursor:pointer;vertical-align:1px}
 /* ===== Reise-Deck: Tabs statt endloser Boxen ===== */
 .deck{position:relative;z-index:8;margin:0 0 18px;border:1px solid rgba(59,230,214,.55);background:linear-gradient(180deg,rgba(59,230,214,.07),rgba(17,15,39,.94) 70px);box-shadow:0 0 0 1px rgba(255,62,138,.18),0 0 28px rgba(59,230,214,.14),inset 0 0 40px rgba(59,230,214,.05);clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px))}
 .deck::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);z-index:0}
@@ -7021,4 +7048,119 @@ if(document.readyState==="complete") setTimeout(init,600); else addEventListener
 <script>(function(){ const b=document.getElementById("museumBingo"); if(!b) return; let st={}; try{ st=JSON.parse(localStorage.getItem("sn_mbingo")||"{}"); }catch(e){}
  const bs=[...b.querySelectorAll(".mbg-g button")]; const draw=()=>{ let n=0; bs.forEach(x=>{ const on=!!st[x.dataset.k]; x.setAttribute("aria-pressed",on); if(on) n++; }); b.querySelector(".mbg-n").textContent=n+" / "+bs.length; b.querySelector(".mbg-w").hidden=n<bs.length; return n; };
  bs.forEach(x=>x.addEventListener("click",()=>{ st[x.dataset.k]=!st[x.dataset.k]; try{ localStorage.setItem("sn_mbingo",JSON.stringify(st)); }catch(e){} const n=draw(); if(window.__sfx) window.__sfx(n===bs.length?"clear":st[x.dataset.k]?"coin":"undo"); })); draw(); })();</script>
+<script>// ---------- UX 4: Heute-Ansicht, vergangene Tage, Tage wischen, Offline, Foto-Knopf, gemeinsam abhaken ----------
+(function(){
+const TRIP=["2026-11-21","2026-11-22","2026-11-23","2026-11-24","2026-11-25","2026-11-26","2026-11-27","2026-11-28","2026-11-29"];
+const Q=new URLSearchParams(location.search);
+const today=(typeof seoulDate==="function")?seoulDate():"";
+const inTrip=TRIP.includes(today);
+const LIVE_=typeof LIVE!=="undefined"&&LIVE;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const who=()=>{ const r=document.querySelector('input[name="trowho"]:checked'); if(r) return r.value; try{ return localStorage.getItem("who")||"Christoph"; }catch(e){ return "Christoph"; } };
+const sfx=n=>{ if(window.__sfx) window.__sfx(n); };
+const ls=(k,v)=>{ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } };
+
+/* 1. Heute-Ansicht: Reiseunabhängiges hinter einen Knopf */
+const HIDE=["damals","los","games","fukuoka","karten","preise","beachten","packen","praktisch","guide","regen"];
+function todayView(){
+  if(!inTrip) return;
+  const secs=HIDE.map(id=>document.getElementById(id)).filter(Boolean); if(!secs.length) return;
+  secs.forEach(s=>s.classList.add("tv-off"));
+  document.querySelectorAll(".dock a[data-id]").forEach(a=>{ if(HIDE.includes(a.dataset.id)) a.classList.add("tv-off"); });
+  const all=[...document.querySelectorAll("section[id]")]; const last=all.filter(s=>!s.classList.contains("tv-off")).pop()||all.pop();
+  const bar=document.createElement("div"); bar.className="tv-more";
+  bar.innerHTML=`<button type="button" aria-expanded="false"><b>▾ ${secs.length} WEITERE BEREICHE</b><span>2017, Japan, Games, Karten, Preise, Packen, Infos …</span></button>`;
+  let anc=last; if(anc.nextElementSibling&&anc.nextElementSibling.classList.contains("foldbtn")) anc=anc.nextElementSibling; anc.after(bar);
+  let n=bar.nextElementSibling; while(n&&n.tagName!=="FOOTER"){ if(!n.matches("section,.foldbtn,p.status")) n.classList.add("tv-off"); n=n.nextElementSibling; }
+  const btn=bar.querySelector("button");
+  const set=on=>{ document.documentElement.classList.toggle("tv-all",on); btn.setAttribute("aria-expanded",on); btn.querySelector("b").textContent=on?"▴ WENIGER ANZEIGEN":`▾ ${secs.length} WEITERE BEREICHE`; try{ sessionStorage.setItem("sn_tvall",on?"1":""); }catch(e){} };
+  btn.addEventListener("click",()=>{ const on=!document.documentElement.classList.contains("tv-all"); set(on); sfx("tick"); if(!on) bar.scrollIntoView({block:"center"}); });
+  try{ if(sessionStorage.getItem("sn_tvall")==="1") set(true); }catch(e){}
+  window.__tvReveal=el=>{ if(el&&el.closest&&el.closest(".tv-off")) set(true); };
+  // Sprünge in ausgeblendete Bereiche öffnen sie automatisch
+  document.addEventListener("click",e=>{ const a=e.target.closest('a[href^="#"]'); if(!a) return; const t=document.getElementById(a.getAttribute("href").slice(1)); if(t) window.__tvReveal(t); },true);
+  const go=Q.get("go"); if(go) window.__tvReveal(document.getElementById(go));
+  if(location.hash.length>1) window.__tvReveal(document.getElementById(location.hash.slice(1)));
+}
+
+/* 2. Vergangene Tage im Plan einklappen */
+function pastDays(){
+  const pl=document.getElementById("planList"); if(!pl||typeof PLAN==="undefined") return;
+  const apply=()=>{ [...pl.children].forEach((row,i)=>{ const d=(PLAN[i]||[])[0]; if(!d||row.dataset.pd) return; row.dataset.pd="1";
+      if(d<today){ row.classList.add("pd-past"); const h=row.querySelector("h3"); if(h){ const b=document.createElement("button"); b.type="button"; b.className="pd-t"; b.setAttribute("aria-label","Tag aufklappen"); b.textContent="✓ ▾"; h.appendChild(b); }
+        row.addEventListener("click",e=>{ if(e.target.closest("a,input,label")) return; if(!row.classList.contains("pd-past")) return; row.classList.toggle("pd-open"); const t=row.querySelector(".pd-t"); if(t) t.textContent=row.classList.contains("pd-open")?"✓ ▴":"✓ ▾"; }); } }); };
+  apply(); new MutationObserver(apply).observe(pl,{childList:true});
+}
+
+/* 3. Zwischen Tagen wischen (Tageskarte) */
+function dayPeek(start){
+  if(typeof PLAN==="undefined") return; let i=PLAN.findIndex(p=>p[0]===start); if(i<0) return;
+  const o=document.createElement("div"); o.className="dp"; o.setAttribute("role","dialog"); o.setAttribute("aria-label","Tagesvorschau");
+  const draw=()=>{ const [d,wd,title,items,note]=PLAN[i]; const rel=d===today?"HEUTE":d<today?"VORBEI":"KOMMT";
+    o.innerHTML=`<div class="dp-in"><div class="dp-h"><button type="button" class="dp-pv" ${i<=0?"disabled":""} aria-label="Voriger Tag">◂</button><div><small>${rel} · TAG ${i+1} / ${PLAN.length}</small><b>${esc(wd)} ${+d.slice(8)}.11. · ${esc(title)}</b></div><button type="button" class="dp-nx" ${i>=PLAN.length-1?"disabled":""} aria-label="Nächster Tag">▸</button></div>
+      <ul>${items.map(t=>`<li class="${t.startsWith("★ ")?"hl":""}">${esc(t.replace(/^★ /,""))}</li>`).join("")}</ul>${note?`<p class="dp-n">${esc(note)}</p>`:""}
+      <div class="dp-b"><button type="button" class="btn ghost dp-x">ZU</button><button type="button" class="btn dp-plan">IM PLAN ZEIGEN</button></div><p class="dp-hint">Wischen oder ◂ ▸ zum Blättern</p></div>`;
+    o.querySelector(".dp-pv").onclick=()=>{ i--; draw(); sfx("tick"); }; o.querySelector(".dp-nx").onclick=()=>{ i++; draw(); sfx("tick"); };
+    o.querySelector(".dp-x").onclick=()=>o.remove();
+    o.querySelector(".dp-plan").onclick=()=>{ o.remove(); const row=document.getElementById("planList")?.children[i]; if(row){ row.classList.add("pd-open"); (window.__goto||((e)=>e.scrollIntoView()))(row,"start"); } }; };
+  draw(); document.body.appendChild(o); sfx("open");
+  o.addEventListener("click",e=>{ if(e.target===o) o.remove(); });
+  let x0=null; o.addEventListener("touchstart",e=>{ x0=e.touches[0].clientX; },{passive:true});
+  o.addEventListener("touchend",e=>{ if(x0==null) return; const dx=e.changedTouches[0].clientX-x0; x0=null; if(Math.abs(dx)<50) return; if(dx<0&&i<PLAN.length-1){ i++; draw(); sfx("tick"); } else if(dx>0&&i>0){ i--; draw(); sfx("tick"); } },{passive:true});
+}
+window.__dayPeek=dayPeek;
+function lvlSwipe(){
+  const l=document.getElementById("lvl"); if(!l||l.hidden||!inTrip) return;
+  const nav=document.createElement("div"); nav.className="lv-nav";
+  nav.innerHTML=`<button type="button" data-d="-1">◂ GESTERN</button><button type="button" data-d="1">MORGEN ▸</button>`;
+  const at=l.querySelector(".lvl-x"); if(at) at.before(nav); else l.appendChild(nav);
+  const idx=TRIP.indexOf(today); nav.querySelectorAll("button").forEach(b=>{ const j=idx+ +b.dataset.d; if(j<0||j>=TRIP.length) b.disabled=true; b.addEventListener("click",()=>dayPeek(TRIP[j])); });
+  let x0=null,y0=null; l.addEventListener("touchstart",e=>{ x0=e.touches[0].clientX; y0=e.touches[0].clientY; },{passive:true});
+  l.addEventListener("touchend",e=>{ if(x0==null) return; const dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null; if(Math.abs(dx)<70||Math.abs(dy)>Math.abs(dx)*.6) return; const j=idx+(dx<0?1:-1); if(j>=0&&j<TRIP.length) dayPeek(TRIP[j]); },{passive:true});
+}
+
+/* 4. Offline-Anzeige */
+function offline(){
+  const upd=first=>{ const off=!navigator.onLine; document.documentElement.classList.toggle("offline",off);
+    let d=document.querySelector(".tc-net"); const c=document.querySelector(".topctl");
+    if(c&&!d){ d=document.createElement("span"); d.className="tc-net"; d.setAttribute("role","status"); c.prepend(d); }
+    if(d){ d.textContent=off?"○ OFFLINE":"● ON"; d.title=off?"Kein Netz: Seite läuft aus dem Speicher":"Online"; }
+    if(!first){ const t=document.createElement("div"); t.className="ux-toast"; t.setAttribute("role","status"); t.textContent=off?"Offline: Die Seite läuft aus dem Speicher. Wetter und gemeinsames Abhaken gehen erst wieder mit Netz.":"Wieder online"; document.body.appendChild(t); setTimeout(()=>t.remove(),3200); } };
+  addEventListener("online",()=>upd(false)); addEventListener("offline",()=>upd(false)); setTimeout(()=>upd(true),900);
+}
+
+/* 5. Foto-Knopf in der Tageskarte */
+function photoBtns(){
+  const l=document.getElementById("lvl"), pick=document.getElementById("pick"); if(!l||l.hidden||!pick) return;
+  const add=()=>{ l.querySelectorAll("li").forEach(li=>{ if(li.querySelector(".ph-b")) return; const b=document.createElement("button"); b.type="button"; b.className="ph-b"; b.textContent="📷"; b.setAttribute("aria-label","Foto zu diesem Punkt hochladen");
+    b.addEventListener("click",e=>{ e.preventDefault(); e.stopPropagation(); if(pick.disabled){ const t=document.createElement("div"); t.className="ux-toast"; t.textContent="Hochladen geht nur auf der Live-Seite"; document.body.appendChild(t); setTimeout(()=>t.remove(),2400); return; } pick.click(); }); li.appendChild(b); }); };
+  add(); setInterval(add,4000);
+}
+
+/* 6. Gemeinsam abhaken: Geschenke, Einkaufsliste, Bingo */
+function sharedChecks(){
+  if(!LIVE_) return;
+  const key=id=>"cb-"+id.toLowerCase().replace(/[^a-z0-9]+/g,"-").slice(0,37);
+  const boxes=()=>[...document.querySelectorAll(".gift-ok input[id], .ck-ok input[id]")];
+  const recount=()=>{ if(typeof window.coinCount==="function") window.coinCount(); const e=document.getElementById("ckN"); if(e) e.textContent=document.querySelectorAll(".ck-ok input:checked").length; };
+  const bingo=document.getElementById("museumBingo");
+  const post=(id,undo)=>fetch("/api/achievements",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id,by:who(),undo})}).then(r=>r.ok?r.json():null).catch(()=>null);
+  let data=null;
+  async function load(){ try{ const r=await fetch("/api/achievements",{cache:"no-store"}); if(r.ok){ const j=await r.json(); if(j&&!j.offline) data=j; } }catch(e){} if(!data) return;
+    // Erstes Mal: lokal Abgehaktes hochladen, damit nichts verloren geht
+    if(ls("sn_sync1")!=="1"){ const ups=boxes().filter(c=>c.checked&&!data[key(c.id)]).map(c=>post(key(c.id),false)); if(bingo){ let st={}; try{ st=JSON.parse(ls("sn_mbingo")||"{}"); }catch(e){} Object.keys(st).filter(k=>st[k]).forEach(k=>{ if(!data["bg-"+k]) ups.push(post("bg-"+k,false)); }); }
+      const res=await Promise.all(ups); const lastJ=res.filter(Boolean).pop(); if(lastJ) data=lastJ; ls("sn_sync1","1"); }
+    boxes().forEach(c=>{ const on=!!data[key(c.id)]; if(c.checked!==on){ c.checked=on; ls(c.id,on?"1":"0"); } });
+    if(bingo){ const st={}; bingo.querySelectorAll(".mbg-g button").forEach(b=>{ const on=!!data["bg-"+b.dataset.k]; st[b.dataset.k]=on; }); ls("sn_mbingo",JSON.stringify(st)); bingo.querySelectorAll(".mbg-g button").forEach(b=>b.setAttribute("aria-pressed",!!st[b.dataset.k])); const n=Object.values(st).filter(Boolean).length; bingo.querySelector(".mbg-n").textContent=n+" / 9"; bingo.querySelector(".mbg-w").hidden=n<9; }
+    recount(); }
+  document.addEventListener("change",e=>{ const c=e.target.closest(".gift-ok input[id], .ck-ok input[id]"); if(!c) return; post(key(c.id),!c.checked).then(j=>{ if(j) data=j; }); });
+  if(bingo) bingo.addEventListener("click",e=>{ const b=e.target.closest(".mbg-g button"); if(!b) return; setTimeout(()=>{ const on=b.getAttribute("aria-pressed")==="true"; post("bg-"+b.dataset.k,!on).then(j=>{ if(j) data=j; }); },30); });
+  load(); setInterval(()=>{ if(!document.hidden&&navigator.onLine) load(); },60000);
+}
+
+function init(){ todayView(); pastDays(); lvlSwipe(); offline(); photoBtns(); sharedChecks();
+  const og=window.__goto; if(og&&!og.__tv){ const w=(el,b)=>{ if(window.__tvReveal) window.__tvReveal(el); return og(el,b); }; w.__tv=1; w.__ux=og.__ux; window.__goto=w; } }
+if(document.readyState==="complete") setTimeout(init,700); else addEventListener("load",()=>setTimeout(init,700));
+})();
+</script>
 </body></html>
