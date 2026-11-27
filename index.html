@@ -4312,7 +4312,7 @@ if(d>TRIP_END||(d===TRIP_END&&h>=12&&!SIM)){ clr.hidden=false; }
     ["namsan","N SEOUL TOWER",104,100,"","ko"],["ddp","DONGDAEMUN",172,84,"","ko"],["bukchon","BUKCHON",130,18,"2026-11-27","ko"],["unfold","UNFOLD X",52,132,"2026-11-26","ko"],["namdaemun","NAMDAEMUN",108,156,"2026-11-27","ko"],
     ["sky","LOTTE TOWER",170,122,"2026-11-27","ko"],["samsung","SUWON",160,196,"2026-11-28","ko"],["home","HEIMFLUG",50,204,"2026-11-29","ko"],
     ["ramen","YATAI",250,150,"2026-11-24","jp"],["teamlab","TEAMLAB",302,128,"2026-11-25","jp"],["nintendo","NINTENDO",296,196,"2026-11-25","jp"]];
-  const BASE=["arr","namsan","ddp","teamlab","nintendo","unfold"]; // von uns bestätigt
+  const BASE=["arr","namsan","ddp","teamlab","nintendo","unfold","bukchon","namdaemun"]; // von uns bestätigt
   const ORDER=["arr","palast","bindae","ddp","namsan","ramen","teamlab","nintendo","unfold","namdaemun","bukchon","sky","samsung","home"];
   const box=document.createElement("div"); box.className="wmap"; box.id="wmap";
   const lvl=document.getElementById("lvl"), lb=document.getElementById("logbuch");
@@ -4343,7 +4343,7 @@ if(d>TRIP_END||(d===TRIP_END&&h>=12&&!SIM)){ clr.hidden=false; }
       ${roads}${nodes}${stamps}
       <g class="me" aria-hidden="true"><circle cx="${me[2]-4}" cy="${me[3]-17}" r="3"/><circle cx="${me[2]+4}" cy="${me[3]-17}" r="3"/></g>
     </svg>
-    <p class="status">Antippen hakt einen Ort ab, beide sehen es. Nochmal zweimal tippen nimmt es zurück. N Seoul Tower, Dongdaemun, teamLab, Nintendo und Unfold X sind schon drin.</p>`;
+    <p class="status">Antippen hakt einen Ort ab, beide sehen es. Nochmal zweimal tippen nimmt es zurück. N Seoul Tower, Dongdaemun, teamLab, Nintendo, Unfold X, Namdaemun und Bukchon sind schon drin.</p>`;
   }
   const _draw=draw; draw=function(){ _draw(); try{ zoomSync(); }catch(e){} };
   const ls=(k,v)=>{try{ if(v===undefined) return JSON.parse(localStorage.getItem(k)||"null"); localStorage.setItem(k,JSON.stringify(v)); }catch(e){ return null; }};
