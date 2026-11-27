@@ -2811,6 +2811,10 @@ pflichtprogramm: <span class="n">null</span>,
 <text x="50" y="34" class="am-st" transform="rotate(-45 50 34)">YANGHWA-RO</text>
 <text x="33" y="70" class="am-st" transform="rotate(79 33 70)">EOULMADANG-RO</text>
 <text x="80" y="80" class="am-st sm" transform="rotate(-14 80 80)">WAUSAN-RO 21-GIL</text>
+<!-- Verkehr auf der Yanghwa-ro -->
+<path d="M0 90 L150 -60" class="am-trf"/><path d="M2 92 L152 -58" class="am-trf r"/>
+<!-- Neon-Schilder -->
+<g class="am-neon"><text x="96" y="40" class="n1">노래방</text><text x="132" y="54" class="n2">PC방</text><text x="10" y="112" class="n3">치킨</text><text x="140" y="118" class="n1">BAR</text><text x="150" y="104" class="n2">24H</text><text x="20" y="146" class="n3">호프</text></g>
 <!-- Weg -->
 <path class="am-r" d="M40 50 L47 43 L58 101 L66 113"/>
 <path class="am-r b" d="M60 112 L61 128"/>
@@ -2818,6 +2822,10 @@ pflichtprogramm: <span class="n">null</span>,
 <!-- Läufer -->
 <g class="am-walk"><circle r="2.6" fill="#FCEE0A"/><circle r="5" fill="none" stroke="#FCEE0A" stroke-width=".6" opacity=".6"><animate attributeName="r" values="2.6;7;2.6" dur="1.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0;.8" dur="1.4s" repeatCount="indefinite"/></circle>
 <animateMotion dur="5s" repeatCount="indefinite" rotate="0"><mpath href="#aroute"/></animateMotion></g>
+<path id="aroute2" d="M57 96 L104 85" fill="none"/>
+<g class="am-walk"><rect x="-2" y="-2" width="4" height="4" fill="#3BE6D6" transform="rotate(45)"/><animateMotion dur="2.6s" begin="1s" repeatCount="indefinite"><mpath href="#aroute2"/></animateMotion></g>
+<!-- Münzen und Sterne über den Spielhallen -->
+<g class="am-fx"><text x="70" y="104" class="cn">✦</text><text x="77" y="106" class="cn d1">●</text><text x="52" y="122" class="cn d2">★</text><text x="60" y="124" class="cn d3">●</text><text x="106" y="81" class="cn d1">♪</text><text x="114" y="83" class="cn d3">♪</text></g>
 <!-- Hotel -->
 <g class="am-h" transform="translate(40 50)"><circle r="11" fill="url(#aglow)" class="am-pulse"/><rect x="-7" y="-7" width="14" height="14" rx="2.5"/><path d="M-4.5 2.5V-1.5H4.5V2.5M-4.5 0H4.5M-3.5 -1.5V-3.5H-1V-1.5" class="ln"/></g>
 <text x="16" y="66" class="am-l">HOTEL</text>
@@ -2834,6 +2842,8 @@ pflichtprogramm: <span class="n">null</span>,
 <text x="100" y="10" class="am-l y">↗ HONGIK UNIV. STN</text><text x="70" y="151" class="am-l y">↓ SANGSU</text>
 <g transform="translate(168 30)"><path d="M0 -9 L4 3 L0 0 L-4 3Z" fill="#FCEE0A"/><text y="12" class="am-l" text-anchor="middle">N</text></g>
 <g transform="translate(120 140)"><path d="M0 0 H28" stroke="#fff" stroke-width="1.2"/><path d="M0 -2V2M28 -2V2" stroke="#fff" stroke-width="1"/><text x="14" y="-4" class="am-l" text-anchor="middle">100 m</text></g>
+<rect class="am-scan" x="0" y="0" width="180" height="10"/>
+<path d="M1 12V1H12M168 1H179V12M179 143V154H168M12 154H1V143" class="am-frame"/>
 <g class="am-tag" transform="translate(4 6)"><rect width="56" height="11" rx="1.5"/><text x="4" y="7.6">오락실 · 4 MIN</text></g>
 </svg><figcaption>Schematisch, nicht exakt. Gelb: Weg zu 1 und 2, cyan: Abzweig zu 3. Funktioniert ohne Netz.</figcaption></figure>
 <ol class="arc-w">
@@ -5778,6 +5788,23 @@ body.qb-on{padding-bottom:0}
  .am-s .fl{animation:amblink 1.6s steps(2) infinite}@keyframes amblink{50%{opacity:.3}}
 }
 @media (prefers-reduced-motion:reduce){.am-walk{display:none}}
+.am-trf{fill:none;stroke:#FF3E8A;stroke-width:1;stroke-dasharray:2 14;opacity:.8}.am-trf.r{stroke:#fff;stroke-dasharray:1.5 18;opacity:.6}
+.am-neon text{font:800 5px "Noto Sans KR",var(--f-mono);letter-spacing:.05em}
+.am-neon .n1{fill:#FF3E8A;filter:drop-shadow(0 0 2px #FF3E8A)}.am-neon .n2{fill:#3BE6D6;filter:drop-shadow(0 0 2px #3BE6D6)}.am-neon .n3{fill:#FCEE0A;filter:drop-shadow(0 0 2px #FCEE0A)}
+.am-fx .cn{font:700 5px var(--f-mono);fill:#FCEE0A;opacity:0}
+.am-scan{fill:url(#ascan);fill:rgba(59,230,214,.10)}
+.am-frame{fill:none;stroke:#3BE6D6;stroke-width:1.2}
+@media (prefers-reduced-motion:no-preference){
+ .am-trf{animation:amtrf 1.8s linear infinite}.am-trf.r{animation-duration:2.6s;animation-direction:reverse}
+ @keyframes amtrf{to{stroke-dashoffset:-32}}
+ .am-neon .n1{animation:amflk 3.1s steps(1) infinite}.am-neon .n2{animation:amflk 2.3s steps(1) .8s infinite}.am-neon .n3{animation:amflk 4s steps(1) 1.6s infinite}
+ @keyframes amflk{0%,100%{opacity:1}42%{opacity:.25}44%{opacity:1}46%{opacity:.4}48%{opacity:1}}
+ .am-fx .cn{animation:amup 2.4s ease-out infinite;transform-box:fill-box}.am-fx .d1{animation-delay:.6s}.am-fx .d2{animation-delay:1.2s}.am-fx .d3{animation-delay:1.8s}
+ @keyframes amup{0%{opacity:0;transform:translateY(4px)}20%{opacity:1}100%{opacity:0;transform:translateY(-12px)}}
+ .am-scan{animation:amscan 4s linear infinite}@keyframes amscan{from{transform:translateY(-12px)}to{transform:translateY(160px)}}
+ .am-frame{animation:amfr 2s ease-in-out infinite}@keyframes amfr{50%{stroke:#FF3E8A}}
+ .am-tag rect{animation:amtag 1.2s steps(2) infinite}@keyframes amtag{50%{fill:#fff8a8}}
+}
 /* ===== Reise-Deck: Tabs statt endloser Boxen ===== */
 .deck{position:relative;z-index:8;margin:0 0 18px;border:1px solid rgba(59,230,214,.55);background:linear-gradient(180deg,rgba(59,230,214,.07),rgba(17,15,39,.94) 70px);box-shadow:0 0 0 1px rgba(255,62,138,.18),0 0 28px rgba(59,230,214,.14),inset 0 0 40px rgba(59,230,214,.05);clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px))}
 .deck::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);z-index:0}
