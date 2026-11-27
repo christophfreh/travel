@@ -5695,6 +5695,12 @@ html:not(.tv-all) section.tv-off,html:not(.tv-all) .dock a.tv-off,html:not(.tv-a
 html.offline .tc-net{color:#110F27;background:var(--neon)}
 html.offline .wxhint,html.offline .br-wx,html.offline .gn-wx,html.offline .ph-b,html.offline .dact-g ~ a[data-id="wetter"]{opacity:.4;filter:grayscale(1)}
 .ph-b{margin-left:6px;padding:1px 6px;border:1px solid rgba(255,255,255,.25);background:rgba(10,8,24,.5);font-size:12px;cursor:pointer;vertical-align:1px}
+
+/* Desktop: keine zweite Leiste über der Navigation, keine Riss-Linien */
+html .qbar,html .qbar.on{display:none!important}
+@media (min-width:821px){html body.qb-on .dock{display:block!important}}
+body.qb-on{padding-bottom:0}
+.hxcrack{display:none!important}
 /* ===== Reise-Deck: Tabs statt endloser Boxen ===== */
 .deck{position:relative;z-index:8;margin:0 0 18px;border:1px solid rgba(59,230,214,.55);background:linear-gradient(180deg,rgba(59,230,214,.07),rgba(17,15,39,.94) 70px);box-shadow:0 0 0 1px rgba(255,62,138,.18),0 0 28px rgba(59,230,214,.14),inset 0 0 40px rgba(59,230,214,.05);clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px))}
 .deck::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);z-index:0}
