@@ -3699,7 +3699,7 @@ const y=window.scrollY+window.innerHeight*.35; let cur=NAV[0][0], best=-1; const
 if(!spy.o||now-spy.t>1200){ spy.t=now; spy.o=NAV.map(([id])=>{const el=document.getElementById(id); return [id,el?el.getBoundingClientRect().top+scrollY:Infinity];}); }
 spy.o.forEach(([id,top])=>{ if(top<=y && top>best){best=top;cur=id;} });
 links.forEach(a=>a.classList.toggle("on",a.dataset.id===cur));
-const on=nav.querySelector("a.on"); if(on&&on!==spy.last){ spy.last=on; const di=nav.querySelector(".dock-in"); if(di){ const L=on.offsetLeft-(di.clientWidth-on.offsetWidth)/2; di.scrollTo({left:Math.max(0,L),behavior:"smooth"}); } }
+const on=nav.querySelector("a.on"); if(on&&on!==spy.last){ spy.last=on; const di=nav.querySelector(".dock-in"); if(di){ const gg=di.querySelector(".dact-g"), G=gg?gg.offsetWidth:0; const L=on.offsetLeft-G-(di.clientWidth-G-on.offsetWidth)/2; di.scrollTo({left:Math.max(0,L),behavior:"smooth"}); } }
 const h=document.documentElement.scrollHeight-window.innerHeight; $("prog").style.width=(h>0?Math.min(100,window.scrollY/h*100):0)+"%";
 }
 let raf=0; window.addEventListener("scroll",()=>{if(!raf)raf=requestAnimationFrame(()=>{raf=0;spy();});},{passive:true}); spy();
@@ -5540,6 +5540,43 @@ section[id]{content-visibility:auto;contain-intrinsic-size:auto 1600px}
 .le p{margin:8px 0 0;font-size:14px;line-height:1.5;color:var(--muted)}.le p b{color:var(--ink)}
 .le-w{border-left:2px solid var(--cyan);padding-left:8px}
 .le .btn{margin-top:10px}
+
+/* ===== UX 3 ===== */
+/* Kopfleiste */
+html .today-chip{top:0;left:0;transform:translateY(-110%);height:26px;padding:0 10px;display:flex;align-items:center;border-radius:0;background:#110F27;color:var(--cp);box-shadow:3px 0 0 var(--neon);font-size:10.5px;z-index:71}
+html .today-chip.on{transform:none}
+.topctl{position:fixed;top:0;right:0;z-index:71;height:26px;display:flex;align-items:stretch;background:#110F27;box-shadow:-3px 0 0 var(--neon)}
+.topctl>*{position:static!important;margin:0!important;height:26px!important;min-height:0!important;width:auto!important;border-radius:0!important;box-shadow:none!important;transform:none!important}
+.topctl button{min-width:30px;padding:0 8px;border:0;border-left:1px solid rgba(255,255,255,.12);background:none;color:var(--ink);font:700 10px var(--f-mono);letter-spacing:.1em;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.topctl .tc-q[aria-pressed="true"]{color:#110F27;background:var(--cyan)}
+html .topctl .nightbar{display:flex;gap:0;padding:0;background:none;border:0;font-size:0}
+html .topctl .nightbar>span:first-child{font-size:12px;padding:0 6px;display:flex;align-items:center}
+html .topctl .nightbar>span:first-child{color:transparent;width:24px;overflow:hidden;white-space:nowrap}
+html .topctl .nightbar>span:first-child::first-letter{color:var(--cyan)}
+html .topctl .nightbar .hw{display:none}
+html .topctl .nightbar .nx{font-size:10px;padding:0 8px;border:0;border-left:1px solid rgba(255,255,255,.12);color:var(--cyan)}
+html.night .dtick{opacity:1;filter:brightness(.7) saturate(.7)}
+.ux-toast{position:fixed;left:50%;top:36px;transform:translateX(-50%);z-index:99;max-width:92vw;padding:10px 14px;background:#110F27;border:1px solid var(--cyan);color:var(--ink);font:700 11px var(--f-mono);letter-spacing:.06em;box-shadow:0 0 18px rgba(59,230,214,.35)}
+/* Ruhemodus */
+html.quiet .lvc,html.quiet .gn,html.quiet .qnudge{display:none!important}
+/* Leiste unten: feste Aktionen */
+.home-fab,.sfab,.totop{display:none!important}
+.dact-g{position:sticky;left:-6px;z-index:2;display:flex;gap:4px;margin:-6px 4px -6px -6px;padding:6px 6px 6px 6px;background:rgba(27,24,64,.98);border-right:1px solid rgba(252,238,10,.35);border-radius:20px 0 0 20px}
+.dact{flex:0 0 58px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 4px 6px;border:0;border-radius:14px;background:rgba(59,230,214,.1);color:var(--cyan);cursor:pointer}
+.dact b{font:700 15px/1.1 "Noto Sans KR",var(--f-body)}.dact span{font:700 9px var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.dact.now{background:var(--neon);color:#fff;box-shadow:0 0 12px rgba(255,62,138,.5)}
+/* Zurück & Top */
+.navpills{position:fixed;right:12px;bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:36;display:flex;gap:6px}
+.navpills button{height:34px;padding:0 12px;border:1px solid var(--cp);background:rgba(17,15,39,.94);color:var(--cp);font:700 10.5px var(--f-mono);letter-spacing:.12em;cursor:pointer;box-shadow:0 0 12px rgba(252,238,10,.25)}
+.navpills .np-back{border-color:var(--cyan);color:var(--cyan)}
+.navpills button[hidden]{display:none}
+body.mapfull .navpills,html.booting .navpills{display:none}
+/* Lesbarkeit */
+:root{--muted:#C6C1E6}
+@media (max-width:760px){
+  section .box p,section .box li,.endbox li,.le p{font-size:max(15px,1em)}
+  .status{color:#BDB8DD}
+}
 /* ===== Reise-Deck: Tabs statt endloser Boxen ===== */
 .deck{position:relative;z-index:8;margin:0 0 18px;border:1px solid rgba(59,230,214,.55);background:linear-gradient(180deg,rgba(59,230,214,.07),rgba(17,15,39,.94) 70px);box-shadow:0 0 0 1px rgba(255,62,138,.18),0 0 28px rgba(59,230,214,.14),inset 0 0 40px rgba(59,230,214,.05);clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px))}
 .deck::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);z-index:0}
@@ -6819,4 +6856,71 @@ window.__now=show;
  const add=()=>{ const x=l.querySelector(".lvl-x"); if(!x||x.querySelector(".lelk")) return; const a=document.createElement("a"); a.className="btn lelk"; a.href="#lightEat"; a.textContent="🍲 Leicht essen ▸";
   a.addEventListener("click",ev=>{ ev.preventDefault(); const t=document.getElementById("lightEat"); if(!t) return; if(window.__unfold) window.__unfold(t); const sec=t.closest("section"); if(sec) sec.classList.add("open"); setTimeout(()=>{ if(window.__goto) window.__goto(t,"start"); else t.scrollIntoView({behavior:"smooth"}); },150); }); x.prepend(a); };
  add(); setTimeout(add,1500); })();</script>
+<script>// ---------- UX 3: Kopfleiste, Dock-Aktionen, Ruhemodus, Dock nach Tageszeit, Zurück & Top ----------
+(function(){
+const Q=new URLSearchParams(location.search);
+const today=(typeof seoulDate==="function")?seoulDate():"";
+const H=(()=>{ const t=Q.get("t"); if(t&&/^\d{1,2}:\d{2}$/.test(t)) return +t.split(":")[0]; return +new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Seoul",hour:"2-digit",hour12:false}).format(new Date())%24; })();
+const ls=(k,v)=>{ try{ if(v===undefined) return localStorage.getItem(k); if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v); }catch(e){ return null; } };
+const sfx=n=>{ if(window.__sfx) window.__sfx(n); };
+
+/* 4. Ruhemodus (gilt für den heutigen Tag) */
+const quietOn=()=>ls("sn_quiet")===today;
+const applyQuiet=()=>document.documentElement.classList.toggle("quiet",quietOn());
+applyQuiet();
+
+/* 1. Eine Kopfleiste: Tag links, Ticker Mitte, Schalter rechts */
+function topbar(){
+  if(document.querySelector(".topctl")) return;
+  const c=document.createElement("div"); c.className="topctl";
+  const q=document.createElement("button"); q.type="button"; q.className="tc-q"; q.setAttribute("aria-label","Ruhemodus: keine automatischen Einblendungen heute");
+  const ql=()=>{ q.setAttribute("aria-pressed",quietOn()); q.textContent=quietOn()?"💤 RUHE":"💤"; };
+  q.addEventListener("click",()=>{ ls("sn_quiet",quietOn()?null:today); applyQuiet(); ql(); sfx("tick"); toast(quietOn()?"Ruhemodus an: heute keine automatischen Einblendungen":"Ruhemodus aus"); });
+  ql(); c.appendChild(q);
+  const nb=document.querySelector(".nightbar"); if(nb) c.appendChild(nb);
+  const tb=document.querySelector(".theme-btn"); if(tb) c.appendChild(tb);
+  document.body.appendChild(c);
+}
+function toast(t){ const d=document.createElement("div"); d.className="ux-toast"; d.setAttribute("role","status"); d.textContent=t; document.body.appendChild(d); setTimeout(()=>d.remove(),2600); }
+
+/* 2./3. Aktionen fest vorne in der Leiste unten */
+function dockActions(){
+  const din=document.querySelector(".dock .dock-in"); if(!din||din.querySelector(".dact-g")) return;
+  const g=document.createElement("div"); g.className="dact-g";
+  const A=[["지금","Jetzt",()=>{ if(window.__now) window.__now(); else { const l=document.getElementById("lvl"); if(l) go(l); } }],
+           ["집","Heimweg",()=>{ if(window.__home) window.__home(); else { const f=document.querySelector(".home-fab"); if(f) f.click(); } }],
+           ["찾기","Suche",()=>{ const f=document.querySelector(".sfab"); if(f) f.click(); }]];
+  A.forEach(([ko,de,fn],i)=>{ const b=document.createElement("button"); b.type="button"; b.className="dact"+(i===0?" now":""); b.innerHTML=`<b>${ko}</b><span>${de}</span>`; b.addEventListener("click",fn); g.appendChild(b); });
+  din.prepend(g);
+}
+
+/* 5. Leiste nach Tageszeit sortieren */
+function dockOrder(){
+  const din=document.querySelector(".dock .dock-in"); if(!din) return;
+  const ORD=H>=5&&H<11?["plan","wetter","hacks","logbuch","fotos"]:H>=11&&H<17?["plan","viertel","essen","shopping","fotos"]:["essen","bier","abends","fotos","viertel"];
+  const g=din.querySelector(".dact-g"); let after=g||null;
+  ORD.forEach(id=>{ const a=din.querySelector(`a[data-id="${id}"]`); if(!a) return; if(after) after.after(a); else din.prepend(a); after=a; });
+  din.scrollLeft=0;
+}
+
+/* 6. Zurück nach Sprüngen + Top */
+let backY=null, backT=0;
+const pills=document.createElement("div"); pills.className="navpills";
+pills.innerHTML=`<button type="button" class="np-back" hidden>◂ ZURÜCK</button><button type="button" class="np-top" hidden aria-label="Nach oben">▲ TOP</button>`;
+const bb=pills.querySelector(".np-back"), tt=pills.querySelector(".np-top");
+const mark=()=>{ backY=scrollY; backT=Date.now(); setTimeout(upd,900); };
+function go(el){ mark(); if(window.__goto) window.__goto(el,"start"); else el.scrollIntoView({behavior:"smooth"}); }
+function upd(){ const far=backY!=null&&Math.abs(scrollY-backY)>500&&Date.now()-backT<10*60e3; bb.hidden=!far; tt.hidden=scrollY<1400; }
+bb.addEventListener("click",()=>{ const y=backY; backY=null; upd(); scrollTo({top:y,behavior:"smooth"}); sfx("tick"); });
+tt.addEventListener("click",()=>{ mark(); scrollTo({top:0,behavior:"smooth"}); sfx("tick"); });
+document.addEventListener("click",e=>{ const a=e.target.closest('a[href^="#"],.lvl-x a,.lvl-x button'); if(!a||a.closest(".navpills")) return; mark(); },true);
+let rt=0; addEventListener("scroll",()=>{ if(rt) return; rt=requestAnimationFrame(()=>{ rt=0; upd(); }); },{passive:true});
+document.body.appendChild(pills);
+
+function init(){ topbar(); dockActions(); dockOrder();
+  const og=window.__goto; if(og&&!og.__ux){ const w=(el,b)=>{ if(Date.now()-backT>400) { backY=scrollY; backT=Date.now(); setTimeout(upd,900); } return og(el,b); }; w.__ux=1; window.__goto=w; }
+  upd(); }
+if(document.readyState==="complete") setTimeout(init,600); else addEventListener("load",()=>setTimeout(init,600));
+})();
+</script>
 </body></html>
