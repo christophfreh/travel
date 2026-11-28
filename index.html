@@ -91,6 +91,7 @@ function fill(){var d=L(),e=document.querySelectorAll(".o-wx");var days=Math.cei
 window.__wxFill=fill;
 try{var c=new AbortController();setTimeout(function(){c.abort()},4000);fetch("https://api.open-meteo.com/v1/forecast?latitude=37.565&longitude=126.984&current=temperature_2m,weather_code&timezone=Asia%2FSeoul",{signal:c.signal}).then(function(r){return r.json()}).then(function(j){if(!j.current)return;try{localStorage.setItem(K,JSON.stringify({t:Math.round(j.current.temperature_2m),p:lab(j.current.weather_code)}))}catch(e){}fill()}).catch(function(){})}catch(e){}})();
 </script><script>(function(){ try{ ["ck_switch","ck_controller","g_alva"].forEach(function(k){ if(localStorage.getItem(k)===null) localStorage.setItem(k,"1"); }); }catch(e){} })();</script>
+<script>(function(){ const m=()=>{ window.__uxIn=Date.now(); }; ["wheel","touchmove","keydown","mousedown"].forEach(t=>addEventListener(t,m,{passive:true,capture:true})); })();</script>
 </head><body><title>seoul, november</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -5657,7 +5658,7 @@ section>.rel .label,section>.rel>span:first-child{color:var(--cyan)}
 .deck:not(.all) .dk-t button.dk-more:not([aria-selected="true"]){display:none}
 .dk-t .dk-mb{flex:0 0 auto;padding:8px 12px;border:1px dashed rgba(59,230,214,.6);background:none;color:var(--cyan);font:700 10px var(--f-mono);letter-spacing:.14em;cursor:pointer}
 /* Tempo: Abschnitte außerhalb des Bildschirms nicht rendern */
-section[id]{content-visibility:auto;contain-intrinsic-size:auto 1600px}
+section[id]{content-visibility:auto;contain-intrinsic-size:auto 1100px}
 .le-i{font-size:14px;color:var(--muted);margin:6px 0 10px}.le-i b{color:var(--ink)}
 .le{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:le}
 .le>li{counter-increment:le;position:relative;padding:12px 12px 12px 44px;border:1px solid rgba(255,255,255,.12);background:rgba(10,8,24,.45)}
@@ -7380,7 +7381,7 @@ function sharedChecks(){
 }
 
 function init(){ todayView(); pastDays(); lvlSwipe(); offline(); photoBtns(); sharedChecks();
-  const og=window.__goto; if(og&&!og.__tv){ const w=(el,b)=>{ if(window.__tvReveal) window.__tvReveal(el); const r=og(el,b); if(el&&el.getBoundingClientRect){ const fix=()=>{ const t=el.getBoundingClientRect().top; if(Math.abs(t-64)>40) scrollBy(0,t-64); }; [450,900,1500].forEach(ms=>setTimeout(fix,ms)); } return r; }; w.__tv=1; w.__ux=og.__ux; window.__goto=w; } }
+  const og=window.__goto; if(og&&!og.__tv){ const w=(el,b)=>{ if(window.__tvReveal) window.__tvReveal(el); const r=og(el,b); if(el&&el.getBoundingClientRect){ const t0=Date.now(); const fix=()=>{ if((window.__uxIn||0)>t0+120) return; const t=el.getBoundingClientRect().top; if(Math.abs(t-64)>40) scrollBy({top:t-64,behavior:"instant"}); }; [450,900,1500].forEach(ms=>setTimeout(fix,ms)); } return r; }; w.__tv=1; w.__ux=og.__ux; window.__goto=w; } }
 if(document.readyState==="complete") setTimeout(init,700); else addEventListener("load",()=>setTimeout(init,700));
 })();
 </script>
