@@ -3823,13 +3823,14 @@ nav.addEventListener("click",e=>{const a=e.target.closest("a");if(!a)return;e.pr
 const links=[...nav.querySelectorAll("a")];
 function spy(){
 const y=window.scrollY+window.innerHeight*.35; let cur=NAV[0][0], best=-1; const now=Date.now();
-if(!spy.o||now-spy.t>1200){ spy.t=now; spy.o=NAV.map(([id])=>{const el=document.getElementById(id); return [id,el?el.getBoundingClientRect().top+scrollY:Infinity];}); }
+if(!spy.o||now-spy.t>1200){ spy.t=now; spy.o=NAV.map(([id])=>{const el=document.getElementById(id); const vis=el&&el.getClientRects().length&&!el.closest(".tv-off"); return [id,vis?el.getBoundingClientRect().top+scrollY:Infinity];}); }
 spy.o.forEach(([id,top])=>{ if(top<=y && top>best){best=top;cur=id;} });
-links.forEach(a=>a.classList.toggle("on",a.dataset.id===cur));
-const on=nav.querySelector("a.on"); if(on&&on!==spy.last){ spy.last=on; const di=nav.querySelector(".dock-in"); if(di){ const gg=di.querySelector(".dact-g"), G=gg?gg.offsetWidth:0; const L=on.offsetLeft-G-(di.clientWidth-G-on.offsetWidth)/2; di.scrollTo({left:Math.max(0,L),behavior:"smooth"}); } }
+if(cur!==spy.cur){ if(spy.cand!==cur){ spy.cand=cur; spy.ct=now; clearTimeout(spy.to); spy.to=setTimeout(spy,320); } if(now-spy.ct<300&&spy.cur) cur=spy.cur; } spy.cur=cur; links.forEach(a=>a.classList.toggle("on",a.dataset.id===cur));
+const on=nav.querySelector("a.on"); if(on&&on!==spy.last&&on.offsetParent&&Date.now()-(spy.touch||0)>2500){ spy.last=on; const di=nav.querySelector(".dock-in"); if(di){ const gg=di.querySelector(".dact-g"), G=gg?gg.offsetWidth:0; const L=on.offsetLeft-G-(di.clientWidth-G-on.offsetWidth)/2; di.scrollTo({left:Math.max(0,L),behavior:"smooth"}); } }
 const h=document.documentElement.scrollHeight-window.innerHeight; $("prog").style.width=(h>0?Math.min(100,window.scrollY/h*100):0)+"%";
 }
 let raf=0; window.addEventListener("scroll",()=>{if(!raf)raf=requestAnimationFrame(()=>{raf=0;spy();});},{passive:true}); spy();
+{ const di=nav.querySelector(".dock-in"); ["touchstart","wheel","pointerdown"].forEach(t=>di&&di.addEventListener(t,()=>{ spy.touch=Date.now(); },{passive:true})); }
 // ---------- Animations ----------
 (function(){
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -7257,7 +7258,7 @@ document.addEventListener("click",e=>{ const a=e.target.closest('a[href^="#"],.l
 let rt=0; addEventListener("scroll",()=>{ if(rt) return; rt=requestAnimationFrame(()=>{ rt=0; upd(); }); },{passive:true});
 document.body.appendChild(pills);
 
-function init(){ topbar(); dockActions(); dockOrder();
+function init(){ topbar(); dockActions();
   const og=window.__goto; if(og&&!og.__ux){ const w=(el,b)=>{ if(Date.now()-backT>400) { backY=scrollY; backT=Date.now(); setTimeout(upd,900); } return og(el,b); }; w.__ux=1; window.__goto=w; }
   upd(); }
 if(document.readyState==="complete") setTimeout(init,600); else addEventListener("load",()=>setTimeout(init,600));
